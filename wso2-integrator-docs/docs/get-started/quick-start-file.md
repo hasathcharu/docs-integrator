@@ -73,4 +73,4 @@ service on dirListener {
 
 - [Quick Start: Automation](quick-start-automation.md) -- Build scheduled jobs
 - [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [File Handlers](/docs/develop/integration-artifacts/file-handlers) -- Advanced file processing patterns
+- [FTP/SFTP](../develop/integration-artifacts/file/ftp-sftp.md) -- Advanced file processing patterns

@@ -376,6 +376,6 @@ For production databases, use a dedicated migration tool (such as Flyway or Liqu
 
 ## What's Next
 
-- [Other Artifacts](other-artifacts.md) -- Types, connections, configurations, functions, and data mappers
+- [Supporting Artifacts](functions.md) -- Types, connections, configurations, functions, and data mappers
 - [Query Expressions](/docs/develop/design-logic/query-expressions) -- Use SQL-like queries to filter and transform persist results
 - [Configuration Management](/docs/develop/design-logic/configuration-management) -- Manage data store credentials per environment

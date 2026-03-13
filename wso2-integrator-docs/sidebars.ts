@@ -70,13 +70,61 @@ const sidebars: SidebarsConfig = {
       label: 'Integration Artifacts',
       link: {type: 'doc', id: 'develop/integration-artifacts/index'},
       items: [
-        'develop/integration-artifacts/services',
-        'develop/integration-artifacts/event-handlers',
-        'develop/integration-artifacts/file-handlers',
-        'develop/integration-artifacts/email',
-        'develop/integration-artifacts/automation',
-        'develop/integration-artifacts/data-persistence',
-        'develop/integration-artifacts/other-artifacts',
+        {
+          type: 'category',
+          label: 'Automation',
+          items: [
+            'develop/integration-artifacts/automation/automation',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Integration as API',
+          items: [
+            'develop/integration-artifacts/service/http-service',
+            'develop/integration-artifacts/service/graphql-service',
+            'develop/integration-artifacts/service/tcp-service',
+            'develop/integration-artifacts/service/websocket-service',
+            'develop/integration-artifacts/service/grpc-service',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Event Integration',
+          items: [
+            'develop/integration-artifacts/event/kafka',
+            'develop/integration-artifacts/event/rabbitmq',
+            'develop/integration-artifacts/event/mqtt',
+            'develop/integration-artifacts/event/azure-service-bus',
+            'develop/integration-artifacts/event/salesforce-events',
+            'develop/integration-artifacts/event/twilio',
+            'develop/integration-artifacts/event/github-webhooks',
+            'develop/integration-artifacts/event/solace',
+            'develop/integration-artifacts/event/cdc-mssql',
+            'develop/integration-artifacts/event/cdc-postgresql',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'File Integration',
+          items: [
+            'develop/integration-artifacts/file/ftp-sftp',
+            'develop/integration-artifacts/file/local-files',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Supporting Artifacts',
+          items: [
+            'develop/integration-artifacts/supporting/functions',
+            'develop/integration-artifacts/supporting/data-mapper',
+            'develop/integration-artifacts/supporting/types',
+            'develop/integration-artifacts/supporting/connections',
+            'develop/integration-artifacts/supporting/configurations',
+            'develop/integration-artifacts/supporting/data-persistence',
+            'develop/integration-artifacts/supporting/email',
+          ],
+        },
       ],
     },
     {
