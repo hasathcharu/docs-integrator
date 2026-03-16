@@ -20,6 +20,6 @@ cp Config-example.toml Config.toml
 bal run
 ```
 
-## Code Walkthrough
+## Code walkthrough
 
 ## GitHub

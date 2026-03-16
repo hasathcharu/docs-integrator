@@ -12,7 +12,7 @@ Keep files synchronized between Google Drive and Microsoft OneDrive with bi-dire
 
 ## Prerequisites
 
-- WSO2 Integrator VS Code extension installed
+- WSO2 Integrator IDE installed
 - Google Cloud project with the Google Drive API enabled and OAuth 2.0 credentials configured
 - Microsoft Azure app registration with OneDrive (Microsoft Graph) API permissions
 - Designated folders in both Google Drive and OneDrive to keep in sync
@@ -55,9 +55,9 @@ pollingIntervalSeconds = 60
 conflictResolution = "latest-wins"
 ```
 
-## Code Walkthrough
+## Code walkthrough
 
-### Project Structure
+### Project structure
 
 ```
 google-drive-to-onedrive-sync/
@@ -246,14 +246,14 @@ function hasMatchingChecksum(map<string> checksums, SyncFile file) returns boole
 - **Checksum-based change detection**: File checksums prevent unnecessary re-uploads when content has not changed.
 - **Conflict resolution**: The `latest-wins` strategy uses modification timestamps to resolve conflicts when a file is modified on both sides between sync cycles.
 
-## Customization Notes
+## Customization notes
 
 - **File type filtering**: Add MIME type filters to sync only specific file types (e.g., documents, spreadsheets).
 - **Subfolder support**: Extend the sync engine to recursively traverse and sync subfolders.
 - **Change the conflict strategy**: Implement alternative strategies such as `keep-both` (rename the conflicting file) or `source-priority` (always prefer one side).
 - **Add webhook triggers**: Replace polling with Google Drive push notifications and Microsoft Graph subscriptions for near-real-time sync.
 
-## What's Next
+## What's next
 
 - [Google Sheets to Salesforce Contacts](google-sheets-salesforce.md) -- Sync spreadsheet data to your CRM
 - [FTP EDI to Salesforce Opportunity](ftp-edi-salesforce.md) -- Process files from FTP servers

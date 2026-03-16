@@ -53,7 +53,7 @@ cp Config-example.toml Config.toml
 bal run
 ```
 
-## What's Next
+## What's next
 
 - [Sample Projects](../samples/overview.md) -- Larger sample projects with multiple features
 - [End-to-End Walkthroughs](../walkthroughs/content-based-routing.md) -- Step-by-step tutorials

@@ -10,7 +10,7 @@ description: Create an intelligent AI agent powered by LLMs with tool calling.
 
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
+- [WSO2 Integrator IDE installed](install.md)
 - An OpenAI API key
 
 ## Architecture

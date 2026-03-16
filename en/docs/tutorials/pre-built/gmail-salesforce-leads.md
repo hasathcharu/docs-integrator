@@ -12,7 +12,7 @@ Automatically parse incoming Gmail messages using OpenAI to extract lead informa
 
 ## Prerequisites
 
-- WSO2 Integrator VS Code extension installed
+- WSO2 Integrator IDE installed
 - Google Cloud project with the Gmail API enabled and OAuth 2.0 credentials configured
 - OpenAI API key with access to GPT-4 or GPT-3.5
 - Salesforce developer account with a connected app and OAuth 2.0 credentials
@@ -55,9 +55,9 @@ refreshToken = "<SF_REFRESH_TOKEN>"
 baseUrl = "https://your-instance.salesforce.com"
 ```
 
-## Code Walkthrough
+## Code walkthrough
 
-### Project Structure
+### Project structure
 
 ```
 gmail-to-salesforce-leads/
@@ -271,14 +271,14 @@ function processNewEmails() returns error? {
 - **Idempotent processing**: Emails are marked as read after successful processing to prevent duplicate lead creation.
 - **Graceful error handling**: If OpenAI cannot parse a lead from an email, the error is logged and the email is skipped rather than failing the entire batch.
 
-## Customization Notes
+## Customization notes
 
 - **Adjust the Gmail filter**: Modify `queryFilter` to match different subjects, labels, or senders relevant to your lead capture workflow.
 - **Use a different LLM**: Replace the OpenAI connector with the Anthropic or Azure OpenAI connector for alternative model providers.
 - **Add lead scoring**: Extend the OpenAI prompt to include a lead quality score (1-10) and map it to a Salesforce custom field.
 - **Duplicate detection**: Before creating a lead, query Salesforce to check if a lead with the same email already exists, and update it instead.
 
-## What's Next
+## What's next
 
 - [Google Sheets to Salesforce Contacts](google-sheets-salesforce.md) -- Sync spreadsheet rows to CRM contacts
 - [Salesforce to Twilio SMS](salesforce-twilio-sms.md) -- Send SMS notifications on Salesforce events

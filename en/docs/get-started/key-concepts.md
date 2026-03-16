@@ -34,7 +34,7 @@ Pre-built modules for connecting to external systems — Salesforce, databases, 
 
 ## Visual Data Mapper
 
-A drag-and-drop data transformation tool in the VS Code extension. Map fields between source and target schemas visually, with AI-assisted suggestions. → [Visual Data Mapper](/docs/develop/transform/data-mapper)
+A drag-and-drop data transformation tool in the WSO2 Integrator IDE. Map fields between source and target schemas visually, with AI-assisted suggestions. → [Visual Data Mapper](/docs/develop/transform/data-mapper)
 
 ## Natural Functions
 

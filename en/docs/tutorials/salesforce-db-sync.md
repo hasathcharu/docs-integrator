@@ -5,11 +5,11 @@ description: "End-to-end walkthrough: Synchronize data between Salesforce and a 
 
 # Salesforce ↔ Database Sync
 
-## What You'll Build
+## What you'll build
 
 A bidirectional sync integration that keeps Salesforce contacts in sync with a relational database.
 
-## What You'll Learn
+## What you'll learn
 
 - Salesforce connector configuration
 - Database connector usage
@@ -19,24 +19,24 @@ A bidirectional sync integration that keeps Salesforce contacts in sync with a r
 
 ## Prerequisites
 
-- WSO2 Integrator VS Code extension installed
+- WSO2 Integrator IDE installed
 - Salesforce developer account
 - PostgreSQL or MySQL database
 
 **Time estimate:** 30–45 minutes
 
-## Step-by-Step Walkthrough
+## Step-by-step walkthrough
 
-### Step 1: Create the Project
+### Step 1: Create the project
 
-### Step 2: Build the Integration
+### Step 2: Build the integration
 
-### Step 3: Add Data Transformation
+### Step 3: Add data transformation
 
-### Step 4: Handle Errors
+### Step 4: Handle errors
 
-### Step 5: Test It
+### Step 5: Test it
 
-## Extend It
+## Extend it
 
-## Full Source Code
+## Full source code

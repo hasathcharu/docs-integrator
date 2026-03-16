@@ -113,7 +113,7 @@ Click on any `.bal` file to open it in both the code editor and the visual flow 
 If WSO2 Integrator does not activate after opening a folder:
 
 1. Verify that `Ballerina.toml` exists in the root of the opened folder.
-2. Ensure the WSO2 Integrator extension is installed and enabled.
+2. Ensure the WSO2 Integrator IDE is installed and enabled.
 3. Check the **Output** panel (select **WSO2 Integrator** from the dropdown) for error messages.
 
 ### Incompatible Distribution

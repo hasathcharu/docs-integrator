@@ -12,7 +12,7 @@ File integrations are ideal for batch uploads, scheduled file processing, and ET
 
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
+- [WSO2 Integrator IDE installed](install.md)
 
 ## Step 1: Create the Project
 

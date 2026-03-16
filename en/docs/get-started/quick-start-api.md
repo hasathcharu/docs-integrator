@@ -10,7 +10,7 @@ description: Build an HTTP service that calls an external API and returns a gree
 
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
+- [WSO2 Integrator IDE installed](install.md)
 
 ## Architecture
 

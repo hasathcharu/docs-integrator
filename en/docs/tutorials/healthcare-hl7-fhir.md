@@ -5,26 +5,26 @@ description: "End-to-end walkthrough: Build a healthcare integration with HL7/FH
 
 # Healthcare HL7/FHIR Integration
 
-## What You'll Build
+## What you'll build
 
-## What You'll Learn
+## What you'll learn
 
 ## Prerequisites
 
 **Time estimate:** 30–45 minutes
 
-## Step-by-Step Walkthrough
+## Step-by-step walkthrough
 
-### Step 1: Create the Project
+### Step 1: Create the project
 
-### Step 2: Build the Integration
+### Step 2: Build the integration
 
-### Step 3: Add Data Transformation
+### Step 3: Add data transformation
 
-### Step 4: Handle Errors
+### Step 4: Handle errors
 
-### Step 5: Test It
+### Step 5: Test it
 
-## Extend It
+## Extend it
 
-## Full Source Code
+## Full source code

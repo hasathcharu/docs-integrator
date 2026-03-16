@@ -9,7 +9,7 @@ Libraries let you package reusable integration logic — connectors, utility fun
 
 ## Prerequisites
 
-- WSO2 Integrator VS Code extension installed
+- WSO2 Integrator WSO2 Integrator IDE installed
 - Ballerina installed
 
 ## When to Use a Library

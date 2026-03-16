@@ -8,11 +8,11 @@ description: "End-to-end walkthrough: Build an integration that polls an FTP ser
 
 Build an integration that monitors an FTP server for incoming EDI files, parses them into structured data, validates the content, and pushes the results to a business application. EDI over FTP is a cornerstone of B2B integration in supply chain, retail, and logistics.
 
-## What You'll Build
+## What you'll build
 
 An automated pipeline that polls an SFTP server for incoming X12 850 Purchase Orders, parses them, validates mandatory fields, transforms them into a JSON format, and creates corresponding sales orders in a REST-based ERP system.
 
-## What You'll Learn
+## What you'll learn
 
 - Connecting to FTP/SFTP servers with Ballerina
 - Polling for new files on a schedule
@@ -23,7 +23,7 @@ An automated pipeline that polls an SFTP server for incoming X12 850 Purchase Or
 
 ## Prerequisites
 
-- WSO2 Integrator VS Code extension installed
+- WSO2 Integrator IDE installed
 - An FTP or SFTP server (or a local FTP server for testing)
 - Basic understanding of EDI X12 format
 - A target REST API (mocked in this tutorial)
@@ -48,7 +48,7 @@ An automated pipeline that polls an SFTP server for incoming X12 850 Purchase Or
                    └────────────────────────────────────┘
 ```
 
-## Step 1: Create the Project
+## Step 1: Create the project
 
 ```bash
 bal new edi_ftp_processor
@@ -435,7 +435,7 @@ function processEdiFile(string fileName) returns ProcessingResult|error {
 }
 ```
 
-## Step 7: Test the Pipeline
+## Step 7: Test the pipeline
 
 Start the service:
 
@@ -464,14 +464,14 @@ IEA*1*000000001~
 
 Check the service logs for processing status and verify the file was moved to the archive folder.
 
-## Extend It
+## Extend it
 
 - **Add acknowledgment generation** -- Send back an X12 997 Functional Acknowledgment
 - **Support multiple EDI document types** -- Handle 810 (Invoice), 856 (Ship Notice), and others
 - **Add EDIFACT support** -- Parse international EDIFACT documents alongside X12
 - **Add a monitoring dashboard** -- Track file processing rates and error counts
 
-## What's Next
+## What's next
 
 - [Data Formats & Standards Connectors](../../connectors/data-formats-standards.md) -- EDI, FHIR, and SOAP connectors
 - [File Processing](../../develop/build/file-processing.md) -- File handling patterns
