@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-sidebar_label: Overview
 title: Debugging & Troubleshooting
 description: "How do I debug and troubleshoot my integration?"
 ---

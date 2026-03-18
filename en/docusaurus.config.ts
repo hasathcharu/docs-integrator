@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Documentation',
+  title: 'WSO2 Integrator Documentation',
   tagline: 'Build integrations with low-code simplicity and pro-code power',
   favicon: 'img/favicon.svg',
 
@@ -69,7 +69,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: '',
+      title: 'WSO2 Integrator',
       logo: {
         alt: 'WSO2 Integrator Logo',
         src: 'img/logo.svg',
@@ -131,7 +131,7 @@ const config: Config = {
         {
           title: 'Get Started',
           items: [
-            {label: 'Overview', to: '/docs/get-started/overview'},
+            {label: 'Overview', to: '/docs/get-started/why-wso2-integrator'},
             {label: 'Install', to: '/docs/get-started/install'},
             {label: 'Quick Starts', to: '/docs/get-started/quick-start-api'},
           ],
@@ -141,8 +141,9 @@ const config: Config = {
           items: [
             {label: 'Integration Artifacts', to: '/docs/develop/integration-artifacts/overview'},
             {label: 'Transform', to: '/docs/develop/transform/data-mapper'},
-            {label: 'Connectors', to: '/docs/connectors/ai-llms'},
-            {label: 'GenAI', to: '/docs/genai/getting-started/setup'},
+            {label: 'Test', to: '/docs/develop/test/try-it'},
+            {label: 'Connectors', to: '/docs/connectors/overview'},
+            {label: 'GenAI', to: '/docs/genai/overview'},
           ],
         },
         {
@@ -157,6 +158,7 @@ const config: Config = {
         {
           title: 'Community',
           items: [
+            {label: 'WSO2 MI Documentation', href: 'https://mi.docs.wso2.com'},
             {label: 'Ballerina Central', href: 'https://central.ballerina.io'},
             {label: 'Community Forums', href: 'https://discord.com/invite/wso2'},
             {label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/wso2'},

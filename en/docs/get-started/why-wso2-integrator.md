@@ -68,4 +68,3 @@ Manage zero infrastructure. WSO2 handles provisioning, upgrades, scaling, and av
 
 - [Key concepts](key-concepts.md): Learn the product vocabulary.
 - [Install WSO2 Integrator IDE](install.md): Get set up in 5 minutes.
-

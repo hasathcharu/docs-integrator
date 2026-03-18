@@ -1,6 +1,5 @@
 ---
-sidebar_position: 1
-sidebar_label: Overview
+sidebar_position: 2
 title: Project Views
 description: Understand the Workspace, Integration, and Library views in WSO2 Integrator.
 ---

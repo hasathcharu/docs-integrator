@@ -1,13 +1,12 @@
 ---
 sidebar_position: 1
-sidebar_label: Overview
 title: Integration Artifacts
-description: "Understand the different types of integration artifacts: services, event handlers, file handlers, automations, and more."
+description: "Understand the different types of integration artifacts: services, event handlers, file handlers, automations, AI agents, MCP services, and more."
 ---
 
 # Integration Artifacts
 
-Integration artifacts are the building blocks of your integrations. Each artifact type serves a specific purpose -- exposing an endpoint, reacting to events, processing files, or running scheduled tasks. Understanding these types helps you choose the right approach for each integration scenario.
+Integration artifacts are the building blocks of your integrations. Each artifact type serves a specific purpose -- exposing an endpoint, reacting to events, processing files, running scheduled tasks, or powering AI agents. Understanding these types helps you choose the right approach for each integration scenario.
 
 ## Artifact Overview
 
@@ -16,6 +15,8 @@ WSO2 Integrator supports the following artifact types:
 | Category | Artifact | Description |
 |---|---|---|
 | **Automation** | Automation | Runs manually or on a schedule -- data sync, reports, maintenance jobs |
+| **AI Integration** | AI Chat Agent | LLM-backed agents accessible via chat or API |
+| **AI Integration** | MCP Service | Exposes capabilities via Model Context Protocol for AI assistants |
 | **Integration as API** | HTTP Service | Expose integrations as REST APIs |
 | **Integration as API** | GraphQL Service | Expose integrations as GraphQL APIs |
 | **Integration as API** | TCP Service | Raw TCP socket-based services |
@@ -33,11 +34,12 @@ WSO2 Integrator supports the following artifact types:
 | **Other** | Connection | Reusable configurations for external systems |
 | **Other** | Configuration | Environment-specific settings |
 
-## Four Primary Integration Types
+## Five Primary Integration Types
 
 | Type | Purpose | Trigger |
 |---|---|---|
 | **Automation** | Sync data, generate reports, run routine jobs | Timer/schedule or manual |
+| **AI Agent** | Reason and act using GenAI models, respond to input, access tools | User input / dynamic |
 | **Integration as API** | Expose integration as a real-time API | Incoming HTTP/GraphQL/TCP requests |
 | **Event Integration** | Reactive workflows from message sources | Kafka, RabbitMQ, MQTT messages |
 | **File Integration** | Batch uploads, scheduled file processing | Files appearing in folder/FTP |
@@ -96,6 +98,6 @@ Every artifact follows the same lifecycle:
 
 ## What's Next
 
-- [HTTP Service](service/http-service.md) -- Build REST APIs and HTTP services
-- [Kafka](event/kafka.md) -- React to messages from Apache Kafka
+- [Services](services.md) -- Build HTTP, GraphQL, gRPC, WebSocket, TCP, and WebSub services
+- [Event Handlers](event-handlers.md) -- React to messages from brokers and external systems
 - [Design Logic](/docs/develop/design-logic/overview) -- Build the logic inside your artifacts
