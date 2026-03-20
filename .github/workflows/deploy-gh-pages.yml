@@ -39,10 +39,15 @@ jobs:
         env:
           BASE_URL: /docs-integrator/dev/
 
+      - name: Prepare deploy directory
+        run: |
+          mkdir -p deploy/dev
+          cp -r en/build/* deploy/dev/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: en/build
+          publish_dir: deploy
           publish_branch: gh-pages
-          destination_dir: dev
+          keep_files: false
