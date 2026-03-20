@@ -30,6 +30,10 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    './src/plugins/connector-versions',
+  ],
+
   themes: [
     [
       '@easyops-cn/docusaurus-search-local',
