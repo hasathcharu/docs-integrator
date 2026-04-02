@@ -23,7 +23,7 @@ flowchart LR
 
 ## Setting up the MongoDB integration
 
-> **New to WSO2 Integrator?** Follow the [Create a New Integration](../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
+> **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the connector.
 
 ## Adding the MongoDB connector
 
@@ -41,11 +41,11 @@ flowchart LR
 
 In the **Configure MongoDB** panel, bind each field to a configurable variable using Expression mode in the **Connection** textbox. Configure the following parameters:
 
-- **serverAddress.host** — MongoDB server hostname or IP address
-- **serverAddress.port** — MongoDB server port number
-- **auth.username** — Database username
-- **auth.password** — Database password
-- **auth.database** — Authentication database name
+- **serverAddress.host**: MongoDB server hostname or IP address
+- **serverAddress.port**: MongoDB server port number
+- **auth.username**: Database username
+- **auth.password**: Database password
+- **auth.database**: Authentication database name
 
 Set **Connection Name** to `mongodbClient`.
 
@@ -62,15 +62,15 @@ Click **Save Connection** to persist the connection. The `mongodbClient` node ap
 1. In the left panel, click **Configurations**.
 2. Set a value for each configurable listed below:
 
-- **mongoHost** — string — hostname or IP of your MongoDB server
-- **mongoPort** — int — port your MongoDB server listens on
-- **mongoUsername** — string — username for MongoDB authentication
-- **mongoPassword** — string — password for MongoDB authentication
-- **mongoDatabase** — string — name of the authentication database
+- **mongoHost**: string : hostname or IP of your MongoDB server
+- **mongoPort**: int : port your MongoDB server listens on
+- **mongoUsername**: string : username for MongoDB authentication
+- **mongoPassword**: string : password for MongoDB authentication
+- **mongoDatabase**: string : name of the authentication database
 
 ## Configuring the MongoDB Get Database operation
 
-### Step 5: Add an Automation entry point
+### Step 5: Add an automation entry point
 
 1. On the main canvas, click **+ Add Artifact**.
 2. Choose **Automation** under the Automation heading.
