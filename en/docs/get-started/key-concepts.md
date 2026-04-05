@@ -46,7 +46,7 @@ Pre-built modules for connecting to external systems—Salesforce, databases, Ka
 
 ## Visual data mapper
 
-A drag-and-drop data transformation tool in the **VS Code** extension. Map fields between source and target schemas visually, with AI-assisted suggestions. For more information, see [Visual data mapper](/docs/develop/transform/data-mapper).
+A visual data transformation tool in the WSO2 Integrator design view. Map fields between source and target schemas using the design interface, with AI-assisted suggestions. For more information, see [Visual data mapper](/docs/develop/transform/data-mapper).
 
 ## Natural functions
 
@@ -62,8 +62,8 @@ A dashboard for monitoring, managing, and troubleshooting running integrations i
 
 ## Ballerina
 
-The programming language powering everything under the hood. You do not need to be a Ballerina expert to use the visual designer, but knowing the basics unlocks pro-code capabilities.
+The programming language powering everything under the hood. You do not need to be a Ballerina expert to use the WSO2 Integrator design view, but knowing the basics unlocks pro-code capabilities.
 
 ## Low-code and pro-code
 
-Seamless switching between the visual designer and the code editor. Changes in one view instantly appear in the other. This is not a code generation tool—it is a bidirectional synchronization.
+Seamless switching between the design view and the code editor in WSO2 Integrator. Changes in one view instantly appear in the other. This is not a code generation tool—it is a bidirectional synchronization.
