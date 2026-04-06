@@ -553,6 +553,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/cloud-infrastructure/elastic.elasticcloud/setup-guide',
             'connectors/catalog/cloud-infrastructure/elastic.elasticcloud/action-reference',
+            'connectors/catalog/cloud-infrastructure/elastic.elasticcloud/example',
           ],
         },
         {
