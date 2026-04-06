@@ -29,7 +29,7 @@ The report is generated at `target/report/test_results.html`. Open it in a brows
 
 Test results also appear in the console by default.
 
-```
+```bash
 Compiling source
     myorg/mypackage:0.1.0
 
@@ -62,7 +62,7 @@ bal test --test-report --code-coverage
 
 Coverage results are generated at:
 
-```
+```bash
 target/report/test_results.html    # HTML report with coverage
 target/report/coverage/            # Raw coverage data
 ```
