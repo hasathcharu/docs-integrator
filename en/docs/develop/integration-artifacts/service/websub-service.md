@@ -80,6 +80,37 @@ service /hub on hubListener {
 | `onUnsubscriptionValidation` | Additional unsubscription validation (optional) | Enforce custom unsubscription rules |
 | `onUnsubscriptionIntentVerified` | Hub verifies unsubscription intent | Remove the persisted subscription |
 
+### Optional validation callbacks
+
+The `onSubscriptionValidation` and `onUnsubscriptionValidation` callbacks are optional. If implemented, the hub invokes them after `onSubscription` or `onUnsubscription` (respectively) and before intent verification. Use them to enforce custom business rules — for example, restricting subscriptions to known topics or authorized callers.
+
+Return `nil` (or omit a return) to accept the request. Return a `SubscriptionDeniedError` or `UnsubscriptionDeniedError` to reject it.
+
+```ballerina
+remote function onSubscriptionValidation(websubhub:Subscription msg)
+        returns websubhub:SubscriptionDeniedError|error? {
+    // Reject subscriptions to unregistered topics
+    lock {
+        if !topics.hasKey(msg.hubTopic) {
+            return error websubhub:SubscriptionDeniedError("topic not registered");
+        }
+    }
+    // Returning nil accepts the subscription
+}
+
+remote function onUnsubscriptionValidation(websubhub:Unsubscription msg)
+        returns websubhub:UnsubscriptionDeniedError|error? {
+    // Reject if the subscription does not exist
+    lock {
+        if !subscriptions.hasKey(msg.hubCallback) {
+            return error websubhub:UnsubscriptionDeniedError("subscription not found");
+        }
+    }
+}
+```
+
+For the complete callback lifecycle and additional configuration options, see the [Ballerina WebSubHub specification](https://ballerina.io/spec/websubhub).
+
 ## Implementing hub logic
 
 Implement each callback as a `remote function` inside the hub service. The example below shows a hub that stores topics and subscriptions in isolated maps and distributes updates using a `websubhub:HubClient`.
