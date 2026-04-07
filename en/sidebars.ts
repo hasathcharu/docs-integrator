@@ -582,6 +582,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/developer-tools/github/setup-guide',
             'connectors/catalog/developer-tools/github/action-reference',
+            'connectors/catalog/developer-tools/github/example',
           ],
         },
         {
