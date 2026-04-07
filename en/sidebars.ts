@@ -1483,6 +1483,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ecommerce/shopify.admin/setup-guide',
             'connectors/catalog/ecommerce/shopify.admin/action-reference',
+            'connectors/catalog/ecommerce/shopify.admin/example',
           ],
         },
         {
