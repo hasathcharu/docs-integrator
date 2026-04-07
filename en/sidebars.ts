@@ -548,6 +548,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/productivity-collaboration/docusign.dsadmin/setup-guide',
             'connectors/catalog/productivity-collaboration/docusign.dsadmin/action-reference',
+            'connectors/catalog/productivity-collaboration/docusign.dsadmin/example',
           ],
         },
         {
