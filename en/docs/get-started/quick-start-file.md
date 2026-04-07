@@ -4,73 +4,95 @@ title: "Quick Start: File Integration"
 description: Process files from FTP, SFTP, or local directories.
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Quick Start: File Integration
 
-**Time:** Under 10 minutes | **What you'll build:** A file integration that watches a directory for new files, processes them, and writes the output.
+**Time:** Under 10 minutes. **What you'll build:** A file integration that adds an `onModify` handler to track file changes and uses `printInfo` to log file modification events.
 
 File integrations are ideal for batch uploads, scheduled file processing, and ETL workflows triggered by files appearing in a folder or FTP server.
 
 ## Prerequisites
 
-- [WSO2 Integrator extension installed](install.md)
+- Install the [WSO2 Integrator extension](install.md).
 
-## Step 1: Create the Project
+## Step 1: Create the project
 
-1. Open the WSO2 Integrator sidebar in VS Code.
-2. Click **Create New Integration**.
-3. Enter the integration name (e.g., `FileProcessor`).
+1. Open WSO2 Integrator.
+2. Select **Create**.
+3. Set **Integration Name** to `FileTracker`.
+4. Set **Project Name** to `Quick_Start`.
+5. Select **Browse**.
+6. Select the project location and select **Open**.
+7. Select **Create Integration**.
 
-## Step 2: Add a File Integration Artifact
+<ThemedImage
+    alt="Create the Project"
+    sources={{
+        light: useBaseUrl('/img/get-started/quick-start-file/create-the-project-light.gif'),
+        dark: useBaseUrl('/img/get-started/quick-start-file/create-the-project-dark.gif'),
+    }}
+/>
 
-1. In the design view, add a **Directory Service** (for local files) or **FTP Service** (for remote files) artifact.
-2. Configure the directory path to watch.
+## Step 2: Add a file integration artifact
 
-## Step 3: Process Incoming Files
+1. Select **FileTracker**.
+2. In the design view, select **+ Add Artifact**.
+3. Scroll down and select **Local Files** under **File Integration**.
+4. Set **Path** to **"/tmp"**.
+5. Select **Create**.
 
-Add logic to read and process files when they arrive:
+<ThemedImage
+    alt="Add a File Integration Artifact"
+    sources={{
+        light: useBaseUrl('/img/get-started/quick-start-file/add-a-file-integration-artifact-light.gif'),
+        dark: useBaseUrl('/img/get-started/quick-start-file/add-a-file-integration-artifact-dark.gif'),
+    }}
+/>
 
-```ballerina
-import ballerina/file;
-import ballerina/io;
-import ballerina/log;
+## Step 3: Track modified files
 
-listener file:Listener dirListener = new ({
-    path: "/data/inbox",
-    recursive: false
-});
+1. Select **Add Handler**.
+2. Select **onModify**.
+2. Select **onModify** again.
+4. Select **+** .
+5. Search `printInfo` and select **printInfo**.
+6. Set **Msg** to `File modified`.
+7. Select **Save**.
 
-service on dirListener {
-    remote function onCreate(file:FileEvent event) returns error? {
-        string filePath = event.name;
-        log:printInfo("New file detected", path = filePath);
+<ThemedImage
+    alt="Tracking modified files"
+    sources={{
+        light: useBaseUrl('/img/get-started/quick-start-file/tracking-modified-files-light.gif'),
+        dark: useBaseUrl('/img/get-started/quick-start-file/tracking-modified-files-dark.gif'),
+    }}
+/>
 
-        // Read CSV content
-        string content = check io:fileReadString(filePath);
-        log:printInfo("File content", content = content);
+## Step 4: Run and test
 
-        // Process and write output
-        check io:fileWriteString("/data/processed/" + filePath, content);
-    }
-}
-```
+1. Select **Run** in the toolbar.
+2. Open a new terminal and run `echo "test" > /tmp/testfile.txt`.
 
-## Step 4: Run and Test
+<ThemedImage
+    alt="Run and Test"
+    sources={{
+        light: useBaseUrl('/img/get-started/quick-start-file/run-and-test-light.gif'),
+        dark: useBaseUrl('/img/get-started/quick-start-file/run-and-test-dark.gif'),
+    }}
+/>
 
-1. Click **Run** in the toolbar.
-2. Drop a file into the watched directory (`/data/inbox`).
-3. Verify the processed output appears in `/data/processed/`.
+## Supported file sources
 
-## Supported File Sources
-
-| Source | Transport | Use Case |
+| Source | Transport | Use case |
 |---|---|---|
 | **Local directory** | File system | Development, on-premise batch processing |
 | **FTP** | FTP | Legacy file exchange |
 | **FTPS** | FTP over TLS | Secure legacy file exchange |
 | **SFTP** | SSH File Transfer | Secure file exchange |
 
-## What's Next
+## What's next
 
-- [Quick Start: Automation](quick-start-automation.md) -- Build scheduled jobs
-- [Quick Start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [File Handlers](/docs/develop/integration-artifacts/overview) -- Advanced file processing patterns
+- [Quick start: Automation](quick-start-automation.md): Build scheduled jobs.
+- [Quick start: Integration as API](quick-start-api.md): Build an HTTP service.
+- [File handlers](/docs/develop/integration-artifacts/overview): Advanced file processing patterns.
