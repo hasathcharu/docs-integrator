@@ -1044,6 +1044,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/productivity-collaboration/jira/setup-guide',
             'connectors/catalog/productivity-collaboration/jira/action-reference',
+            'connectors/catalog/productivity-collaboration/jira/example',
           ],
         },
         {
