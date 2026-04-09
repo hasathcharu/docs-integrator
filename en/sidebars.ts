@@ -973,6 +973,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/marketing-social/hubspot.marketing.events/setup-guide',
             'connectors/catalog/marketing-social/hubspot.marketing.events/action-reference',
+            'connectors/catalog/marketing-social/hubspot.marketing.events/example',
           ],
         },
         {
