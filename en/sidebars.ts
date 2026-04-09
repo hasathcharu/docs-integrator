@@ -992,6 +992,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/marketing-social/hubspot.marketing.subscriptions/setup-guide',
             'connectors/catalog/marketing-social/hubspot.marketing.subscriptions/action-reference',
+            'connectors/catalog/marketing-social/hubspot.marketing.subscriptions/example',
           ],
         },
         {
