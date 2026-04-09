@@ -1556,6 +1556,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/finance-accounting/stripe/setup-guide',
             'connectors/catalog/finance-accounting/stripe/action-reference',
+            'connectors/catalog/finance-accounting/stripe/example',
           ],
         },
         {
