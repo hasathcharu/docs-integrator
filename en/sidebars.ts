@@ -1268,6 +1268,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/finance-accounting/paypal.invoices/setup-guide',
             'connectors/catalog/finance-accounting/paypal.invoices/action-reference',
+            'connectors/catalog/finance-accounting/paypal.invoices/example',
           ],
         },
         {
