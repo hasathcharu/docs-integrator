@@ -1304,6 +1304,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/hrms/peoplehr/setup-guide',
             'connectors/catalog/hrms/peoplehr/action-reference',
+            'connectors/catalog/hrms/peoplehr/example',
           ],
         },
         {
