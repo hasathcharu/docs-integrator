@@ -1008,6 +1008,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/ibm.ctg/setup-guide',
             'connectors/catalog/erp-business/ibm.ctg/action-reference',
+            'connectors/catalog/erp-business/ibm.ctg/example',
           ],
         },
         {
