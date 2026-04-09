@@ -963,6 +963,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/marketing-social/hubspot.marketing.emails/setup-guide',
             'connectors/catalog/marketing-social/hubspot.marketing.emails/action-reference',
+            'connectors/catalog/marketing-social/hubspot.marketing.emails/example',
           ],
         },
         {
