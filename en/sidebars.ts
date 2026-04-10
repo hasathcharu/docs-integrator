@@ -1389,6 +1389,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.salesarea_0001/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.salesarea_0001/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.salesarea-0001/example',
           ],
         },
         {
