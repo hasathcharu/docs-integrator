@@ -136,12 +136,12 @@
 }
 
 /* Markdown Button Styles */
-.dropdownContainer {
+.markdownDropdownContainer {
   position: relative;
   flex-shrink: 0;
 }
 
-.dropdownButton {
+.markdownDropdownButton {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -158,12 +158,12 @@
   line-height: 1.4;
 }
 
-.dropdownButton:hover {
+.markdownDropdownButton:hover {
   background-color: var(--ifm-color-emphasis-200);
   border-color: var(--ifm-color-emphasis-400);
 }
 
-.dropdownMenu {
+.markdownDropdownMenu {
   position: absolute;
   top: calc(100% + 4px);
   right: 0;
@@ -176,7 +176,7 @@
   z-index: 100;
 }
 
-.dropdownItem {
+.markdownDropdownItem {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -192,52 +192,52 @@
   transition: background-color 0.15s ease;
 }
 
-.dropdownItem:hover {
+.markdownDropdownItem:hover {
   background-color: var(--ifm-color-emphasis-100);
 }
 
-.dropdownItem svg:first-child {
+.markdownDropdownItem svg:first-child {
   flex-shrink: 0;
   width: 16px;
   height: 16px;
   color: var(--ifm-color-emphasis-600);
 }
 
-.dropdownItemText {
+.markdownDropdownItemText {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-width: 0;
 }
 
-.dropdownItemTitle {
+.markdownDropdownItemTitle {
   font-weight: 500;
   color: var(--ifm-color-emphasis-900);
 }
 
-.dropdownItemDesc {
+.markdownDropdownItemDesc {
   font-size: 0.75rem;
   color: var(--ifm-color-emphasis-600);
   margin-top: 0.125rem;
 }
 
-.dropdownDivider {
+.markdownDropdownDivider {
   height: 1px;
   background-color: var(--ifm-color-emphasis-200);
   margin: 0.5rem 0;
 }
 
-[data-theme='dark'] .dropdownButton {
+[data-theme='dark'] .markdownDropdownButton {
   color: var(--ifm-color-emphasis-600);
   background-color: var(--ifm-color-emphasis-100);
   border-color: var(--ifm-color-emphasis-400);
 }
 
-[data-theme='dark'] .dropdownButton:hover {
+[data-theme='dark'] .markdownDropdownButton:hover {
   background-color: var(--ifm-color-emphasis-200);
 }
 
-[data-theme='dark'] .dropdownMenu {
+[data-theme='dark'] .markdownDropdownMenu {
   background-color: #1b1b1d;
   border-color: var(--ifm-color-emphasis-400);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -260,7 +260,7 @@
     z-index: 999;
   }
 
-  .dropdownMenu {
+  .markdownDropdownMenu {
     position: fixed;
     top: auto;
     bottom: 0;

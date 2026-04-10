@@ -74,9 +74,9 @@ export default function MarkdownButton({ markdownUrl }: MarkdownButtonProps): JS
   };
 
   return (
-    <div className={styles.dropdownContainer} ref={dropdownRef}>
+    <div className={styles.markdownDropdownContainer} ref={dropdownRef}>
       <button
-        className={styles.dropdownButton}
+        className={styles.markdownDropdownButton}
         onClick={() => setIsOpen(!isOpen)}
         type="button"
         aria-expanded={isOpen}
@@ -90,53 +90,53 @@ export default function MarkdownButton({ markdownUrl }: MarkdownButtonProps): JS
 
       {isOpen && (
         <>
-        <div className={styles.mobileBackdrop} onClick={() => setIsOpen(false)} />
-        <div className={styles.dropdownMenu}>
-          <button className={styles.dropdownItem} onClick={handleCopyPage}>
-            <CopyIcon />
-            <div className={styles.dropdownItemText}>
-              <span className={styles.dropdownItemTitle}>Copy page</span>
-              <span className={styles.dropdownItemDesc}>Copy page as Markdown for LLMs</span>
-            </div>
-          </button>
+          <div className={styles.mobileBackdrop} onClick={() => setIsOpen(false)} />
+          <div className={styles.markdownDropdownMenu}>
+            <button className={styles.markdownDropdownItem} onClick={handleCopyPage}>
+              <CopyIcon />
+              <div className={styles.markdownDropdownItemText}>
+                <span className={styles.markdownDropdownItemTitle}>Copy page</span>
+                <span className={styles.markdownDropdownItemDesc}>Copy page as Markdown for LLMs</span>
+              </div>
+            </button>
 
-          <button className={styles.dropdownItem} onClick={handleViewMarkdown}>
-            <MarkdownIcon />
-            <div className={styles.dropdownItemText}>
-              <span className={styles.dropdownItemTitle}>View as Markdown</span>
-              <span className={styles.dropdownItemDesc}>View this page as plain text</span>
-            </div>
-          </button>
+            <button className={styles.markdownDropdownItem} onClick={handleViewMarkdown}>
+              <MarkdownIcon />
+              <div className={styles.markdownDropdownItemText}>
+                <span className={styles.markdownDropdownItemTitle}>View as Markdown</span>
+                <span className={styles.markdownDropdownItemDesc}>View this page as plain text</span>
+              </div>
+            </button>
 
-          <div className={styles.dropdownDivider} />
+            <div className={styles.markdownDropdownDivider} />
 
-          <button className={styles.dropdownItem} onClick={handleOpenInChatGPT}>
-            <ChatGPTIcon />
-            <div className={styles.dropdownItemText}>
-              <span className={styles.dropdownItemTitle}>Open in ChatGPT</span>
-              <span className={styles.dropdownItemDesc}>Ask questions about this page</span>
-            </div>
-            <ExternalIcon />
-          </button>
+            <button className={styles.markdownDropdownItem} onClick={handleOpenInChatGPT}>
+              <ChatGPTIcon />
+              <div className={styles.markdownDropdownItemText}>
+                <span className={styles.markdownDropdownItemTitle}>Open in ChatGPT</span>
+                <span className={styles.markdownDropdownItemDesc}>Ask questions about this page</span>
+              </div>
+              <ExternalIcon />
+            </button>
 
-          <button className={styles.dropdownItem} onClick={handleOpenInClaude}>
-            <ClaudeIcon />
-            <div className={styles.dropdownItemText}>
-              <span className={styles.dropdownItemTitle}>Open in Claude</span>
-              <span className={styles.dropdownItemDesc}>Ask questions about this page</span>
-            </div>
-            <ExternalIcon />
-          </button>
+            <button className={styles.markdownDropdownItem} onClick={handleOpenInClaude}>
+              <ClaudeIcon />
+              <div className={styles.markdownDropdownItemText}>
+                <span className={styles.markdownDropdownItemTitle}>Open in Claude</span>
+                <span className={styles.markdownDropdownItemDesc}>Ask questions about this page</span>
+              </div>
+              <ExternalIcon />
+            </button>
 
-          <button className={styles.dropdownItem} onClick={handleOpenInPerplexity}>
-            <PerplexityIcon />
-            <div className={styles.dropdownItemText}>
-              <span className={styles.dropdownItemTitle}>Open in Perplexity</span>
-              <span className={styles.dropdownItemDesc}>Ask questions about this page</span>
-            </div>
-            <ExternalIcon />
-          </button>
-        </div>
+            <button className={styles.markdownDropdownItem} onClick={handleOpenInPerplexity}>
+              <PerplexityIcon />
+              <div className={styles.markdownDropdownItemText}>
+                <span className={styles.markdownDropdownItemTitle}>Open in Perplexity</span>
+                <span className={styles.markdownDropdownItemDesc}>Ask questions about this page</span>
+              </div>
+              <ExternalIcon />
+            </button>
+          </div>
         </>
       )}
     </div>
