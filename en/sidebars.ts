@@ -1477,6 +1477,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/setup-guide',
             'connectors/catalog/erp-business/sap.s4hana.api_sd_sa_soldtopartydetn/action-reference',
+            'connectors/catalog/erp-business/sap.s4hana.api-sd-sa-soldtopartydetn/example',
           ],
         },
         {
