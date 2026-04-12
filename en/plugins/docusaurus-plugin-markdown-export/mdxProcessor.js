@@ -1,3 +1,5 @@
+const yaml = require('js-yaml');
+
 /**
  * Process MDX content and convert to clean markdown
  */
@@ -20,7 +22,8 @@ async function processMarkdownFile(content, constants = {}, sourceDir) {
 
   // Add back minimal frontmatter if title exists
   if (frontmatter.title) {
-    result = `---\ntitle: ${frontmatter.title}\n---\n\n${result}`;
+    const minimalFrontmatter = yaml.dump({ title: frontmatter.title });
+    result = `---\n${minimalFrontmatter}---\n\n${result}`;
   }
 
   return result;
@@ -71,7 +74,7 @@ function stripJSX(content) {
 
   // Remove div/span tags with classNames but keep content
   result = result.replace(/<(div|span)[^>]*>([\s\S]*?)<\/\1>/g, '$2');
-  
+
   // Final pass to remove any remaining custom JSX tags that look like components
   result = result.replace(/<[A-Z][a-zA-Z0-9]*[^>]*>([\s\S]*?)<\/[A-Z][a-zA-Z0-9]*>/g, '$1');
 
