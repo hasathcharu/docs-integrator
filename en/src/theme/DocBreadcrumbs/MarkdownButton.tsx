@@ -5,9 +5,10 @@ interface MarkdownButtonProps {
   markdownUrl: string;
 }
 
-export default function MarkdownButton({ markdownUrl }: MarkdownButtonProps): JSX.Element {
+export default function MarkdownButton({ markdownUrl }: MarkdownButtonProps): React.ReactNode {
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -23,16 +24,22 @@ export default function MarkdownButton({ markdownUrl }: MarkdownButtonProps): JS
 
   const handleCopyPage = async () => {
     try {
+      setCopyError(false);
       const response = await fetch(markdownUrl);
       if (!response.ok) throw new Error('Failed to fetch content');
       const markdown = await response.text();
       await navigator.clipboard.writeText(markdown);
       setCopied(true);
+      setIsOpen(false);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy page content:', err);
+      setCopyError(true);
+      setTimeout(() => {
+        setCopyError(false);
+        setIsOpen(false);
+      }, 3000);
     }
-    setIsOpen(false);
   };
 
   const handleViewMarkdown = () => {
@@ -84,7 +91,7 @@ export default function MarkdownButton({ markdownUrl }: MarkdownButtonProps): JS
         title="Copy page content for LLMs"
       >
         <CopyIcon />
-        <span>{copied ? 'Copied!' : 'Copy page'}</span>
+        <span>{copied ? 'Copied!' : copyError ? 'Copy failed!' : 'Copy page'}</span>
         <ChevronIcon isOpen={isOpen} />
       </button>
 
@@ -95,7 +102,7 @@ export default function MarkdownButton({ markdownUrl }: MarkdownButtonProps): JS
             <button className={styles.markdownDropdownItem} onClick={handleCopyPage}>
               <CopyIcon />
               <div className={styles.markdownDropdownItemText}>
-                <span className={styles.markdownDropdownItemTitle}>Copy page</span>
+                <span className={styles.markdownDropdownItemTitle}>{copyError ? 'Copy failed!' : 'Copy page'}</span>
                 <span className={styles.markdownDropdownItemDesc}>Copy page as Markdown for LLMs</span>
               </div>
             </button>
