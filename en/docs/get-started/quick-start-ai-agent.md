@@ -9,7 +9,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Quick Start: Build an AI Agent
 
-**Time:** Under 15 minutes | **What you'll build:** An AI agent that connects to an LLM, uses tools, and responds to queries through a GraphQL endpoint.
+**Time:** Under 15 minutes | **What you'll build:** An AI agent that connects to an LLM, uses tools, and responds to user queries in chat.
 
 ## Prerequisites
 
@@ -47,7 +47,7 @@ sequenceDiagram
     }}
 />
 
-## Step 2: Add a File Integration Artifact
+## Step 2: Add an AI Chat Agent
 
 1. Select **AI Agent**.
 2. In the design view, select **+ Add Artifact**.
@@ -56,7 +56,7 @@ sequenceDiagram
 5. Select **Create**.
 
 <ThemedImage
-    alt="Add a File Integration Artifact"
+    alt="Add an AI Chat Agent"
     sources={{
         light: useBaseUrl('/img/get-started/quick-start-ai-agent/add-a-file-integration-artifact-light.gif'),
         dark: useBaseUrl('/img/get-started/quick-start-ai-agent/add-a-file-integration-artifact-dark.gif'),
