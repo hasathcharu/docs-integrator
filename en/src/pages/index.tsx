@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react';
 import {useState, useEffect, useRef, useCallback} from 'react';
 import Link from '@docusaurus/Link';
-import {useHistory, useLocation} from '@docusaurus/router';
+import {useHistory} from '@docusaurus/router';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -327,7 +327,7 @@ function SearchBar(): ReactNode {
   }, []);
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (query.trim()) {
         history.push(`/search?q=${encodeURIComponent(query.trim())}`);
@@ -490,14 +490,13 @@ function WhatsNew(): ReactNode {
 /* ------------------------------------------------------------------ */
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
-  const {pathname} = useLocation();
   return (
     <Layout title="Home" description={siteConfig.tagline}>
       <div className={styles.pageLayout}>
         <aside className={styles.sidebarCol}>
           <DocSidebar
             sidebar={homeSidebarItems}
-            path={pathname}
+            path="/"
             onCollapse={() => {}}
             isHidden={false}
           />
