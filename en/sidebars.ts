@@ -683,6 +683,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.associations.schema/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.associations.schema/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.associations.schema/example',
           ],
         },
         {
