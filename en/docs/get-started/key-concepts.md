@@ -54,7 +54,7 @@ LLM calls treated as typed function calls in your integration code. Define an in
 
 ## Configurations
 
-The `Config.toml` is the file where you define environment-specific configuration such as database URLs, API keys. Different environments (dev, test, prod) have different `Config.toml` files.
+The `Config.toml` is the file where you define environment-specific configuration, such as database URLs and API keys. Different environments (dev, test, prod) have different `Config.toml` files.
 
 ## Integration control plane (ICP)
 
