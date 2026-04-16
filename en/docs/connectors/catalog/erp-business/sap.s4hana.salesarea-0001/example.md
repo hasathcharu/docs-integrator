@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-Build an automation that connects to an SAP S/4HANA system and retrieves all sales area entities using the OData-based Sales Area API. The integration logs the retrieved sales area data as a JSON string for further processing or verification.
+Build an automation that connects to an SAP S/4HANA system and retrieves all sales area entities using the OData-based Sales Area API. The integration stores the retrieved sales area data for further processing or verification.
 
 **Operations used:**
 - **List Sales Areas** : Retrieves all sales area entities from the SAP S/4HANA system
