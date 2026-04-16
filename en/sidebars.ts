@@ -712,6 +712,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.commerce.orders/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.commerce.orders/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.commerce.orders/example',
           ],
         },
         {
