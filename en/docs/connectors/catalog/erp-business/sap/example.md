@@ -99,7 +99,7 @@ Try this sample in WSO2 Integration Platform.
 ## More code examples
 
 The `sap` connector provides practical examples illustrating usage in various scenarios. Explore
-these [examples](https://github.com/ballerina-platform/module-ballerinax-sap/tree/master/examples), covering use cases
+these [examples](https://github.com/ballerina-platform/module-ballerinax-sap/tree/main/examples), covering use cases
 like accessing S/4HANA Sales Order (A2X) API.
 
 1. [Send a reminder on approval of pending orders](https://github.com/ballerina-platform/module-ballerinax-sap/tree/main/examples/pending-order-reminder) -

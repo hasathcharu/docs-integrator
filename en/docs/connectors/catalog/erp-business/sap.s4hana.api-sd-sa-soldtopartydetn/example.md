@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-This integration connects to the SAP S/4HANA API for Delivery Schedule Sold-To-Party Determination and retrieves a list of delivery schedule sold-to-party determination records. The automation logs the response for review.
+This integration connects to the SAP S/4HANA API for Delivery Schedule Sold-To-Party Determination and retrieves a list of delivery schedule sold-to-party determination records. The response is stored in the `result` variable for downstream processing.
 
 **Operations used:**
 - **listA_DelivSchedSoldToPartyDetns** : Retrieves a collection of delivery schedule sold-to-party determination records from an SAP S/4HANA system

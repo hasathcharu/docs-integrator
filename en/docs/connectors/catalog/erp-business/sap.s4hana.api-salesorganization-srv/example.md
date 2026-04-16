@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-Build an automation that connects to an SAP S/4HANA system and retrieves the top five sales organizations using the SAP S/4HANA API Sales Organization Service connector. The result is logged as a JSON string for downstream processing or verification.
+Build an automation that connects to an SAP S/4HANA system and retrieves the top five sales organizations using the SAP S/4HANA API Sales Organization Service connector. The result is stored in the `listA_SalesOrganizations` variable for downstream processing or verification.
 
 **Operations used:**
 - **listA_SalesOrganizations** : Retrieves a list of sales organizations from the SAP S/4HANA `API_SALESORGANIZATION_SRV` OData service, limited to the top five results

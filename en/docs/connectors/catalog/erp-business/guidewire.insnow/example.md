@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-Build a WSO2 Integrator automation that connects to the Guidewire InsuranceNow platform and retrieves a list of supported countries. The integration uses an Automation entry point to periodically invoke the InsuranceNow API and logs the result for downstream processing.
+Build a WSO2 Integrator automation that connects to the Guidewire InsuranceNow platform and retrieves a list of supported countries. The integration demonstrates invoking the InsuranceNow API via an Automation entry point and storing the response for downstream processing.
 
 **Operations used:**
 - **get** : Retrieves a list of supported countries from the InsuranceNow API

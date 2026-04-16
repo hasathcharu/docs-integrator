@@ -75,7 +75,8 @@ Select **Save Connection** to persist the connection. The new connection (for ex
 
 3. Select **List Sales Areas** and configure its parameters:
 
-- **result variable** : Stores the response as `salesarea_0001:CollectionOfSalesArea`
+- **Result Variable** : Name of the variable that stores the operation response
+- **Result Type** : Auto-resolved as `salesarea_0001:CollectionOfSalesArea`
 
 Select **Save** to apply the configuration.
 
