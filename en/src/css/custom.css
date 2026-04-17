@@ -91,7 +91,8 @@
   --ifm-code-font-size: 95%;
 
   /* === Navbar & Navigation === */
-  --ifm-navbar-background-color: rgba(240, 247, 255, 0.85); /* Subtle Light Blue Background */
+  --ifm-navbar-background-color: rgba(240, 247, 255, 0.85);
+  /* Subtle Light Blue Background */
   --wso2-sidebar-bg: #F0F7FF;
   --ifm-navbar-shadow: 0 1px 0 #E2E8F0;
   --ifm-navbar-height: 4rem;
@@ -352,11 +353,11 @@
   --ifm-h1-font-size: 1.75rem;
 }
 
-.markdown > h2 {
+.markdown>h2 {
   --ifm-h2-font-size: 1.375rem;
 }
 
-.markdown > h3 {
+.markdown>h3 {
   --ifm-h3-font-size: 1.125rem;
 }
 
@@ -501,11 +502,13 @@ table tbody tr:hover {
   background: rgba(255, 255, 255, 0.04);
 }
 
-table td, table th {
+table td,
+table th {
   border-color: #E2E8F0;
 }
 
-[data-theme='dark'] table td, [data-theme='dark'] table th {
+[data-theme='dark'] table td,
+[data-theme='dark'] table th {
   border-color: #1E293B;
 }
 
@@ -704,13 +707,13 @@ table td, table th {
 /* ================================================================
    DOC SIDEBAR DIVIDER
    ================================================================ */
-.theme-doc-sidebar-menu > .menu__list-item + .menu__list-item {
+.theme-doc-sidebar-menu>.menu__list-item+.menu__list-item {
   border-top: 1px solid #E2E8F0;
   margin-top: 0.5rem;
   padding-top: 0.5rem;
 }
 
-[data-theme='dark'] .theme-doc-sidebar-menu > .menu__list-item + .menu__list-item {
+[data-theme='dark'] .theme-doc-sidebar-menu>.menu__list-item+.menu__list-item {
   border-top-color: #1E293B;
 }
 
@@ -733,7 +736,7 @@ table td, table th {
    ================================================================ */
 
 /* Right-align the tab toggle buttons */
-.tabs-container > .tabs {
+.tabs-container>.tabs {
   justify-content: flex-start;
   border-bottom: none;
   margin-bottom: 0;
@@ -795,7 +798,7 @@ table td, table th {
 
 /* Box around tab content */
 @layer docusaurus.infima {
-  .tabs-container > div.margin-top--md {
+  .tabs-container>div.margin-top--md {
     border: 1px solid #E2E8F0;
     border-radius: 0 0 12px 12px;
     padding: 1.25rem;
@@ -803,7 +806,7 @@ table td, table th {
     margin-top: 0 !important;
   }
 
-  [data-theme='dark'] .tabs-container > div.margin-top--md {
+  [data-theme='dark'] .tabs-container>div.margin-top--md {
     border-color: #1E293B;
     background: #0B1120;
   }
@@ -834,4 +837,19 @@ hr {
 
 [data-theme='dark'] .theme-doc-sidebar-container {
   border-right-color: rgba(255, 255, 255, 0.06);
+}
+
+/* ================================================================
+   ACCESSIBILITY UTILITIES
+   ================================================================ */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }

@@ -29,7 +29,7 @@
 }
 
 /* Add a small top padding for a premium, balanced look */
-.sidebarCol > :global(div) {
+.sidebarCol> :global(div) {
   padding-top: 1rem !important;
 }
 
@@ -126,9 +126,11 @@
   .heroBanner {
     padding: 3rem 1.5rem 2.5rem;
   }
+
   .heroBanner h1 {
     font-size: 2rem;
   }
+
   .heroSubtitle {
     font-size: 1rem;
   }
@@ -210,6 +212,20 @@
 
 .searchForm:focus-within .searchIcon {
   color: rgba(255, 255, 255, 0.6);
+}
+
+.searchIconButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.searchIconButton:hover .searchIcon {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .searchInput {
