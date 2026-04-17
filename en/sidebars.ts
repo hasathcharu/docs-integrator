@@ -841,6 +841,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/crm-sales/hubspot.crm.extensions.videoconferencing/setup-guide',
             'connectors/catalog/crm-sales/hubspot.crm.extensions.videoconferencing/action-reference',
+            'connectors/catalog/crm-sales/hubspot.crm.extensions.videoconferencing/example',
           ],
         },
         {
