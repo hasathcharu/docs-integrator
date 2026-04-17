@@ -10,7 +10,7 @@ This page introduces every major product component in 2–3 sentences. Think of 
 
 ## Integration
 
-A reusable piece of business logic that connects systems, transforms data, or orchestrates workflows. Integrations are the core building blocks in WSO2 Integrator and are composed using [Services](#services), [Automations](#automations), [Event handlers](#event-handlers), and more.
+A reusable piece of business logic that connects systems, transforms data, or orchestrates workflows. Integrations are the core building blocks in WSO2 Integrator and are composed using [Services](#services-and-listeners), [Automations](#automations), [Event handlers](#event-integrations), and more.
 
 ## Project
 
