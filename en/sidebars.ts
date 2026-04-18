@@ -1116,6 +1116,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/milvus/setup-guide',
             'connectors/catalog/ai-ml/milvus/action-reference',
+            'connectors/catalog/ai-ml/milvus/example',
           ],
         },
         {
