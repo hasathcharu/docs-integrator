@@ -1203,6 +1203,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ai-ml/openai/setup-guide',
             'connectors/catalog/ai-ml/openai/action-reference',
+            'connectors/catalog/ai-ml/openai/example',
           ],
         },
         {
