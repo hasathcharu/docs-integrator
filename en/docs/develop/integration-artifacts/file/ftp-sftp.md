@@ -204,7 +204,7 @@ path to a PEM certificate. For the full schema, see
 
 ## Creating an SFTP service
 
-Use this flow for SFTP (FTP over SSH). Default port: `22`. SFTP uses SSH public-key authentication — the form collects the SSH private key material and matching username.
+Use this flow for SFTP (FTP over SSH). Default port: `22`. The form collects the SSH private key material and matching username. For username/password SFTP authentication, use the Ballerina Code tab below.
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>

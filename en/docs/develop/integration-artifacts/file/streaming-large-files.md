@@ -87,48 +87,6 @@ remote function onFile(stream<byte[], error?> content,
 
 </TabItem>
 </Tabs>
-
-## What happens if a row fails to parse
-
-Without fault tolerance, a single unreadable row **terminates the stream**. The handler receives an error element and can decide what to do — usually log and return the error so post-processing routes the file to the error directory:
-
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-The default behaviour is fine for most flows: a malformed row causes the handler to fail, **After File Processing → Error** fires, and the file moves to the error directory you configured.
-
-If you want to keep going when some rows are malformed, enable [CSV fault tolerance](csv-fault-tolerance.md) on the listener. Malformed rows are then skipped and the stream continues; the handler only sees valid rows.
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-```ballerina
-remote function onFileCsv(stream<Order, error?> content,
-                          ftp:FileInfo fileInfo) returns error? {
-    error? streamErr = content.forEach(function(Order 'order) {
-        // process each valid row
-    });
-
-    if streamErr is error {
-        log:printError("Stream terminated", 'error = streamErr);
-        return streamErr;   // triggers the afterError action
-    }
-    // All rows consumed — afterProcess runs.
-}
-```
-
-</TabItem>
-</Tabs>
-
-## Post-processing still applies
-
-**After File Processing** — move-on-success, move-on-error, delete — behaves identically whether the handler is streamed or buffered. The runtime waits for the stream to finish (or fail) before running the configured action.
-
-| Handler outcome | Action |
-|---|---|
-| Stream fully consumed without error | `afterProcess` fires |
-| Stream terminates with an error, or the handler returns an error | `afterError` fires |
-
 ## What's next
 
 - [FTP / SFTP](ftp-sftp.md) — service, listener, and file-handler reference

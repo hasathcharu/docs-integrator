@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # CSV Fault Tolerance
 
-Real-world CSV files rarely arrive perfectly clean. A single bad row -- a stray comma, a wrong data type, a trailing blank -- would normally fail the whole file. With **CSV fault tolerance** enabled, the listener treats malformed rows as a per-row issue instead of a per-file one. It skips rows that don't fit your schema and hands the rest to the handler as if nothing happened.
+Real-world CSV files rarely arrive perfectly clean. A single bad row — a stray comma, a wrong data type, a trailing blank — would normally fail the whole file. With **CSV fault tolerance** enabled, the listener treats malformed rows as a per-row issue instead of a per-file one. It skips rows that don't fit your schema and hands the rest to the handler as if nothing happened.
 
 ## What the handler sees
 
@@ -25,8 +25,8 @@ On the **Add File Handler** form, click **+ Define Row Schema** and describe eac
 
 Fault tolerance combines cleanly with:
 
-- **Streaming** -- works with [streamed CSV](streaming-large-files.md). A bad row no longer terminates the stream; processing continues through the rest of the file.
-- **Move / Delete post-processing** -- because the handler completes successfully, the file follows the **After Success** action as it would for a clean run.
+- **Streaming** — works with [streamed CSV](streaming-large-files.md). A bad row no longer terminates the stream; processing continues through the rest of the file.
+- **Move / Delete post-processing** — because the handler completes successfully, the file follows the **After Success** action as it would for a clean run.
 
 ## Enabling it
 
@@ -88,8 +88,8 @@ Each dropped row becomes one JSON line. The `contentType` setting picked above c
 
 | `contentType` value | `time` | `location.{row,column}` | `offendingRow` | `message` |
 |---|:---:|:---:|:---:|:---:|
-| `METADATA` *(default)* | &check; | &check; | -- | &check; |
-| `RAW` | &check; | &check; | &check; | -- |
+| `METADATA` *(default)* | &check; | &check; | — | &check; |
+| `RAW` | &check; | &check; | &check; | — |
 | `RAW_AND_METADATA` | &check; | &check; | &check; | &check; |
 
 Example entry with `RAW_AND_METADATA`:
@@ -100,12 +100,12 @@ Example entry with `RAW_AND_METADATA`:
 
 The file is opened in **append** mode, so repeated drops for files whose names share a prefix accumulate in the same log.
 
-The `_error.log` filename, location, and JSON layout are the built-in defaults for the `onFileCsv` handler. If you need a different file name, a different directory, or a custom log format, switch to an `onFileText` handler and parse the CSV yourself with `csv:parseString` -- you control every aspect of error handling from there. See [CSV & Flat File Processing](../transform/csv-flat-file.md) for the parser reference and the handler pattern.
+The `_error.log` filename, location, and JSON layout are the built-in defaults for the `onFileCsv` handler. If you need a different file name, a different directory, or a custom log format, switch to an `onFileText` handler and parse the CSV yourself with `csv:parseString` — you control every aspect of error handling from there. See [CSV & Flat File Processing](../transform/csv-flat-file.md) for the parser reference and the handler pattern.
 
 ## Routing files with dropped rows
 
 :::note Dropped rows don't flip the file to After Error
-The listener's **After Success** and **After Error** branches are picked based on whether the handler returned an error. A dropped row is not itself an error -- even if every row in the file gets dropped, the handler still receives an empty typed array and the file takes the **After Success** path by default.
+The listener's **After Success** and **After Error** branches are picked based on whether the handler returned an error. A dropped row is not itself an error — even if every row in the file gets dropped, the handler still receives an empty typed array and the file takes the **After Success** path by default.
 :::
 
 If your flow needs a file with dropped rows to go to the error directory instead, the handler has to detect the condition and route the file explicitly. The reliable signal is the presence of the `_error.log` side file described above.
@@ -117,8 +117,8 @@ If your flow needs a file with dropped rows to go to the error directory instead
 2. In the handler flow, add an **If** node that branches on `orders.length() == 0`.
 3. In the `true` branch, add an **Action** node to call `file:test` for `<prefix>_error.log`. When the log exists, either:
 
-   - add a **Return** node that returns an `error(...)` -- this fires **After Error** and moves the original via the listener's configured `/error` destination; or
-   - call `caller->rename(fileInfo.path, "/error/" + fileInfo.name)` and return `()` -- useful when you want the handler, not the listener, to pick the destination.
+   - add a **Return** node that returns an `error(...)` — this fires **After Error** and moves the original via the listener's configured `/error` destination; or
+   - call `caller->rename(fileInfo.path, "/error/" + fileInfo.name)` and return `()` — useful when you want the handler, not the listener, to pick the destination.
 
 4. Leave the `false` branch to process the valid rows.
 
@@ -131,7 +131,7 @@ import ballerina/ftp;
 
 remote function onFileCsv(Order[] orders, ftp:FileInfo fileInfo, ftp:Caller caller) returns error? {
     if orders.length() > 0 {
-        // Valid rows present -- process normally.
+        // Valid rows present — process normally.
         return;
     }
 
@@ -162,7 +162,7 @@ The simpler alternative is to leave fault tolerance **off** entirely. The first 
 
 ## What's next
 
-- [Streaming large files](streaming-large-files.md) -- combine fault tolerance with row-by-row streaming for large CSVs
-- [CSV & flat file processing](../transform/csv-flat-file.md) -- parse, transform, and write CSV when you need control beyond what the handler offers
-- [FTP / SFTP](ftp-sftp.md) -- listener and handler configuration reference
-- [`ftp:Listener` reference](https://central.ballerina.io/ballerina/ftp/latest#Listener) -- the full `csvFailSafe` field schema
+- [Streaming large files](streaming-large-files.md) — combine fault tolerance with row-by-row streaming for large CSVs
+- [CSV & flat file processing](../transform/csv-flat-file.md) — parse, transform, and write CSV when you need control beyond what the handler offers
+- [FTP / SFTP](ftp-sftp.md) — listener and handler configuration reference
+- [`ftp:Listener` reference](https://central.ballerina.io/ballerina/ftp/latest#Listener) — the full `csvFailSafe` field schema
