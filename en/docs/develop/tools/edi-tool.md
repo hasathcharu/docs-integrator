@@ -237,7 +237,7 @@ service /b2b on new http:Listener(servicePort) {
 }
 ```
 
-## Working with x12 and EDIFACT
+## Working with X12 and EDIFACT
 
 ### X12 standards
 
