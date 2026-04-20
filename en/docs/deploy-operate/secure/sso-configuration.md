@@ -45,29 +45,23 @@ Locate `conf/Deployment.toml` under your WSO2 Integrator installation and add th
 <Tabs>
 <TabItem value="macos" label="macOS" default>
 
-Default installation path: `/Applications/WSO2 Integrator.app/Contents/components/icp/conf/deployment.toml`
+The file is located at `<wso2_integrator_installation_path>/Contents/components/icp/conf/deployment.toml`
 
-```
-<wso2_integrator_installation_path>/Contents/components/icp/conf/deployment.toml
-```
+Default: `/Applications/WSO2 Integrator.app/Contents/components/icp/conf/deployment.toml`
 
 </TabItem>
 <TabItem value="windows" label="Windows">
 
-Default installation path: `%USERPROFILE%\AppData\Wso2\Integrator\components\icp\conf\deployment.toml`
+The file is located at `<wso2_integrator_installation_path>\components\icp\conf\deployment.toml`
 
-```
-<wso2_integrator_installation_path>\components\icp\conf\deployment.toml
-```
+Default: `%USERPROFILE%\AppData\Wso2\Integrator\components\icp\conf\deployment.toml`
 
 </TabItem>
 <TabItem value="linux" label="Linux">
 
-Default installation path: `/usr/share/wso2-integrator/components/icp/conf/deployment.toml`
+The file is located at `<wso2_integrator_installation_path>/components/icp/conf/deployment.toml`
 
-```
-<wso2_integrator_installation_path>/components/icp/conf/deployment.toml
-```
+Default: `/usr/share/wso2-integrator/components/icp/conf/deployment.toml`
 
 </TabItem>
 </Tabs>
@@ -76,7 +70,7 @@ Add the following SSO configuration to the file:
 
 ```toml
 ssoEnabled = true
-ssoIssuer = "https://your-provider.com/oauth2/token"
+ssoIssuer = "https://your-provider.com"
 ssoAuthorizationEndpoint = "https://your-provider.com/oauth2/authorize"
 ssoTokenEndpoint = "https://your-provider.com/oauth2/token"
 ssoLogoutEndpoint = "https://your-provider.com/oauth2/logout"
