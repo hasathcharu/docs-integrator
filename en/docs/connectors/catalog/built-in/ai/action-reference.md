@@ -44,7 +44,7 @@ final ai:ModelProvider model = check new openai:ModelProvider(openAiApiKey, mode
 
 ### Operations
 
-#### Chat & generation
+#### Chat and generation
 
 <details>
 <summary>chat</summary>
