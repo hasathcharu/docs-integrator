@@ -830,7 +830,7 @@ The order of listeners in `service on a, b` does not imply priority — each lis
 
 ## Service configuration
 
-The `@ftp:ServiceConfig` annotation controls **what** the service monitors — the directory path, file filters, age constraints, and dependency conditions.
+The `@ftp:ServiceConfig` annotation controls what the service monitors — the directory path, file filters, age constraints, and dependency conditions.
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
