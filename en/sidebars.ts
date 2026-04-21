@@ -1243,6 +1243,14 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
+          label: 'PDF',
+          link: { type: 'doc', id: 'connectors/catalog/built-in/pdf/overview' },
+          items: [
+            'connectors/catalog/built-in/pdf/action-reference',
+          ],
+        },
+        {
+          type: 'category',
           label: 'PayPal Invoices',
           link: { type: 'doc', id: 'connectors/catalog/finance-accounting/paypal.invoices/overview' },
           items: [
@@ -1880,6 +1888,7 @@ const sidebars: SidebarsConfig = {
             'tutorials/salesforce-db-sync',
             'tutorials/kafka-event-pipeline',
             'tutorials/rest-api-aggregation',
+            'tutorials/pdf-generation-service',
             'tutorials/walkthroughs/content-based-routing',
             'tutorials/walkthroughs/data-transformation-pipeline',
             'tutorials/file-batch-etl',
