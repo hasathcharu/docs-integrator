@@ -475,6 +475,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/asb/setup-guide',
             'connectors/catalog/messaging/asb/action-reference',
             'connectors/catalog/messaging/asb/trigger-reference',
+            'connectors/catalog/messaging/asb/example',
           ],
         },
         {
