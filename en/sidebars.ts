@@ -666,6 +666,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/graphql/action-reference',
             'connectors/catalog/built-in/graphql/trigger-reference',
+            'connectors/catalog/built-in/graphql/example',
           ],
         },
         {
