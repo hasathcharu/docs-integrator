@@ -18,19 +18,17 @@ WSO2 Integrator uses Ballerina's built-in configuration system to separate setti
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-Configurable variables defined in your project appear as available values in expression fields throughout the visual designer — in node configuration panels, connection settings, and condition inputs.
+Configurable variables defined in your integration project are accessible across all its flows and nodes.
 
 ![Flow canvas showing the Automation where configurable variable values are referenced in node expressions](/img/develop/design-logic/configurations/config-vars.png)
 
 To declare a configurable variable:
 
-1. In the WSO2 Integrator explorer view (LHS), click **Configurations** section.
+1. In the WSO2 Integrator explorer view (LHS), click the **Configurations** section.
 2. Click **+** to add a new configurable variable.
-3. Specify the variable name, type, and whether a default value is provided.
+3. Specify the variable name, type, and an optional default value.
 4. Click **Save** to add the variable to your integration project.
-
-5. To supply values for the declared configurable variables, either use the **Config Editor** UI (low-code) or edit the `Config.toml` file in the project root directly.
-
+5. To supply values for the declared configurable variables, either use the **Config Editor** UI (low-code) or directly edit the `Config.toml` file in the project root.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -53,7 +51,7 @@ configurable decimal requestTimeoutSeconds = 30.0d;
 configurable boolean enableCaching = true;
 ```
 
-Config values must be provided in `Config.toml` for all variables with no default values (initialized with `?`), otherwise the program fails with a runtime error at startup.
+Config values must be provided in `Config.toml` for all variables with no default values (initialized with `?`); otherwise, the program fails with a runtime error at startup.
 
 </TabItem>
 </Tabs>
@@ -172,7 +170,7 @@ BAL_CONFIG_FILES=/etc/myapp/config.toml bal run
 
 ### Priority order
 
-When the same variable is defined in more than one place, the runtime resolves it using the first match from the list below (top → bottom, highest to lowest precedence):
+When the same variable is defined in more than one place, the runtime resolves it using the first source it finds from the list below (top → bottom, highest to lowest precedence):
 
 | Source | Example | Typical use |
 |---|---|---|
