@@ -153,4 +153,4 @@ Use MCP when you want external AI assistants to access your systems. Use direct 
 - [Exposing MCP Servers](exposing-mcp-servers.md) — Build MCP servers with WSO2 Integrator
 - [Consuming MCP Tools](consuming-mcp-tools.md) — Use external MCP tools in your agents
 - [MCP Security](mcp-security.md) — Secure your MCP endpoints
-- [Quick Start: Expose as MCP Server](/docs/genai/quick-starts/expose-mcp-server) — Hands-on MCP server tutorial
+- [Expose as MCP Server](/docs/genai/quick-starts/expose-mcp-server) — Hands-on MCP server tutorial

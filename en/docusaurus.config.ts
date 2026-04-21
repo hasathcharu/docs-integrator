@@ -141,7 +141,7 @@ const config: Config = {
           items: [
             { label: 'Overview', to: '/docs/get-started/overview-&-architecture' },
             { label: 'Install', to: '/docs/get-started/install' },
-            { label: 'Quick starts', to: '/docs/get-started/quick-start-automation' },
+            { label: 'Quick starts', to: '/docs/get-started/build-automation' },
           ],
         },
         {

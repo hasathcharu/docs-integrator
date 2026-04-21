@@ -43,11 +43,11 @@ const homeSidebarItems: PropSidebarItem[] = [
         collapsed: false,
         collapsible: true,
         items: [
-          { type: 'link', label: 'Quick Start: Automation', href: '/docs/get-started/quick-start-automation' },
-          { type: 'link', label: 'Quick Start: AI Agent', href: '/docs/get-started/quick-start-ai-agent' },
-          { type: 'link', label: 'Quick Start: Integration as API', href: '/docs/get-started/quick-start-api' },
-          { type: 'link', label: 'Quick Start: Event-Driven Integration', href: '/docs/get-started/quick-start-event' },
-          { type: 'link', label: 'Quick Start: File-Driven Integration', href: '/docs/get-started/quick-start-file' },
+          { type: 'link', label: 'Build an Automation', href: '/docs/get-started/build-automation' },
+          { type: 'link', label: 'Build an AI Agent', href: '/docs/get-started/build-ai-agent' },
+          { type: 'link', label: 'Build an API Integration', href: '/docs/get-started/build-api-integration' },
+          { type: 'link', label: 'Build an Event-Driven Integration', href: '/docs/get-started/build-event-driven-integration' },
+          { type: 'link', label: 'Build a File-Driven Integration', href: '/docs/get-started/build-file-driven-integration' },
         ],
       },
     ],
@@ -279,9 +279,9 @@ const sections: SectionCard[] = [
 /*  Quick-links shown when the search input is focused but empty       */
 /* ------------------------------------------------------------------ */
 const quickLinks = [
-  { label: 'Quick start: Automation', to: '/docs/get-started/quick-start-automation' },
-  { label: 'Build an AI agent', to: '/docs/get-started/quick-start-ai-agent' },
-  { label: 'Quick start: REST API', to: '/docs/get-started/quick-start-api' },
+  { label: 'Automation', to: '/docs/get-started/build-automation' },
+  { label: 'Build an AI agent', to: '/docs/get-started/build-ai-agent' },
+  { label: 'REST API Integration', to: '/docs/get-started/build-api-integration' },
   { label: 'Connector catalog', to: '/docs/connectors' },
 ];
 
@@ -401,7 +401,7 @@ function HomepageHeader(): ReactNode {
         <div className={styles.buttons}>
           <Link
             className={styles.heroBtn}
-            to="/docs/get-started/quick-start-automation">
+            to="/docs/get-started/build-automation">
             Build your first integration
             <svg
               width="16"
