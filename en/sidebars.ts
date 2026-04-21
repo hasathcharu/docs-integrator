@@ -1595,6 +1595,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/solace/setup-guide',
             'connectors/catalog/messaging/solace/action-reference',
             'connectors/catalog/messaging/solace/trigger-reference',
+            'connectors/catalog/messaging/solace/example',
           ],
         },
         {
