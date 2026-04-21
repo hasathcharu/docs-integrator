@@ -588,6 +588,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/built-in/ftp/action-reference',
             'connectors/catalog/built-in/ftp/trigger-reference',
+            'connectors/catalog/built-in/ftp/example',
           ],
         },
         {
