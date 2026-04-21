@@ -23,7 +23,7 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Get Started',
+      label: 'Get started',
       collapsed: true,
       link: { type: 'doc', id: 'get-started/overview-and-architecture' },
       items: [
@@ -32,7 +32,7 @@ const sidebars: SidebarsConfig = {
         'get-started/key-concepts',
         {
           type: 'category',
-          label: 'Set Up',
+          label: 'Set up',
           items: [
             'get-started/system-requirements',
             'get-started/install',
@@ -42,14 +42,13 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Quick Starts',
+          label: 'Quick starts',
           items: [
+            'get-started/quick-start-automation',
+            'get-started/quick-start-ai-agent',
             'get-started/quick-start-api',
             'get-started/quick-start-event',
             'get-started/quick-start-file',
-            'get-started/quick-start-automation',
-            'get-started/quick-start-data-service',
-            'get-started/quick-start-ai-agent',
           ],
         },
       ],
@@ -92,7 +91,7 @@ const sidebars: SidebarsConfig = {
         // 6.3 Integration Artifacts
         {
           type: 'category',
-          label: 'Integration Artifacts',
+          label: 'Integration artifacts',
           items: [
             'develop/integration-artifacts/automation',
             {
@@ -108,7 +107,7 @@ const sidebars: SidebarsConfig = {
               ],
             },
             {
-              type: 'category', label: 'Event Integration',
+              type: 'category', label: 'Event-driven integration',
               collapsed: true,
               items: [
                 'develop/integration-artifacts/event/kafka',
@@ -125,7 +124,7 @@ const sidebars: SidebarsConfig = {
               ],
             },
             {
-              type: 'category', label: 'File Integration',
+              type: 'category', label: 'File-driven integration',
               collapsed: true,
               items: [
                 {
@@ -144,7 +143,7 @@ const sidebars: SidebarsConfig = {
               ],
             },
             {
-              type: 'category', label: 'Other Artifacts',
+              type: 'category', label: 'Other artifacts',
               collapsed: true,
               items: [
                 'develop/integration-artifacts/supporting/types',
@@ -159,7 +158,7 @@ const sidebars: SidebarsConfig = {
         // 6.4 Design Integration Logic
         {
           type: 'category',
-          label: 'Design Integration Logic',
+          label: 'Design integration logic',
           items: [
             'develop/design-logic/overview',
             'develop/design-logic/flow-designer',
@@ -193,7 +192,7 @@ const sidebars: SidebarsConfig = {
         // 6.6 Try & Test
         {
           type: 'category',
-          label: 'Try & Test',
+          label: 'Try and test',
           items: [
             'develop/test/try-it',
             'develop/test/unit-testing',
@@ -221,7 +220,7 @@ const sidebars: SidebarsConfig = {
         // 6.8 Organize Code
         {
           type: 'category',
-          label: 'Organize Code',
+          label: 'Organize code',
           items: [
             'develop/organize-code/packages-modules',
             'develop/organize-code/package-references',
@@ -291,7 +290,7 @@ const sidebars: SidebarsConfig = {
     // ── Connector Catalog ──
     {
       type: 'category',
-      label: 'Connector Catalog',
+      label: 'Connector catalog',
       collapsed: true,
       link: { type: 'doc', id: 'connectors/catalog/index' },
       items: [
@@ -1716,7 +1715,7 @@ const sidebars: SidebarsConfig = {
     // ── Build Your Own ──
     {
       type: 'category',
-      label: 'Build Your Own',
+      label: 'Build your own',
       link: { type: 'doc', id: 'connectors/build-your-own/index' },
       items: [
         'connectors/build-your-own/create-from-openapi',
@@ -1739,12 +1738,12 @@ const sidebars: SidebarsConfig = {
         // Getting Started
         {
           type: 'category',
-          label: 'Getting Started',
+          label: 'Getting started',
           items: [
             'genai/getting-started/setup',
             {
               type: 'category',
-              label: 'Building Your First AI Integration',
+              label: 'Building your first AI integration',
               items: [
                 'genai/getting-started/smart-calculator',
                 'genai/getting-started/hotel-booking-agent',
@@ -1755,7 +1754,7 @@ const sidebars: SidebarsConfig = {
         // Key Concepts
         {
           type: 'category',
-          label: 'Key Concepts',
+          label: 'Key concepts',
           items: [
             'genai/key-concepts/what-is-llm',
             'genai/key-concepts/what-is-natural-function',
@@ -1769,7 +1768,7 @@ const sidebars: SidebarsConfig = {
         // Develop AI Applications
         {
           type: 'category',
-          label: 'Develop AI Applications',
+          label: 'Develop AI applications',
           items: [
             // Direct LLM Calls
             {
@@ -1907,7 +1906,7 @@ const sidebars: SidebarsConfig = {
         // Quick Starts
         {
           type: 'category',
-          label: 'Quick Starts',
+          label: 'Quick starts',
           items: [
             'genai/quick-starts/build-conversational-agent',
             'genai/quick-starts/build-rag-application',
@@ -1978,7 +1977,7 @@ const sidebars: SidebarsConfig = {
         // Enterprise Integration Patterns (EIP)
         {
           type: 'category',
-          label: 'Enterprise Integration Patterns',
+          label: 'Enterprise integration patterns',
           items: [
             'tutorials/patterns/content-based-router',
             'tutorials/patterns/message-filter',
@@ -1998,7 +1997,7 @@ const sidebars: SidebarsConfig = {
         // Pre-Built Integration Samples
         {
           type: 'category',
-          label: 'Pre-Built Integration Samples',
+          label: 'Pre-built integration samples',
           items: [
             'tutorials/pre-built/overview',
             'tutorials/pre-built/google-sheets-salesforce',
@@ -2016,7 +2015,7 @@ const sidebars: SidebarsConfig = {
         // Sample Projects
         {
           type: 'category',
-          label: 'Sample Projects',
+          label: 'Sample projects',
           items: [
             'tutorials/samples/overview',
             'tutorials/samples/hospital-service',
@@ -2030,7 +2029,7 @@ const sidebars: SidebarsConfig = {
         // Migration Guides
         {
           type: 'category',
-          label: 'Migration Guides',
+          label: 'Migration guides',
           items: [
             'tutorials/migration/from-wso2-mi',
             'tutorials/migration/from-mulesoft',
@@ -2047,7 +2046,7 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Deploy & Operate',
+      label: 'Deploy and operate',
       collapsed: true,
       link: { type: 'doc', id: 'deploy-operate/overview' },
       items: [
@@ -2120,7 +2119,7 @@ const sidebars: SidebarsConfig = {
         // Capacity Planning
         {
           type: 'category',
-          label: 'Capacity Planning',
+          label: 'Capacity planning',
           items: [
             'deploy-operate/capacity-planning/overview',
             'deploy-operate/capacity-planning/performance-reports',
@@ -2194,7 +2193,7 @@ const sidebars: SidebarsConfig = {
         'reference/protocols',
         {
           type: 'category',
-          label: 'Supported Data Formats',
+          label: 'Supported data formats',
           link: { type: 'doc', id: 'reference/data-formats/index' },
           items: [
             'reference/data-formats/avro',
