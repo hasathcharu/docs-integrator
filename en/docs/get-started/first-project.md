@@ -37,4 +37,4 @@ my-integration/
 ## Next steps
 
 - [Understand the IDE](understand-the-ide.md) — Learn the visual designer layout
-- [Build an API integration](quick-start-api.md) — Your first real integration
+- [Build an API integration](build-api-integration.md) — Your first real integration

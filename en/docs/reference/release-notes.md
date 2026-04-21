@@ -115,4 +115,4 @@ See the [WSO2 documentation archive](https://docs.wso2.com) for previous product
 ## What's Next
 
 - [Install WSO2 Integrator](/docs/get-started/install) -- Get started with the latest release
-- [Quick Start Guide](/docs/get-started/quick-start-api) -- Build your first integration
+- [Quick Start Guide](/docs/get-started/build-api-integration) -- Build your first integration

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 9
-title: "Quick Start: File-Driven Integration"
+title: "Build a File-Driven Integration"
 description: Process files from FTP, SFTP, or local directories.
 ---
 
@@ -93,7 +93,7 @@ File integrations are ideal for batch uploads, scheduled file processing, and ET
 
 ## Next steps
 
-- [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
-- [Quick start: AI agent](quick-start-ai-agent.md) -- Build an intelligent agent
-- [Quick start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [Quick start: Event-driven integration](quick-start-event.md) -- React to messages from brokers
+- [Automation](build-automation.md) -- Build a scheduled job
+- [AI agent](build-ai-agent.md) -- Build an intelligent agent
+- [Integration as API](build-api-integration.md) -- Build an HTTP service
+- [Event-driven integration](build-event-driven-integration.md) -- React to messages from brokers

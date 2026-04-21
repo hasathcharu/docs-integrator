@@ -29,4 +29,4 @@ Select the toggle button to switch between the visual designer and the Ballerina
 
 ## Next steps
 
-- [Build an API integration](quick-start-api.md) — Put the IDE to work
+- [Build an API integration](build-api-integration.md) — Put the IDE to work

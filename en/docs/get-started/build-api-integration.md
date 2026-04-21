@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-title: "Quick Start: Integration as API"
+title: "Build an API Integration"
 description: Build an HTTP service that calls an external API and returns a greeting.
 ---
 
@@ -135,8 +135,8 @@ sequenceDiagram
 
 ## Next steps
 
-- [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
-- [Quick start: AI agent](quick-start-ai-agent.md) -- Build an intelligent agent
-- [Quick start: Event-driven integration](quick-start-event.md) -- React to messages from brokers
-- [Quick start: File-driven integration](quick-start-file.md) -- Process files from FTP or local directories
+- [Automation](build-automation.md) -- Build a scheduled job
+- [AI agent](build-ai-agent.md) -- Build an intelligent agent
+- [Event-driven integration](build-event-driven-integration.md) -- React to messages from brokers
+- [File-driven integration](build-file-driven-integration.md) -- Process files from FTP or local directories
 - [Tutorials](/docs/tutorials/rest-api-aggregation) -- End-to-end walkthroughs and patterns

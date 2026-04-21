@@ -1,6 +1,6 @@
 ---
 sidebar_position: 11
-title: "Quick Start: AI Agent"
+title: "Build an AI Agent"
 description: Build an intelligent agent using LLMs and tools.
 ---
 
@@ -96,8 +96,8 @@ sequenceDiagram
 
 ## Next steps
 
-- [Quick start: Automation](quick-start-automation.md) -- Build a scheduled job
-- [Quick start: Integration as API](quick-start-api.md) -- Build an HTTP service
-- [Quick start: Event-driven integration](quick-start-event.md) -- React to messages from brokers
-- [Quick start: File-driven integration](quick-start-file.md) -- Process files from FTP or local directories
+- [Automation](build-automation.md) -- Build a scheduled job
+- [Integration as API](build-api-integration.md) -- Build an HTTP service
+- [Event-driven integration](build-event-driven-integration.md) -- React to messages from brokers
+- [File-driven integration](build-file-driven-integration.md) -- Process files from FTP or local directories
 - [GenAI overview](/docs/genai/overview) -- Full guide to AI capabilities
