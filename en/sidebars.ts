@@ -1369,6 +1369,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/rabbitmq/setup-guide',
             'connectors/catalog/messaging/rabbitmq/action-reference',
             'connectors/catalog/messaging/rabbitmq/trigger-reference',
+            'connectors/catalog/messaging/rabbitmq/example',
           ],
         },
         {
