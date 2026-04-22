@@ -19,7 +19,7 @@ Connection artifacts centralize the configuration for external systems. Define c
 
    ![WSO2 Integrator sidebar showing the project structure with Connections listed](/img/develop/integration-artifacts/supporting/connections/step-1.png)
 
-2. Click **+ Add Artifact** in the canvas or click **+** next to **Connections** in the sidebar
+2. Click **+ Add Artifact** in the canvas or click **+** next to **Connections** in the sidebar.
 
 3. In the **Add Connection** panel, select how to define the connector:
 
@@ -102,19 +102,26 @@ final kafka:Producer kafkaProducer = check new ({
 
 The **Add Connection** panel organizes connectors into two categories:
 
-- **Create New Connector** — generate a connector from an API spec or by introspecting a database.
-- **Pre-built Connectors** — select from the connector library. Use the **All**, **Standard**, or **Organization** tabs to filter by source.
+**Create New Connector**
 
-Pre-built connectors come from several sources:
+Generate a new connector locally when a pre-built connector isn't available for the system you need to integrate with:
 
-| Source | Description | Examples |
+- **Connect via API Specification** — generate a typed HTTP client from an OpenAPI or WSDL file. See the [OpenAPI tool](../../tools/openapi-tool.md) and [WSDL tool](../../tools/wsdl-tool.md).
+- **Connect to a Database** — generate a typed database client by introspecting the schema of a MySQL, MSSQL, or PostgreSQL database.
+
+Connectors created this way are added directly to your project. To make one reusable across projects, publish it to an organization registry — see [Build your own connector](../../../connectors/build-your-own/index.md) and [Publish to Central](../../../connectors/publish-to-central.md).
+
+**Pre-built Connectors**
+
+Select an already-published connector from the connector library. The panel provides three tabs to filter the catalog by source:
+
+| Tab | What it shows | Sources |
 |---|---|---|
-| **`ballerina`** | Standard library connectors maintained as part of the Ballerina platform. | `ballerina/http`, `ballerina/graphql`, `ballerina/tcp` |
-| **`ballerinax`** | Extended library connectors for popular third-party systems. | `ballerinax/mysql`, `ballerinax/kafka`, `ballerinax/rabbitmq`, `ballerinax/ftp` |
-| **`wso2`** | Connectors published by WSO2 for enterprise systems and WSO2 products. | WSO2 organization connectors on the connector registry |
-| **Custom / Organization** | Connectors developed in-house and published to your organization's registry, or generated from an OpenAPI/WSDL spec or database schema. | Your organization's private connectors |
+| **All** | Every connector available to your project — standard, extended, WSO2, and your organization's private connectors in one combined list. | `ballerina/*`, `ballerinax/*`, `wso2/*`, `<your-org>/*` |
+| **Standard** | Connectors maintained as part of the Ballerina platform and its extended library for popular third-party systems. | `ballerina/*` (for example, `ballerina/http`, `ballerina/graphql`, `ballerina/tcp`)<br/>`ballerinax/*` (for example, `ballerinax/mysql`, `ballerinax/kafka`, `ballerinax/rabbitmq`, `ballerinax/ftp`) |
+| **Organization** | Connectors published by WSO2 and connectors developed in-house by your organization and published to your private registry. | `wso2/*`, `<your-org>/*` |
 
-For the complete list of available connectors, see the [Connector Catalog](../../../connectors/overview.md). To build and publish your own, see [Build your own connector](../../../connectors/build-your-own/index.md).
+For the complete list of available connectors, see the [Connector Catalog](../../../connectors/overview.md).
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -126,7 +133,7 @@ Connector modules are distributed under different organizations on [Ballerina Ce
 | **Ballerina standard library** | `ballerina/*` | Core protocol and platform modules maintained with the language (for example, `ballerina/http`, `ballerina/graphql`, `ballerina/tcp`). |
 | **Ballerina extended library** | `ballerinax/*` | Connectors for popular third-party systems (for example, `ballerinax/mysql`, `ballerinax/kafka`, `ballerinax/rabbitmq`, `ballerinax/ftp`). |
 | **WSO2** | `wso2/*` | Connectors published by WSO2 for enterprise systems and WSO2 products. |
-| **Custom / Organization** | `<your-org>/*` | Connectors developed in-house and published to your organization's registry, or generated from an OpenAPI or WSDL spec. |
+| **Organization** | `<your-org>/*` | Connectors developed in-house and published to your organization's registry, or generated from an OpenAPI or WSDL spec. |
 
 For the complete list of modules and their APIs, see the [Connector Catalog](../../../connectors/overview.md). To build and publish your own, see [Build your own connector](../../../connectors/build-your-own/index.md).
 
