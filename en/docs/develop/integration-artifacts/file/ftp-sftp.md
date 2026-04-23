@@ -325,9 +325,11 @@ A file handler is a `remote function` that WSO2 Integrator calls each time the l
 
 | Handler | Trigger | Required |
 |---|---|---|
-| **onCreate** (`onFileText` / `onFileJson` / `onFileXml` / `onFileCsv` / `onFile`) | A new file matching the service's `fileNamePattern` appears on the remote server. The function name depends on the content type — one variant per file format. | Yes — at least one onCreate variant |
+| **onCreate** (`onFileText` / `onFileJson` / `onFileXml` / `onFileCsv` / `onFile`) | A new file matching the service's `fileNamePattern` appears on the remote server. The function name depends on the content type — one variant per file format. | No |
 | **onFileDelete** | A previously seen file is no longer present on the remote server. | No |
 | **onError** | The runtime could not map incoming content to a typed onCreate handler — for example, a JSON handler received malformed JSON. | No |
+
+`onFileDeleted` is also supported as a legacy/deprecated delete callback. Prefer `onFileDelete` for new services.
 
 ### Adding a file handler
 
@@ -405,8 +407,8 @@ remote function onFile(byte[] content, ftp:FileInfo fileInfo) returns error? {
 **Delete handler:**
 
 ```ballerina
-remote function onFileDelete(string deleteFiles) returns error? {
-    // deleteFiles is the name of the file that was removed
+remote function onFileDelete(string deletedFile) returns error? {
+    // deletedFile is the name of the file that was removed
 }
 ```
 
@@ -457,12 +459,13 @@ The choices update the handler's `@ftp:FunctionConfig` annotation as you toggle;
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
-The form writes an `@ftp:FunctionConfig` annotation on the handler. Each of `afterProcess` and `afterError` takes one of two shapes — a record literal `{ moveTo: <path> }` for move, or the bare constant `ftp:DELETE` for delete:
+The form writes an `@ftp:FunctionConfig` annotation on the handler. Each of `afterProcess` and `afterError` takes one of two values — `ftp:MOVE` (a `ftp:Move` record) for move, or the bare constant `ftp:DELETE` for delete:
 
 ```ballerina
 @ftp:FunctionConfig {
     afterProcess: {
-        moveTo: string `/processed`
+        moveTo: string `/processed`,
+        preserveSubDirs: true
     },
     afterError: ftp:DELETE
 }
@@ -476,8 +479,8 @@ remote function onFileText(string content, ftp:FileInfo fileInfo) returns error?
 | Field | Type | Description |
 |---|---|---|
 | `fileNamePattern` | `string?` | Regex to filter which files this handler processes. Overrides the service-level pattern for this handler. |
-| `afterProcess` | `{moveTo: string}\|ftp:DELETE?` | Action to take when the handler returns without error. Omit the field to leave the file in place. |
-| `afterError` | `{moveTo: string}\|ftp:DELETE?` | Action to take when the handler returns an error. Same shape as `afterProcess`. |
+| `afterProcess` | `ftp:MOVE\|ftp:DELETE?` | Action to take when the handler returns without error. Omit the field to leave the file in place. For move, use `{ moveTo: <path>, preserveSubDirs: <boolean>? }`. |
+| `afterError` | `ftp:MOVE\|ftp:DELETE?` | Action to take when the handler returns an error. Same shape as `afterProcess`. |
 
 </TabItem>
 </Tabs>
@@ -566,7 +569,7 @@ Each handler receives an `ftp:FileInfo` parameter with metadata about the incomi
 | Field | Type | Description |
 |---|---|---|
 | `name` | `string` | File name without path |
-| `path` | `string` | Full path on the remote server |
+| `path` | `string` | Relative path on the remote server |
 | `pathDecoded` | `string` | Normalized absolute path — use this for all `caller->` operations |
 | `size` | `int` | File size in bytes |
 | `lastModifiedTimestamp` | `int` | Last-modified time as UNIX epoch milliseconds |
