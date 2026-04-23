@@ -257,7 +257,7 @@ curl -T sample-data/warehouse-daily.csv ftp://127.0.0.1:2123/incoming/warehouse-
 
 The listener detects the new CSV file on the next polling cycle and processes it. Expected output:
 
-```text
+```bash
 time=... level=INFO module=.../csv_ftp_processor message="Processing file: warehouse-daily.csv (294 bytes)"
 time=... level=INFO module=.../csv_ftp_processor message="Warehouse: WH-01, SKU: SKU-1001, Product: Wireless Mouse, Qty: 150, Price: 24.99, Updated: 2026-04-06"
 time=... level=INFO module=.../csv_ftp_processor message="Warehouse: WH-01, SKU: SKU-1002, Product: USB-C Hub, Qty: 75, Price: 49.5, Updated: 2026-04-06"
