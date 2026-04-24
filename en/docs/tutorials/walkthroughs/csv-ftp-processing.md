@@ -211,7 +211,7 @@ WH-99,BAD-002,Another Bad,NaN,NaN,2026-04-06
 
 ## Step 7: Start the FTP server
 
-Create a `docker-compose.yaml` in the project root:
+Create a `docker-compose.yml` in the project root:
 
 ```yaml
 services:
@@ -238,7 +238,7 @@ services:
 Start the FTP server:
 
 ```bash
-docker compose up -d
+docker-compose up -d
 ```
 
 ## Step 8: Run and test
