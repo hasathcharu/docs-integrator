@@ -29,7 +29,7 @@ The service takes passenger details as query parameters, fills them into a board
 
 ## What You'll Learn
 
-- Using the WSO2 Integrator visual editor to build an HTTP service without writing code
+- Using the WSO2 Integrator visual editor to build an HTTP service without writing service/resource code
 - Configuring query parameters and a typed response schema in the resource editor
 - Creating a reusable function for the HTML template with the flow designer
 - Using `pdf:parseHtml` from the Standard Library inside a resource flow
@@ -46,7 +46,7 @@ The service takes passenger details as query parameters, fills them into a board
 ### Step 1: Create the Project
 
 1. Open WSO2 Integrator.
-2. In the home screen, Click **Create** under **Create New Integration**.
+2. In the home screen, click **Create** under **Create New Integration**.
 3. Fill in the dialog:
 
    | Field | Value |
@@ -89,7 +89,7 @@ The service takes passenger details as query parameters, fills them into a board
    - Set **Response Body Schema** to `byte[]`.
    - Check **Make This Response Reusable**.
    - Set **Response Definition Name** to `OkResponse`.
-   - Clicke **Save**
+   - Click **Save**
 5. Click **Save**.
 
 ![New Resource Configuration panel showing all five query parameters and the OkResponse definition set to byte\[\]](/img/tutorials/pdf-generation-service/03-resource-configuration.png)
@@ -115,7 +115,7 @@ The boarding-pass HTML is built by a reusable function so the resource flow stay
 
 With the function saved, its flow editor opens automatically.
 
-1. Click the **+** button in the middle of the flow. A Side panel will be open.
+1. Click the **+** button in the middle of the flow. A side panel opens.
 2. In the right-side node panel, expand **Control** and click **Return**.
 3. In the **Expression** field of the Return panel, paste the HTML template as a Ballerina string template. The `${...}` placeholders reference the five function parameters directly:
 
@@ -169,7 +169,7 @@ Navigate to **HTTP Service → /boardingpass → render** in the left sidebar to
 
 #### 6.1 Call buildBoardingPassHtml
 
-1. Click the + button in the middle of the flow. A Side panel will be open.
+1. Click the + button in the middle of the flow. A side panel opens.
 2. In the right-side panel, click **Call Function → Within Project** and click **buildBoardingPassHtml**.
 3. Map each input field to the matching query parameter using **Expression** mode:
 
@@ -189,7 +189,7 @@ Navigate to **HTTP Service → /boardingpass → render** in the left sidebar to
 #### 6.2 Convert HTML to PDF
 
 1. Click the + button in the middle of the flow. 
-2. In the panel, click **Call Function** search for `parseHtml`. Under **Standard Library → pdf**, click **parseHtml**.
+2. In the panel, click **Call Function**, search for `parseHtml`, then under **Standard Library → pdf**, click **parseHtml**.
 3. Set the **html** input to the `html` variable (select it from **Variables**).
 4. The **Result Type** is `byte[]` — leave it as-is and set **Result** name to `pdfBytes`.
 5. Click **Save**.
@@ -198,7 +198,7 @@ Navigate to **HTTP Service → /boardingpass → render** in the left sidebar to
 
 #### 6.3 Construct the Response
 
-1. Click the + button in the middle of the flow and choose **Statement → Declare Variable** in the right hand side panel.
+1. Click the + button in the middle of the flow and choose **Statement → Declare Variable** in the right-hand side panel.
 2. Set **Name** to `response` and **Type** to `OkResponse`.
 3. In the **Expression** field, switch to **Record** mode. The Record Configuration for `OkResponse` opens:
    - Set **body** to `pdfBytes` (select from **Variables**).
@@ -209,7 +209,7 @@ Navigate to **HTTP Service → /boardingpass → render** in the left sidebar to
 
 #### 6.4 Return the Response
 
-1. Click the + button in the middle of the flow and choose **Control → Return** in the right hand side panel.
+1. Click the + button in the middle of the flow and choose **Control → Return** in the right-hand side panel.
 2. Set the **Expression** to `response` (select from **Variables**).
 3. Click **Save**.
 
