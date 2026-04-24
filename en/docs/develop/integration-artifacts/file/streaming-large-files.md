@@ -94,12 +94,12 @@ By default, if a row can't be parsed (wrong type for a typed schema, malformed C
 
 The important detail for streaming: **every row delivered before the failing row has already been processed by your handler.** If your handler has side effects — database writes, API calls, message publishes — those are committed for the rows that arrived before the failure. Rows at or after the failure are never delivered.
 
-Retrying a streamed file (a manual re-upload of a corrected file, or rerunning against the original) replays side effects for the already-processed rows. Handlers that write to downstream state should either:
+Retrying a streamed file (a manual re-upload of a corrected file, or rerunning against the original) replays side effects for the already-processed rows. So, handlers that write to downstream state should either:
 
-- **Be idempotent.** Use primary-key conflict handling, `UPSERT` / `ON CONFLICT`, or check-then-write patterns so a replayed row doesn't create a duplicate.
-- **Track per-file progress externally.** Store a last-processed offset keyed by filename; on retry, skip rows already recorded.
+- **Be idempotent** - Check-then-write patterns so a replayed row doesn't create a duplicate.
+- **Track per-file progress externally** - Store a last-processed offset keyed by filename; on retry, skip rows already recorded.
 
-If you'd rather skip malformed rows and keep the stream going, enable [CSV fault tolerance](csv-fault-tolerance.md) on the listener. Bad rows are logged and dropped; valid rows continue to flow through the handler.
+If you'd rather skip malformed rows and keep the stream going, enable [CSV fault tolerance](csv-fault-tolerance.md) on the listener. This ensures that bad rows are logged and dropped, while valid rows continue to flow through the handler.
 
 ## What's next
 
