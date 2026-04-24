@@ -306,24 +306,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'AI Devant',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.devant/ai-devant-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.devant/setup-guide',
-            'connectors/catalog/ai-ml/ai.devant/action-reference',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'AI Memory MSSQL',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.memory.mssql/ai-memory-mssql-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.memory.mssql/setup-guide',
-            'connectors/catalog/ai-ml/ai.memory.mssql/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'Alfresco',
           link: { type: 'doc', id: 'connectors/catalog/storage-file/alfresco/connector-overview' },
           items: [
@@ -343,15 +326,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Anthropic LLM',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.anthropic/anthropic-llm-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.anthropic/setup-guide',
-            'connectors/catalog/ai-ml/ai.anthropic/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'Asana',
           link: { type: 'doc', id: 'connectors/catalog/productivity-collaboration/asana/connector-overview' },
           items: [
@@ -461,15 +436,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Azure OpenAI',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.azure/azure-openai-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.azure/setup-guide',
-            'connectors/catalog/ai-ml/ai.azure/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'Azure Service Bus',
           link: { type: 'doc', id: 'connectors/catalog/messaging/asb/azure-service-bus-connector-overview' },
           items: [
@@ -534,15 +501,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'DeepSeek',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.deepseek/deepseek-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.deepseek/setup-guide',
-            'connectors/catalog/ai-ml/ai.deepseek/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'Discord',
           link: { type: 'doc', id: 'connectors/catalog/communication/discord/connector-overview' },
           items: [
@@ -1172,15 +1131,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Mistral AI',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.mistral/mistral-ai-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.mistral/setup-guide',
-            'connectors/catalog/ai-ml/ai.mistral/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'MongoDB',
           link: { type: 'doc', id: 'connectors/catalog/database/mongodb/connector-overview' },
           items: [
@@ -1232,24 +1183,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'NP',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/np/connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/np/setup-guide',
-            'connectors/catalog/ai-ml/np/actions',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Ollama',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.ollama/ollama-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.ollama/setup-guide',
-            'connectors/catalog/ai-ml/ai.ollama/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'OpenAI',
           link: { type: 'doc', id: 'connectors/catalog/ai-ml/openai/connector-overview' },
           items: [
@@ -1259,15 +1193,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'OpenAI (AI)',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.openai/openai-ai-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.openai/setup-guide',
-            'connectors/catalog/ai-ml/ai.openai/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'OpenAI Audio',
           link: { type: 'doc', id: 'connectors/catalog/ai-ml/openai.audio/openai-audio-connector-overview' },
           items: [
@@ -1354,24 +1280,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'pgvector',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.pgvector/pgvector-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.pgvector/setup-guide',
-            'connectors/catalog/ai-ml/ai.pgvector/actions',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Pinecone',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.pinecone/pinecone-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.pinecone/setup-guide',
-            'connectors/catalog/ai-ml/ai.pinecone/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'PostgreSQL',
           link: { type: 'doc', id: 'connectors/catalog/database/postgresql/connector-overview' },
           items: [
@@ -1653,15 +1562,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'Weaviate',
-          link: { type: 'doc', id: 'connectors/catalog/ai-ml/ai.weaviate/weaviate-connector-overview' },
-          items: [
-            'connectors/catalog/ai-ml/ai.weaviate/setup-guide',
-            'connectors/catalog/ai-ml/ai.weaviate/actions',
-          ],
-        },
-        {
-          type: 'category',
+
           label: 'UDP',
           link: { type: 'doc', id: 'connectors/catalog/built-in/udp/udp' },
           items: [
