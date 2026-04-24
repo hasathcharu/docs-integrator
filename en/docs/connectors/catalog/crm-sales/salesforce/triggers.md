@@ -310,3 +310,144 @@ An isolated object interface for managing refresh token rotation. Implement this
 | `accessTokenExpiryEpoch` | <code>int</code> | Epoch timestamp when the access token expires. |
 | `issuedAtEpoch` | <code>int</code> | Epoch timestamp when the token was issued. |
 | `lastRefreshedAtEpoch` | <code>int</code> | Epoch timestamp of the last token refresh. |
+
+---
+
+## Deployment
+
+### Single replica
+
+For a single-replica deployment (local dev, a single server, or a single Kubernetes pod), omit `tokenStore` — the connector defaults to `InMemoryTokenStore`. Refresh Token Rotation (RTR) is handled automatically: when Salesforce issues a new refresh token on each exchange, the connector captures it in memory and uses it for subsequent refreshes.
+
+Set `defaultTokenExpTime` to match your org's Session Timeout value (Setup → Security → Session Settings → Timeout Value). Salesforce does not return `expires_in` in its token response, so the connector uses this value to calculate when to proactively refresh.
+
+```ballerina
+import ballerina/http;
+import ballerinax/salesforce;
+
+configurable string baseUrl = ?;
+configurable string clientId = ?;
+configurable string clientSecret = ?;
+configurable string refreshToken = ?;
+configurable string tokenUrl = ?;
+configurable int sessionTimeoutSeconds = 3600;
+
+listener salesforce:Listener eventListener = new ({
+    baseUrl: baseUrl,
+    auth: <http:OAuth2RefreshTokenGrantConfig>{
+        clientId: clientId,
+        clientSecret: clientSecret,
+        refreshToken: refreshToken,
+        refreshUrl: tokenUrl,
+        defaultTokenExpTime: <decimal>sessionTimeoutSeconds
+    }
+});
+
+service "/data/ChangeEvents" on eventListener {
+
+    remote function onCreate(salesforce:EventData payload) returns error? {
+        // handle record creation
+    }
+
+    remote function onUpdate(salesforce:EventData payload) returns error? {
+        // handle record update
+    }
+
+    remote function onDelete(salesforce:EventData payload) returns error? {
+        // handle record deletion
+    }
+
+    remote function onRestore(salesforce:EventData payload) returns error? {
+        // handle record restore
+    }
+}
+```
+
+:::note
+To subscribe to a specific object's change events instead of all CDC events, change the service path. For example, use `"/data/AccountChangeEvent"` for Account changes only.
+:::
+
+---
+
+### Multiple replicas
+
+In a horizontally-scaled deployment (e.g., multiple Kubernetes pods sharing one Salesforce Connected App), replicas must coordinate token refresh. Without coordination, two pods responding to a 401 simultaneously will each send the same stale refresh token. Salesforce rotates and immediately revokes the old token — causing `invalid_grant` errors that crash all replicas and require manual re-authentication.
+
+The solution is to provide a shared `TokenStore` implementation backed by a distributed store such as Redis or a database. All replicas point to the same store. The connector's token manager uses double-checked locking: the first replica to acquire the distributed lock performs the token refresh and writes the result; all other replicas adopt the new tokens without making an additional HTTP call.
+
+Implement the `TokenStore` interface and pass it as `tokenStore` in the listener config:
+
+```ballerina
+import ballerina/http;
+import ballerinax/salesforce;
+
+configurable string baseUrl = ?;
+configurable string clientId = ?;
+configurable string clientSecret = ?;
+configurable string refreshToken = ?;
+configurable string tokenUrl = ?;
+configurable int sessionTimeoutSeconds = 3600;
+
+// Implement salesforce:TokenStore backed by a shared distributed store (e.g. Redis).
+// All replicas must point to the same store instance.
+//
+// Redis equivalent per method:
+//   acquireLock    → SETNX lock:<key> 1  +  EXPIRE lock:<key> <ttl>
+//   releaseLock    → DEL lock:<key>
+//   getTokenData   → GET data:<key>  (deserialise JSON → TokenData)
+//   setTokenData   → SET data:<key> <json>
+//   clearTokenData → DEL data:<key> lock:<key>
+public isolated class RedisTokenStore {
+    *salesforce:TokenStore;
+
+    public isolated function acquireLock() returns boolean|error {
+        // Redis: return redisClient->setNx("lock:sf_token", "1");
+    }
+
+    public isolated function releaseLock() returns error? {
+        // Redis: _ = check redisClient->del(["lock:sf_token"]);
+    }
+
+    public isolated function getTokenData() returns salesforce:TokenData? {
+        // Redis: deserialise GET "data:sf_token" → TokenData
+    }
+
+    public isolated function setTokenData(salesforce:TokenData tokenData) returns error? {
+        // Redis: SET "data:sf_token" tokenData.toJsonString()
+    }
+
+    public isolated function clearTokenData() returns error? {
+        // Redis: DEL "data:sf_token" "lock:sf_token"
+    }
+}
+
+listener salesforce:Listener eventListener = new ({
+    baseUrl: baseUrl,
+    auth: <http:OAuth2RefreshTokenGrantConfig>{
+        clientId: clientId,
+        clientSecret: clientSecret,
+        refreshToken: refreshToken,
+        refreshUrl: tokenUrl,
+        defaultTokenExpTime: <decimal>sessionTimeoutSeconds
+    },
+    tokenStore: new RedisTokenStore()
+});
+
+service "/data/ChangeEvents" on eventListener {
+
+    remote function onCreate(salesforce:EventData payload) returns error? {
+        // handle record creation
+    }
+
+    remote function onUpdate(salesforce:EventData payload) returns error? {
+        // handle record update
+    }
+
+    remote function onDelete(salesforce:EventData payload) returns error? {
+        // handle record deletion
+    }
+
+    remote function onRestore(salesforce:EventData payload) returns error? {
+        // handle record restore
+    }
+}
