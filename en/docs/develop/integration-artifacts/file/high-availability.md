@@ -92,6 +92,22 @@ service on ftpListener {
 </TabItem>
 </Tabs>
 
+:::warning[Each instance needs a unique Member ID]
+The runtime trusts the Member ID you provide — it does **not** check that the value is unique across your cluster. If two pods come up with the same Member ID in the same Coordination Group, **both become active and process every file twice**.
+
+Wire a distinct value into each pod from your deployment template. In Kubernetes, the pod name from the downward API works well:
+
+```yaml
+env:
+  - name: MEMBER_ID
+    valueFrom:
+      fieldRef:
+        fieldPath: metadata.name
+```
+
+Read it with `configurable string memberId = ?;` and pass it to the listener.
+:::
+
 ### Database schema
 
 Create the coordination tables in your MySQL or PostgreSQL database **before starting the first instance** — the runtime does not create them for you. Both dialects are supported; use whichever your ops team already runs.
@@ -145,6 +161,10 @@ Coordination depends on the shared database being reachable. If the database goe
 - **Standby nodes** also cannot take over until the database is reachable again. On recovery, a standby promotes itself within one liveness-check interval and begins polling.
 
 Treat the coordination database as critical infrastructure on the data path: plan replicas, backups, and failover to the same standard as your FTP/SFTP source.
+
+:::warning[Monitor the coordination database directly]
+The coordination database sits on the file-processing data path: its availability directly determines whether files are picked up. Add it to your infrastructure monitoring (uptime checks, query latency, connection counts) alongside the FTP/SFTP source itself, so your operators are alerted by the database, not by files piling up at the source.
+:::
 
 ## What's next
 
