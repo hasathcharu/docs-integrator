@@ -440,6 +440,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/asb/setup-guide',
             'connectors/catalog/messaging/asb/action-reference',
             'connectors/catalog/messaging/asb/trigger-reference',
+            'connectors/catalog/messaging/asb/example',
           ],
         },
         {
@@ -485,6 +486,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/messaging/confluent.cregistry/setup-guide',
             'connectors/catalog/messaging/confluent.cregistry/action-reference',
+            'connectors/catalog/messaging/confluent.cregistry/example',
           ],
         },
         {
@@ -583,6 +585,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/gcloud.pubsub/setup-guide',
             'connectors/catalog/messaging/gcloud.pubsub/action-reference',
             'connectors/catalog/messaging/gcloud.pubsub/trigger-reference',
+            'connectors/catalog/messaging/gcloud.pubsub/example',
           ],
         },
         {
@@ -1056,6 +1059,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/java.jms/setup-guide',
             'connectors/catalog/messaging/java.jms/action-reference',
             'connectors/catalog/messaging/java.jms/trigger-reference',
+            'connectors/catalog/messaging/java.jms/example',
           ],
         },
         {
@@ -1174,6 +1178,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/messaging/nats/setup-guide',
             'connectors/catalog/messaging/nats/action-reference',
+            'connectors/catalog/messaging/nats/example',
           ],
         },
         {
@@ -1290,6 +1295,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/rabbitmq/setup-guide',
             'connectors/catalog/messaging/rabbitmq/action-reference',
             'connectors/catalog/messaging/rabbitmq/trigger-reference',
+            'connectors/catalog/messaging/rabbitmq/example',
           ],
         },
         {
@@ -1500,6 +1506,7 @@ const sidebars: SidebarsConfig = {
             'connectors/catalog/messaging/solace/setup-guide',
             'connectors/catalog/messaging/solace/action-reference',
             'connectors/catalog/messaging/solace/trigger-reference',
+            'connectors/catalog/messaging/solace/example',
           ],
         },
         {
