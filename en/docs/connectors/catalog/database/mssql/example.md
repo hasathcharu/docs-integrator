@@ -118,7 +118,7 @@ Try this sample in WSO2 Integration Platform.
 ## MSSQL Trigger Example
 ### What you'll build
 
-A WSO2 Integrator integration that listens for row-level change events on a Microsoft SQL Server table using the CDC (Change Data Capture) trigger from the `ballerinax/mssql` package. When a new row is inserted into the configured CDC-enabled table, the trigger fires the `onCreate` handler, which receives the inserted row as a structured `MssqlInsertRecord` payload and prints its JSON representation to the integration log using `log:printInfo`.
+A WSO2 Integrator integration that listens for row-level change events on a Microsoft SQL Server table using the CDC (Change Data Capture) trigger from the `ballerinax/mssql` package. When a new row is inserted into the configured CDC-enabled table, the trigger fires the `onCreate` handler, which receives the inserted row as a generic record payload. You define a custom `MssqlInsertRecord` type schema (see Step 6) to structure the payload, then print its JSON representation to the integration log using `log:printInfo`.
 
 ### Architecture
 
@@ -204,7 +204,7 @@ Select **Create** at the bottom of the trigger configuration form—WSO2 Integra
 #### Step 7: Save the handler and add a log statement to the flow
 
 1. Select **Save** on the **Message Handler Configuration** panel—the flow canvas for the `onCreate` handler opens.
-2. In the handler flow canvas, add a **log:printInfo** step with `afterEntry.toJsonString()` as the message.
+2. In the handler flow canvas, add a **log:printInfo** step with `after.toJsonString()` as the message.
 3. Verify the `log:printInfo` node appears between Start and Error Handler on the canvas.
 
 ![onCreate handler flow canvas showing the log:printInfo step added](/img/connectors/catalog/database/mssql/mssql_trigger_screenshots_06_handler_flow.png)

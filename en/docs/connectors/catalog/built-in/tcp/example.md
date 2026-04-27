@@ -168,6 +168,10 @@ Select the **onConnect** row to open the handler's flow canvas. The initial flow
 
 ![onConnect handler flow canvas (no Define Value modal — the TcpEchoService payload type is provided by the ballerina/tcp library) showing the initial Declare Variable and Return steps](/img/connectors/catalog/built-in/tcp/tcp_trigger_screenshots_05_message_define_value.png)
 
+#### Step 7: Log the caller information in the onConnect flow
+
+In the `onConnect` flow canvas, open the auto-generated `TcpEchoService` and add a **Log** step before the existing `Declare Variable` and `Return` steps. Use `log:printInfo` to output the caller details (for example, the `caller` remote address or connection metadata) so each incoming connection is logged before the handler returns the `TcpEchoService` to the listener.
+
 ### Running the integration
 
 Run the integration from the WSO2 Integrator panel by selecting **Run Integration** (▶) in the editor toolbar.

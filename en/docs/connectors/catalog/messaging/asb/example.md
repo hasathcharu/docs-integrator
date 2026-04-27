@@ -236,8 +236,8 @@ flowchart LR
 
 ### Prerequisites
 
-- An Azure Service Bus namespace with a queue or topic subscription provisioned
-- The namespace connection string (`Endpoint=sb://…`) and the queue or topic name
+- An Azure Service Bus namespace with a queue provisioned
+- The namespace connection string (`Endpoint=sb://…`) and the queue name
 
 ### Setting up the Azure Service Bus integration
 
@@ -265,7 +265,7 @@ In the **Create Azure Service Bus Event Integration** form, bind each field to a
 6. Confirm that **Listener Name** is set to `asbListener`.
 
 - **connectionString** : The Azure Service Bus namespace connection string used to authenticate the listener
-- **queueName** : The name of the Azure Service Bus queue or topic subscription to listen on
+- **queueName** : The name of the Azure Service Bus queue to listen on
 - **entityConfig** : Expression referencing the `queueName` configurable variable to identify the target queue
 - **listenerName** : The identifier for the listener instance within the integration
 
@@ -276,7 +276,7 @@ In the **Create Azure Service Bus Event Integration** form, bind each field to a
 Select **Configurations** in the left panel of WSO2 Integrator to open the Configurations panel, then set a value for each configuration listed below:
 
 - **connectionString** (string) : The full Azure Service Bus namespace connection string, for example `Endpoint=sb://<NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<KEY_NAME>;SharedAccessKey=<KEY_VALUE>`
-- **queueName** (string) : The name of the queue or topic subscription to consume messages from, for example `my-queue`
+- **queueName** (string) : The name of the queue to consume messages from, for example `my-queue`
 
 ![Configurations panel open showing the configurable variables listed with empty value fields](/img/connectors/catalog/messaging/asb/asb_trigger_screenshots_03_configurations_panel.png)
 

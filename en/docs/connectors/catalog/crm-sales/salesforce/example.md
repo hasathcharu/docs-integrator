@@ -148,7 +148,7 @@ flowchart LR
 - A Salesforce developer account with a connected app that has the required OAuth scopes (`api`, `refresh_token`).
 - Your Salesforce **username** and **password** (with security token appended if required by your org).
 
-### Setting up the Salesforce Event Integration integration
+### Setting up the Salesforce Event Integration
 
 > **New to WSO2 Integrator?** Follow the [Create a New Integration](../../../../develop/create-integrations/create-new-integration.md) guide to set up your integration first, then return here to add the trigger.
 
@@ -231,7 +231,7 @@ Run the integration from WSO2 Integrator and then trigger a Salesforce event to 
 - **Salesforce REST API**: Use the Salesforce REST API (for example, with `curl` or Postman) to create or update a record via the `/sobjects/` endpoint, which fires the corresponding platform event.
 - **Salesforce Data Loader**: Use the Salesforce Data Loader tool to perform a bulk insert or update operation, which generates create or update events.
 
-Once the event fires, the `onCreate` (or the appropriate) handler logs the `salesforce:EventData` payload as a JSON string. Check the WSO2 Integrator console output to verify the log entry appears.
+Once the event fires, the `onCreate` (or the appropriate event) handler logs the `salesforce:EventData` payload as a JSON string. Check the WSO2 Integrator console output to verify the log entry appears.
 
 ### Try it yourself
 

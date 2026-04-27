@@ -185,7 +185,7 @@ In the Service view, select **+ Add Handler** to open the handler selection pane
 
 #### Step 6: Define the entry type schema
 
-Select the **onCreate** handler, then open **Message Configuration → Define Value** on the `afterEntry` parameter. On the **Create Type Schema** tab, enter `PostgreSQLInsertEntry` as the **Name**. Select the **+** icon next to **Fields** to add each field—for example, `id` of type `string` and `tableName` of type `string`—that mirrors the columns in your target table. Select **Save** when done.
+Select the **onCreate** handler, then open **Message Configuration → Define Value** on the `afterEntry` parameter. On the **Create Type Schema** tab, enter `PostgreSQLInsertEntry` as the **Name**. Select the **+** icon next to **Fields** to add each field—for example, `id` of type `string` and `name` of type `string`—that mirrors the columns in your target table. Select **Save** when done.
 
 ![Define Value modal on the Create Type Schema tab showing the PostgreSQLInsertEntry name and fields filled in before Save](/img/connectors/catalog/database/postgresql/postgresql_trigger_screenshots_05_message_define_value.png)
 
