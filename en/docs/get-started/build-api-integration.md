@@ -133,7 +133,7 @@ sequenceDiagram
     }}
 />
 
-## Next steps
+## What's next
 
 - [Automation](build-automation.md) -- Build a scheduled job
 - [AI agent](build-ai-agent.md) -- Build an intelligent agent
