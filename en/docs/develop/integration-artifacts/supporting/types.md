@@ -205,7 +205,7 @@ For each resource method:
 
 #### Edit the service class
 
-The editing experience for a service class differs from other kinds. Click **Edit** on the type to open the **Edit Type: Object** panel:
+The editing experience for a service class differs from other kinds. Click **Edit** on the type to open the **Edit Type: Service Class** panel:
 
 | Control | Description |
 |---|---|
@@ -223,7 +223,7 @@ Click the pencil icon on a field to open the **Edit Field** panel:
 | **Field Name** | The resource path/name. |
 | **Description** | Documentation for the field. |
 | **Arguments** | Use **+ Add Argument** to define input parameters for the resource method. |
-| **Field Type** | The return type (for example, `string|error`). |
+| **Field Type** | The return type (for example, `string\|error`). |
 
 Expand **Advanced Configurations** to set:
 
