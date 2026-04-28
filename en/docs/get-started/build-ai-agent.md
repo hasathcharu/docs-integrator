@@ -45,8 +45,8 @@ sequenceDiagram
 <ThemedImage
     alt="Create the Project"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-ai-agent/create-the-project-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-ai-agent/create-the-project-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-ai-agent/create-the-project-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-ai-agent/create-the-project-dark.gif'),
     }}
 />
 
@@ -61,8 +61,8 @@ sequenceDiagram
 <ThemedImage
     alt="Add an AI Chat Agent"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-ai-agent/add-a-file-integration-artifact-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-ai-agent/add-a-file-integration-artifact-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-ai-agent/add-a-file-integration-artifact-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-ai-agent/add-a-file-integration-artifact-dark.gif'),
     }}
 />
 
@@ -75,8 +75,8 @@ sequenceDiagram
 <ThemedImage
     alt="Configure the AI Agent"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-ai-agent/configure-the-ai-agent-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-ai-agent/configure-the-ai-agent-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-ai-agent/configure-the-ai-agent-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-ai-agent/configure-the-ai-agent-dark.gif'),
     }}
 />
 
@@ -89,8 +89,8 @@ sequenceDiagram
 <ThemedImage
     alt="Run and test"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-ai-agent/run-and-test-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-ai-agent/run-and-test-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-ai-agent/run-and-test-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-ai-agent/run-and-test-dark.gif'),
     }}
 />
 

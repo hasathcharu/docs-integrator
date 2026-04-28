@@ -30,8 +30,8 @@ Automations are ideal for data synchronization, report generation, and routine m
 <ThemedImage
     alt="Create the project"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-automation/create-the-project-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-automation/create-the-project-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-automation/create-the-project-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-automation/create-the-project-dark.gif'),
     }}
 />
 
@@ -45,8 +45,8 @@ Automations are ideal for data synchronization, report generation, and routine m
 <ThemedImage
     alt="Add an automation artifact"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-automation/add-an-automation-artifact-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-automation/add-an-automation-artifact-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-automation/add-an-automation-artifact-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-automation/add-an-automation-artifact-dark.gif'),
     }}
 />
 
@@ -61,8 +61,8 @@ Automations are ideal for data synchronization, report generation, and routine m
 <ThemedImage
     alt="Add logic"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-automation/add-logic-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-automation/add-logic-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-automation/add-logic-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-automation/add-logic-dark.gif'),
     }}
 />
 
@@ -75,8 +75,8 @@ Automations are ideal for data synchronization, report generation, and routine m
 <ThemedImage
     alt="Run and test"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-automation/run-and-test-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-automation/run-and-test-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-automation/run-and-test-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-automation/run-and-test-dark.gif'),
     }}
 />
 

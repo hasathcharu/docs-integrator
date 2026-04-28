@@ -43,8 +43,8 @@ sequenceDiagram
 <ThemedImage
     alt="Create the project"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-api/create-the-project-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-api/create-the-project-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-api-integration/create-the-project-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-api-integration/create-the-project-dark.gif'),
     }}
 />
 
@@ -60,8 +60,8 @@ sequenceDiagram
 <ThemedImage
     alt="Add an HTTP service"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-api/add-an-http-service-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-api/add-an-http-service-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-api-integration/add-an-http-service-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-api-integration/add-an-http-service-dark.gif'),
     }}
 />
 
@@ -81,8 +81,8 @@ sequenceDiagram
 <ThemedImage
     alt="Design the integration flow"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-api/design-the-integration-flow-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-api/design-the-integration-flow-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-api-integration/design-the-integration-flow-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-api-integration/design-the-integration-flow-dark.gif'),
     }}
 />
 
@@ -98,8 +98,8 @@ sequenceDiagram
 <ThemedImage
     alt="Configure HTTP"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-api/configure-http-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-api/configure-http-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-api-integration/configure-http-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-api-integration/configure-http-dark.gif'),
     }}
 />
 
@@ -113,8 +113,8 @@ sequenceDiagram
 <ThemedImage
     alt="Return the response"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-api/return-the-response-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-api/return-the-response-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-api-integration/return-the-response-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-api-integration/return-the-response-dark.gif'),
     }}
 />
 
@@ -128,8 +128,8 @@ sequenceDiagram
 <ThemedImage
     alt="Run and test"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-api/run-and-test-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-api/run-and-test-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-api-integration/run-and-test-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-api-integration/run-and-test-dark.gif'),
     }}
 />
 

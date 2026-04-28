@@ -30,8 +30,8 @@ File integrations are ideal for batch uploads, scheduled file processing, and ET
 <ThemedImage
     alt="Create the Project"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-file/create-the-project-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-file/create-the-project-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-file-driven-integration/create-the-project-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-file-driven-integration/create-the-project-dark.gif'),
     }}
 />
 
@@ -46,8 +46,8 @@ File integrations are ideal for batch uploads, scheduled file processing, and ET
 <ThemedImage
     alt="Add a File Integration Artifact"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-file/add-a-file-integration-artifact-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-file/add-a-file-integration-artifact-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-file-driven-integration/add-a-file-integration-artifact-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-file-driven-integration/add-a-file-integration-artifact-dark.gif'),
     }}
 />
 
@@ -64,8 +64,8 @@ File integrations are ideal for batch uploads, scheduled file processing, and ET
 <ThemedImage
     alt="Tracking modified files"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-file/tracking-modified-files-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-file/tracking-modified-files-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-file-driven-integration/tracking-modified-files-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-file-driven-integration/tracking-modified-files-dark.gif'),
     }}
 />
 
@@ -77,8 +77,8 @@ File integrations are ideal for batch uploads, scheduled file processing, and ET
 <ThemedImage
     alt="Run and Test"
     sources={{
-        light: useBaseUrl('/img/get-started/quick-start-file/run-and-test-light.gif'),
-        dark: useBaseUrl('/img/get-started/quick-start-file/run-and-test-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-file-driven-integration/run-and-test-light.gif'),
+        dark: useBaseUrl('/img/get-started/build-file-driven-integration/run-and-test-dark.gif'),
     }}
 />
 
