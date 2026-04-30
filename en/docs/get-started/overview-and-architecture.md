@@ -6,7 +6,7 @@ description: Introduction to WSO2 Integrator, how it works.
 
 # Overview and Architecture
 
-WSO2 Integrator is a 100% open source integration solution that allows you to connect AI agents, APIs, data, and events across cloud, on-prem, and hybrid environments, and build any type of integration and AI agent. The AI-assisted development experience provides 100% low-code and pro-code parity, enabling you to combine low-code simplicity with pro-code power.
+WSO2 Integrator is a 100% open-source integration solution that allows you to connect AI agents, APIs, data, and events across cloud, on-prem, and hybrid environments, and build any type of integration and AI agent. The AI-assisted development experience provides 100% low-code and pro-code parity, enabling you to combine low-code simplicity with pro-code power.
 
 ## High-level architecture
 
