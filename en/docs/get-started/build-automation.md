@@ -13,6 +13,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Automations are ideal for data synchronization, report generation, and routine maintenance jobs.
 
+<ThemedImage
+    alt="Automation diagram"
+    sources={{
+        light: useBaseUrl('/img/get-started/build-automation/automation-diagram-light.svg'),
+        dark: useBaseUrl('/img/get-started/build-automation/automation-diagram-dark.svg'),
+    }}
+/>
+
+
 ## Prerequisites
 
 - Install WSO2 Integrator and complete the required setup by following the [installation guide](install.md).
