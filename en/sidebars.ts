@@ -149,7 +149,37 @@ const sidebars: SidebarsConfig = {
                 'develop/integration-artifacts/supporting/connections',
                 'develop/integration-artifacts/supporting/configurations',
                 'develop/integration-artifacts/supporting/functions',
-                'develop/integration-artifacts/supporting/data-mapper',
+                {
+                  type: 'category',
+                  label: 'Data mapper',
+                  collapsed: true,
+                  link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/data-mapper' },
+                  items: [
+                    {
+                      type: 'category',
+                      label: 'Access paths',
+                      collapsed: true,
+                      link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/access-paths/access-paths' },
+                      items: [
+                        'develop/integration-artifacts/supporting/data-mapper/access-paths/reusable',
+                        'develop/integration-artifacts/supporting/data-mapper/access-paths/inline',
+                      ],
+                    },
+                    'develop/integration-artifacts/supporting/data-mapper/mapping-capabilities',
+                    {
+                      type: 'category',
+                      label: 'Array mappings',
+                      collapsed: true,
+                      link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-mappings' },
+                      items: [
+                        'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-to-array',
+                        'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-to-single-value',
+                      ],
+                    },
+                    'develop/integration-artifacts/supporting/data-mapper/generic-type-mappings',
+                    'develop/integration-artifacts/supporting/data-mapper/submappings',
+                  ],
+                },
               ],
             },
           ],
@@ -177,7 +207,6 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Transform',
           items: [
-            'develop/transform/data-mapper',
             'develop/transform/json',
             'develop/transform/xml',
             'develop/transform/csv-flat-file',
