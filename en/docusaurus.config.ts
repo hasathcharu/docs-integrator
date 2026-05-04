@@ -34,6 +34,7 @@ const config: Config = {
   plugins: [
     './src/plugins/connector-versions',
     './plugins/docusaurus-plugin-markdown-export',
+    './src/plugins/expose-sidebars',
   ],
 
   themes: [
@@ -47,6 +48,7 @@ const config: Config = {
         explicitSearchResultPath: true,
         docsRouteBasePath: '/docs',
         indexBlog: false,
+        indexPages: true,
         searchBarShortcutHint: false,
       },
     ],
@@ -85,8 +87,8 @@ const config: Config = {
       },
       items: [
         {
-          to: '/docs/get-started/overview-&-architecture',
-          label: 'Get Started',
+          to: '/docs/get-started/overview-and-architecture',
+          label: 'Get started',
           position: 'left',
           activeBaseRegex: '/docs/get-started(/|$)',
         },
@@ -104,7 +106,7 @@ const config: Config = {
         },
         {
           to: '/docs/genai/overview',
-          label: 'GenAI',
+          label: 'AI Integrations',
           position: 'left',
           activeBaseRegex: '/docs/genai(/|$)',
         },
@@ -137,27 +139,27 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Get Started',
+          title: 'Get started',
           items: [
-            { label: 'Overview', to: '/docs/get-started/overview-&-architecture' },
+            { label: 'Overview', to: '/docs/get-started/overview-and-architecture' },
             { label: 'Install', to: '/docs/get-started/install' },
-            { label: 'Quick Starts', to: '/docs/get-started/quick-start-api' },
+            { label: 'Quick starts', to: '/docs/get-started/build-automation' },
           ],
         },
         {
           title: 'Develop',
           items: [
-            { label: 'Integration Artifacts', to: '/docs/develop/integration-artifacts/overview' },
-            { label: 'Transform', to: '/docs/develop/transform/data-mapper' },
+            { label: 'Integration artifacts', to: '/docs/develop/integration-artifacts/overview' },
+            { label: 'Transform', to: '/docs/develop/integration-artifacts/supporting/data-mapper/data-mapper' },
             { label: 'Test', to: '/docs/develop/test/try-it' },
             { label: 'Connectors', to: '/docs/connectors/overview' },
-            { label: 'GenAI', to: '/docs/genai/overview' },
+            { label: 'AI Integrations', to: '/docs/genai/overview' },
           ],
         },
         {
-          title: 'Deploy & Operate',
+          title: 'Deploy and operate',
           items: [
-            { label: 'Docker & Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
+            { label: 'Docker and Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
             { label: 'CI/CD', to: '/docs/deploy-operate/cicd/github-actions' },
             { label: 'Observe', to: '/docs/deploy-operate/observe/icp' },
             { label: 'Secure', to: '/docs/deploy-operate/secure/authentication' },
@@ -167,6 +169,7 @@ const config: Config = {
           title: 'Community',
           items: [
             { label: 'WSO2 MI Documentation', href: 'https://mi.docs.wso2.com' },
+            { label: 'WSO2 SI Documentation', href: 'https://si.docs.wso2.com/latest/' },
             { label: 'Ballerina Central', href: 'https://central.ballerina.io' },
             { label: 'Community Forums', href: 'https://discord.com/invite/wso2' },
             { label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/wso2' },
