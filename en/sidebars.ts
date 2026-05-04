@@ -1762,10 +1762,10 @@ const sidebars: SidebarsConfig = {
           items: [
             'genai/tutorials/email-generator-direct-llm',
             'genai/tutorials/review-summarizer-natural-function',
-            'genai/tutorials/hr-knowledge-base-rag',
-            'genai/tutorials/customer-care-mcp',
-            'genai/tutorials/it-helpdesk-chatbot',
-            'genai/tutorials/legal-doc-qa',
+            'genai/tutorials/building-hr-knowledge-base-agent-rag',
+            'genai/tutorials/building-a-customer-care-agent-mcp',
+            'genai/tutorials/building-it-helpdesk-chatbot-persistent-memory',
+            'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
           ],
         },
         // Reference
