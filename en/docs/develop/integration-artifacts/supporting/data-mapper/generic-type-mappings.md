@@ -7,6 +7,10 @@ description: Map between generic JSON or XML payloads by pasting a sample struct
 
 When the input or output is a generic JSON or XML payload, paste a sample structure into the canvas. The data mapper generates compatible record types from the sample, and you map the fields visually.
 
+:::note
+Generic type mapping is only available in the reusable data mapper. Inline data mappers do not support pasting a sample to generate types.
+:::
+
 ## Generate types from a sample
 
 1. Create a data mapper with the relevant generic types as input and output.
