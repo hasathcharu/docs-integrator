@@ -1660,12 +1660,12 @@ const sidebars: SidebarsConfig = {
     },
 
     // ─────────────────────────────────────────────
-    // GENAI
+    // AI INTEGRATIONS
     // "How do I build AI agents, RAG, or MCP?"
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'GenAI',
+      label: 'AI Integrations',
       collapsed: true,
       link: { type: 'doc', id: 'genai/overview' },
       items: [
@@ -1697,6 +1697,8 @@ const sidebars: SidebarsConfig = {
             'genai/key-concepts/what-is-ai-agent-memory',
             'genai/key-concepts/what-is-mcp',
             'genai/key-concepts/what-is-rag',
+            'genai/key-concepts/writing-effective-prompts',
+            'genai/key-concepts/typed-responses',
           ],
         },
         // Develop AI Applications
@@ -1704,147 +1706,53 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Develop AI applications',
           items: [
-            // Direct LLM Calls
+            'genai/develop/overview',
+            // AI Connections and Stores (reference for shared AI primitives)
             {
               type: 'category',
-              label: 'Direct LLM Calls',
+              label: 'AI Connections and Stores',
+              link: { type: 'doc', id: 'genai/develop/components/overview' },
+              collapsed: true,
               items: [
-                'genai/develop/direct-llm/configuring-llm-providers',
-                'genai/develop/direct-llm/constructing-prompts',
-                'genai/develop/direct-llm/handling-responses',
+                'genai/develop/components/model-providers',
+                'genai/develop/components/embedding-providers',
+                'genai/develop/components/vector-stores',
+                'genai/develop/components/knowledge-bases',
+                'genai/develop/components/chunkers',
+                'genai/develop/components/memory',
               ],
             },
-            // Natural Functions
-            {
-              type: 'category',
-              label: 'Natural Functions',
-              items: [
-                'genai/develop/natural-functions/defining-natural-functions',
-                'genai/develop/natural-functions/constructing-prompts-natural-functions',
-                'genai/develop/natural-functions/handling-natural-function-responses',
-              ],
-            },
-            // RAG
-            {
-              type: 'category',
-              label: 'RAG',
-              items: [
-                {
-                  type: 'category',
-                  label: 'RAG Ingestion',
-                  items: [
-                    'genai/develop/rag/chunking-documents',
-                    'genai/develop/rag/generating-embeddings',
-                    'genai/develop/rag/connecting-vector-databases',
-                  ],
-                },
-                'genai/develop/rag/querying',
-              ],
-            },
+            // Direct LLM Calls (single page)
+            'genai/develop/direct-llm/overview',
+            // Natural Functions (single page)
+            'genai/develop/natural-functions/overview',
+            // RAG (single page)
+            'genai/develop/rag/overview',
             // AI Agents
             {
               type: 'category',
               label: 'AI Agents',
+              link: { type: 'doc', id: 'genai/develop/agents/overview' },
+              collapsed: true,
               items: [
-                'genai/develop/agents/ai',
-                'genai/develop/agents/adding-tools',
-                'genai/develop/agents/adding-memory',
-                'genai/develop/agents/advanced-ai-configurations',
-                'genai/develop/agents/ai-observability',
-                'genai/develop/agents/ai-evaluations',
+                'genai/develop/agents/creating-an-agent',
+                'genai/develop/agents/tools',
+                'genai/develop/agents/memory',
+                'genai/develop/agents/observability',
+                'genai/develop/agents/evaluations',
               ],
             },
             // MCP Integration
             {
               type: 'category',
               label: 'MCP Integration',
+              link: { type: 'doc', id: 'genai/develop/mcp/overview' },
+              collapsed: true,
               items: [
-                'genai/develop/mcp/server',
-                'genai/develop/mcp/building-ai-agents-servers',
+                'genai/develop/mcp/exposing-as-mcp',
+                'genai/develop/mcp/consuming-mcp-from-agent',
               ],
             },
-          ],
-        },
-        // Deep Dives — Agents
-        {
-          type: 'category',
-          label: 'Agents',
-          items: [
-            'genai/agents/architecture-concepts',
-            'genai/agents/build-chat',
-            'genai/agents/expose-as-apis',
-            'genai/agents/natural-functions',
-            'genai/agents/tool-binding',
-            'genai/agents/configure-memory',
-            'genai/agents/multi-orchestration',
-          ],
-        },
-        // Deep Dives — RAG
-        {
-          type: 'category',
-          label: 'RAG',
-          items: [
-            'genai/rag/architecture-overview',
-            'genai/rag/document-ingestion-pipelines',
-            'genai/rag/chunking-embedding-strategies',
-            'genai/rag/vector-database-connectivity',
-            'genai/rag/build-a-service-end-end',
-          ],
-        },
-        // Deep Dives — MCP
-        {
-          type: 'category',
-          label: 'MCP',
-          items: [
-            'genai/mcp/model-context-protocol-overview',
-            'genai/mcp/consuming-tools',
-            'genai/mcp/exposing-servers',
-            'genai/mcp/security',
-          ],
-        },
-        // LLM Connectivity
-        {
-          type: 'category',
-          label: 'LLM Connectivity',
-          items: [
-            'genai/llm-connectivity/model-selection',
-            'genai/llm-connectivity/prompt-engineering',
-            'genai/llm-connectivity/managing-context-windows',
-            'genai/llm-connectivity/natural-expressions',
-            'genai/llm-connectivity/streaming-responses',
-          ],
-        },
-        // Guardrails
-        {
-          type: 'category',
-          label: 'Guardrails',
-          items: [
-            'genai/guardrails/responsible-ai',
-            'genai/guardrails/content-filtering',
-            'genai/guardrails/inputoutput',
-            'genai/guardrails/token-cost-management',
-            'genai/guardrails/ai-usage-guidelines',
-          ],
-        },
-        // Agent Observability
-        {
-          type: 'category',
-          label: 'Agent Observability',
-          items: [
-            'genai/agent-observability/agent-tracing',
-            'genai/agent-observability/conversation-logging',
-            'genai/agent-observability/performance-metrics',
-            'genai/agent-observability/debugging-agent-behavior',
-          ],
-        },
-        // Quick Starts
-        {
-          type: 'category',
-          label: 'Quick starts',
-          items: [
-            'genai/quick-starts/build-a-conversational-agent',
-            'genai/quick-starts/build-a-rag-application',
-            'genai/quick-starts/expose-integrations-as-mcp-server',
           ],
         },
         // Tutorials
@@ -1852,15 +1760,12 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Tutorials',
           items: [
+            'genai/tutorials/email-generator-direct-llm',
+            'genai/tutorials/review-summarizer-natural-function',
             'genai/tutorials/building-hr-knowledge-base-agent-rag',
             'genai/tutorials/building-a-customer-care-agent-mcp',
             'genai/tutorials/building-it-helpdesk-chatbot-persistent-memory',
             'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
-            'genai/tutorials/ai-customer-support-agent',
-            'genai/tutorials/conversational-data-pipeline',
-            'genai/tutorials/mcp-server-enterprise-data',
-            'genai/tutorials/multi-agent-workflow',
-            'genai/tutorials/rag-knowledge-base',
           ],
         },
         // Reference
