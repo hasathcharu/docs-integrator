@@ -207,7 +207,6 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Transform',
           items: [
-            'develop/transform/data-mapper',
             'develop/transform/json',
             'develop/transform/xml',
             'develop/transform/csv-flat-file',
