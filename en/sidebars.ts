@@ -155,9 +155,27 @@ const sidebars: SidebarsConfig = {
                   collapsed: true,
                   link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/data-mapper' },
                   items: [
-                    'develop/integration-artifacts/supporting/data-mapper/access-paths',
+                    {
+                      type: 'category',
+                      label: 'Access paths',
+                      collapsed: true,
+                      link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/access-paths/access-paths' },
+                      items: [
+                        'develop/integration-artifacts/supporting/data-mapper/access-paths/reusable',
+                        'develop/integration-artifacts/supporting/data-mapper/access-paths/inline',
+                      ],
+                    },
                     'develop/integration-artifacts/supporting/data-mapper/mapping-capabilities',
-                    'develop/integration-artifacts/supporting/data-mapper/array-mappings',
+                    {
+                      type: 'category',
+                      label: 'Array mappings',
+                      collapsed: true,
+                      link: { type: 'doc', id: 'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-mappings' },
+                      items: [
+                        'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-to-array',
+                        'develop/integration-artifacts/supporting/data-mapper/array-mappings/array-to-singleton',
+                      ],
+                    },
                     'develop/integration-artifacts/supporting/data-mapper/generic-type-mappings',
                     'develop/integration-artifacts/supporting/data-mapper/submappings',
                   ],

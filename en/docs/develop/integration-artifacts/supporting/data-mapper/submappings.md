@@ -23,5 +23,6 @@ Once defined, the submapping appears under **Sub Mappings** in the left panel. M
 
 ## What's next
 
-- [Mapping capabilities](./mapping-capabilities.md) — Combine fields, write expressions, and convert primitive types.
-- [Array mappings](./array-mappings.md) — Map between arrays using iteration, joins, and aggregation.
+- [Mapping capabilities](./mapping-capabilities.md) — Connect fields, write expressions, and use AI-assisted mapping.
+- [Array mappings](./array-mappings/array-mappings.md) — Map between arrays using iteration, joins, and aggregation.
+- [Generic type mappings](./generic-type-mappings.md) — Generate types from a sample JSON or XML payload.

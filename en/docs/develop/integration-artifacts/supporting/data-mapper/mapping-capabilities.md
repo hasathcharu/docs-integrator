@@ -5,7 +5,7 @@ description: Map fields one-to-one, combine multiple inputs, write inline expres
 
 # Mapping capabilities
 
-The data mapper supports a set of mapping primitives for the most common transformation patterns. Use the canvas to draw connections between fields, and use the inline tools when types do not match directly.
+The data mapper supports a set of mapping capabilities for the most common transformation patterns. Use the canvas to draw connections between fields, and use the inline tools when types do not match directly.
 
 ## One-to-one mapping
 
@@ -43,8 +43,18 @@ When you need a focused, visual sub-mapping rather than a free-form function, us
 
 ![Map with Transformation Function opening a nested data mapper view for the selected fields](/img/develop/integration-artifacts/supporting/data-mapper/map-with-transformation-function.gif)
 
+## Map with AI
+
+Inside any data mapper view, click **Auto Map** in the top-right corner of the canvas to generate mappings automatically using the WSO2 Integrator Copilot.
+
+![Data mapper toolbar with the Auto Map button in the top-right corner](/img/develop/integration-artifacts/supporting/data-mapper/ai-map-option.png)
+
+The Copilot panel opens with a `/datamap` command preloaded. Submit it to generate field mappings based on the input and output types, then review and adjust the result on the canvas.
+
+![Copilot panel with the /datamap command ready to generate mappings](/img/develop/integration-artifacts/supporting/data-mapper/ai-map-view.png)
+
 ## What's next
 
-- [Array mappings](./array-mappings.md) — Map between arrays using iteration, joins, and aggregation.
+- [Array mappings](./array-mappings/array-mappings.md) — Map between arrays using iteration, joins, and aggregation.
+- [Generic type mappings](./generic-type-mappings.md) — Generate types from a sample JSON or XML payload.
 - [Submappings](./submappings.md) — Reuse mapping logic across multiple output fields.
-- [Expressions](../../../design-logic/expressions.md) — Write the Ballerina expressions used in the expression editor.
