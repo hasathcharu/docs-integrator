@@ -17,13 +17,12 @@ The activity bar is the narrow vertical strip on the far-left edge of the editor
 | Name | Description |
 |---|---|
 | **Explorer** | Opens the file explorer for browsing project files |
-| **Search** | Opens the global search panel |
+| **WSO2 Integrator** | Opens the Integration View with the project explorer |
 | **Source Control** | Opens the Git source control panel |
-| **WSO2 Integrator** | Opens the Integration View with the project explorer and design canvas |
 | **Run and Debug** | Opens the debug panel for setting breakpoints and inspecting variables |
-| **Extensions** | Opens the extensions marketplace |
+| **Testing** | Opens the test explorer to view, run, and debug the test cases defined for your integration |
 
-Click the **WSO2 Integrator** icon to switch to the Integration View at any time.
+Click the **WSO2 Integrator** icon to switch to the Project View at any time.
 
 ![Activity bar](/img/develop/project-views/integration-view/activity-bar.png)
 
@@ -42,20 +41,21 @@ Common entry point types include:
 - **HTTP Service** — Exposes REST endpoints that accept HTTP requests.
 - **GraphQL Service** — Exposes a GraphQL API.
 - **Automation** — Runs on a schedule or at startup without an external trigger.
-- **Kafka Listener** — Consumes messages from Apache Kafka topics.
-- **RabbitMQ Listener** — Consumes messages from RabbitMQ queues.
-- **File Watcher** — Triggers when files are created or modified in a directory.
+- **Kafka Service** — Consumes messages from Apache Kafka topics.
+- **RabbitMQ Service** — Consumes messages from RabbitMQ queues.
+- **File Service** — Triggers when files are created or modified in a directory.
 
 To add an entry point:
 
-1. Hover over the **Entry Points** section in the project explorer.
-2. Click the **+** icon that appears.
-3. Select the entry point type from the list.
-4. Fill in the required configuration (name, port, path, etc.).
+1. Click the **+** icon next to the **Entry Points** section, or click the **Add Artifact** button.
+2. Select the entry point type from the list.
+3. Fill in the required configuration, such as name, port, and path.
 
 To open an entry point, click its name in the project explorer. This opens it in the visual designer where you can build the integration logic.
 
 Each entry point has a three-dot context menu (**⋮**) with actions such as **Rename**, **Delete**, and **Go to Source**.
+
+For more information, see [Integration artifacts](/docs/develop/integration-artifacts/overview).
 
 ### Listeners
 
@@ -63,7 +63,7 @@ Listeners define protocol-specific configurations that entry points bind to. A l
 
 Multiple entry points can share the same listener. For example, several HTTP services can bind to a single HTTP listener on port `8090`.
 
-To add a listener, click the **+** icon next to the **Listeners** section and configure the protocol settings.
+A listener is added automatically with the entry point. For more information, see [Integration artifacts](/docs/develop/integration-artifacts/overview).
 
 ### Connections
 
@@ -82,33 +82,37 @@ To add a connection:
 2. Select the connection type.
 3. Provide the connection URL, credentials, and other required settings.
 
+For more information, see [Connections](/docs/develop/integration-artifacts/supporting/connections).
+
 ### Types
 
-Types define custom record types, enums, and type aliases used in your integration. They help you model your data structures and enforce type safety across your integration logic.
+Types define the custom records, enums, service classes, arrays, and unions used in your integration. They help you model your data structures and enforce type safety across your integration logic.
 
-To add a type, click the **+** icon next to the **Types** section and select the type kind (**Record**, **Enum**, or **Type Alias**).
+To add a type, click the **+** icon next to the **Types** section and select the type kind, such as **Record** or **Enum**.
+
+For more information, see [Types](/docs/develop/integration-artifacts/supporting/types).
 
 ### Functions
 
 Functions are reusable logic blocks that you can call from entry points or other functions. Use functions to extract common logic, keep your entry points clean, and improve testability.
 
-To add a function, click the **+** icon next to the **Functions** section. Choose the function type:
+To add a function, click the **+** icon next to the **Functions** section.
 
-- **Regular** — A standard function.
-- **Isolated** — A concurrency-safe function.
-- **Remote** — A function that makes network calls.
+For more information, see [Functions](/docs/develop/integration-artifacts/supporting/functions).
 
 ### Data mappers
 
 Data mappers provide a visual interface for transforming data between different structures. Use them to map fields from a source type to a target type without writing transformation code manually.
 
-To add a data mapper, click the **+** icon next to the **Data Mappers** section, then select the source and target types.
+To add a reusable data mapper, click the **+** icon next to the **Data Mappers** section, then select the source and target types. For more information, see [Data mapper](/docs/develop/integration-artifacts/supporting/data-mapper).
 
 ### Configurations
 
 Configurations list the configurable variables defined in your integration. These variables get their values from the `Config.toml` file at runtime, allowing you to change behavior across environments without modifying code.
 
 Click a configuration entry to view or edit its default value and type.
+
+For more information, see [Configurations](/docs/develop/integration-artifacts/supporting/configurations).
 
 ## Design canvas
 
@@ -165,12 +169,7 @@ Click **Undo** or **Redo** in the toolbar to reverse or reapply recent changes t
 
 ### Configure
 
-Click **Configure** to open the project-level configuration panel. Here you can edit settings such as:
-
-- Package metadata (name, version, organization)
-- Build options
-- Dependency management
-- `Config.toml` values for different environments
+Click **Configure** to open the configuration panel. This is same as the project explorer's configuration addition.
 
 ### Run
 
@@ -204,9 +203,9 @@ The deployment options panel appears on the right sidebar and provides shortcuts
 
 ![Deployment options](/img/develop/project-views/integration-view/deployment-options.png)
 
-### Deploy to Devant
+### Deploy to WSO2 Integration Platform
 
-Deploy your integration to [WSO2 Devant](/docs/deploy-operate/deploy/devant), a fully managed cloud platform. Devant handles provisioning, scaling, and monitoring so you can focus on building integrations.
+Deploy your integration to [WSO2 Integration Platform](/docs/deploy-operate/deploy/devant), a fully managed cloud platform. WSO2 Integration Platform handles provisioning, scaling, and monitoring so you can focus on building integrations.
 
 ### Deploy with Docker
 
@@ -224,10 +223,12 @@ Connect your integration to the [Integration Control Plane (ICP)](/docs/deploy-o
 
 The README section at the bottom of the Integration View displays the contents of your project's `README.md` file. Use it to document the purpose, setup instructions, and usage notes for your integration.
 
+![Readme](/img/develop/project-views/integration-view/readme.png)
+
 Click **Edit** to modify the README directly. You can also click **Generate with AI** to create a README automatically based on your project's components and configuration.
 
 ## What's next
 
 - [Design integration logic](/docs/develop/design-logic/overview) — Build logic using the visual designer
 - [Integration artifacts](/docs/develop/integration-artifacts/overview) — Learn about artifact types and their configuration
-- [Deploy to Devant](/docs/deploy-operate/deploy/devant) — Deploy your integration to the cloud
+- [Deploy to WSO2 Integration Platform](/docs/deploy-operate/deploy/devant) — Deploy your integration to the cloud
