@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Configurations
 
-**Configurable variables** are settings you declare in your integration and supply values for separately at runtime. They keep two things out of your code:
+**Configurable variables** are settings you declare in your integration and supply values separately at runtime. They keep two things out of your code:
 
 - **Secrets** — credentials, API keys, and tokens you don't want in source control.
 - **Environment-specific settings** — URLs, ports, and feature flags that differ between development, staging, and production.
