@@ -123,7 +123,7 @@ When the AI enhancement completes, the status shows **AI Enhancement completed**
 
 You can migrate MuleSoft projects using the Ballerina CLI tool. Follow these steps:
 
-### Prerequisite
+### CLI prerequisite
 - Ensure Ballerina is installed, and the `bal` command is available in your environment.
 
 ### Steps

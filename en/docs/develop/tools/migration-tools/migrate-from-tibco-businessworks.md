@@ -86,7 +86,7 @@ After the migration completes successfully, the **AI Enhancement (Recommended)**
 - **Enhance with AI** — AI automatically resolves unmapped elements, fixes build errors, and improves migration quality.
 - **Skip for Now – Enhance Later** — Keep the project as-is. You can trigger AI enhancement later from the WSO2 Integrator Copilot.
 
-Click **Start AI Enhancement** to proceed to Step 5, or if you chose to skip, click **Open Workspace** to open the migrated workspace or **Done** to exit.
+Click **Start AI Enhancement** to proceed to Step 5, or if you chose to skip, click **Open Project** to open the migrated project or **Done** to exit.
 
    ![Rule-based migration step](/img/develop/tools/migration-tools/rule-based-migration.png)
 
@@ -109,7 +109,7 @@ After signing in, the AI agent runs automatically and streams its progress. The 
 While the agent is running:
 
 - Click **Pause** to pause the AI enhancement. Click **Resume** to continue.
-- Click **Done** to exit the wizard, or **Open Workspace** to open the workspace without waiting for the agent to finish.
+- Click **Done** to exit the wizard, or **Open Project** to open the project without waiting for the agent to finish.
 
    ![Enhancing with ai-agent](/img/develop/tools/migration-tools/tibco-ai-enhancement.png)
 
@@ -120,7 +120,7 @@ When the AI enhancement completes, the status shows **AI Enhancement completed**
 
 You can migrate TIBCO BusinessWorks projects using the Ballerina CLI tool. Follow these steps:
 
-### Prerequisite
+### CLI prerequisite
 - Ensure Ballerina is installed, and the `bal` command is available in your environment.
 
 ### Steps
