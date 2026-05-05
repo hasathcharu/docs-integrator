@@ -6,6 +6,7 @@ description: Migrate MuleSoft integrations to WSO2 Integrator with automated cod
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import TabAwareToc from '@site/src/components/TabAwareToc';
 
 # Migrate from MuleSoft
 
@@ -15,6 +16,7 @@ The MuleSoft migration tool converts MuleSoft Anypoint flows (XML configurations
 
 ## Run the MuleSoft migration tool
 
+<TabAwareToc />
 <Tabs>
 <TabItem value="ui" label="Wizard" default>
 

@@ -6,6 +6,7 @@ description: Migrate TIBCO BusinessWorks integrations to WSO2 Integrator with au
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import TabAwareToc from '@site/src/components/TabAwareToc';
 
 # Migrate from TIBCO BusinessWorks
 
@@ -15,6 +16,7 @@ The TIBCO migration tool converts TIBCO BusinessWorks process definitions to Bal
 
 ## Run the TIBCO migration tool
 
+<TabAwareToc />
 <Tabs>
 <TabItem value="ui" label="Wizard" default>
 
