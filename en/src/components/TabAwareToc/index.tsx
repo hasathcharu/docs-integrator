@@ -34,13 +34,19 @@ export default function TabAwareToc(): null {
 
         updateToc();
 
-        const handleTabClick = () => setTimeout(updateToc, 50);
+        const scheduleUpdate = () => setTimeout(updateToc, 50);
 
         const tabLists = document.querySelectorAll('[role="tablist"]');
-        tabLists.forEach((tabList) => tabList.addEventListener('click', handleTabClick));
+        tabLists.forEach((tabList) => {
+            tabList.addEventListener('click', scheduleUpdate);
+            tabList.addEventListener('keydown', scheduleUpdate);
+        });
 
         return () => {
-            tabLists.forEach((tabList) => tabList.removeEventListener('click', handleTabClick));
+            tabLists.forEach((tabList) => {
+                tabList.removeEventListener('click', scheduleUpdate);
+                tabList.removeEventListener('keydown', scheduleUpdate);
+            });
         };
     }, []);
 
