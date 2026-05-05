@@ -99,11 +99,7 @@ Use the **Search Configurables** box to filter by name. Click a variable to edit
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
-Configurable variables added through the visual designer are written to a `config.bal` file at the project root. Open the file directly to review them, or list every declaration across the project with:
-
-```bash
-grep -rn "^configurable" .
-```
+Configurable variables added through the visual designer are written to a `config.bal` file at the project root. Open the file directly to review them.
 
 Configurables exposed by imported libraries are declared in the libraries' own source. Refer to each library's API documentation to see which configurables it exposes.
 
