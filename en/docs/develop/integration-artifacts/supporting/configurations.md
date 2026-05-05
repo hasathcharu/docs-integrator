@@ -144,7 +144,7 @@ For the full list of supported types, alternative value sources (environment var
 | Practice | Description |
 |---|---|
 | **Never commit secrets** | Keep secrets out of `Config.toml` files in version control. Supply them through environment variables or a gitignored secrets file. See [Secrets and encryption](../../../deploy-operate/secure/secrets-encryption.md). |
-| **Mark required values explicitly** | Avoid setting default values for configurations that must come from the environment (endpoints, credentials) so misconfiguration fails fast at startup. |
+| **Mark required values explicitly** | For configurations that must come from the environment (such as endpoints and credentials), leave **Default Value** empty in the Visual Designer and use the `?` placeholder in code so the value is required and misconfiguration fails fast at startup. |
 | **Group related settings** | Use record types to group settings that belong to the same subsystem (for example, database configuration or CRM settings). |
 | **Document defaults** | Use the **Documentation** field (or code comments) to explain the purpose and valid range of each setting. |
 
