@@ -12,7 +12,7 @@ import TabAwareToc from '@site/src/components/TabAwareToc';
 
 ## Overview
 
-The TIBCO migration tool converts TIBCO BusinessWorks process definitions to Ballerina code. It handles process flows, activities, transitions, shared resources, and error handling configurations.
+The TIBCO migration tool converts TIBCO BusinessWorks process definitions to Ballerina code. It handles process flows, activities, transitions, shared resources, error handling configurations and more.
 
 ## Run the TIBCO migration tool
 
@@ -56,7 +56,6 @@ When the dry run completes, the wizard displays a summary of the migration cover
 Click **View Full Report** to open the full HTML report. The report includes:
 
 - **Migration Coverage Overview** — Overall coverage percentage with a breakdown of total, migratable, and non-migratable code lines.
-- **Breakdown Components** — Separate coverage for Mule Elements and DataWeave expressions.
 - **Manual Work Estimation** — Estimated effort (best, average, and worst case) for completing non-migratable items.
 - **Currently Unsupported Elements** — List of elements that could not be automatically migrated.
 - **Element Blocks that Require Manual Conversion** — Specific code blocks that need manual implementation.
@@ -112,11 +111,9 @@ While the agent is running:
 - Click **Pause** to pause the AI enhancement. Click **Resume** to continue.
 - Click **Done** to exit the wizard, or **Open Workspace** to open the workspace without waiting for the agent to finish.
 
-   ![Ehancing with ai-agent](/img/develop/tools/migration-tools/tibco-ai-enhancement.png)
+   ![Enhancing with ai-agent](/img/develop/tools/migration-tools/tibco-ai-enhancement.png)
 
 When the AI enhancement completes, the status shows **AI Enhancement completed**. Click **Open Project** to open the migrated project or **Done** to exit.
-
-<!-- TODO: Add screenshot: tibco-ai-enhancement.png -->
 
 </TabItem>
 <TabItem value="code" label="CLI">

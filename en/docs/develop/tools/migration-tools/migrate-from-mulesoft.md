@@ -12,7 +12,7 @@ import TabAwareToc from '@site/src/components/TabAwareToc';
 
 ## Overview
 
-The MuleSoft migration tool converts MuleSoft Anypoint flows (XML configurations) to Ballerina code. It handles HTTP listeners, request connectors, DataWeave transformations, routers, and error handling patterns.
+The MuleSoft migration tool converts MuleSoft Anypoint flows (XML configurations) to Ballerina code. It handles HTTP listeners, request connectors, DataWeave transformations, routers, error handling patterns and more.
 
 ## Run the MuleSoft migration tool
 
@@ -114,11 +114,9 @@ While the agent is running:
 - Click **Pause** to pause the AI enhancement. Click **Resume** to continue.
 - Click **Done** to exit the wizard, or **Open Project** to open the project without waiting for the agent to finish.
 
-   ![Ehancing with ai-agent](/img/develop/tools/migration-tools/mule-ai-enhancement.png)
+   ![Enhancing with ai-agent](/img/develop/tools/migration-tools/mule-ai-enhancement.png)
 
 When the AI enhancement completes, the status shows **AI Enhancement completed**. Click **Open Project** to open the migrated project or **Done** to exit.
-
-<!-- TODO: Add screenshot: mule-ai-enhancement.png -->
 
 </TabItem>
 <TabItem value="code" label="CLI">
