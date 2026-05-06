@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Local Files
 
-Local file services monitor a directory on the local file system and trigger event handlers when files are created, modified, or deleted. Use them for on-premise batch processing, development workflows, and integrations that consume files dropped into a watched directory.
+Local file services monitor a directory on the local file system and trigger event handlers when files are created, modified, or deleted. Use them for on-premises batch processing, development workflows, and integrations that consume files dropped into a watched directory.
 
 ## Creating a local file service
 
@@ -27,7 +27,7 @@ Local file services monitor a directory on the local file system and trigger eve
    | Field | Description | Default |
    |---|---|---|
    | **Path** | Directory path to monitor for file events (e.g., `/data/incoming`). | Required |
-   | **Recursive** | When set to `True`, monitors all sub-directories under the specified path. | `False` |
+   | **Recursive** | When set to `True`, monitors all subdirectories under the specified path. | `False` |
 
    Expand **Advanced Configurations** to set the listener name.
 
@@ -41,7 +41,7 @@ Local file services monitor a directory on the local file system and trigger eve
 
    ![Service Designer showing the local file service canvas](/img/develop/integration-artifacts/file/local-files/step-service-designer.png)
 
-6. Click **+ Add Handler** to define how file events are processed.
+6. Click [**+ Add Handler**](#adding-a-file-handler) to define how file events are processed.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -94,7 +94,7 @@ Select **Local Files** in the left panel to view service-level settings, or sele
 |---|---|---|
 | **Name** | Identifier for the listener. | `fileListener` |
 | **Path** | Directory path which the listener monitors. | Required |
-| **Recursive** | When enabled, recursively monitors all sub-folders in the given directory path. | `False` |
+| **Recursive** | When enabled, recursively monitors all subdirectories in the given directory path. | `False` |
 
 Click **+ Attach Listener** to attach an additional listener to the same service.
 
@@ -117,7 +117,7 @@ listener file:Listener fileListener = check new ({
 | Field | Type | Default | Description |
 |---|---|---|---|
 | `path` | `string` | Required | Directory path to monitor |
-| `recursive` | `boolean` | `false` | Monitor all sub-directories under the path |
+| `recursive` | `boolean` | `false` | Monitor all subdirectories under the path |
 
 </TabItem>
 </Tabs>
@@ -131,7 +131,9 @@ A file handler is a `remote function` that WSO2 Integrator calls each time a mat
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-In the **Service Designer**, click **+ Add Handler**. A **Select Handler to Add** panel opens on the right listing the available event types. Click the event type to add it directly — no further configuration is required.
+In the **Service Designer**, click **+ Add Handler**. A **Select Handler to Add** panel opens on the right listing the available event types. Click the event type to add it directly. No further configuration is required.
+
+![Select Handler to Add panel showing onCreate, onDelete, and onModify event types](/img/develop/integration-artifacts/file/local-files/step-handler-picker.png)
 
 | Handler | Triggered when |
 |---|---|
@@ -188,9 +190,8 @@ Each handler receives a `file:FileEvent` parameter with details about the file s
 
 | Field | Type | Description |
 |---|---|---|
-| `name` | `string` | Absolute path of the file that triggered the event |
-| `addedFiles` | `file:FileInfo[]` | List of files added in this event cycle (available in `onCreate`) |
-| `lastModifiedTimestamp` | `int` | Last-modified time of the file as UNIX epoch milliseconds |
+| `name` | `string` | Path of the file or directory that changed (absolute when the listener was configured with an absolute path) |
+| `operation` | `string` | One of `"create"`, `"modify"`, `"delete"` (lowercase) |
 
 ## Reading file content
 
@@ -199,7 +200,7 @@ Use the `ballerina/io` module to read the content of the file that triggered a h
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-In the **Service Designer**, open the handler and build the flow with two nodes — a Variable that captures the file content and a Log that prints it:
+In the **Service Designer**, open the handler and build the flow with two nodes: a Variable that captures the file content and a Log that prints it.
 
 1. Click **+** on the handler canvas to add a node, pick **Declare Variable**, and fill in:
 
@@ -209,9 +210,11 @@ In the **Service Designer**, open the handler and build the flow with two nodes 
    | **Name** | `content` (or any identifier) |
    | **Expression** | `check io:fileReadString(event.name)` |
 
-   Open the helper panel and click `fileReadString()` under the **Functions** tab to insert the call — this also imports the `ballerina/io` module for you. Save the node.
+   Open the helper panel and click `fileReadString()` under the **Functions** tab to insert the call. This also imports the `ballerina/io` module for you. Save the node.
 
 2. Click **+** after the Variable, pick **Log** → **Log Info**, switch the **Msg** field to **Expression** mode, and enter `content`. Save the node.
+
+![Handler canvas showing the Declare Variable and Log Info nodes wired up to read and log file content](/img/develop/integration-artifacts/file/local-files/step-read-flow.png)
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -251,7 +254,7 @@ Use the `ballerina/io` module to write results to the local file system from wit
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-The `io` write functions return `error?`, so the same Variable-node pattern as reading works — capture the result and log a confirmation:
+The `io` write functions return `error?`, so the same Variable-node pattern as reading works to capture the result and log a confirmation:
 
 1. Click **+** on the handler canvas to add a node, pick **Declare Variable**, and fill in:
 
@@ -264,6 +267,8 @@ The `io` write functions return `error?`, so the same Variable-node pattern as r
    Open the helper panel and click `fileWriteString()` under the **Functions** tab to insert the call and import `ballerina/io`. Save the node.
 
 2. Click **+** after the Variable, pick **Log** → **Log Info**, and enter a confirmation message such as `"Output written"`. Save the node.
+
+![Handler canvas showing the Declare Variable and Log Info nodes wired up to write a file and log a confirmation](/img/develop/integration-artifacts/file/local-files/step-write-flow.png)
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
