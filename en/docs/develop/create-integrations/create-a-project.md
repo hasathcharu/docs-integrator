@@ -1,5 +1,5 @@
 ---
-title: Create a project
+title: Create a Project
 description: Create a project workspace to organize multiple integrations and libraries.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Create a library
+title: Create a Library
 description: Create reusable library packages for sharing common logic across integrations.
 ---
 

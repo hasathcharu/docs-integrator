@@ -1,5 +1,5 @@
 ---
-title: Open a project
+title: Open a Project
 description: Open an existing project from your local filesystem or from the cloud.
 ---
 

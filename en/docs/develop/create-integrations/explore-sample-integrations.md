@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Explore sample integrations
+title: Explore Sample Integrations
 description: Browse and open pre-built sample integrations to accelerate your development.
 ---
 

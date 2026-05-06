@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Open an existing integration
+title: Open an Existing Integration
 description: Open an existing integration or project from your local filesystem.
 ---
 

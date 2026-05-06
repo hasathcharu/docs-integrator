@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Create a new integration
+title: Create a New Integration
 description: Create a new integration using the WSO2 Integrator creation wizard.
 ---
 
