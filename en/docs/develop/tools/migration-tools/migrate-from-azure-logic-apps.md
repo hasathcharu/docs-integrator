@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 title: Migrate from Azure Logic Apps
 description: Migrate Azure Logic Apps workflows to WSO2 Integrator with automated code generation.
 ---
