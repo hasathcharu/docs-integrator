@@ -149,8 +149,8 @@ const config: Config = {
         {
           title: 'Develop',
           items: [
-            { label: 'Integration artifacts', to: '/docs/develop/integration-artifacts/overview' },
-            { label: 'Transform', to: '/docs/develop/integration-artifacts/supporting/data-mapper/data-mapper' },
+            { label: 'Integration artifacts', to: '/docs/develop/integration-artifacts' },
+            { label: 'Transform', to: '/docs/develop/transform/data-mapper' },
             { label: 'Test', to: '/docs/develop/test/try-it' },
             { label: 'Connectors', to: '/docs/connectors/overview' },
             { label: 'AI Integrations', to: '/docs/genai/overview' },

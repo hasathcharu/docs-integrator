@@ -92,6 +92,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Integration artifacts',
+          link: { type: 'doc', id: 'develop/integration-artifacts/integration-artifacts' },
           items: [
             'develop/integration-artifacts/automation',
             {
