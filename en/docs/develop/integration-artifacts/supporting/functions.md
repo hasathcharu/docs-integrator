@@ -34,7 +34,7 @@ Function artifacts encapsulate reusable logic that can be called from any integr
 3. Select **Create**. The function is added to `functions.bal` and opens in the flow designer canvas, where you add integration steps.
 
 </TabItem>
-<TabItem value="code" label="Ballerina code">
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 // functions.bal
