@@ -290,3 +290,10 @@ Example response:
 ```
 
 The AI agent remembers previous conversations because the conversation history is stored in persistent MSSQL-backed memory and retrieved using the same `sessionId`.
+
+## What's next
+
+- [Memory Configuration](/docs/genai/agents/memory-configuration) — Explore memory options in depth
+- [Chat Agents](/docs/genai/agents/chat-agents) — Learn more about chat agent patterns
+- [Agent Tracing](/docs/genai/agent-observability/agent-tracing) — Add observability and debugging
+- [Troubleshooting](/docs/genai/reference/troubleshooting) — Common issues and solutions
