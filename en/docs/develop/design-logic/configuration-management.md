@@ -1,13 +1,13 @@
 ---
 sidebar_position: 7
-title: Configuration Management
+title: Configuration management
 description: Externalize integration settings with configurable variables and Config.toml for environment-specific deployments.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Configuration Management
+# Configuration management
 
 Integration projects typically run in multiple environments — development, staging, and production — each with different database endpoints, API keys, and feature flags. 
 
@@ -22,13 +22,7 @@ Configurable variables defined in your integration project are accessible across
 
 ![Config Editor UI in WSO2 Integrator showing configurable variables for the integration project and the panel for adding a new configurable variable](/img/develop/design-logic/configurations/config-editor-ui.png)
 
-To declare a configurable variable:
-
-1. In the WSO2 Integrator explorer view (LHS), click the **Configurations** section.
-2. Click **+** to add a new configurable variable.
-3. Specify the variable name, type, and an optional default value.
-4. Click **Save** to add the variable to your integration project.
-5. To supply values for the declared configurable variables, either use the **Config Editor** UI (low-code) or directly edit the `Config.toml` file in the project root.
+To add a configurable variable through the visual designer, see [Configurations](../integration-artifacts/supporting/configurations.md#adding-a-configuration). To supply values for declared variables, use the **Config Editor** UI (low-code) or edit the `Config.toml` file in the project root.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -224,37 +218,7 @@ BAL_CONFIG_FILES=config/prod.toml bal run
 
 ## Secrets management
 
-Never store secrets in plain text in `Config.toml` files committed to version control. For detailed information on secrets handling and encryption (Kubernetes Secrets, vault integration, TLS), see [Secrets & Encryption](../../deploy-operate/secure/secrets-encryption.md).
-
-### Environment variables for secrets
-
-```ballerina
-configurable string dbPassword = ?;
-configurable string apiSecret = ?;
-```
-
-```bash
-export BAL_CONFIG_VAR_DBPASSWORD="$(vault read -field=password secret/db)"
-export BAL_CONFIG_VAR_APISECRET="$(vault read -field=key secret/api)"
-bal run
-```
-
-### Separate secrets file
-
-```
-my-integration/
-├── Config.toml          # Non-sensitive config (committed)
-├── secrets.toml         # Sensitive config (gitignored)
-└── .gitignore           # Contains: secrets.toml
-```
-
-```bash
-# macOS / Linux
-BAL_CONFIG_FILES=secrets.toml:Config.toml bal run
-
-# Windows
-set BAL_CONFIG_FILES=secrets.toml;Config.toml && bal run
-```
+Never commit secrets to `Config.toml` in version control. Supply them through environment variables or a gitignored secrets file. For Kubernetes Secrets, HashiCorp Vault, AWS Secrets Manager, and TLS configuration, see [Secrets and encryption](../../deploy-operate/secure/secrets-encryption.md).
 
 ## Complete example
 
@@ -303,8 +267,21 @@ service /api on httpListener {
 
 ```
 
+A matching `Config.toml` for the production environment:
+
+```toml
+dbHost = "db.prod.internal"
+dbPort = 3306
+dbUser = "app_user"
+dbPassword = "prod-encrypted-password"
+dbName = "orders"
+crmBaseUrl = "https://api.crm.example.com"
+servicePort = 8090
+enableRequestLogging = false
+```
+
 ## What's next
 
-- [Functions](functions.md) — Organize configurable logic into reusable functions
-- [Connections](managing-connections.md) — Use configurable variables to parameterize connections
-- [Error Handling](error-handling.md) — Handle missing or invalid configuration gracefully
+- [Configurations](../integration-artifacts/supporting/configurations.md) — Declare configurable variables and supply values through the visual designer.
+- [Secrets and encryption](../../deploy-operate/secure/secrets-encryption.md) — Securely supply credentials and protect data in transit and at rest.
+- [Connections](managing-connections.md) — Use configurable variables to parameterize connections.
