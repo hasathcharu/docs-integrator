@@ -33,7 +33,7 @@ An automation runs your integration logic without an external request, on demand
 4. Select **Create**.
 
 <ThemedImage
-    alt="Create New Automation form opened after selecting Automation under Other Artifacts"
+    alt="Create New Automation form opened after selecting Automation under Automation"
     sources={{
         light: useBaseUrl('/img/get-started/build-automation/add-an-automation-artifact.png'),
         dark: useBaseUrl('/img/get-started/build-automation/add-an-automation-artifact.png'),
@@ -70,7 +70,7 @@ An automation runs your integration logic without an external request, on demand
 />
 
 </TabItem>
-<TabItem value="code" label="Ballerina code">
+<TabItem value="code" label="Ballerina Code">
 
 The following complete, runnable Ballerina program produces the same automation shown in the visual designer steps.
 

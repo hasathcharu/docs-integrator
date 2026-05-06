@@ -68,8 +68,8 @@ Add your integration logic inside the `do` block. The `on fail` block handles an
 
 ## Automation configuration
 
-Automation configuration controls startup parameters, error return enabling for the automation function.
-
+ Automation configuration controls the startup parameters for the automation function and whether execution failures are returned as errors.
+ 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
