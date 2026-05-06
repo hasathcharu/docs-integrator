@@ -30,7 +30,7 @@ Click the **+ Add Artifacts** button at the top right of the canvas to add a new
 
 ![Add artifacts menu](/img/develop/project-views/library-view/add-artifacts.png)
 
-For detailed information on configuring each specific artifact type, see the [Integration Artifacts](../integration-artifacts/integration-artifacts.md) documentation.
+For detailed information on configuring each specific artifact type, see the [Integration artifacts](/docs/develop/integration-artifacts) documentation.
 
 ## Artifact management
 
@@ -66,5 +66,6 @@ The README section at the bottom of the Library View displays the contents of yo
 
 ## What's next
 
+- [Integration artifacts](/docs/develop/integration-artifacts): learn about the artifact types you can define in a library.
 - [Packages & Modules](/docs/develop/organize-code/packages-modules): understand package structure.
-- [Publish to Ballerina Central](/docs/connectors/publish-to-central): share your libraries.
+- [Publish to Ballerina Central](/docs/connectors/build-your-own/custom-development): share your libraries.
