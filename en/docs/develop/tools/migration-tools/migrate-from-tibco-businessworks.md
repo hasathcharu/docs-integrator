@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 title: Migrate from TIBCO BusinessWorks
 description: Migrate TIBCO BusinessWorks integrations to WSO2 Integrator with automated code generation.
 ---

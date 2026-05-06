@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 title: Migrate from MuleSoft
 description: Migrate MuleSoft integrations to WSO2 Integrator with automated code generation.
 ---

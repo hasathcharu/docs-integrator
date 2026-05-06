@@ -286,7 +286,6 @@ const sidebars: SidebarsConfig = {
               link: { type: 'doc', id: 'develop/tools/migration-tools/migration-tools' },
               collapsed: true,
               items: [
-                'develop/tools/migration-tools/migrate-from-mi',
                 'develop/tools/migration-tools/migrate-from-mulesoft',
                 'develop/tools/migration-tools/migrate-from-tibco-businessworks',
                 'develop/tools/migration-tools/migrate-from-azure-logic-apps',
