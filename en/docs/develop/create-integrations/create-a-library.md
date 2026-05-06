@@ -82,4 +82,3 @@ The library is generated as a Ballerina package. Use these fields to configure t
 
 - [Library View](../project-views/library-view.md) -- Learn how to manage and configure your library project
 - [Create a New Integration](create-a-new-integration.md) -- Create an integration that uses your library
-- [Manage Dependencies](/docs/develop/organize-code/manage-dependencies) -- Add libraries as dependencies to your integrations

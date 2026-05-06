@@ -246,20 +246,7 @@ const sidebars: SidebarsConfig = {
             'develop/debugging/performance-profiling',
           ],
         },
-        // 6.8 Organize Code
-        {
-          type: 'category',
-          label: 'Organize code',
-          items: [
-            'develop/organize-code/packages-modules',
-            'develop/organize-code/package-references-imports',
-            'develop/organize-code/dependencies',
-            'develop/organize-code/workspaces',
-            {type: 'doc', id: 'develop/organize-code/style-guide', label: 'Code Style Guide & Formatting'},
-            {type: 'doc', id: 'develop/organize-code/generate-documentation', label: 'Generating Code Documentation'},
-          ],
-        },
-        // 6.9 Tools
+        // 6.8 Tools
         {
           type: 'category',
           label: 'Tools',

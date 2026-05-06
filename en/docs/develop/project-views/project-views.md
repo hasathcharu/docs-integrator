@@ -64,4 +64,3 @@ Use the view selector in the WSO2 Integrator sidebar to switch between Workspace
 ## What's next
 
 - [Create Integrations](/docs/develop/create-integrations/overview) -- Create new integration packages
-- [Organize Code](/docs/develop/organize-code/packages-modules) -- Structure packages and modules

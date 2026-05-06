@@ -78,5 +78,4 @@ Click **Publish** to build the library and push it to a central repository (such
 
 ## What's next
 
-- [Packages & Modules](/docs/develop/organize-code/packages-modules) -- Understand package structure
 - [Publish to Ballerina Central](/docs/connectors/publish-to-central) -- Share your libraries
