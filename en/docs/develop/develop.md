@@ -32,7 +32,7 @@ Tools that help **you** code faster (Copilot, AI test generation, AI-assisted da
 |---|---|
 | **[Integration artifacts](integration-artifacts/integration-artifacts.md)** | Automations, services (HTTP, GraphQL, gRPC, TCP, WebSub), event handlers (Kafka, RabbitMQ, MQTT, Salesforce, GitHub), file handlers, and supporting artifacts |
 | **[Design integration logic](design-logic/design-logic.md)** | Visual designer, connections, control flow, error handling, expressions, query expressions, and Ballerina pro-code |
-| **[Transform](transform/data-mapper.md)** | Visual Data Mapper togther with JSON, XML, CSV, EDI, and YAML/TOML processing |
+| **[Transform](transform/data-mapper.md)** | Visual Data Mapper together with JSON, XML, CSV, EDI, and YAML/TOML processing |
 
 ## Try, test, and debug
 
