@@ -133,9 +133,9 @@ Returns the OIDC authorization URL to redirect the user to for SSO login.
 
 ## Using the Token
 
-Include the access token returned by `/auth/login` or `/auth/refresh-token` in all GraphQL and Auth API requests:
+Include the access token returned by `/auth/login` or `/auth/refresh-token` in all protected GraphQL and Auth API requests (unauthenticated endpoints such as `/auth/login`, `/auth/refresh-token`, and OIDC bootstrap calls do not require this header):
 
-```
+```bash
 Authorization: Bearer <jwt-access-token>
 ```
 

@@ -245,7 +245,8 @@ Same structure as the full heartbeat response. If `fullHeartbeatRequired` is `tr
 {
   "acknowledged": true,
   "fullHeartbeatRequired": false,
-  "commands": []
+  "commands": [],
+  "errors": []
 }
 ```
 

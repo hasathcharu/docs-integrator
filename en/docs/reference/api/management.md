@@ -44,15 +44,13 @@ The token is signed with HMAC-SHA256 and validated against:
 Returns a list of registered runtimes. All parameters are optional filters.
 
 ```graphql
-query {
-  runtimes(
-    status: String
-    runtimeType: String
-    environmentId: String
-    projectId: String
-    componentId: String
-  ): [Runtime!]!
-}
+runtimes(
+  status: String
+  runtimeType: String
+  environmentId: String
+  projectId: String
+  componentId: String
+): [Runtime!]!
 ```
 
 **Example:**
@@ -77,9 +75,7 @@ query {
 Returns a single runtime by ID.
 
 ```graphql
-query {
-  runtime(runtimeId: String!): Runtime
-}
+runtime(runtimeId: String!): Runtime
 ```
 
 #### `componentDeployment`
@@ -87,15 +83,13 @@ query {
 Returns deployment information for a component in a specific environment.
 
 ```graphql
-query {
-  componentDeployment(
-    orgHandler: String!
-    orgUuid: String!
-    componentId: String!
-    versionId: String!
-    environmentId: String!
-  ): ComponentDeployment
-}
+componentDeployment(
+  orgHandler: String!
+  orgUuid: String!
+  componentId: String!
+  versionId: String!
+  environmentId: String!
+): ComponentDeployment
 ```
 
 ---
@@ -107,9 +101,7 @@ query {
 Returns all environments accessible to the authenticated user.
 
 ```graphql
-query {
-  environments(orgUuid: String, type: String, projectId: String): [Environment!]!
-}
+environments(orgUuid: String, type: String, projectId: String): [Environment!]!
 ```
 
 The `type` parameter accepts `"prod"` or `"non-prod"` to filter by production status.
@@ -134,9 +126,7 @@ query {
 Returns a single environment by its handler (slug).
 
 ```graphql
-query {
-  environmentByHandler(environmentHandler: String!): Environment
-}
+environmentByHandler(environmentHandler: String!): Environment
 ```
 
 #### `environmentHandlerAvailability`
@@ -144,9 +134,7 @@ query {
 Checks if a handler string is available for a new environment.
 
 ```graphql
-query {
-  environmentHandlerAvailability(environmentHandlerCandidate: String!): EnvironmentHandlerAvailability!
-}
+environmentHandlerAvailability(environmentHandlerCandidate: String!): EnvironmentHandlerAvailability!
 ```
 
 ---
@@ -158,9 +146,7 @@ query {
 Returns all projects accessible to the authenticated user.
 
 ```graphql
-query {
-  projects(orgId: Int): [Project!]!
-}
+projects(orgId: Int): [Project!]!
 ```
 
 #### `project`
@@ -168,9 +154,7 @@ query {
 Returns a single project by ID.
 
 ```graphql
-query {
-  project(orgId: Int, projectId: String!): Project
-}
+project(orgId: Int, projectId: String!): Project
 ```
 
 #### `projectByHandler`
@@ -178,9 +162,7 @@ query {
 Returns a project by its handler within an organization.
 
 ```graphql
-query {
-  projectByHandler(orgId: Int!, projectHandler: String!): Project
-}
+projectByHandler(orgId: Int!, projectHandler: String!): Project
 ```
 
 #### `projectCreationEligibility`
@@ -188,9 +170,7 @@ query {
 Checks whether the authenticated user is permitted to create a project.
 
 ```graphql
-query {
-  projectCreationEligibility(orgId: Int!, orgHandler: String!): ProjectCreationEligibility!
-}
+projectCreationEligibility(orgId: Int!, orgHandler: String!): ProjectCreationEligibility!
 ```
 
 #### `projectHandlerAvailability`
@@ -198,9 +178,7 @@ query {
 Checks if a handler string is available for a new project within an organization.
 
 ```graphql
-query {
-  projectHandlerAvailability(orgId: Int!, projectHandlerCandidate: String!): ProjectHandlerAvailability!
-}
+projectHandlerAvailability(orgId: Int!, projectHandlerCandidate: String!): ProjectHandlerAvailability!
 ```
 
 ---
@@ -212,13 +190,11 @@ query {
 Returns all components accessible to the user within an organization, with optional project filter and sort/pagination options.
 
 ```graphql
-query {
-  components(
-    orgHandler: String!
-    projectId: String
-    options: ComponentOptionsInput
-  ): [Component!]!
-}
+components(
+  orgHandler: String!
+  projectId: String
+  options: ComponentOptionsInput
+): [Component!]!
 ```
 
 #### `component`
@@ -226,13 +202,11 @@ query {
 Returns a single component by ID, or by project ID and handler.
 
 ```graphql
-query {
-  component(
-    componentId: String
-    projectId: String
-    componentHandler: String
-  ): Component
-}
+component(
+  componentId: String
+  projectId: String
+  componentHandler: String
+): Component
 ```
 
 #### `componentArtifactTypes`
@@ -240,9 +214,7 @@ query {
 Returns the artifact types available for a component, optionally filtered by environment.
 
 ```graphql
-query {
-  componentArtifactTypes(componentId: String!, environmentId: String): ArtifactTypes!
-}
+componentArtifactTypes(componentId: String!, environmentId: String): ArtifactTypes!
 ```
 
 ---
@@ -254,33 +226,25 @@ All artifact queries below share the same signature pattern and require both `en
 #### `servicesByEnvironmentAndComponent`
 
 ```graphql
-query {
-  servicesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Service!]!
-}
+servicesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Service!]!
 ```
 
 #### `listenersByEnvironmentAndComponent`
 
 ```graphql
-query {
-  listenersByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Listener!]!
-}
+listenersByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Listener!]!
 ```
 
 #### `automationsByEnvironmentAndComponent`
 
 ```graphql
-query {
-  automationsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Automation!]!
-}
+automationsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Automation!]!
 ```
 
 #### `restApisByEnvironmentAndComponent`
 
 ```graphql
-query {
-  restApisByEnvironmentAndComponent(environmentId: String!, componentId: String!): [RestApi!]!
-}
+restApisByEnvironmentAndComponent(environmentId: String!, componentId: String!): [RestApi!]!
 ```
 
 **Example:**
@@ -303,97 +267,73 @@ query {
 #### `proxyServicesByEnvironmentAndComponent`
 
 ```graphql
-query {
-  proxyServicesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [ProxyService!]!
-}
+proxyServicesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [ProxyService!]!
 ```
 
 #### `endpointsByEnvironmentAndComponent`
 
 ```graphql
-query {
-  endpointsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [MIEndpoint!]!
-}
+endpointsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [MIEndpoint!]!
 ```
 
 #### `inboundEndpointsByEnvironmentAndComponent`
 
 ```graphql
-query {
-  inboundEndpointsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [InboundEndpoint!]!
-}
+inboundEndpointsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [InboundEndpoint!]!
 ```
 
 #### `sequencesByEnvironmentAndComponent`
 
 ```graphql
-query {
-  sequencesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Sequence!]!
-}
+sequencesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Sequence!]!
 ```
 
 #### `tasksByEnvironmentAndComponent`
 
 ```graphql
-query {
-  tasksByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Task!]!
-}
+tasksByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Task!]!
 ```
 
 #### `templatesByEnvironmentAndComponent`
 
 ```graphql
-query {
-  templatesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Template!]!
-}
+templatesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Template!]!
 ```
 
 #### `messageStoresByEnvironmentAndComponent`
 
 ```graphql
-query {
-  messageStoresByEnvironmentAndComponent(environmentId: String!, componentId: String!): [MessageStore!]!
-}
+messageStoresByEnvironmentAndComponent(environmentId: String!, componentId: String!): [MessageStore!]!
 ```
 
 #### `messageProcessorsByEnvironmentAndComponent`
 
 ```graphql
-query {
-  messageProcessorsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [MessageProcessor!]!
-}
+messageProcessorsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [MessageProcessor!]!
 ```
 
 #### `localEntriesByEnvironmentAndComponent`
 
 ```graphql
-query {
-  localEntriesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [LocalEntry!]!
-}
+localEntriesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [LocalEntry!]!
 ```
 
 #### `dataServicesByEnvironmentAndComponent`
 
 ```graphql
-query {
-  dataServicesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [DataService!]!
-}
+dataServicesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [DataService!]!
 ```
 
 #### `dataSourcesByEnvironmentAndComponent`
 
 ```graphql
-query {
-  dataSourcesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [DataSource!]!
-}
+dataSourcesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [DataSource!]!
 ```
 
 #### `carbonAppsByEnvironmentAndComponent`
 
 ```graphql
-query {
-  carbonAppsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [CarbonApp!]!
-}
+carbonAppsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [CarbonApp!]!
 ```
 
 #### `carbonAppFaultStackTrace`
@@ -401,25 +341,19 @@ query {
 Returns the fault stack trace for a Carbon App on a specific runtime.
 
 ```graphql
-query {
-  carbonAppFaultStackTrace(runtimeId: String!, appName: String!): CarbonAppFaultStackTrace
-}
+carbonAppFaultStackTrace(runtimeId: String!, appName: String!): CarbonAppFaultStackTrace
 ```
 
 #### `connectorsByEnvironmentAndComponent`
 
 ```graphql
-query {
-  connectorsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Connector!]!
-}
+connectorsByEnvironmentAndComponent(environmentId: String!, componentId: String!): [Connector!]!
 ```
 
 #### `registryResourcesByEnvironmentAndComponent`
 
 ```graphql
-query {
-  registryResourcesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [RegistryResource!]!
-}
+registryResourcesByEnvironmentAndComponent(environmentId: String!, componentId: String!): [RegistryResource!]!
 ```
 
 ---
@@ -433,17 +367,15 @@ These queries fetch live details from the MI Management API for a single artifac
 Returns the source definition of an artifact (e.g., sequence XML, API definition).
 
 ```graphql
-query {
-  artifactSourceByComponent(
-    componentId: String!
-    artifactType: String!
-    artifactName: String!
-    environmentId: String
-    runtimeId: String
-    packageName: String
-    templateType: String
-  ): String!
-}
+artifactSourceByComponent(
+  componentId: String!
+  artifactType: String!
+  artifactName: String!
+  environmentId: String
+  runtimeId: String
+  packageName: String
+  templateType: String
+): String!
 ```
 
 #### `artifactWsdlByComponent`
@@ -451,16 +383,14 @@ query {
 Returns the WSDL content for a proxy service artifact.
 
 ```graphql
-query {
-  artifactWsdlByComponent(
-    componentId: String!
-    artifactType: String!
-    artifactName: String!
-    environmentId: String
-    runtimeId: String
-    packageName: String
-  ): String!
-}
+artifactWsdlByComponent(
+  componentId: String!
+  artifactType: String!
+  artifactName: String!
+  environmentId: String
+  runtimeId: String
+  packageName: String
+): String!
 ```
 
 #### `localEntryValueByComponent`
@@ -468,14 +398,12 @@ query {
 Returns the value of a named local entry.
 
 ```graphql
-query {
-  localEntryValueByComponent(
-    componentId: String!
-    entryName: String!
-    environmentId: String
-    runtimeId: String
-  ): String!
-}
+localEntryValueByComponent(
+  componentId: String!
+  entryName: String!
+  environmentId: String
+  runtimeId: String
+): String!
 ```
 
 #### `artifactParametersByComponent`
@@ -483,16 +411,14 @@ query {
 Returns parameters for an inbound endpoint, message processor, or data source artifact.
 
 ```graphql
-query {
-  artifactParametersByComponent(
-    componentId: String!
-    artifactType: String!
-    artifactName: String!
-    environmentId: String
-    runtimeId: String
-    packageName: String
-  ): [Parameter!]!
-}
+artifactParametersByComponent(
+  componentId: String!
+  artifactType: String!
+  artifactName: String!
+  environmentId: String
+  runtimeId: String
+  packageName: String
+): [Parameter!]!
 ```
 
 #### `dataSourceOverviewByComponent`
@@ -500,14 +426,12 @@ query {
 Returns overview fields (name, type, description, driverClass, userName, url) for a data source.
 
 ```graphql
-query {
-  dataSourceOverviewByComponent(
-    componentId: String!
-    dataSourceName: String!
-    environmentId: String
-    runtimeId: String
-  ): [Parameter!]!
-}
+dataSourceOverviewByComponent(
+  componentId: String!
+  dataSourceName: String!
+  environmentId: String
+  runtimeId: String
+): [Parameter!]!
 ```
 
 #### `messageStoreOverviewByComponent`
@@ -515,14 +439,12 @@ query {
 Returns overview fields (name, type, container, size) for a message store.
 
 ```graphql
-query {
-  messageStoreOverviewByComponent(
-    componentId: String!
-    storeName: String!
-    environmentId: String
-    runtimeId: String
-  ): [Parameter!]!
-}
+messageStoreOverviewByComponent(
+  componentId: String!
+  storeName: String!
+  environmentId: String
+  runtimeId: String
+): [Parameter!]!
 ```
 
 #### `messageProcessorOverviewByComponent`
@@ -530,14 +452,12 @@ query {
 Returns overview fields (name, type, messageStore, status) for a message processor.
 
 ```graphql
-query {
-  messageProcessorOverviewByComponent(
-    componentId: String!
-    processorName: String!
-    environmentId: String
-    runtimeId: String
-  ): [Parameter!]!
-}
+messageProcessorOverviewByComponent(
+  componentId: String!
+  processorName: String!
+  environmentId: String
+  runtimeId: String
+): [Parameter!]!
 ```
 
 #### `dataServiceOverviewByComponent`
@@ -545,14 +465,12 @@ query {
 Returns structured overview (dataSources, queries, resources, operations) for a data service.
 
 ```graphql
-query {
-  dataServiceOverviewByComponent(
-    componentId: String!
-    dataServiceName: String!
-    environmentId: String
-    runtimeId: String
-  ): MgmtDataServiceInfo!
-}
+dataServiceOverviewByComponent(
+  componentId: String!
+  dataServiceName: String!
+  environmentId: String
+  runtimeId: String
+): MgmtDataServiceInfo!
 ```
 
 ---
@@ -564,9 +482,7 @@ query {
 Returns loggers for a specific runtime. For MI runtimes, fetches live from the MI Management API. For BI runtimes, reads from the database with reconcile state overlaid.
 
 ```graphql
-query {
-  loggersByRuntime(runtimeId: String!): [Logger!]!
-}
+loggersByRuntime(runtimeId: String!): [Logger!]!
 ```
 
 #### `loggersByEnvironmentAndComponent`
@@ -574,9 +490,7 @@ query {
 Returns loggers grouped by component name across all runtimes in an environment.
 
 ```graphql
-query {
-  loggersByEnvironmentAndComponent(environmentId: String!, componentId: String!): [LoggerGroup!]!
-}
+loggersByEnvironmentAndComponent(environmentId: String!, componentId: String!): [LoggerGroup!]!
 ```
 
 **Example:**
@@ -602,9 +516,7 @@ query {
 Returns the list of available log files on an MI runtime. The runtime must be in `RUNNING` status.
 
 ```graphql
-query {
-  logFilesByRuntime(runtimeId: String!, searchKey: String): LogFilesResponse!
-}
+logFilesByRuntime(runtimeId: String!, searchKey: String): LogFilesResponse!
 ```
 
 #### `logFileContent`
@@ -612,9 +524,7 @@ query {
 Returns the content of a specific log file. The `fileName` must be a plain filename with no path separators or traversal sequences.
 
 ```graphql
-query {
-  logFileContent(runtimeId: String!, fileName: String!): String!
-}
+logFileContent(runtimeId: String!, fileName: String!): String!
 ```
 
 ---
@@ -628,9 +538,7 @@ These queries operate on the MI registry and require the runtime to be in `RUNNI
 Lists the contents of a registry directory path.
 
 ```graphql
-query {
-  registryDirectory(runtimeId: String!, path: String!, expand: Boolean): RegistryDirectoryResponse!
-}
+registryDirectory(runtimeId: String!, path: String!, expand: Boolean): RegistryDirectoryResponse!
 ```
 
 #### `registryFileContent`
@@ -638,9 +546,7 @@ query {
 Returns the content of a registry file at the given path.
 
 ```graphql
-query {
-  registryFileContent(runtimeId: String!, path: String!): String!
-}
+registryFileContent(runtimeId: String!, path: String!): String!
 ```
 
 #### `registryResourceMetadata`
@@ -648,9 +554,7 @@ query {
 Returns metadata (name and mediaType) for a registry resource.
 
 ```graphql
-query {
-  registryResourceMetadata(runtimeId: String!, path: String!): RegistryResourceMetadata!
-}
+registryResourceMetadata(runtimeId: String!, path: String!): RegistryResourceMetadata!
 ```
 
 #### `registryResourceProperties`
@@ -658,9 +562,7 @@ query {
 Returns the properties of a registry resource.
 
 ```graphql
-query {
-  registryResourceProperties(runtimeId: String!, path: String!): RegistryPropertiesResponse!
-}
+registryResourceProperties(runtimeId: String!, path: String!): RegistryPropertiesResponse!
 ```
 
 ---
@@ -672,9 +574,7 @@ query {
 Returns org-level secrets. Optionally filter by environment.
 
 ```graphql
-query {
-  orgSecrets(environmentId: String): [OrgSecretListEntry!]!
-}
+orgSecrets(environmentId: String): [OrgSecretListEntry!]!
 ```
 
 #### `componentSecrets`
@@ -682,9 +582,7 @@ query {
 Returns secrets bound to a specific component in an environment.
 
 ```graphql
-query {
-  componentSecrets(componentId: String!, environmentId: String!): [BoundSecretEntry!]!
-}
+componentSecrets(componentId: String!, environmentId: String!): [BoundSecretEntry!]!
 ```
 
 ---
@@ -696,9 +594,7 @@ query {
 Returns the list of users configured on an MI runtime.
 
 ```graphql
-query {
-  getMIUsers(componentId: String!, runtimeId: String!): MIUsersResponse!
-}
+getMIUsers(componentId: String!, runtimeId: String!): MIUsersResponse!
 ```
 
 **Example:**
@@ -742,9 +638,7 @@ query {
 Deletes a runtime by ID. If `revokeSecret` is `true` and the runtime's secret is no longer used by any other runtime, the secret is also revoked.
 
 ```graphql
-mutation {
-  deleteRuntime(runtimeId: String!, revokeSecret: Boolean): DeleteRuntimeResult!
-}
+deleteRuntime(runtimeId: String!, revokeSecret: Boolean): DeleteRuntimeResult!
 ```
 
 **Example:**
@@ -768,9 +662,7 @@ mutation {
 Creates a new environment. Requires environment management permission; production environments require full management permission.
 
 ```graphql
-mutation {
-  createEnvironment(environment: EnvironmentInput!): Environment
-}
+createEnvironment(environment: EnvironmentInput!): Environment
 ```
 
 **Input:**
@@ -789,9 +681,7 @@ input EnvironmentInput {
 Deletes an environment by ID.
 
 ```graphql
-mutation {
-  deleteEnvironment(environmentId: String!): Boolean!
-}
+deleteEnvironment(environmentId: String!): Boolean!
 ```
 
 #### `updateEnvironment`
@@ -799,14 +689,12 @@ mutation {
 Updates the name, handler, or description of an environment.
 
 ```graphql
-mutation {
-  updateEnvironment(
-    environmentId: String!
-    name: String
-    handler: String
-    description: String
-  ): Environment
-}
+updateEnvironment(
+  environmentId: String!
+  name: String
+  handler: String
+  description: String
+): Environment
 ```
 
 #### `updateEnvironmentProductionStatus`
@@ -814,9 +702,7 @@ mutation {
 Promotes or demotes an environment to/from production status. Always requires full management permission.
 
 ```graphql
-mutation {
-  updateEnvironmentProductionStatus(environmentId: String!, isProduction: Boolean!): Environment
-}
+updateEnvironmentProductionStatus(environmentId: String!, isProduction: Boolean!): Environment
 ```
 
 ---
@@ -828,9 +714,7 @@ mutation {
 Creates a new project.
 
 ```graphql
-mutation {
-  createProject(project: ProjectInput!): Project
-}
+createProject(project: ProjectInput!): Project
 ```
 
 #### `deleteProject`
@@ -838,9 +722,7 @@ mutation {
 Deletes a project. Fails if the project still contains components.
 
 ```graphql
-mutation {
-  deleteProject(orgId: Int!, projectId: String!): DeleteResponse!
-}
+deleteProject(orgId: Int!, projectId: String!): DeleteResponse!
 ```
 
 #### `updateProject`
@@ -848,9 +730,7 @@ mutation {
 Updates project name, version, or description.
 
 ```graphql
-mutation {
-  updateProject(project: ProjectUpdateInput!): Project
-}
+updateProject(project: ProjectUpdateInput!): Project
 ```
 
 **Input:**
@@ -874,9 +754,7 @@ input ProjectUpdateInput {
 Creates a new component within a project. The name must be 3–64 characters.
 
 ```graphql
-mutation {
-  createComponent(component: ComponentInput!): Component
-}
+createComponent(component: ComponentInput!): Component
 ```
 
 **Input:**
@@ -904,9 +782,7 @@ input ComponentInput {
 Deletes a component. Returns a detailed response. Fails if the component has registered runtimes.
 
 ```graphql
-mutation {
-  deleteComponentV2(orgHandler: String!, componentId: String!, projectId: String!): DeleteComponentV2Response!
-}
+deleteComponentV2(orgHandler: String!, componentId: String!, projectId: String!): DeleteComponentV2Response!
 ```
 
 #### `updateComponent`
@@ -914,9 +790,7 @@ mutation {
 Updates component fields such as name, display name, or description.
 
 ```graphql
-mutation {
-  updateComponent(component: ComponentUpdateInput!): Component!
-}
+updateComponent(component: ComponentUpdateInput!): Component!
 ```
 
 ---
@@ -928,9 +802,7 @@ mutation {
 Enables or disables a named artifact across all MI runtimes of a component. Changes are propagated via the reconcile engine.
 
 ```graphql
-mutation {
-  updateArtifactStatus(input: ArtifactStatusChangeInput!): ArtifactStatusChangeResponse!
-}
+updateArtifactStatus(input: ArtifactStatusChangeInput!): ArtifactStatusChangeResponse!
 ```
 
 **Input:**
@@ -967,9 +839,7 @@ mutation {
 Enables or disables tracing on a specific artifact in an environment.
 
 ```graphql
-mutation {
-  updateArtifactTracingStatus(input: ArtifactTracingChangeInput!): ArtifactTracingChangeResponse!
-}
+updateArtifactTracingStatus(input: ArtifactTracingChangeInput!): ArtifactTracingChangeResponse!
 ```
 
 **Input:**
@@ -989,9 +859,7 @@ input ArtifactTracingChangeInput {
 Enables or disables statistics collection on an artifact. Supported artifact types: `proxy-service`, `endpoint`, `api`, `sequence`, `inbound-endpoint`.
 
 ```graphql
-mutation {
-  updateArtifactStatisticsStatus(input: ArtifactStatisticsChangeInput!): ArtifactStatisticsChangeResponse!
-}
+updateArtifactStatisticsStatus(input: ArtifactStatisticsChangeInput!): ArtifactStatisticsChangeResponse!
 ```
 
 **Input:**
@@ -1011,9 +879,7 @@ input ArtifactStatisticsChangeInput {
 Triggers a scheduled task on all MI runtimes of a component. Commands are queued for offline runtimes and delivered on next heartbeat.
 
 ```graphql
-mutation {
-  triggerArtifact(input: ArtifactTriggerInput!): ArtifactTriggerResponse!
-}
+triggerArtifact(input: ArtifactTriggerInput!): ArtifactTriggerResponse!
 ```
 
 **Input:**
@@ -1034,9 +900,7 @@ input ArtifactTriggerInput {
 Starts or stops a named listener on a set of runtimes.
 
 ```graphql
-mutation {
-  updateListenerState(input: ListenerControlInput!): ListenerControlResponse!
-}
+updateListenerState(input: ListenerControlInput!): ListenerControlResponse!
 ```
 
 **Input:**
@@ -1073,9 +937,7 @@ mutation {
 Updates the log level for MI loggers (applied immediately via the MI Management API) or BI component loggers (applied via the reconcile engine).
 
 ```graphql
-mutation {
-  updateLogLevel(input: UpdateLogLevelInput!): UpdateLogLevelResponse!
-}
+updateLogLevel(input: UpdateLogLevelInput!): UpdateLogLevelResponse!
 ```
 
 **Input:**
@@ -1131,9 +993,7 @@ mutation {
 Creates an org-level secret for an environment. If `componentId` is provided, the secret is bound to that component.
 
 ```graphql
-mutation {
-  createOrgSecret(environmentId: String!, componentId: String): String!
-}
+createOrgSecret(environmentId: String!, componentId: String): String!
 ```
 
 Returns the secret value as a plain string (shown only once).
@@ -1143,9 +1003,7 @@ Returns the secret value as a plain string (shown only once).
 Revokes an org-level secret by its key ID.
 
 ```graphql
-mutation {
-  revokeOrgSecret(keyId: String!): Boolean!
-}
+revokeOrgSecret(keyId: String!): Boolean!
 ```
 
 ---
@@ -1157,16 +1015,14 @@ mutation {
 Creates a new user on an MI runtime.
 
 ```graphql
-mutation {
-  addMIUser(
-    componentId: String!
-    runtimeId: String!
-    username: String!
-    password: String!
-    isAdmin: Boolean
-    domain: String
-  ): MIUserOperationResponse!
-}
+addMIUser(
+  componentId: String!
+  runtimeId: String!
+  username: String!
+  password: String!
+  isAdmin: Boolean
+  domain: String
+): MIUserOperationResponse!
 ```
 
 #### `deleteMIUser`
@@ -1174,14 +1030,12 @@ mutation {
 Deletes a user from an MI runtime.
 
 ```graphql
-mutation {
-  deleteMIUser(
-    componentId: String!
-    runtimeId: String!
-    username: String!
-    domain: String
-  ): MIUserOperationResponse!
-}
+deleteMIUser(
+  componentId: String!
+  runtimeId: String!
+  username: String!
+  domain: String
+): MIUserOperationResponse!
 ```
 
 ---
