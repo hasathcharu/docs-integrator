@@ -1,0 +1,102 @@
+name: PR Preview (Vercel)
+
+on:
+  pull_request:
+    types: [labeled, unlabeled, synchronize, closed]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+env:
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  deploy:
+    name: Deploy preview
+    if: |
+      (github.event.action == 'labeled' && github.event.label.name == 'preview') ||
+      (github.event.action == 'synchronize' && contains(github.event.pull_request.labels.*.name, 'preview'))
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: en
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: en/package-lock.json
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+
+      - name: Build with Vercel
+        run: vercel build --token=$VERCEL_TOKEN
+
+      - name: Deploy prebuilt artifact
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt --token=$VERCEL_TOKEN)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview URL on PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: pr-preview
+          message: |
+            <!-- pr-preview-marker -->
+            Preview deployed: ${{ steps.deploy.outputs.url }}
+
+            Commit: ${{ github.event.pull_request.head.sha }}
+
+  teardown:
+    name: Tear down preview
+    if: |
+      (github.event.action == 'unlabeled' && github.event.label.name == 'preview') ||
+      (github.event.action == 'closed' && contains(github.event.pull_request.labels.*.name, 'preview'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Find and remove preview deployment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          body=$(gh api "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq '.[] | select(.body | contains("<!-- pr-preview-marker -->")) | .body' \
+            | head -n1 || true)
+          if [ -z "$body" ]; then
+            echo "No preview marker comment found; nothing to tear down."
+            exit 0
+          fi
+          url=$(echo "$body" | grep -oE 'https://[a-zA-Z0-9.-]+\.vercel\.app' | head -n1 || true)
+          if [ -z "$url" ]; then
+            echo "Marker comment found but no Vercel URL parsed; skipping."
+            exit 0
+          fi
+          echo "Removing $url"
+          vercel remove "$url" --yes --token=$VERCEL_TOKEN || echo "vercel remove failed (already gone?); continuing."
+
+      - name: Update sticky comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: pr-preview
+          message: |
+            <!-- pr-preview-marker -->
+            Preview removed.
