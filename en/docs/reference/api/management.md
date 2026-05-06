@@ -9,7 +9,7 @@ The Management API is a GraphQL endpoint exposed by the Integration Control Plan
 
 ## Endpoint
 
-```
+```bash
 POST https://<icp-host>:9446/graphql
 ```
 
@@ -26,7 +26,7 @@ Before calling the GraphQL API, obtain a JWT access token from the ICP authentic
 
 Once you have a token, include it in every request:
 
-```
+```bash
 Authorization: Bearer <jwt-access-token>
 ```
 

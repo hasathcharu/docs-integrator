@@ -11,7 +11,7 @@ This API is consumed by runtime agents, not by end users. It is separate from th
 
 ## Base URL
 
-```
+```bash
 https://<icp-host>:9445/icp
 ```
 
@@ -23,7 +23,7 @@ The default runtime listener port is `9445`.
 
 All requests must include a signed JWT in the `Authorization` header:
 
-```
+```bash
 Authorization: Bearer <runtime-jwt>
 ```
 
@@ -169,6 +169,7 @@ Each artifact entry includes at minimum a `name` field and a `state` field (`"en
 ```json
 {
   "acknowledged": true,
+  "fullHeartbeatRequired": false,
   "commands": [
     {
       "commandId": "cmd-001",
@@ -178,7 +179,8 @@ Each artifact entry includes at minimum a `name` field and a `state` field (`"en
       "issuedAt": "2025-05-01T10:01:00Z",
       "status": "PENDING"
     }
-  ]
+  ],
+  "errors": []
 }
 ```
 

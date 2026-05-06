@@ -7,7 +7,7 @@ description: REST API for authentication, token management, and RBAC (users, gro
 
 The ICP server exposes a REST authentication service at:
 
-```
+```bash
 https://<icp-host>:9446/auth
 ```
 
@@ -298,11 +298,13 @@ Returns the effective permissions for a user at a given scope. Users may fetch t
 ```json
 {
   "userId": "usr-001",
-  "scope": { "orgUuid": 1, "projectUuid": "proj-abc" },
+  "scope": { "orgUuid": "org-uuid-001", "projectUuid": "proj-abc" },
   "permissions": [...],
   "permissionNames": ["integration_mgt:view", "integration_mgt:manage"]
 }
 ```
+
+`orgUuid` is a string UUID.
 
 ### `PUT /auth/orgs/{orgHandle}/users/{userId}/groups`
 
@@ -378,7 +380,7 @@ Assigns one or more roles to a group at a specified scope. Requires appropriate 
 ```json
 {
   "roleIds": ["role-001"],
-  "orgUuid": 1,
+  "orgUuid": "org-uuid-001",
   "projectUuid": "proj-abc",
   "envUuid": "env-001",
   "integrationUuid": "comp-xyz"
