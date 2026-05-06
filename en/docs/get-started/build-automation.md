@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: "Build an automation"
+title: "Build an Automation"
 description: Create an automation that can run on demand or be invoked on a schedule from an external system.
 keywords: [wso2 integrator, automation, scheduled job, batch processing, quick start, ballerina automation]
 ---
