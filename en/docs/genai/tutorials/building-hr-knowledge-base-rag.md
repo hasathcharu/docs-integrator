@@ -7,9 +7,9 @@ keywords: [wso2 integrator, genai, rag, hr knowledge base, vector store, tutoria
 
 # Building an HR knowledge base with RAG
 
-Build a complete HR retrieval-augmented generation pipeline visually in the WSO2 Integrator visual designer. The Automation ingests a folder of HR policy documents into a vector knowledge base. The HTTP Service answers employee questions over HTTP, grounded in the ingested chunks.
+**Time:** 30 minutes | **Level:** Intermediate | **What you'll build:** Two artifacts in a single integration. An Automation that ingests HR policy documents, and an HTTP Service that answers employee questions with retrieval-augmented generation.
 
-**What you'll build:** Two artifacts in a single integration. An Automation that ingests HR policy documents, and an HTTP Service that answers employee questions with retrieval-augmented generation.
+Build a complete HR retrieval-augmented generation pipeline visually in the WSO2 Integrator visual designer. The Automation ingests a folder of HR policy documents into a vector knowledge base. The HTTP Service answers employee questions over HTTP, grounded in the ingested chunks.
 
 **What you'll learn:**
 
@@ -18,26 +18,43 @@ Build a complete HR retrieval-augmented generation pipeline visually in the WSO2
 - How to retrieve relevant chunks and ground an LLM response with them.
 - How to expose the result over HTTP as a reusable service.
 
-**Time:** 30 minutes
+## Prerequisites
 
-**Level:** Intermediate
-
-:::info Prerequisites
 - [WSO2 Integrator installed](/docs/get-started/install) and signed into [WSO2 Integrator Copilot](/docs/genai/getting-started/setting-up-ai). Copilot provisions the default model and embedding providers. The first time you use them, WSO2 Integrator prompts you to run **Ballerina: Configure default WSO2 model provider** from the Command Palette and writes the credentials into `Config.toml` automatically.
 - A folder of HR policy documents in plain-text form (leave policy, benefits, code of conduct, onboarding, and so on). A few short `.md` files are enough to follow the tutorial. The content does not have to be production-ready.
-:::
 
 ## Architecture
 
-```text
-Ingestion (Automation):
-folder path -> Data Loader -> ai:load -> ai:ingest -> Vector Knowledge Base
-                                                     |- Vector Store (In-Memory)
-                                                     |- Embedding Provider (WSO2)
-                                                     |- Chunker (AUTO)
+```mermaid
+flowchart TD
+    Folder[(HR Policy Folder)]
+    Employee([Employee])
 
-Query (HTTP Service POST /api/v1/query):
-employee question -> ai:retrieve -> ai:augmentUserQuery -> ai:generate -> JSON response
+    subgraph Automation["Ingestion Automation"]
+        Loader[Data Loader]
+        AILoad[ai:load]
+        AIIngest[ai:ingest]
+        Loader --> AILoad --> AIIngest
+    end
+
+    subgraph KB["ai:VectorKnowledgeBase"]
+        VS[Vector Store<br/>In-Memory]
+        EP[Embedding Provider<br/>WSO2]
+        CH[Chunker<br/>AUTO]
+    end
+
+    subgraph Service["HTTP Service — POST /api/v1/query"]
+        Retrieve[ai:retrieve]
+        Augment[ai:augmentUserQuery]
+        Generate[ai:generate]
+        Retrieve --> Augment --> Generate
+    end
+
+    Folder --> Loader
+    AIIngest --> KB
+    KB --- Retrieve
+    Employee -->|userQuery| Retrieve
+    Generate -->|JSON answer| Employee
 ```
 
 The Automation flow walks documents through a chunker, embedding model, and vector store. The query flow walks an employee question through retrieval, augmentation, generation, and a JSON response.
@@ -270,7 +287,7 @@ The **log : printInfo** form opens. Set **Msg** to `Ingestion Completed!` so you
 
 Your ingestion automation now contains:
 
-```text
+```bash
 Start -> ai:load (hrDocuments) -> ai:ingest -> log:printInfo -> Error Handler
 ```
 
