@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Build an automation
+# Build an Automation
 
 **Time:** Under 10 minutes | **What you'll build:** An automation that prints `Hello World` to the terminal when it runs.
 
