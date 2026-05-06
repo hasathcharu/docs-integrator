@@ -2048,6 +2048,7 @@ const sidebars: SidebarsConfig = {
           label: 'APIs',
           items: [
             'reference/api/management',
+            'reference/api/auth-api',
             'reference/api/icp',
             'reference/api/ballerina-documentation',
           ],
