@@ -1,67 +1,47 @@
 ---
-title: Push from the IDE
-description: Commit your project changes and publish the branch to GitHub from the WSO2 Integrator IDE.
-keywords: [wso2 integrator, wso2 cloud, github, commit, push, source control]
+title: Deploy from the IDE
+description: Push your integrations from the WSO2 Integrator IDE directly to WSO2 Cloud, either as a whole project or as a single integration.
+keywords: [wso2 integrator, wso2 cloud, deploy, push, cloud deployment]
 ---
 
-import ThemedImage from '@theme/ThemedImage';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+# Deploy to WSO2 Cloud from the IDE
 
-# Push from the IDE
-
-After you connect a Git repository, push your project files to GitHub so WSO2 Cloud can read them. You commit the staged changes and publish the branch directly from the **Source Control** side bar in the WSO2 Integrator IDE.
+You can deploy your integrations to WSO2 Cloud directly from the WSO2 Integrator IDE. You can deploy the entire project at once or deploy a single integration individually.
 
 :::info Prerequisites
-- The project is published to GitHub. See [Connect a Git repository](connect-git-repository.md).
-- The **Deploy Integration** tab is open.
+- An integration created in the WSO2 Integrator IDE.
+- Your project connected to a remote Git repository. See [Connect a Git repository](../connect-git-repository).
 :::
 
-## Commit the changes
+## Deploy the whole project
 
-1. In the **Source Control** side bar, type a commit message in the message field. For the first push, use a message such as `Initial commit`.
-2. Click **Commit**.
+1. In the WSO2 Integrator IDE, open the project overview canvas.
 
-   <ThemedImage
-       alt="Source Control side bar with staged files and the Commit button"
-       sources={{
-           light: useBaseUrl('/img/deploy/push-to-cloud/commit-changes-light.png'),
-           dark: useBaseUrl('/img/deploy/push-to-cloud/commit-changes-dark.png'),
-       }}
-   />
+    ![Project Overview](/img/deploy/cloud/push-from-ide/project-overview.png)
 
-3. If no files are staged yet, the IDE asks whether you want to stage all your changes and commit them directly. Click **Yes**.
+2. Under **Deployment Options** in the right column, locate the **Deploy to WSO2 Cloud** box and click **Deploy**.
+3. If you are not already signed in to WSO2 Cloud, the IDE prompts you to sign in. Click **Sign In** and complete the authentication in the browser, then return to the IDE.
+4. When prompted, select the organization on WSO2 Cloud. You can select an existing project or click **Create New** to create one.
 
-   <ThemedImage
-       alt="Prompt to stage all changes and commit directly"
-       sources={{
-           light: useBaseUrl('/img/deploy/push-to-cloud/stage-changes-prompt-light.png'),
-           dark: useBaseUrl('/img/deploy/push-to-cloud/stage-changes-prompt-dark.png'),
-       }}
-   />
+   A new tab opens showing your project's integrations. By default, all integrations are selected for deployment.
 
-## Publish the branch
+    ![Deploying Integrations to WSO2 Cloud](/img/deploy/cloud/push-from-ide/deploy-tab.png)
 
-1. In the **Source Control** side bar, click **Publish Branch**. The IDE pushes the branch to the GitHub repository you selected when you connected the project.
+5. If WSO2 Cloud does not have access to your remote repository, a warning appears. Click the link to grant access on GitHub, complete the authorization, then return to the IDE and click **Refresh** to validate access.
+6. Click **Deploy All**.
 
-   <ThemedImage
-       alt="Publish Branch button in the Source Control side bar"
-       sources={{
-           light: useBaseUrl('/img/deploy/push-to-cloud/publish-branch-light.png'),
-           dark: useBaseUrl('/img/deploy/push-to-cloud/publish-branch-dark.png'),
-       }}
-   />
+   WSO2 Cloud creates the integrations. Once the deployment is complete, click **View in Console**.
 
-2. Switch back to the **Deploy Integration** tab and click the refresh icon on the **Source Control** card to pick up the new repository state.
+A browser opens showing your project on WSO2 Cloud.
 
-## Grant WSO2 Cloud access to the repository
+![WSO2 Cloud Project Home](/img/deploy/cloud/push-from-ide/project-page-wso2-cloud.png)
 
-WSO2 Cloud reads your code through a GitHub app. If you previously installed the app with access to selected repositories only, the new repository is not yet visible.
+## Deploy a single integration
 
-If the **Source Control** card shows a **Grant Access** message after the refresh, click **Grant Access** and approve the repository in the GitHub authorization page.
+1. In the WSO2 Integrator IDE, open the integration overview canvas for the integration you want to deploy.
+2. Under **Deployment Options** in the right column, locate the **Deploy to WSO2 Cloud** box and click **Deploy**.
+3. Follow the same steps as the whole-project flow, and click **Deploy**.
 
-When the **Source Control** card turns green and shows the repository and branch, the project is ready to deploy.
+   Once the deployment is complete, click **View in Console**.
 
-## What's next
-
-- [Deploy from the cloud editor](deploy-from-cloud-editor.md) — Trigger the build and deploy your integration to WSO2 Cloud.
-- [Connect a Git repository](connect-git-repository.md) — Set up the GitHub repository if you have not done so already.
+A browser opens showing the deployed integration directly on WSO2 Cloud.
