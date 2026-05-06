@@ -138,9 +138,9 @@ const sections: SectionCard[] = [
     iconColor: '#D97706',
   },
   {
-    title: 'Deploy and operate',
-    description: 'Docker, Kubernetes, CI/CD, observability, and production security.',
-    link: '/docs/deploy-operate/overview',
+    title: 'Deploy',
+    description: 'Deployment guides for WSO2 Cloud, Docker, Kubernetes, and more.',
+    link: '/docs/deploy/overview',
     icon: <IconDeploy />,
     iconBg: '#ECFEFF',
     iconBgDark: 'rgba(8, 145, 178, 0.15)',

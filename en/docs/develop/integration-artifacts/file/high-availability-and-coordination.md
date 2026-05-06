@@ -14,13 +14,13 @@ Turning on **Coordination** fixes this. One instance is elected as the active no
 
 ## How it works
 
-| Step | What happens |
-|---|---|
-| **1. Leader election** | On startup, every node in the same `coordinationGroup` registers with the shared database. One node is elected active. |
-| **2. Heartbeat** | Every node in the group — active and standby — writes its own heartbeat row at the `heartbeatFrequency` interval. This advertises liveness so any node can be promoted when needed. |
-| **3. Liveness check** | Standby nodes periodically check the active node's heartbeat. If the heartbeat goes stale, the active node is considered dead. |
-| **4. Failover** | A standby is promoted to active and starts polling immediately — no manual intervention. |
-| **5. Polling behaviour** | Only the active node polls the FTP server. Standby nodes skip polling entirely, consuming no FTP server resources. |
+| Step                     | What happens                                                                                                                                                                        |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Leader election**   | On startup, every node in the same `coordinationGroup` registers with the shared database. One node is elected active.                                                              |
+| **2. Heartbeat**         | Every node in the group — active and standby — writes its own heartbeat row at the `heartbeatFrequency` interval. This advertises liveness so any node can be promoted when needed. |
+| **3. Liveness check**    | Standby nodes periodically check the active node's heartbeat. If the heartbeat goes stale, the active node is considered dead.                                                      |
+| **4. Failover**          | A standby is promoted to active and starts polling immediately — no manual intervention.                                                                                            |
+| **5. Polling behaviour** | Only the active node polls the FTP server. Standby nodes skip polling entirely, consuming no FTP server resources.                                                                  |
 
 The pattern is **active-passive**: at most one node polls at a time. Per-file locking across multiple active pollers isn't supported.
 
@@ -33,11 +33,11 @@ The pattern is **active-passive**: at most one node polls at a time. Per-file lo
 2. Scroll to the **Coordination** field and click **Record** to open the builder.
 3. Fill in the three required fields:
 
-   | Field | What to enter |
-   |---|---|
-   | **Member Id** | A unique name for this instance of the integration. Every pod/instance must have a different value. Typically sourced from a `configurable` so each deployment can set its own. |
-   | **Coordination Group** | A shared name that all instances of the same listener use. Instances with matching group names coordinate; instances with different group names are independent. |
-   | **Database Config** | Connection details (host, port, user, password, database) for the shared MySQL or PostgreSQL database used to track leader election. |
+   | Field                  | What to enter                                                                                                                                                                   |
+   | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Member Id**          | A unique name for this instance of the integration. Every pod/instance must have a different value. Typically sourced from a `configurable` so each deployment can set its own. |
+   | **Coordination Group** | A shared name that all instances of the same listener use. Instances with matching group names coordinate; instances with different group names are independent.                |
+   | **Database Config**    | Connection details (host, port, user, password, database) for the shared MySQL or PostgreSQL database used to track leader election.                                            |
 
 4. Save the listener. Deploy each instance with a different **Member Id**.
 
@@ -81,13 +81,13 @@ service on ftpListener {
 
 `ftp:CoordinationConfig` fields:
 
-| Field | Type | Default | Description |
-|---|---|---|---|
-| `databaseConfig` | `task:DatabaseConfig` | — | Connection details for the coordination database. Accepts `MysqlConfig` or `PostgresqlConfig`. Required. |
-| `memberId` | `string` | — | Unique identifier for this node. Must be distinct across all nodes in the coordination group. Required. |
-| `coordinationGroup` | `string` | — | Name of the coordination group. All listeners with the same group coordinate together. Required. |
-| `livenessCheckInterval` | `int` | `30` | Seconds between heartbeat checks by standby nodes. |
-| `heartbeatFrequency` | `int` | `1` | Seconds between heartbeat writes by the active node. |
+| Field                   | Type                  | Default | Description                                                                                              |
+| ----------------------- | --------------------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| `databaseConfig`        | `task:DatabaseConfig` | —       | Connection details for the coordination database. Accepts `MysqlConfig` or `PostgresqlConfig`. Required. |
+| `memberId`              | `string`              | —       | Unique identifier for this node. Must be distinct across all nodes in the coordination group. Required.  |
+| `coordinationGroup`     | `string`              | —       | Name of the coordination group. All listeners with the same group coordinate together. Required.         |
+| `livenessCheckInterval` | `int`                 | `30`    | Seconds between heartbeat checks by standby nodes.                                                       |
+| `heartbeatFrequency`    | `int`                 | `1`     | Seconds between heartbeat writes by the active node.                                                     |
 
 </TabItem>
 </Tabs>
@@ -157,4 +157,4 @@ The coordination database sits on the file-processing data path: its availabilit
 ## What's next
 
 - [FTP / SFTP](ftp-sftp.md) — service, listener, and file-handler reference
-- [Scaling and high availability](../../../../deploy-operate/deploy/scaling-ha.md) — deployment-level scaling and HA strategies
+- [Scaling and high availability](/docs/deploy/scaling-high-availability) — deployment-level scaling and HA strategies

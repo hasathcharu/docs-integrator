@@ -1,20 +1,19 @@
 ---
 connector: true
-connector_name: "grpc"
+connector_name: 'grpc'
 ---
 
 # Triggers
 
 The `ballerina/grpc` connector enables you to expose Ballerina services as gRPC servers. A `grpc:Listener` listens on a TCP port for incoming gRPC requests, and a `grpc:Service` defines the remote functions that implement the RPC methods declared in your `.proto` file. The auto-generated stub code from `bal grpc` creates typed Caller objects used within service callbacks to send responses back to clients.
 
-
 Three components work together:
 
-| Component | Role |
-|-----------|------|
-| `grpc:Listener` | Listens on a specified port for incoming gRPC requests over HTTP/2 and dispatches them to attached services. |
-| `grpc:Service` | Defines remote functions that implement the RPC methods. Attached to a `grpc:Listener` to handle incoming calls. |
-| `grpc:Caller` | Provided inside service callbacks for streaming and bidirectional RPCs to send responses, errors, and complete the stream back to the client. |
+| Component       | Role                                                                                                                                          |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `grpc:Listener` | Listens on a specified port for incoming gRPC requests over HTTP/2 and dispatches them to attached services.                                  |
+| `grpc:Service`  | Defines remote functions that implement the RPC methods. Attached to a `grpc:Listener` to handle incoming calls.                              |
+| `grpc:Caller`   | Provided inside service callbacks for streaming and bidirectional RPCs to send responses, errors, and complete the stream back to the client. |
 
 For action-based operations, see the [Action Reference](action-reference.md).
 
@@ -28,20 +27,20 @@ The `grpc:Listener` establishes the connection and manages event subscriptions.
 
 The listener supports the following connection strategies:
 
-| Config Type | Description |
-|-------------|-------------|
+| Config Type             | Description                                        |
+| ----------------------- | -------------------------------------------------- |
 | `ListenerConfiguration` | Configuration record for the gRPC server listener. |
 
 **`ListenerConfiguration` fields:**
 
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `host` | <code>string</code> | `"0.0.0.0"` | The hostname the server binds to. |
-| `secureSocket` | <code>ListenerSecureSocket?</code> | `()` | SSL/TLS configuration for the server endpoint. Set this to enable TLS or mutual TLS. |
-| `timeout` | <code>decimal</code> | `120` | Period of time in seconds that a connection waits for a read/write operation. Use 0 to disable. |
-| `maxInboundMessageSize` | <code>int</code> | `4194304` | The maximum permitted inbound message size in bytes. Default is 4 MB. |
-| `maxHeaderSize` | <code>int</code> | `8192` | The maximum permitted header size in bytes. Default is 8 KB. |
-| `reflectionEnabled` | <code>boolean</code> | `false` | Enable gRPC server reflection support. |
+| Field                   | Type                               | Default     | Description                                                                                     |
+| ----------------------- | ---------------------------------- | ----------- | ----------------------------------------------------------------------------------------------- |
+| `host`                  | <code>string</code>                | `"0.0.0.0"` | The hostname the server binds to.                                                               |
+| `secureSocket`          | <code>ListenerSecureSocket?</code> | `()`        | SSL/TLS configuration for the server endpoint. Set this to enable TLS or mutual TLS.            |
+| `timeout`               | <code>decimal</code>               | `120`       | Period of time in seconds that a connection waits for a read/write operation. Use 0 to disable. |
+| `maxInboundMessageSize` | <code>int</code>                   | `4194304`   | The maximum permitted inbound message size in bytes. Default is 4 MB.                           |
+| `maxHeaderSize`         | <code>int</code>                   | `8192`      | The maximum permitted header size in bytes. Default is 8 KB.                                    |
+| `reflectionEnabled`     | <code>boolean</code>               | `false`     | Enable gRPC server reflection support.                                                          |
 
 ### Initializing the listener
 
@@ -69,7 +68,7 @@ listener grpc:Listener grpcListener = new (9090,
 ```
 
 :::tip Generating certificates
-For instructions on generating certificates using `keytool`, see [Keystores and Truststores](../../../../deploy-operate/secure/keystore-truststore.md).
+For instructions on generating certificates using `keytool`, see [Keystores and Truststores](/docs/deploy/secure/secrets-encryption.md).
 :::
 
 **Listener with mutual TLS:**
@@ -91,21 +90,19 @@ listener grpc:Listener grpcListener = new (9090,
 );
 ```
 
-
 ---
 
 ## Service
 
 A `grpc:Service` is a Ballerina service attached to a `grpc:Listener`. Each remote function in the service corresponds to an RPC method defined in the `.proto` file. The function signature varies by communication pattern — unary methods accept and return messages directly, server streaming methods return a stream, client streaming methods accept a stream, and bidirectional streaming methods accept both a Caller and a stream.
 
-
 ### Callback signatures
 
-| Function | Signature | Description |
-|----------|-----------|-------------|
-| `Unary RPC` | <code>remote function &lt;MethodName&gt;(MessageType request) returns ResponseType&#124;error</code> | Handles a simple request-response RPC. Accepts a single message and returns a single response. |
-| `Server Streaming RPC` | <code>remote function &lt;MethodName&gt;(MessageType request) returns stream&lt;ResponseType, grpc:Error?&gt;&#124;error</code> | Handles a server streaming RPC. Accepts a single request and returns a stream of responses. |
-| `Client Streaming RPC` | <code>remote function &lt;MethodName&gt;(stream&lt;MessageType, grpc:Error?&gt; clientStream) returns ResponseType&#124;error</code> | Handles a client streaming RPC. Accepts a stream of client messages and returns a single response. |
+| Function                      | Signature                                                                                                                               | Description                                                                                                           |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `Unary RPC`                   | <code>remote function &lt;MethodName&gt;(MessageType request) returns ResponseType&#124;error</code>                                    | Handles a simple request-response RPC. Accepts a single message and returns a single response.                        |
+| `Server Streaming RPC`        | <code>remote function &lt;MethodName&gt;(MessageType request) returns stream&lt;ResponseType, grpc:Error?&gt;&#124;error</code>         | Handles a server streaming RPC. Accepts a single request and returns a stream of responses.                           |
+| `Client Streaming RPC`        | <code>remote function &lt;MethodName&gt;(stream&lt;MessageType, grpc:Error?&gt; clientStream) returns ResponseType&#124;error</code>    | Handles a client streaming RPC. Accepts a stream of client messages and returns a single response.                    |
 | `Bidirectional Streaming RPC` | <code>remote function &lt;MethodName&gt;(TypedCaller caller, stream&lt;MessageType, grpc:Error?&gt; clientStream) returns error?</code> | Handles a bidirectional streaming RPC. Receives a typed Caller for sending responses and a stream of client messages. |
 
 :::note
@@ -193,38 +190,38 @@ For bidirectional and client streaming RPCs, the typed Caller (e.g., `RouteGuide
 
 ### `ListenerSecureSocket`
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `key` | <code>crypto:KeyStore&#124;CertKey</code> | The server's certificate and private key configuration. |
-| `mutualSsl` | `MutualSslConfig?` | Mutual SSL configuration. Set `verifyClient` to `REQUIRE` or `OPTIONAL`. |
-| `protocol` | `ProtocolConfig?` | SSL/TLS protocol version configuration. |
-| `ciphers` | <code>string[]</code> | List of cipher suites to use for TLS. |
-| `handshakeTimeout` | <code>decimal?</code> | SSL handshake timeout in seconds. |
-| `sessionTimeout` | <code>decimal?</code> | SSL session timeout in seconds. |
+| Field              | Type                                      | Description                                                              |
+| ------------------ | ----------------------------------------- | ------------------------------------------------------------------------ |
+| `key`              | <code>crypto:KeyStore&#124;CertKey</code> | The server's certificate and private key configuration.                  |
+| `mutualSsl`        | `MutualSslConfig?`                        | Mutual SSL configuration. Set `verifyClient` to `REQUIRE` or `OPTIONAL`. |
+| `protocol`         | `ProtocolConfig?`                         | SSL/TLS protocol version configuration.                                  |
+| `ciphers`          | <code>string[]</code>                     | List of cipher suites to use for TLS.                                    |
+| `handshakeTimeout` | <code>decimal?</code>                     | SSL handshake timeout in seconds.                                        |
+| `sessionTimeout`   | <code>decimal?</code>                     | SSL session timeout in seconds.                                          |
 
 ### `CertKey`
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `certFile` | <code>string</code> | Path to the certificate file. |
-| `keyFile` | <code>string</code> | Path to the private key file. |
+| Field         | Type                 | Description                                      |
+| ------------- | -------------------- | ------------------------------------------------ |
+| `certFile`    | <code>string</code>  | Path to the certificate file.                    |
+| `keyFile`     | <code>string</code>  | Path to the private key file.                    |
 | `keyPassword` | <code>string?</code> | Password for the private key if it is encrypted. |
 
 ### `RetryConfiguration`
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `retryCount` | <code>int</code> | Maximum number of retry attempts in a failure scenario. |
-| `interval` | <code>decimal</code> | Initial interval (in seconds) between retry attempts. |
-| `maxInterval` | <code>decimal</code> | Maximum interval (in seconds) between two retry attempts. |
-| `backoffFactor` | <code>decimal</code> | Multiplier applied to the retry interval between attempts. |
-| `errorTypes` | <code>ErrorType[]</code> | Error types that trigger a retry. Defaults to `[InternalError]`. |
+| Field           | Type                     | Description                                                      |
+| --------------- | ------------------------ | ---------------------------------------------------------------- |
+| `retryCount`    | <code>int</code>         | Maximum number of retry attempts in a failure scenario.          |
+| `interval`      | <code>decimal</code>     | Initial interval (in seconds) between retry attempts.            |
+| `maxInterval`   | <code>decimal</code>     | Maximum interval (in seconds) between two retry attempts.        |
+| `backoffFactor` | <code>decimal</code>     | Multiplier applied to the retry interval between attempts.       |
+| `errorTypes`    | <code>ErrorType[]</code> | Error types that trigger a retry. Defaults to `[InternalError]`. |
 
 ### `PoolConfiguration`
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `maxActiveConnections` | <code>int</code> | Max active connections per route (host:port). Default is `-1` (unlimited). |
-| `maxIdleConnections` | <code>int</code> | Maximum number of idle connections allowed per pool. Default is `1000`. |
-| `waitTime` | <code>decimal</code> | Maximum time (in seconds) to wait for an idle connection. Default is `60`. |
-| `maxActiveStreamsPerConnection` | <code>int</code> | Maximum active HTTP/2 streams per connection. Default is `50`. |
+| Field                           | Type                 | Description                                                                |
+| ------------------------------- | -------------------- | -------------------------------------------------------------------------- |
+| `maxActiveConnections`          | <code>int</code>     | Max active connections per route (host:port). Default is `-1` (unlimited). |
+| `maxIdleConnections`            | <code>int</code>     | Maximum number of idle connections allowed per pool. Default is `1000`.    |
+| `waitTime`                      | <code>decimal</code> | Maximum time (in seconds) to wait for an idle connection. Default is `60`. |
+| `maxActiveStreamsPerConnection` | <code>int</code>     | Maximum active HTTP/2 streams per connection. Default is `50`.             |

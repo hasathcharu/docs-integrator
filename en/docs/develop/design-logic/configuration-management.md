@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Configuration Management
 
-Integration projects typically run in multiple environments — development, staging, and production — each with different database endpoints, API keys, and feature flags. 
+Integration projects typically run in multiple environments — development, staging, and production — each with different database endpoints, API keys, and feature flags.
 
 WSO2 Integrator uses Ballerina's built-in configuration system to separate settings from code. You declare configurable variables in your source, provide values in a `Config.toml` file (or environment variables), and the runtime resolves them at startup.
 
@@ -58,17 +58,17 @@ Config values must be provided through a supported configuration source (`Config
 
 ### Supported types
 
-| Type | Example |
-|---|---|
-| `int` | `configurable int port = 8080;` |
-| `float` | `configurable float threshold = 0.75;` |
-| `decimal` | `configurable decimal taxRate = 0.08d;` |
-| `string` | `configurable string apiKey = ?;` |
-| `boolean` | `configurable boolean debug = false;` |
-| `int[]`, `string[]` | `configurable string[] allowedOrigins = ["*"];` |
-| `map<string>` | `configurable map<string> headers = {};` |
-| Records | `configurable DatabaseConfig dbConfig = ?;` |
-| Tables | `configurable table<Employee> key(id) employees = table [];` |
+| Type                | Example                                                      |
+| ------------------- | ------------------------------------------------------------ |
+| `int`               | `configurable int port = 8080;`                              |
+| `float`             | `configurable float threshold = 0.75;`                       |
+| `decimal`           | `configurable decimal taxRate = 0.08d;`                      |
+| `string`            | `configurable string apiKey = ?;`                            |
+| `boolean`           | `configurable boolean debug = false;`                        |
+| `int[]`, `string[]` | `configurable string[] allowedOrigins = ["*"];`              |
+| `map<string>`       | `configurable map<string> headers = {};`                     |
+| Records             | `configurable DatabaseConfig dbConfig = ?;`                  |
+| Tables              | `configurable table<Employee> key(id) employees = table [];` |
 
 ### Structured configuration
 
@@ -172,13 +172,13 @@ BAL_CONFIG_FILES=/etc/myapp/config.toml bal run
 
 When the same variable is defined in more than one place, the runtime resolves it using the first source it finds from the list below (top → bottom, highest to lowest precedence):
 
-| Source | Example | Typical use |
-|---|---|---|
-| Individual env vars (`BAL_CONFIG_VAR_*`) | `BAL_CONFIG_VAR_DBHOST=localhost` | CI/CD pipelines, containers, secrets |
-| Command-line arguments | `bal run -- -CdbHost=localhost` | One-off overrides, local testing |
-| Inline TOML (`BAL_CONFIG_DATA`) | `BAL_CONFIG_DATA='dbHost="localhost"'` | Containerized runs without a config file |
-| TOML files (`Config.toml` / `BAL_CONFIG_FILES`) | `dbHost = "localhost"` | Per-environment configuration |
-| Code defaults | `configurable string dbHost = "localhost";` | Development fallback |
+| Source                                          | Example                                     | Typical use                              |
+| ----------------------------------------------- | ------------------------------------------- | ---------------------------------------- |
+| Individual env vars (`BAL_CONFIG_VAR_*`)        | `BAL_CONFIG_VAR_DBHOST=localhost`           | CI/CD pipelines, containers, secrets     |
+| Command-line arguments                          | `bal run -- -CdbHost=localhost`             | One-off overrides, local testing         |
+| Inline TOML (`BAL_CONFIG_DATA`)                 | `BAL_CONFIG_DATA='dbHost="localhost"'`      | Containerized runs without a config file |
+| TOML files (`Config.toml` / `BAL_CONFIG_FILES`) | `dbHost = "localhost"`                      | Per-environment configuration            |
+| Code defaults                                   | `configurable string dbHost = "localhost";` | Development fallback                     |
 
 ## Per-environment configuration
 
@@ -224,7 +224,7 @@ BAL_CONFIG_FILES=config/prod.toml bal run
 
 ## Secrets management
 
-Never store secrets in plain text in `Config.toml` files committed to version control. For detailed information on secrets handling and encryption (Kubernetes Secrets, vault integration, TLS), see [Secrets & Encryption](../../deploy-operate/secure/secrets-encryption.md).
+Never store secrets in plain text in `Config.toml` files committed to version control. For detailed information on secrets handling and encryption (Kubernetes Secrets, vault integration, TLS), see [Secrets & Encryption](/docs/deploy/secure/secrets-encryption.md).
 
 ### Environment variables for secrets
 

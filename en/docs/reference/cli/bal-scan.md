@@ -235,4 +235,4 @@ Scan results are also written to `target/report/scan-results.json` for CI/CD int
 
 - [bal Command Reference](bal-command-reference.md) -- All bal subcommands
 - [Unit Testing](/docs/develop/test/unit-testing) -- Testing Ballerina projects
-- [CI/CD Integration](/docs/deploy-operate/cicd/github-actions) -- Continuous integration workflows
+- [CI/CD Integration](/docs/deploy/cicd/github-actions) -- Continuous integration workflows

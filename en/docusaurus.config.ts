@@ -117,10 +117,10 @@ const config: Config = {
           activeBaseRegex: '/docs/tutorials(/|$)',
         },
         {
-          to: '/docs/deploy-operate/overview',
-          label: 'Deploy & Operate',
+          to: '/docs/deploy/overview',
+          label: 'Deploy',
           position: 'left',
-          activeBaseRegex: '/docs/deploy-operate(/|$)',
+          activeBaseRegex: '/docs/deploy(/|$)',
         },
         {
           to: '/docs/reference/overview',
@@ -157,12 +157,12 @@ const config: Config = {
           ],
         },
         {
-          title: 'Deploy and operate',
+          title: 'Deploy',
           items: [
-            { label: 'Docker and Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
-            { label: 'CI/CD', to: '/docs/deploy-operate/cicd/github-actions' },
-            { label: 'Observe', to: '/docs/deploy-operate/observe/icp' },
-            { label: 'Secure', to: '/docs/deploy-operate/secure/authentication' },
+            { label: 'Docker and Kubernetes', to: '/docs/deploy/docker-kubernetes' },
+            { label: 'CI/CD', to: '/docs/deploy/cicd/github-actions' },
+            { label: 'Observe', to: '/docs/deploy/observe/observability-overview' },
+            { label: 'Secure', to: '/docs/deploy/secure/authentication' },
           ],
         },
         {

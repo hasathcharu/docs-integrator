@@ -247,4 +247,4 @@ final agent:ChatAgent privacyAwareAgent = check new (
 - [Conversation Logging](conversation-logging.md) -- Log full conversations for audit
 - [Performance Metrics](performance-metrics.md) -- Monitor agent latency and throughput
 - [Debugging Agent Behavior](debugging-agent-behavior.md) -- Use traces to diagnose issues
-- [Tracing](/docs/deploy-operate/observe/tracing) -- General tracing infrastructure
+- [Tracing](/docs/deploy/observe/tracing) -- General tracing infrastructure

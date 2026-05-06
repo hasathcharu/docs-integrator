@@ -73,7 +73,7 @@ The file where you define environment-specific configuration—database URLs, AP
 
 ## Integration control plane (ICP)
 
-A dashboard for monitoring, managing, and troubleshooting running integrations in production. View logs, metrics, and trace requests across services. For more information, see [Integration control plane](/docs/deploy-operate/observe/icp).
+A dashboard for monitoring, managing, and troubleshooting running integrations in production. View logs, metrics, and trace requests across services. For more information, see [Integration control plane](/docs/deploy/observe/icp).
 
 ## Ballerina
 

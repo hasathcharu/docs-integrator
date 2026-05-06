@@ -13,8 +13,8 @@ Prism.languages.ballerina = {
   ],
 
   string: [
-    { pattern: /`(?:[^\\`]|\\.)*`/, greedy: true },        // template strings
-    { pattern: /"(?:[^\\"\r\n]|\\.)*"/, greedy: true },    // regular strings
+    { pattern: /`(?:[^\\`]|\\.)*`/, greedy: true }, // template strings
+    { pattern: /"(?:[^\\"\r\n]|\\.)*"/, greedy: true }, // regular strings
   ],
 
   annotation: {
@@ -31,7 +31,8 @@ Prism.languages.ballerina = {
     alias: 'class-name',
   },
 
-  keyword: /\b(?:import|as|public|private|external|final|service|resource|function|object|record|annotation|type|typedesc|new|map|future|error|stream|table|transaction|from|on|returns|return|match|foreach|in|while|do|if|else|fork|worker|wait|start|flush|send|receive|check|checkpanic|trap|panic|fail|is|typeof|var|const|configurable|isolated|transactional|rollback|commit|retry|lock|enum|class|distinct|readonly|any|anydata|never|byte|int|float|boolean|string|decimal|json|xml|handle|xmlns|listener|client|let|where|select|limit|join|outer|order|by|ascending|descending|equals|conflict|version)\b/,
+  keyword:
+    /\b(?:import|as|public|private|external|final|service|resource|function|object|record|annotation|type|typedesc|new|map|future|error|stream|table|transaction|from|on|returns|return|match|foreach|in|while|do|if|else|fork|worker|wait|start|flush|send|receive|check|checkpanic|trap|panic|fail|is|typeof|var|const|configurable|isolated|transactional|rollback|commit|retry|lock|enum|class|distinct|readonly|any|anydata|never|byte|int|float|boolean|string|decimal|json|xml|handle|xmlns|listener|client|let|where|select|limit|join|outer|order|by|ascending|descending|equals|conflict|version)\b/,
 
   boolean: /\b(?:true|false)\b/,
 
@@ -40,7 +41,8 @@ Prism.languages.ballerina = {
     alias: 'constant',
   },
 
-  number: /\b0[xX][\da-fA-F]+\b|\b0[oO][0-7]+\b|\b0[bB][01]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[eE][+-]?\d+)?(?:d|f)?\b/,
+  number:
+    /\b0[xX][\da-fA-F]+\b|\b0[oO][0-7]+\b|\b0[bB][01]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[eE][+-]?\d+)?(?:d|f)?\b/,
 
   operator: /->|=>|::|\.\.\.?|[+\-*/%^&|~!=<>?:]+/,
 
@@ -55,7 +57,7 @@ const sectionPaths = [
   '/docs/connectors',
   '/docs/genai',
   '/docs/tutorials',
-  '/docs/deploy-operate',
+  '/docs/deploy',
   '/docs/reference',
 ];
 
@@ -66,7 +68,7 @@ const sectionLabels = {
   '/docs/connectors': 'Connectors',
   '/docs/genai': 'GenAI',
   '/docs/tutorials': 'Tutorials',
-  '/docs/deploy-operate': 'Deploy & Operate',
+  '/docs/deploy': 'Deploy',
   '/docs/reference': 'Reference',
 };
 
@@ -95,18 +97,20 @@ function useNavbarActiveState() {
       // Small delay to let Docusaurus render the sidebar first
       requestAnimationFrame(() => {
         const topItems = document.querySelectorAll(
-          '.theme-doc-sidebar-menu > .theme-doc-sidebar-item-category-level-1'
+          '.theme-doc-sidebar-menu > .theme-doc-sidebar-item-category-level-1',
         );
         topItems.forEach((li) => {
           const labelEl = li.querySelector(
-            ':scope > .menu__list-item-collapsible .menu__link'
+            ':scope > .menu__list-item-collapsible .menu__link',
           );
           const label = labelEl?.textContent?.trim();
           const isActive = label === sectionLabels[currentSection];
           const toggleBtn = li.querySelector(
-            ':scope > .menu__list-item-collapsible .clean-btn'
+            ':scope > .menu__list-item-collapsible .clean-btn',
           );
-          const isCollapsed = li.classList.contains('menu__list-item--collapsed');
+          const isCollapsed = li.classList.contains(
+            'menu__list-item--collapsed',
+          );
 
           if (!isActive && !isCollapsed && toggleBtn) {
             toggleBtn.click();

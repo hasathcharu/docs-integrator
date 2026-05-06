@@ -34,12 +34,12 @@ WSO2 Integrator's configuration support is built on Ballerina's config variable 
 
    ![Add Configurable Variable form showing Variable Name, Variable Type, Default Value, and Documentation fields](/img/develop/integration-artifacts/supporting/configurations/step-2.png)
 
-   | Field | Description |
-   |---|---|
-   | **Variable Name** | The identifier used to reference the variable within your integration (for example, `apiEndpoint`). Required. |
-   | **Variable Type** | The type of the variable (for example, `string`, `int`, `boolean`, or a record type). Required. |
+   | Field             | Description                                                                                                                                |
+   | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+   | **Variable Name** | The identifier used to reference the variable within your integration (for example, `apiEndpoint`). Required.                              |
+   | **Variable Type** | The type of the variable (for example, `string`, `int`, `boolean`, or a record type). Required.                                            |
    | **Default Value** | An optional default value. Leave empty to make the variable required. The integration fails to start unless you supply a value at runtime. |
-   | **Documentation** | Optional Markdown description rendered as inline documentation. |
+   | **Documentation** | Optional Markdown description rendered as inline documentation.                                                                            |
 
 4. Click **Save**. The variable is written to a `config.bal` file at the project root and appears under **Configurations** in the sidebar.
 
@@ -141,15 +141,15 @@ For the full list of supported types, alternative value sources (environment var
 
 ## Best practices
 
-| Practice | Description |
-|---|---|
-| **Never commit secrets** | Keep secrets out of `Config.toml` files in version control. Supply them through environment variables or a gitignored secrets file. See [Secrets and encryption](../../../deploy-operate/secure/secrets-encryption.md). |
+| Practice                            | Description                                                                                                                                                                                                                                               |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Never commit secrets**            | Keep secrets out of `Config.toml` files in version control. Supply them through environment variables or a gitignored secrets file. See [Secrets and encryption](/docs/deploy/secure/secrets-encryption.md).                                              |
 | **Mark required values explicitly** | For configurations that must come from the environment (such as endpoints and credentials), leave **Default Value** empty in the Visual Designer and use the `?` placeholder in code so the value is required and misconfiguration fails fast at startup. |
-| **Group related settings** | Use record types to group settings that belong to the same subsystem (for example, database configuration or CRM settings). |
-| **Document defaults** | Use the **Documentation** field (or code comments) to explain the purpose and valid range of each setting. |
+| **Group related settings**          | Use record types to group settings that belong to the same subsystem (for example, database configuration or CRM settings).                                                                                                                               |
+| **Document defaults**               | Use the **Documentation** field (or code comments) to explain the purpose and valid range of each setting.                                                                                                                                                |
 
 ## What's next
 
 - [Configuration management](../../design-logic/configuration-management.md) — Deeper reference for configuration sources, priority order, and module-qualified keys.
-- [Secrets and encryption](../../../deploy-operate/secure/secrets-encryption.md) — Securely manage credentials and other sensitive values.
+- [Secrets and encryption](/docs/deploy/secure/secrets-encryption.md) — Securely manage credentials and other sensitive values.
 - [Connections](connections.md) — Use configurable variables to parameterize connections.

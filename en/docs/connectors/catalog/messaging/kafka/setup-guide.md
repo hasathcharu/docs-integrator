@@ -1,10 +1,10 @@
 ---
 title: Setup Guide
 ---
+
 # Setup Guide
 
 This guide walks you through setting up an Apache Kafka cluster and obtaining the connection details required to use the Kafka connector.
-
 
 ## Prerequisites
 
@@ -15,15 +15,15 @@ This guide walks you through setting up an Apache Kafka cluster and obtaining th
 1. Download and extract the Apache Kafka binary distribution.
 2. Start the ZooKeeper service (if using ZooKeeper-based mode):
 
-    ```
-    bin/zookeeper-server-start.sh config/zookeeper.properties
-    ```
+   ```
+   bin/zookeeper-server-start.sh config/zookeeper.properties
+   ```
 
 3. Start the Kafka broker:
 
-    ```
-    bin/kafka-server-start.sh config/server.properties
-    ```
+   ```
+   bin/kafka-server-start.sh config/server.properties
+   ```
 
 4. Note the broker's **bootstrap server address** — by default this is `localhost:9092`.
 
@@ -51,12 +51,12 @@ If your Kafka cluster requires authentication, configure SASL credentials:
 
 1. In the Kafka broker's `server.properties`, enable SASL authentication:
 
-    ```
-    listeners=SASL_PLAINTEXT://localhost:9092
-    security.inter.broker.protocol=SASL_PLAINTEXT
-    sasl.mechanism.inter.broker.protocol=PLAIN
-    sasl.enabled.mechanisms=PLAIN
-    ```
+   ```
+   listeners=SASL_PLAINTEXT://localhost:9092
+   security.inter.broker.protocol=SASL_PLAINTEXT
+   sasl.mechanism.inter.broker.protocol=PLAIN
+   sasl.enabled.mechanisms=PLAIN
+   ```
 
 2. Create a JAAS configuration file with your username and password.
 3. Note the **username**, **password**, and **SASL mechanism** — you will use these when configuring the Ballerina connector.
@@ -69,6 +69,6 @@ Managed Kafka services (Confluent Cloud, Amazon MSK, Azure Event Hubs) provide t
 
 For encrypted connections:
 
-1. Generate a CA certificate, server certificate, and key — or obtain them from your PKI. See [Keystores and Truststores](../../../../deploy-operate/secure/keystore-truststore.md) for step-by-step instructions using `keytool`.
+1. Generate a CA certificate, server certificate, and key — or obtain them from your PKI. See [Keystores and Truststores](/docs/deploy/secure/secrets-encryption.md) for step-by-step instructions using `keytool`.
 2. Configure the broker's `server.properties` with the keystore and truststore paths.
 3. Note the **truststore/certificate file path** and **keystore credentials** — you will use these when configuring the Ballerina connector.

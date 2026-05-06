@@ -79,6 +79,6 @@ Click **Edit** to modify the README directly. You can also click **Generate with
 
 ## What's next
 
-- [Design integration logic](/docs/develop/design-logic/overview): build logic using the visual designer.
-- [Integration artifacts](/docs/develop/integration-artifacts): learn about artifact types and their configuration.
-- [Deploy to WSO2 Integration Platform](/docs/deploy-operate/deploy/devant): deploy your integration to the cloud.
+- [Design integration logic](/docs/develop/design-logic/overview) — Build logic using the visual designer
+- [Integration artifacts](/docs/develop/integration-artifacts/overview) — Learn about artifact types and their configuration
+- [Deploy to WSO2 Cloud](/docs/deploy/cloud/overview) — Deploy your integration to the cloud

@@ -6,7 +6,7 @@ description: Register an integration runtime with the Integration Control Plane.
 # Connect an Integration to ICP
 
 :::tip
-This guide covers manual configuration. If you are developing in the WSO2 Integrator IDE, the setup is automated — see [Integration Control Plane (ICP)](../../deploy-operate/observe/icp.md).
+This guide covers manual configuration. If you are developing in the WSO2 Integrator IDE, the setup is automated — see [Integration Control Plane (ICP)](/docs/deploy/observe/icp).
 :::
 
 An integration connects to ICP by including the `icp-runtime-bridge` module and
@@ -30,7 +30,7 @@ Best when you want to register a runtime before assigning it to a specific compo
 or when the component does not exist in ICP yet.
 
 1. Navigate to **Runtimes** in the sidebar.
-2. Find the target environment card (e.g. *dev*) and click **Add Runtime**.
+2. Find the target environment card (e.g. _dev_) and click **Add Runtime**.
 3. Click **Generate Secret**.
 4. The **BI** tab is selected by default. Copy the `Config.toml` snippet shown.
 
@@ -85,17 +85,17 @@ When you enable ICP monitoring through the WSO2 Integrator IDE, the `Ballerina.t
 
 ### Field Reference
 
-| Field | Required | Default | Description |
-|-------|----------|---------|-------------|
-| `serverUrl` | no | `https://localhost:9445` | ICP runtime listener endpoint |
-| `environment` | yes | — | Environment name (must match an ICP environment) |
-| `project` | yes | — | Project handle in ICP |
-| `integration` | yes | — | Component handle in ICP |
-| `secret` | yes | — | Secret from step 1 |
-| `runtime` | no | auto-generated UUID | Stable identifier for this runtime instance |
-| `heartbeatInterval` | no | `10` | Seconds between heartbeats |
-| `cert` | no | `""` | Path to a PEM certificate for the ICP server |
-| `enableSSL` | no | `false` | Enforce TLS certificate verification (non-production) |
+| Field               | Required | Default                  | Description                                           |
+| ------------------- | -------- | ------------------------ | ----------------------------------------------------- |
+| `serverUrl`         | no       | `https://localhost:9445` | ICP runtime listener endpoint                         |
+| `environment`       | yes      | —                        | Environment name (must match an ICP environment)      |
+| `project`           | yes      | —                        | Project handle in ICP                                 |
+| `integration`       | yes      | —                        | Component handle in ICP                               |
+| `secret`            | yes      | —                        | Secret from step 1                                    |
+| `runtime`           | no       | auto-generated UUID      | Stable identifier for this runtime instance           |
+| `heartbeatInterval` | no       | `10`                     | Seconds between heartbeats                            |
+| `cert`              | no       | `""`                     | Path to a PEM certificate for the ICP server          |
+| `enableSSL`         | no       | `false`                  | Enforce TLS certificate verification (non-production) |
 
 ## 3. Start the Application
 
@@ -131,8 +131,8 @@ runtime = "bi-node-2"
 
 ## Troubleshooting
 
-| Symptom | Cause | Fix |
-|---------|-------|-----|
-| `Full heartbeat rejected` | Wrong or revoked secret | Generate a new secret in the console |
-| Runtime shows but status is not RUNNING | Heartbeats stopped | Check the BI process is alive and network is reachable |
-| `PKIX path building failed` | Self-signed ICP certificate | Set `enableSSL = false` (non-production) or provide the CA via `cert` |
+| Symptom                                 | Cause                       | Fix                                                                   |
+| --------------------------------------- | --------------------------- | --------------------------------------------------------------------- |
+| `Full heartbeat rejected`               | Wrong or revoked secret     | Generate a new secret in the console                                  |
+| Runtime shows but status is not RUNNING | Heartbeats stopped          | Check the BI process is alive and network is reachable                |
+| `PKIX path building failed`             | Self-signed ICP certificate | Set `enableSSL = false` (non-production) or provide the CA via `cert` |

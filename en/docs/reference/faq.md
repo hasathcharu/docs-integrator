@@ -17,12 +17,12 @@ WSO2 Integrator is a new Ballerina-based integration platform that offers a low-
 
 The two products take different approaches to integration development:
 
-| | WSO2 Integrator | WSO2 MI |
-|---|---|---|
-| **Language** | Ballerina | XML (Synapse) |
+|                 | WSO2 Integrator                 | WSO2 MI                                      |
+| --------------- | ------------------------------- | -------------------------------------------- |
+| **Language**    | Ballerina                       | XML (Synapse)                                |
 | **Development** | Code-first with visual designer | XML artifact editing with Integration Studio |
-| **Deployment** | Executable JARs, Docker images | CAR files |
-| **Connectors** | Ballerina Central packages | Synapse connectors |
+| **Deployment**  | Executable JARs, Docker images  | CAR files                                    |
+| **Connectors**  | Ballerina Central packages      | Synapse connectors                           |
 
 If you are starting a new project, WSO2 Integrator is the recommended choice. If you have existing MI deployments, see the [Migration from WSO2 MI](/docs/tutorials/migration/from-wso2-mi) guide or continue using MI with its [dedicated documentation](https://mi.docs.wso2.com).
 
@@ -127,7 +127,7 @@ WSO2 Integrator supports multiple deployment targets:
 - **GraalVM native:** Build native executables with `bal build --graalvm` for fast startup
 - **Serverless:** Deploy to AWS Lambda or Azure Functions
 
-See [Deploy and Operate](/docs/deploy-operate/deploy/docker-kubernetes) for detailed deployment guides.
+See [Deploy](/docs/deploy/overview) for detailed deployment guides.
 
 ### How do I configure my application for different environments?
 

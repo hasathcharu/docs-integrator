@@ -248,4 +248,4 @@ service /metrics on new http:Listener(8091) {
 - [Agent Tracing](agent-tracing.md) -- Correlate metrics with trace data
 - [Debugging Agent Behavior](debugging-agent-behavior.md) -- Use metrics to identify problems
 - [Token & Cost Management](/docs/genai/guardrails/token-cost-management) -- Control costs based on metrics
-- [Metrics](/docs/deploy-operate/observe/metrics) -- General metrics infrastructure
+- [Metrics](/docs/deploy/observe/metrics) -- General metrics infrastructure
