@@ -1,20 +1,30 @@
 ---
-title: Push to WSO2 Cloud overview
-description: How to push a WSO2 Integrator project to WSO2 Cloud from the WSO2 Integrator IDE.
-keywords: [wso2 integrator, wso2 cloud, deploy, overview]
+title: WSO2 Cloud
+description: Overview of the ways to deploy integrations to WSO2 Cloud from the WSO2 Integrator IDE, an existing repository, or the browser-based cloud editor.
+keywords: [wso2 integrator, wso2 cloud, deploy, overview, import, cloud editor]
 ---
 
-# Push to WSO2 Cloud overview
+# WSO2 Cloud
 
-WSO2 Cloud builds and runs your integration directly from a connected GitHub repository. From the WSO2 Integrator IDE, you can push a single integration or every integration in a project, and then trigger a deployment to the development environment.
+WSO2 Cloud is a fully managed platform that builds and runs your integrations from a Git repository. There are three ways to get your integrations onto WSO2 Cloud, depending on where your work lives.
 
-The push-to-cloud workflow has three steps:
+## Deploy from the IDE
 
-1. **[Connect a Git repository](connect-git-repository.md)** — Publish the project folder to GitHub from the IDE.
-2. **[Push from the IDE](push-from-ide.md)** — Commit your changes and publish the branch.
-3. **[Deploy from the cloud editor](deploy-from-cloud-editor.md)** — Trigger a build and deployment to WSO2 Cloud.
+If you are building your integration locally with the WSO2 Integrator IDE, you can push it to WSO2 Cloud directly from the IDE. You can deploy a single integration or all integrations in a project at once.
 
-## What's next
+Before deploying from the IDE, your project must be connected to a remote Git repository. See [Connect a Git repository](../connect-git-repository).
 
-- [Connect a Git repository](connect-git-repository.md) — Start the workflow.
-- [Deploy from the cloud editor](deploy-from-cloud-editor.md) — Deploy a single integration or an entire project.
+[Deploy from the IDE](push-from-ide)
+
+## Import from a repository
+
+If you already have an integration or project in a Git repository, you can import it into WSO2 Cloud without going through the IDE. WSO2 Cloud connects to your repository, builds the integration, and deploys it to the Development environment automatically.
+
+- [Import an integration](import-integration) — Import a single integration from an existing repository.
+- [Import a project](import-project) — Import a whole WSO2 Integrator project and configure all its integrations at once.
+
+## Develop and deploy in the cloud editor
+
+WSO2 Cloud includes a browser-based editor where you can build integrations without installing anything locally. When your integration is ready, you save and deploy it to WSO2 Cloud from within the editor.
+
+[Deploy from the cloud editor](deploy-from-cloud-editor)
