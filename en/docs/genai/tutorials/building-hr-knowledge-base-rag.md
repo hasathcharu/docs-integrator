@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 1ø
 title: "Building an HR knowledge base with RAG"
 description: Step-by-step tutorial for building an HR knowledge base in WSO2 Integrator that ingests HR policy documents and answers employee questions over HTTP using retrieval-augmented generation.
 keywords: [wso2 integrator, genai, rag, hr knowledge base, vector store, tutorial]
@@ -7,7 +7,7 @@ keywords: [wso2 integrator, genai, rag, hr knowledge base, vector store, tutoria
 
 # Building an HR knowledge base with RAG
 
-Build a complete HR retrieval-augmented generation pipeline visually in the WSO2 Integrator visual designer. The Automation ingests a folder of HR policy documents into a vector knowledge base. The HTTP Service answers employee questions over HTTP, grounded in the ingested chunks. No third-party SDK code is required. Everything is wired with the built-in `ai` module nodes.
+Build a complete HR retrieval-augmented generation pipeline visually in the WSO2 Integrator visual designer. The Automation ingests a folder of HR policy documents into a vector knowledge base. The HTTP Service answers employee questions over HTTP, grounded in the ingested chunks.
 
 **What you'll build:** Two artifacts in a single integration. An Automation that ingests HR policy documents, and an HTTP Service that answers employee questions with retrieval-augmented generation.
 
@@ -29,7 +29,7 @@ Build a complete HR retrieval-augmented generation pipeline visually in the WSO2
 
 ## Architecture
 
-```
+```text
 Ingestion (Automation):
 folder path -> Data Loader -> ai:load -> ai:ingest -> Vector Knowledge Base
                                                      |- Vector Store (In-Memory)
@@ -270,7 +270,7 @@ The **log : printInfo** form opens. Set **Msg** to `Ingestion Completed!` so you
 
 Your ingestion automation now contains:
 
-```
+```text
 Start -> ai:load (hrDocuments) -> ai:ingest -> log:printInfo -> Error Handler
 ```
 
@@ -347,7 +347,7 @@ Click `aiVectorknowledgebase` to expand it and reveal its actions. Click **Retri
 
 ![Retrieve action expanded](/img/genai/tutorials/hr-knowledge-base-rag/22c-retrieve-action-picker.png)
 
-The **ai : retrieve** form opens. click into the **Query** field and the helper pane should open with **Inputs**, **Variables**, and **Configurables**.
+The **ai : retrieve** form opens. Click into the **Query** field and the helper pane should open with **Inputs**, **Variables**, and **Configurables**.
 
 ![ai:retrieve form with helper pane](/img/genai/tutorials/hr-knowledge-base-rag/22d-retrieve-action-picker.png)
 
@@ -459,7 +459,7 @@ Click `aiWso2modelprovider` to expand it and reveal its actions: **Chat** and **
 The **generate** form opens. Fill in:
 
 - **Prompt** (Expression mode):
-  ```
+  ```ballerina
   check aiChatusermessage.content.ensureType()
   ```
   The `content` field on `ai:ChatUserMessage` is typed as `string|ai:Prompt`. `ai:augmentUserQuery` populates it with one or the other depending on the augmentation strategy. The `generate` node's **Prompt** expects a Ballerina template literal (`string`-compatible), so use `ensureType()` to assert the `string` branch at runtime. `check` propagates any conversion error to the resource's error handler.
