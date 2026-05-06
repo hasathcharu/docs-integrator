@@ -9,7 +9,7 @@ keywords: [wso2 integrator, genai, rag, hr knowledge base, vector store, tutoria
 
 **Time:** 30 minutes | **Level:** Intermediate | **What you'll build:** Two artifacts in a single integration. An Automation that ingests HR policy documents, and an HTTP Service that answers employee questions with retrieval-augmented generation.
 
-Build a complete HR retrieval-augmented generation pipeline visually in the WSO2 Integrator visual designer. The Automation ingests a folder of HR policy documents into a vector knowledge base. The HTTP Service answers employee questions over HTTP, grounded in the ingested chunks.
+Build a complete HR retrieval-augmented generation pipeline visually in the WSO2 Integrator visual designer. The Automation ingests an HR policy document into a vector knowledge base. The HTTP Service answers employee questions over HTTP, grounded in the ingested chunks.
 
 **What you'll learn:**
 
@@ -20,14 +20,21 @@ Build a complete HR retrieval-augmented generation pipeline visually in the WSO2
 
 ## Prerequisites
 
-- [WSO2 Integrator installed](/docs/get-started/install) and signed into [WSO2 Integrator Copilot](/docs/genai/getting-started/setting-up-ai). Copilot provisions the default model and embedding providers. The first time you use them, WSO2 Integrator prompts you to run **Ballerina: Configure default WSO2 model provider** from the Command Palette and writes the credentials into `Config.toml` automatically.
-- A folder of HR policy documents in plain-text form (leave policy, benefits, code of conduct, onboarding, and so on). A few short `.md` files are enough to follow the tutorial. The content does not have to be production-ready.
+- An HR policy document in plain-text form (for example, a leave policy or code of conduct). A short `.md` file is enough to follow the tutorial.
+
+:::info Default model and embedding providers
+The default WSO2 model provider and embedding provider share the same access token. WSO2 Integrator prompts you to run **Ballerina: Configure default WSO2 model provider** from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`) the first time you create either provider in a flow. Sign in with your WSO2 account when prompted, and WSO2 Integrator wires the configuration into your project automatically.
+
+![Command Palette filtered to "Configure default WSO2 model provider".](/img/genai/tutorials/hr-knowledge-base-rag/27-configure-model-provider.png)
+
+The access token expires after a few hours. If a request to the default model provider or embedding provider starts failing, rerun **Ballerina: Configure default WSO2 model provider** from the Command Palette to refresh the token.
+:::
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-    Folder[(HR Policy Folder)]
+    Folder[(HR Policy Document)]
     Employee([Employee])
 
     subgraph Automation["Ingestion Automation"]
@@ -99,7 +106,7 @@ The **ai : Data Loader** side panel opens. Set **Data Loader Name** to `textDocu
 
 ![Data Loader form initial state](/img/genai/tutorials/hr-knowledge-base-rag/06-data-loader-form-empty.png)
 
-Configure the **Paths** field with a configurable so the folder path can be changed without editing the flow:
+Configure the **Paths** field with a configurable so the file path can be changed without editing the flow:
 
 1. Click **+ Initialize Array** under **Paths**.
 
@@ -116,7 +123,7 @@ Configure the **Paths** field with a configurable so the folder path can be chan
 4. In the **New Configurable** dialog, fill in:
    - **Variable Name**: `path`
    - **Variable Type**: `string`
-   - **Documentation**: *Path for the HR documents to ingest.*
+   - **Documentation**: *Path of the HR policy document to ingest.*
 
    ![New Configurable for path](/img/genai/tutorials/hr-knowledge-base-rag/07a-new-configurable-path.png)
 
@@ -131,6 +138,10 @@ Save the configurable and complete the Data Loader form:
 ![Data Loader form filled](/img/genai/tutorials/hr-knowledge-base-rag/08-data-loader-form-filled.png)
 
 Click **Save**.
+
+:::tip Ingesting more than one document
+The **Paths** field is an array of file paths, not a folder. To ingest several HR documents, add another path expression to the array for each file you want to load.
+:::
 
 ### 2.3 Add the `ai : load` node
 
@@ -293,7 +304,7 @@ Start -> ai:load (hrDocuments) -> ai:ingest -> log:printInfo -> Error Handler
 
 ![Completed automation flow](/img/genai/tutorials/hr-knowledge-base-rag/17-automation-flow-complete.png)
 
-When the automation runs, it loads every file under `path`, chunks it, embeds it, and populates `aiInmemoryvectorstore`. You'll run it together with the HTTP Service at the end of the tutorial.
+When the automation runs, it loads the file at `path`, chunks it, embeds it, and populates `aiInmemoryvectorstore`. You'll run it together with the HTTP Service at the end of the tutorial.
 
 :::tip In-memory store is volatile
 Restart the runtime and you must re-ingest. For a persistent store, swap the vector store for Pinecone, Milvus, Pgvector, or Weaviate. The rest of the flow stays the same.
@@ -517,11 +528,11 @@ Open the project overview. The integration shows the HTTP Service with the `[POS
 
 ![Project overview before run](/img/genai/tutorials/hr-knowledge-base-rag/26a-run-and-try-it.png)
 
-WSO2 Integrator detects that the `path` configurable has no value yet. The **Missing required configurations in Config.toml file** dialog appears. Click **Update Configurations**.
+WSO2 Integrator detects that the `path` configurable has no value yet and prompts you for the missing configuration. Click **Update Configurations**.
 
 ![Missing configurations dialog](/img/genai/tutorials/hr-knowledge-base-rag/26b-run-and-try-it.png)
 
-The **Configurable Variables** view opens. Set `path` to the folder (or a single document file) that holds your HR documents, for example `documents/leave-policy.md`.
+The **Configurable Variables** view opens. Set `path` to your HR policy document file, for example `documents/leave-policy.md`.
 
 ![Set the path configurable](/img/genai/tutorials/hr-knowledge-base-rag/26c-run-and-try-it.png)
 
@@ -565,8 +576,8 @@ You now have a fully visual HR RAG pipeline that grounds an LLM in your actual p
 
 | Component | Where | Purpose |
 |---|---|---|
-| `path` (Configurable) | Configurations | Folder to ingest |
-| `textDocumentLoader` (Data Loader) | Automation | Reads HR files from `path` |
+| `path` (Configurable) | Configurations | HR document file to ingest |
+| `textDocumentLoader` (Data Loader) | Automation | Reads the HR document at `path` |
 | `aiInmemoryvectorstore` (Vector Store) | Connections | Stores embeddings |
 | `aiWso2embeddingprovider` (Embedding Model) | Connections | Generates vector representations |
 | `aiVectorknowledgebase` (Vector Knowledge Base) | Connections | Combines store, embedder, and chunker |
