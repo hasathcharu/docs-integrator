@@ -234,7 +234,7 @@ Lists all users with their group memberships. Requires `user_mgt:manage_users` o
 ```json
 {
   "users": [
-    { "userId": "usr-001", "username": "admin", "displayName": "Administrator", "groups": [...] }
+    { "userId": "usr-001", "username": "admin", "displayName": "Administrator", "groups": [] }
   ],
   "count": 1
 }
@@ -299,7 +299,7 @@ Returns the effective permissions for a user at a given scope. Users may fetch t
 {
   "userId": "usr-001",
   "scope": { "orgUuid": "org-uuid-001", "projectUuid": "proj-abc" },
-  "permissions": [...],
+  "permissions": [],
   "permissionNames": ["integration_mgt:view", "integration_mgt:manage"]
 }
 ```
@@ -457,10 +457,10 @@ Returns all available system permissions grouped by domain. Accessible to any au
     { "permissionId": "perm-001", "permissionName": "integration_mgt:view", "permissionDomain": "integration_mgt" }
   ],
   "groupedByDomain": {
-    "integration_mgt": [...],
-    "environment_mgt": [...],
-    "project_mgt": [...],
-    "user_mgt": [...]
+    "integration_mgt": [],
+    "environment_mgt": [],
+    "project_mgt": [],
+    "user_mgt": []
   }
 }
 ```
