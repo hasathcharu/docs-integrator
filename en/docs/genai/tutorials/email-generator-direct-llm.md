@@ -3,9 +3,6 @@ sidebar_position: 5
 title: Email Generator with Direct LLM
 description: Step-by-step tutorial — build an HTTP service that generates professional emails with a single direct LLM call in WSO2 Integrator.
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 
 # Email Generator with Direct LLM
 
@@ -16,7 +13,7 @@ By the end you will have a `POST /emails/generate` endpoint that takes recipient
 ## What You'll Build
 
 1. **Create the HTTP service** with typed request and response payloads.
-2. **Add a [model provider](/docs/genai/develop/components/model-providers)** the connection to the LLM.
+2. **Add a [model provider](/docs/genai/develop/components/model-providers)** as the connection to the LLM.
 3. **Add a `generate` node** with a prompt that writes the email.
 4. **Bind the response** to the structured response type.
 5. **Run and test** the service end to end.
@@ -158,37 +155,9 @@ The Expected Type is what makes the response come back structured. Without it yo
 
 The completed flow has three nodes between **Start** and **Error Handler**: the model provider connection, the `ai:generate` node bound to `generatedEmail`, and the **Return** step.
 
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
 
 ![Completed flow with ai:generate connected to emailGenerator and a Return node.](/img/genai/develop/direct-llm/12-flow-complete.png)
 
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-WSO2 Integrator generates an `main.bal` file with the following structure:
-
-```ballerina
-import ballerina/http;
-
-listener http:Listener httpDefaultListener = http:getDefaultListener();
-
-service /api/v1 on httpDefaultListener {
-    resource function post emails/generate(@http:Payload EmailsGeneratePayload payload) returns EmailGenerateResponse|error {
-        do {
-            EmailGenerateResponse generatedEmail = check emailGenerator->generate(`You are an email writing assistant. Write a short email from  ${payload.senderName} to ${payload.recipientName} asking for a  meeting to discuss ${payload.intent}. Offer the recipient the following time slots and ask them to pick one: ${payload.timeSlots}. Keep it under 150 words and use a polite, professional tone.`);
-            return generatedEmail;
-        } on fail error err {
-            // handle error
-            return error("unhandled error", err);
-        }
-    }
-
-}
-
-```
-</TabItem>
-</Tabs>
 ---
 
 ## 4. Run and Test
