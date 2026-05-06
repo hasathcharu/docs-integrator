@@ -1911,13 +1911,13 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       link: { type: 'doc', id: 'deploy/overview' },
       items: [
+        'deploy/connect-git-repository',
         // Cloud
         {
           type: 'category',
-          label: 'Push to WSO2 Cloud',
+          label: 'WSO2 Cloud',
+          link: { type: 'doc', id: 'deploy/cloud/overview' },
           items: [
-            'deploy/cloud/overview',
-            'deploy/cloud/connect-git-repository',
             'deploy/cloud/push-from-ide',
             'deploy/cloud/deploy-from-cloud-editor',
           ],
