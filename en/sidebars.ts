@@ -1919,6 +1919,7 @@ const sidebars: SidebarsConfig = {
           link: { type: 'doc', id: 'deploy/cloud/overview' },
           items: [
             'deploy/cloud/push-from-ide',
+            'deploy/cloud/import-integration',
             'deploy/cloud/deploy-from-cloud-editor',
           ],
         },
