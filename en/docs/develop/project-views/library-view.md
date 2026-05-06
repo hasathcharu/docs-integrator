@@ -10,21 +10,13 @@ The Library View is a dedicated view in WSO2 Integrator for creating utilities a
 
 ![Library View overview](/img/develop/project-views/library-view/overview.png)
 
-## General navigation
-
-The general navigation elements in the Library View work the same as in the Project View:
-
-- **Activity bar** — Access the file explorer, global search, source control, and extension marketplace.
-- **Project explorer** — View and manage all artifacts (Connections, Types, Functions, Data Mappers) organized by category.
-
-For more details on these elements, see the [Project View](project-view.md) documentation.
+The activity bar, project explorer, editor toolbar, and deployment options panel work the same as in the [Project View](project-view.md). See that page for details. This page covers what's specific to a single library: the library overview canvas and toolbar.
 
 ## Library overview canvas
 
-The main canvas provides a central dashboard for your library. It displays:
+The library overview canvas is the central area of the Library View. It provides a dashboard for the library, showing the library name as a heading and an **Artifacts summary** with cards for the total number of defined types, functions, data mappers, and connections.
 
-- **Artifacts summary** — Cards showing the total number of defined Types, Functions, Data Mappers, and Connections in your library.
-- **README** — A section at the bottom for documenting the library's purpose, setup instructions, and usage notes to help users understand how to use it.
+![Library overview canvas](/img/develop/project-views/library-view/library-overview-canvas.png)
 
 ## Add reusable artifacts
 
@@ -61,10 +53,18 @@ The toolbar sits at the top of the Library View and provides quick access to act
 | Action | Description |
 |---|---|
 | **Undo** / **Redo** | Reverses or reapplies recent changes to your library artifacts. |
-| **Configure** | Opens the project-level configuration panel for editing package metadata (name, version, organization), build options, and dependencies. |
+| **Configure** | Opens the configuration panel, equivalent to adding a configuration from the project explorer. |
 | **Publish** | Builds the library and pushes it to a central repository (such as Ballerina Central), making the module available for other integrations to import. Libraries are not executable, so they are published rather than run. |
+
+## README section
+
+The README section at the bottom of the Library View displays the contents of your library's `README.md` file. Use it to document the library's purpose, setup instructions, and usage notes so other developers know how to consume it. Click **Edit** to modify the README directly. 
+
+![README](/img/develop/project-views/library-view/readme.png)
+
+
 
 ## What's next
 
-- [Packages & Modules](/docs/develop/organize-code/packages-modules) -- Understand package structure
-- [Publish to Ballerina Central](/docs/connectors/publish-to-central) -- Share your libraries
+- [Packages & Modules](/docs/develop/organize-code/packages-modules): understand package structure.
+- [Publish to Ballerina Central](/docs/connectors/publish-to-central): share your libraries.
