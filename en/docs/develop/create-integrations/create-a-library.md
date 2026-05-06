@@ -3,6 +3,9 @@ title: Create a Library
 description: Create reusable library packages for sharing common logic across integrations.
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Create a library
 
 A library is a reusable package of shared logic — utility functions, type definitions, data mappers, and connections — that you can use across multiple integrations. Instead of duplicating common code in each integration, create a library once and import it wherever needed.
@@ -11,7 +14,7 @@ A library is a reusable package of shared logic — utility functions, type defi
 
 On the WSO2 Integrator home screen, click **More Actions** below the three primary cards to reveal additional options.
 
-![Home screen with More Actions expanded](/img/create-library/home-screen-more-action.gif)
+![Home screen with More Actions expanded](/img/create-library/home-screen-more-actions.gif)
 
 The expanded panel shows four entries (and the trigger relabels itself **Show less**):
 

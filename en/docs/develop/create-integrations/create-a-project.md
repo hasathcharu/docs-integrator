@@ -11,7 +11,7 @@ A project is a workspace that organizes multiple integrations and libraries in a
 
 On the WSO2 Integrator home screen, click **More Actions** below the three primary cards to reveal additional options.
 
-![Home screen with More Actions expanded](/img/create-project/home-screeen-more-actions.gif)
+![Home screen with More Actions expanded](/img/create-project/home-screen-more-actions.gif)
 
 The expanded panel shows four entries (and the trigger relabels itself **Show less**):
 
