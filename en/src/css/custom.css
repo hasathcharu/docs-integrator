@@ -422,6 +422,8 @@ code {
   border-radius: var(--ifm-code-border-radius);
   border: 1px solid #CBD5E1;
   background-color: #F1F5F9 !important;
+  padding: 1rem;
+  line-height: 1.5;
 }
 
 [data-theme='dark'] .prism-code {
@@ -434,6 +436,14 @@ code {
   border: none;
   padding: 0;
   color: inherit;
+  font-size: var(--ifm-code-font-size);
+  line-height: inherit;
+}
+
+/* Ensure code lines have proper spacing */
+.prism-code .token-line {
+  line-height: 1.5;
+  padding: 0.125rem 0;
 }
 
 /* Blockquotes — subtle left border */
