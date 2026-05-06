@@ -1920,6 +1920,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'deploy/cloud/push-from-ide',
             'deploy/cloud/import-integration',
+            'deploy/cloud/import-project',
             'deploy/cloud/deploy-from-cloud-editor',
           ],
         },
