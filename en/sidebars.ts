@@ -1785,7 +1785,7 @@ const sidebars: SidebarsConfig = {
             'genai/tutorials/review-summarizer-natural-function',
             'genai/tutorials/building-hr-knowledge-base-agent-rag',
             'genai/tutorials/building-a-customer-care-agent-mcp',
-            'genai/tutorials/building-it-helpdesk-chatbot-persistent-memory',
+            'genai/tutorials/it-helpdesk-chatbot',
             'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
           ],
         },
