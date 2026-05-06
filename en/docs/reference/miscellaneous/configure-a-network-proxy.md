@@ -1,0 +1,73 @@
+---
+title: Configure a Network Proxy for WSO2 Integrator
+sidebar_label: Configure a Network Proxy
+sidebar_position: 0
+---
+
+# Configure a Network Proxy for WSO2 Integrator
+
+## Overview
+
+In corporate environments, direct HTTP internet access is often restricted, with organizations preferring to route traffic through proxy servers. This guide helps you configure your system to access Ballerina Central even when working behind a proxy.
+
+## Configure Proxy Settings
+
+To enable operations with an HTTP proxy, modify the `<USER_HOME>/.ballerina/Settings.toml` file using this TOML syntax:
+
+```toml
+[proxy]
+host = "HOST_NAME"
+port = PORT
+username = "PROXY_USERNAME"
+password = "PROXY_PASSWORD"
+```
+
+For proxies without authentication requirements, leave the credentials blank:
+
+```toml
+[proxy]
+host = "HOST_NAME"
+port = PORT
+username = ""
+password = ""
+```
+
+## Add Necessary Certificates to the Truststore
+
+If you encounter certificate validation errors like:
+
+> "PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target."
+
+Follow these steps:
+
+1. Navigate to the `dependencies/`(It can be found under `/Applications/WSO2
+   Integrator.app/Contents/components/dependencies` in MacOS, `/usr/share/wso2-integrator/components/dependencies` in
+   Linux  and `C:\Users\luhee\AppData\Local\Programs\WSO2\Integrator\components\dependencies` in Windows) folder in your
+   WSO2 Integrator installation directory where Java Runtime
+   Environment (JRE) instances are located
+2. Identify proxy-associated certificates from your proxy vendor's documentation
+3. Run this administrative command:
+
+```
+<JRE>/bin/keytool.exe -import -trustcacerts -file <CERTS_PATH> -alias <ALIAS_NAME> -keystore <JRE>/lib/security/cacerts
+```
+
+## Configure Proxy Settings Via Environment Variables
+
+Set proxy configurations system-wide using these environment variables:
+
+```
+BALLERINA_CA_BUNDLE # Path to the CA bundle file
+BALLERINA_CA_PASSWORD # Password for the CA bundle file
+BALLERINA_CA_CERT # Path to the CA certificate file
+```
+
+## Domain Access
+
+These domains must be accessible from your network:
+
+1. Ballerina Central API - `https://api.central.ballerina.io/`
+2. Ballerina Central File Server - `https://fileserver.central.ballerina.io/`
+3. Maven Central Repository - `https://repo.maven.apache.org/maven2`
+4. Docker Hub - `https://hub.docker.com/u/ballerina`
+5. Alpine Linux Repository - `http://dl-cdn.alpinelinux.org/`

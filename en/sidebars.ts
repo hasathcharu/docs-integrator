@@ -2096,6 +2096,15 @@ const sidebars: SidebarsConfig = {
             'reference/release-notes',
           ],
         },
+        // Miscellaneous
+        {
+          type: 'category',
+          label: 'Miscellaneous',
+          items: [
+            'reference/miscellaneous/configure-a-network-proxy',
+            'reference/miscellaneous/proxy-ballerina-central-with-maven-repository',
+          ],
+        },
       ],
     },
   ],

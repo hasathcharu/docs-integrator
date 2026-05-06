@@ -84,3 +84,8 @@ Command-line tools reference:
 - **[FAQ](faq.md)** — Frequently asked questions
 - **[Troubleshooting](appendix/troubleshooting.md)** — Common issues and solutions
 - **[Release Notes](release-notes.md)** — What's new in each release
+
+## Miscellaneous
+
+- **[Configure a Network Proxy for Ballerina](miscellaneous/configure-a-network-proxy.md)** — Set up proxy access in corporate environments
+- **[Proxy Ballerina Central with Maven Repository](miscellaneous/proxy-ballerina-central-with-maven-repository.md)** — Set up Maven repository proxy for Ballerina Central
