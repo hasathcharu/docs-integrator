@@ -27,7 +27,7 @@ The service diagram renders your integration as an interactive graph. Each node 
 - **External connections** appear on the right, showing which services your integration calls.
 - **Lines** between nodes indicate data flow and dependencies.
 
-Click any node to open that component in the visual designer. Right-click a node or click its three-dot menu (**⋮**) to access context actions such as **Edit**, and **Delete**.
+Click any node to open that component in the visual designer. Right-click a node or click its three-dot menu (**⋮**) to access context actions such as **Edit** and **Delete**.
 
 ### Zoom and navigation controls
 
@@ -49,11 +49,12 @@ The AI generation creates a working starting point that you can refine in the vi
 
 Click the **+ Add Artifact** button at the top of the canvas to add a new component to your integration. This opens a menu with all available artifact types organized by category:
 
-- **Entry Points**: HTTP Service, GraphQL Service, Automation, event listeners.
-- **Connections**: HTTP Client, Database, Message Broker, and more.
-- **Types**: Record, Enum, Type Alias.
-- **Functions**: Regular, Isolated, Remote.
-- **Data Mappers**: visual transformation mappings.
+- **Entry Points**: HTTP services, GraphQL services, automations, and event listeners that trigger your integration.
+- **Connections**: Configured links to external systems such as databases, HTTP APIs, and message brokers.
+- **Types**: Custom records, enums, arrays, service classes, and unions used in your integration.
+- **Functions**: Reusable logic blocks callable from entry points or other functions.
+- **Data Mappers**: Visual transformations between source and target types.
+- **Configurations**: Variables sourced from `Config.toml` at runtime.
 
 ## Toolbar
 
@@ -61,26 +62,12 @@ The toolbar sits at the top of the Integration View and provides quick access to
 
 ![Toolbar](/img/develop/project-views/integration-view/toolbar.png)
 
-### Undo and redo
-
-Click **Undo** or **Redo** in the toolbar to reverse or reapply recent changes to your integration. These actions work across both the visual designer and the code editor.
-
-### Configure
-
-Click **Configure** to open the configuration panel. This is same as the project explorer's configuration addition.
-
-### Run
-
-Click **Run** to build and run your integration locally. WSO2 Integrator compiles the Ballerina code, starts the services, and displays the output in the terminal panel. Use this to test your integration before deploying.
-
-### Debug
-
-Click **Debug** to start a debug session. This launches your integration with the debugger attached, allowing you to:
-
-- Set breakpoints in the visual designer or code editor
-- Step through execution line by line
-- Inspect variables, request payloads, and response data
-- Evaluate expressions at runtime
+| Action | Description |
+|---|---|
+| **Undo** / **Redo** | Reverses or reapplies recent changes. Works across both the visual designer and the code editor. |
+| **Configure** | Opens the configuration panel, equivalent to adding a configuration from the project explorer. |
+| **Run** | Builds and runs your integration locally. WSO2 Integrator compiles the Ballerina code, starts the services, and displays the output in the terminal panel. |
+| **Debug** | Starts a debug session with the debugger attached. Set breakpoints, step through execution, inspect variables and payloads, and evaluate expressions at runtime. |
 
 ## README section
 

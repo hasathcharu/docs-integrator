@@ -58,23 +58,11 @@ The toolbar sits at the top of the Library View and provides quick access to act
 
 ![Toolbar](/img/develop/project-views/library-view/toolbar.png)
 
-### Undo and redo
-
-Click **Undo** or **Redo** in the toolbar to reverse or reapply recent changes to your library artifacts.
-
-### Configure
-
-Click **Configure** to open the project-level configuration panel. Here you can edit settings such as:
-
-- Package metadata (name, version, organization)
-- Build options
-- Dependency management
-
-### Publish
-
-Unlike integrations, libraries are not executable. Therefore, instead of running or debugging them directly, you publish them.
-
-Click **Publish** to build the library and push it to a central repository (such as Ballerina Central), making the module available for other integrations to import and use.
+| Action | Description |
+|---|---|
+| **Undo** / **Redo** | Reverses or reapplies recent changes to your library artifacts. |
+| **Configure** | Opens the project-level configuration panel for editing package metadata (name, version, organization), build options, and dependencies. |
+| **Publish** | Builds the library and pushes it to a central repository (such as Ballerina Central), making the module available for other integrations to import. Libraries are not executable, so they are published rather than run. |
 
 ## What's next
 

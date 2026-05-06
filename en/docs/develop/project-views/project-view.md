@@ -65,7 +65,7 @@ When an integration or library is open, the project explorer groups its artifact
 | **Entry points** | HTTP services, GraphQL services, automations, and event listeners that trigger your integration. |
 | **Listeners** | Protocol-specific configurations (host, port) that entry points bind to. |
 | **Connections** | Configured links to external systems such as databases, HTTP APIs, and message brokers. |
-| **Types** | Custom records, enums, arrays, and unions used in your integration. |
+| **Types** | Custom records, enums, arrays, service classes and unions used in your integration. |
 | **Functions** | Reusable logic blocks callable from entry points or other functions. |
 | **Data mappers** | Visual transformations between source and target types. |
 | **Configurations** | Variables sourced from `Config.toml` at runtime. |
