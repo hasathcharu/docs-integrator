@@ -1,8 +1,16 @@
 name: PR Preview (Vercel)
 
+# Manual-only trigger. A maintainer (write access) runs this from the
+# Actions tab with a PR number and an action (deploy or remove).
+#
+# Security model:
+#   - Only users with write access can run workflow_dispatch.
+#   - The "build" job checks out fork code but has NO secrets.
+#   - The "deploy" job has secrets but does NOT check out fork code;
+#     it only consumes the prebuilt artifact uploaded by "build".
+#   This isolates VERCEL_TOKEN from anything fork-controlled.
+
 on:
-  issue_comment:
-    types: [created]
   workflow_dispatch:
     inputs:
       pr:
@@ -10,57 +18,47 @@ on:
         required: true
       action:
         description: "deploy or remove"
-        required: false
+        required: true
         default: "deploy"
+        type: choice
+        options: [deploy, remove]
 
 permissions:
   contents: read
   pull-requests: write
 
-env:
-  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
 jobs:
-  deploy:
-    name: Deploy preview
-    if: |
-      (github.event_name == 'workflow_dispatch' && inputs.action == 'deploy') ||
-      (github.event_name == 'issue_comment' &&
-       github.event.issue.pull_request != null &&
-       startsWith(github.event.comment.body, '/preview') &&
-       !startsWith(github.event.comment.body, '/preview-remove') &&
-       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
+  resolve:
+    name: Resolve PR head SHA
+    if: inputs.action == 'deploy'
     runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.pr.outputs.sha }}
+    steps:
+      - id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ inputs.pr }}
+        run: |
+          set -euo pipefail
+          sha=$(gh pr view "$PR" --repo "$REPO" --json headRefOid -q .headRefOid)
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build (no secrets)
+    needs: resolve
+    if: inputs.action == 'deploy'
+    runs-on: ubuntu-latest
+    # NOTE: no env: block — VERCEL_TOKEN must NOT be available here.
     defaults:
       run:
         working-directory: en
     steps:
-      - name: Resolve PR number and head SHA
-        id: pr
-        working-directory: .
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-          EVENT_NAME: ${{ github.event_name }}
-          DISPATCH_PR: ${{ inputs.pr }}
-          COMMENT_PR: ${{ github.event.issue.number }}
-        run: |
-          set -euo pipefail
-          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
-            num="$DISPATCH_PR"
-          else
-            num="$COMMENT_PR"
-          fi
-          sha=$(gh pr view "$num" --repo "$REPO" --json headRefOid -q .headRefOid)
-          echo "num=$num" >> "$GITHUB_OUTPUT"
-          echo "sha=$sha" >> "$GITHUB_OUTPUT"
-
       - name: Checkout PR head
         uses: actions/checkout@v4
         with:
-          ref: ${{ steps.pr.outputs.sha }}
+          ref: ${{ needs.resolve.outputs.sha }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -69,14 +67,62 @@ jobs:
           cache: npm
           cache-dependency-path: en/package-lock.json
 
+      - name: Install dependencies (no lifecycle scripts)
+        run: npm ci --ignore-scripts
+
+      - name: Build site
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docusaurus-build
+          path: en/build
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy:
+    name: Deploy (secrets, no fork code)
+    needs: [resolve, build]
+    if: inputs.action == 'deploy'
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docusaurus-build
+          path: build-output
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Pull Vercel environment
-        run: vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+      - name: Stage prebuilt output for Vercel
+        run: |
+          mkdir -p .vercel/output/static
+          cp -R build-output/. .vercel/output/static/
+          cat > .vercel/output/config.json <<'JSON'
+          { "version": 3 }
+          JSON
 
-      - name: Build with Vercel
-        run: vercel build --token=$VERCEL_TOKEN
+      - name: Remove previous preview
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ inputs.pr }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          body=$(gh api "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq '.[] | select(.body | contains("<!-- pr-preview-marker -->")) | .body' \
+            | head -n1 || true)
+          [ -z "$body" ] && exit 0
+          url=$(echo "$body" | grep -oE 'https://[a-zA-Z0-9.-]+\.vercel\.app' | head -n1 || true)
+          [ -z "$url" ] && exit 0
+          echo "Removing previous preview $url"
+          vercel remove "$url" --yes --token=$VERCEL_TOKEN || echo "vercel remove failed; continuing."
 
       - name: Deploy prebuilt artifact
         id: deploy
@@ -88,43 +134,29 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: pr-preview
-          number: ${{ steps.pr.outputs.num }}
+          number: ${{ inputs.pr }}
           message: |
             <!-- pr-preview-marker -->
             Preview deployed: ${{ steps.deploy.outputs.url }}
 
-            Commit: ${{ steps.pr.outputs.sha }}
+            Commit: ${{ needs.resolve.outputs.sha }}
 
   teardown:
     name: Tear down preview
-    if: |
-      (github.event_name == 'workflow_dispatch' && inputs.action == 'remove') ||
-      (github.event_name == 'issue_comment' &&
-       github.event.issue.pull_request != null &&
-       startsWith(github.event.comment.body, '/preview-remove') &&
-       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
+    if: inputs.action == 'remove'
     runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Resolve PR number
-        id: pr
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-          DISPATCH_PR: ${{ inputs.pr }}
-          COMMENT_PR: ${{ github.event.issue.number }}
-        run: |
-          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
-            echo "num=$DISPATCH_PR" >> "$GITHUB_OUTPUT"
-          else
-            echo "num=$COMMENT_PR" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Find and remove preview deployment
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ steps.pr.outputs.num }}
+          PR_NUMBER: ${{ inputs.pr }}
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
@@ -147,7 +179,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: pr-preview
-          number: ${{ steps.pr.outputs.num }}
+          number: ${{ inputs.pr }}
           message: |
             <!-- pr-preview-marker -->
             Preview removed.
