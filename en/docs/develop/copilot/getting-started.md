@@ -1,11 +1,11 @@
 ---
-title: Setting up WSO2 Integrator Copilot
+title: Setting up
 description: Prerequisites and Copilot sign-in steps to start building AI-powered integrations with WSO2 Integrator.
 keywords: [wso2 integrator, copilot, getting started, sign in]
 slug: /develop/copilot/getting-started
 ---
 
-# Setting up WSO2 Integrator Copilot
+# Setting up
 
 Before building AI integrations, make sure your development environment is ready and that you have credentials for WSO2 Integrator Copilot — the AI features (agents, RAG, MCP, natural functions) all rely on it for the default model provider.
 

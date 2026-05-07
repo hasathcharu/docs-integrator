@@ -78,15 +78,6 @@ const sidebars: SidebarsConfig = {
             'develop/create-integrations/migrate-third-party-integrations',
           ],
         },
-        // Develop with Copilot
-        {
-          type: 'category',
-          label: 'WSO2 Integrator Copilot',
-          items: [
-            'develop/copilot/getting-started',
-            'develop/copilot/overview',
-          ],
-        },
         // 6.2 Project Views
         {
           type: 'category',
@@ -225,6 +216,15 @@ const sidebars: SidebarsConfig = {
             'develop/transform/type-system',
             'develop/transform/query-expressions',
             'develop/transform/expressions-functions',
+          ],
+        },
+        // Develop with Copilot
+        {
+          type: 'category',
+          label: 'WSO2 Integrator Copilot',
+          items: [
+            'develop/copilot/getting-started',
+            'develop/copilot/overview',
           ],
         },
         // 6.6 Try & Test

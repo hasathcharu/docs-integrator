@@ -1,11 +1,11 @@
 ---
-title: "Overview"
+title: "Using Copilot"
 description: "AI-powered tool that generates integration artifacts from natural language prompts or OpenAPI specifications."
 keywords: [wso2 integrator, copilot, ai, integration generation]
 slug: /develop/copilot/overview
 ---
 
-# Overview
+# Using Copilot
 
 The WSO2 Integrator Copilot is an AI-powered tool designed to accelerate the creation of integration scenarios. Users define integration requirements through natural language prompts or by uploading relevant files, such as OpenAPI specifications. The Copilot generates ready-to-use integration artifacts, which can be incorporated into existing projects. The tool supports iterative and incremental development, allowing for easy refinement, feature additions, or modifications through subsequent conversational prompts.
 
@@ -15,7 +15,7 @@ By default, Copilot operates in Edit Mode. This mode is optimized for making qui
 
 For building new features or complex integrations from scratch, switch to Plan Mode.
 
-## Plan mode
+## Planning
 
 In Plan Mode, Copilot does not generate code immediately. Instead, it analyzes your request and provides a structured, step-by-step breakdown of the execution tasks. This gives you the opportunity to review the logic, add missing steps, or iterate on the plan before any artifacts are created.
 
