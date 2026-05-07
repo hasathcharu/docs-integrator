@@ -34,10 +34,12 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Set up',
+          link: { type: 'doc', id: 'get-started/setup/overview' },
           items: [
-            'get-started/system-requirements',
-            'get-started/install',
-            'get-started/create-project',
+            'get-started/setup/system-requirements',
+            'get-started/setup/local-setup',
+            'get-started/setup/sign-up-sign-in',
+            'get-started/setup/cloud-setup',
           ],
         },
         {
