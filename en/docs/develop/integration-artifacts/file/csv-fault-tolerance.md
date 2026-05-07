@@ -115,7 +115,7 @@ The listener's **After Success** and **After Error** branches are picked based o
 | Partner agreement says every row must be accounted for | Leave fault tolerance **off**. A single bad row should fail the file and route it to the error directory for replay. |
 | The feed is known-dirty and most rows are usable | Turn it **on**. Clean rows proceed and dropped rows are logged. |
 | You need files with any dropped rows to go to **After Error** | Leave fault tolerance **off**, but note this will fail the whole file at the first bad row. |
-| You need a different log format, filename, or location | Switch to `onFileText` and parse with [`csv:parseString`](../../transform/csv-flat-file.md). |
+| You need a different log format, filename, or location | Switch to `onFileText` and parse with [`csv:parseString`]. |
 
 ## What's next
 
