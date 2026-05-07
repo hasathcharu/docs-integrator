@@ -92,6 +92,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Integration artifacts',
+          link: { type: 'doc', id: 'develop/integration-artifacts/integration-artifacts' },
           items: [
             'develop/integration-artifacts/automation',
             {
@@ -273,7 +274,6 @@ const sidebars: SidebarsConfig = {
               link: { type: 'doc', id: 'develop/tools/migration-tools/migration-tools' },
               collapsed: true,
               items: [
-                'develop/tools/migration-tools/migrate-from-mi',
                 'develop/tools/migration-tools/migrate-from-mulesoft',
                 'develop/tools/migration-tools/migrate-from-tibco-businessworks',
                 'develop/tools/migration-tools/migrate-from-azure-logic-apps',
@@ -1257,14 +1257,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: 'PDF',
-          link: { type: 'doc', id: 'connectors/catalog/built-in/pdf/pdf' },
-          items: [
-            'connectors/catalog/built-in/pdf/action-reference',
-          ],
-        },
-        {
-          type: 'category',
           label: 'PayPal Invoices',
           link: { type: 'doc', id: 'connectors/catalog/finance-accounting/paypal.invoices/paypal-invoices-connector-overview' },
           items: [
@@ -1778,7 +1770,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'genai/tutorials/email-generator-direct-llm',
             'genai/tutorials/review-summarizer-natural-function',
-            'genai/tutorials/building-hr-knowledge-base-agent-rag',
+            'genai/tutorials/building-hr-knowledge-base-rag',
             'genai/tutorials/building-a-customer-care-agent-mcp',
             'genai/tutorials/building-it-helpdesk-chatbot-persistent-memory',
             'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
@@ -1967,6 +1959,8 @@ const sidebars: SidebarsConfig = {
             'deploy-operate/secure/keystore-truststore',
             'deploy-operate/secure/runtime-security',
             'deploy-operate/secure/authentication',
+            'deploy-operate/secure/sso-configuration',
+            'deploy-operate/secure/api-security',
             'deploy-operate/secure/api-security-rate-limiting',
             'deploy-operate/secure/secrets-encryption',
             'deploy-operate/secure/ip-whitelisting',
@@ -2043,6 +2037,7 @@ const sidebars: SidebarsConfig = {
           label: 'APIs',
           items: [
             'reference/api/management',
+            'reference/api/auth-api',
             'reference/api/icp',
             'reference/api/ballerina-documentation',
           ],
