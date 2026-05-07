@@ -56,7 +56,7 @@ Click **Define Payload** and:
 
 ![Define Payload dialog with sample JSON and type name EmailGeneratePayload.](/img/genai/develop/direct-llm/03-define-payload.png)
 
-The dialog produces a record with the right fields. From the BI side you don't need to write the type by hand — the JSON sample drives it.
+The dialog produces a record with the right fields. From the WSO2 Integrator side you don't need to write the type by hand — the JSON sample drives it.
 
 ### Step 1.3: Define the response type
 
