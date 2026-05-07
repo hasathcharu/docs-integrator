@@ -60,6 +60,10 @@ Click **View Trace** on any reply to open the detailed trace for that single mes
 
 The viewer has three regions: a **span timeline** on the left, **span detail** in the center, and the original chat on the right. The chat stays visible, so you can correlate spans with the message you're investigating without losing context. See [The trace viewer](#the-trace-viewer) below for what each region offers.
 
+To jump straight to a specific span without scanning the timeline, expand the **Execution Steps** dropdown above an agent reply. It lists every Chat and Execute Tool span for that turn with its duration. Click any step to load it in the center pane.
+
+![The Agent Chat with the 'Execution Steps (5)' dropdown expanded above a reply. The list shows alternating Chat gpt-4o-mini and Execute Tool sumTool/subtractTool entries with their durations. The trace viewer's center pane shows a Chat span detail.](/img/genai/develop/agents/observability/19-execution-steps-expanded.png)
+
 #### Session Traces
 
 Click **Session Traces** in the chat header to open a table of every trace produced in the current chat session.
@@ -75,6 +79,10 @@ For agents without a chat window, or when you want a flat list of every trace th
 ![The Traces tab at the bottom of the IDE listing several traces. The expanded one shows a 'post /chat (SERVER)' span with a child 'invoke_agent Math Tutor (CLIENT)' span.](/img/genai/develop/agents/observability/03-traces-panel.png)
 
 Each row is one trace, typically one chat turn or one request to the integration. Expand a trace to see its span tree. The top-level service handler, the agent invocation, the LLM calls it makes, each tool invocation, and any HTTP calls those tools issue. Click a span to open it in the trace viewer.
+
+By default the panel shows every trace the integration produces, including traces for unrelated services. Click the **agent** icon in the panel's toolbar to filter the list to agent traces only. A "Showing agent traces only" note appears at the top of the list while the filter is active.
+
+![The Traces panel filtered to agent traces only. A 'Showing agent traces only' note appears at the top of the list, with the agent filter icon highlighted in the toolbar.](/img/genai/develop/agents/observability/18-traces-panel-agent-filter.png)
 
 ## The trace viewer
 
