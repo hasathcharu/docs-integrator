@@ -38,25 +38,38 @@ After migration, complete the following post-migration steps:
 
 ## Tool summary
 
-### MuleSoft
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="mulesoft" label="MuleSoft" default>
+
 - Converts MuleSoft Anypoint flows (XML configurations) to Ballerina code.
 - Handles HTTP listeners, request connectors, DataWeave transformations, routers, error handling patterns, and more.
 - **Rule-based migration** is supported via both the WSO2 Integrator and the CLI tool.
 - **AI enhancement** is currently available only in the WSO2 Integrator to further automate migration and resolve unmapped elements.
 - See [Migrate from MuleSoft](migrate-from-mulesoft.md) for detailed instructions.
 
-### TIBCO BusinessWorks
+</TabItem>
+<TabItem value="tibco" label="TIBCO BusinessWorks">
+
 - Converts TIBCO BusinessWorks process definitions to Ballerina code.
 - Handles process flows, activities, transitions, shared resources, error handling configurations, and more.
 - **Rule-based migration** is supported via both the WSO2 Integrator and the CLI tool.
 - **AI enhancement** is currently available only in the WSO2 Integrator to further automate migration and resolve unmapped elements.
 - See [Migrate from TIBCO BusinessWorks](migrate-from-tibco-businessworks.md) for detailed instructions.
 
-### Azure Logic Apps
+</TabItem>
+<TabItem value="logicapps" label="Azure Logic Apps">
+
 - Converts Logic Apps workflow definitions (ARM templates and workflow JSON) to Ballerina code.
 - Handles triggers, actions, connectors, control flow, error handling patterns, and more.
 - **Migration is fully AI-powered and available only via the CLI tool.** WSO2 Integrator support is not available for Logic Apps at this time.
 - See [Migrate from Azure Logic Apps](migrate-from-azure-logic-apps.md) for detailed instructions.
+
+</TabItem>
+</Tabs>
+
 
 ## Command reference
 
