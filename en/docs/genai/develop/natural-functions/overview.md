@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Natural Functions
-description: Single-page reference for natural functions in WSO2 Integrator, where function bodies are written in plain English and evaluated by an LLM at runtime.
+description: Single-page reference for Natural Functions in WSO2 Integrator, where function bodies are written in plain English and evaluated by an LLM at runtime.
 ---
 
 # Natural Functions
@@ -13,17 +13,8 @@ This page is a single, end-to-end reference covering the form that creates the f
 > **Looking for a hands-on walkthrough?** See the **[Customer Review Analyzer with Natural Function](/docs/genai/tutorials/review-summarizer-natural-function)** tutorial. It builds the example shown on this page from an empty project to a working `POST /api/v1/analyze` endpoint.
 
 :::caution Experimental feature
-Natural functions are an **experimental** feature. WSO2 Integrator adds the required runtime flag automatically when you click **Run**.
+Natural functions are an experimental feature. Enable experimental features in WSO2 Integrator before using them.
 :::
-
-## When to Use a Natural Function
-
-| Use a natural function when… | Look elsewhere when… |
-|---|---|
-| You have a single-step text task: classify, summarise, extract, rewrite. | The task needs tool calls or multi-step reasoning. Use an [AI Agent](/docs/genai/develop/agents/overview). |
-| You want the same prompt usable from many flows, fully typed. | You only need a one-off LLM call inside one flow. Use a [Direct LLM Call](/docs/genai/develop/direct-llm/overview). |
-| You want a function you can mock and unit-test. | The task needs to remember earlier turns of a conversation. Use an agent with memory. |
-| You can describe the work in two or three sentences. | The work needs your own data. Combine with [RAG](/docs/genai/develop/rag/overview). |
 
 ## How a Natural Function Looks
 
@@ -119,8 +110,6 @@ If a provider already exists in the project, pick it from the dropdown and click
 
 Adding a provider, the per-provider form fields, the supported models, and the advanced HTTP knobs are all documented in **[AI Connections and Stores: Model Providers](/docs/genai/develop/components/model-providers)**. You only need to do it once per project. Every natural function, direct LLM call, RAG `generate` node, and AI Agent in the project shares the same provider connections.
 
-> The fastest one to set up is the **Default WSO2 Model Provider**. No API key is required, just a one-time WSO2 sign-in via the Command Palette command **Ballerina: Configure default WSO2 model provider**.
-
 ---
 
 ## Writing the Prompt
@@ -140,21 +129,6 @@ Click **Save**. The body collapses back into the Prompt node.
 
 ![Prompt node with the saved prompt body shown inline.](/img/genai/develop/natural-functions/52-natural-function-with-prompt.png)
 
-### Anatomy of a Good Prompt
-
-Three things tend to make natural-function bodies more reliable:
-
-1. **State the task in one sentence at the top.** For example: *"Classify the following customer review as positive, negative, or neutral and explain why."* Avoid vague instructions like *"Take a look at this and tell me what you think."*
-2. **Add rules as a short bullet list.** Models follow bullets better than long paragraphs.
-3. **Put the inputs at the end, after a clear divider.** Inputs are easier to spot when they're separated from instructions.
-
-### What not to put in the prompt
-
-- **The output schema.** The return type drives that. Asking the LLM to *"return JSON with fields …"* is at best redundant and at worst fights the schema.
-- **"Return JSON" instructions.** Same reason.
-- **Megabytes of unrelated context.** Prompts are paid per token. Use [RAG](/docs/genai/develop/rag/overview) to bring in only what's relevant.
-- **Secrets.** Anything in a prompt is sent to the LLM provider on every call.
-
 ---
 
 ## Typed Return Inference
@@ -165,7 +139,7 @@ The headline feature of natural functions is this: **the return type is the cont
 2. Builds a JSON schema from that type and includes it in the LLM call.
 3. Parses the model's response back into a value of that type.
 
-If the model produces something that doesn't match the type, the runtime asks it to retry once with a clearer schema reminder; if parsing still fails, it returns an `error`. By the time a successful call returns, every required field is present and every value has the right shape. There is no *"the LLM forgot a field"* failure mode further down the flow.
+If the model produces something that doesn't match the type, the runtime asks it to retry once with a refined prompt; if parsing still fails, it returns an `error`. By the time a successful call returns, every required field is present and every value has the right shape. There is no *"the LLM forgot a field"* failure mode further down the flow.
 
 ### Picking a Type
 
@@ -187,9 +161,9 @@ If the model produces something that doesn't match the type, the runtime asks it
 
 - **Keep nesting shallow.** One level of records and arrays is fine; two starts to confuse smaller models; three usually benefits from being split.
 
-### Don't repeat the schema in the prompt
+### Schema is derived from the type
 
-Because the type already drives the schema, **writing *"please return JSON with fields …"* in the prompt is wrong**. It is redundant when it agrees with the type, and brittle when it doesn't. Set the return type and leave the schema out of the prompt. The prompt describes the *task*; the type drives the *shape*.
+Because the type already drives the schema, **you don't have to write *"please return JSON with fields …"* in the prompt**. It is redundant when it agrees with the type, and brittle when it doesn't. Set the return type and leave the schema out of the prompt. The prompt describes the *task*; the type drives the *shape*.
 
 ---
 
@@ -220,16 +194,6 @@ Natural functions are first-class functions, so they can call each other from in
 A natural function can also be wired up as an [agent tool](/docs/genai/develop/agents/tools): the agent decides *whether* to call it, and the natural function's own model handles the call with a tighter prompt and stricter return type.
 
 ---
-
-## Common Mistakes
-
-| Symptom | Likely cause | Fix |
-|---|---|---|
-| Compile error: *"Default model for natural functions not configured"*. | First-time setup missed. | Run **Ballerina: Configure default WSO2 model provider** from the Command Palette, or pick a provider via the cog icon on the Prompt node. |
-| Returned record has empty / wrong fields. | Prompt doesn't mention the fields the type expects, or descriptions are missing. | Add field doc comments on the type, or spell the fields out by name in the prompt. |
-| Function works in isolation but errors when called from a flow. | Bound parameter has a different shape than the function expects. | Check the binding in the Call Natural Function panel; bind to a value with the matching shape. |
-| Same input gives different answers each run. | Default temperature isn't 0. | Lower the model provider's temperature in **Connections > Advanced Configurations**. |
-| Result type is a union and parsing fails for one variant. | Schema wasn't tight enough. The model produced something close but not exactly matching. | Use closed records and singleton-string unions (`"a"\|"b"\|"c"`); add field doc comments. |
 
 ## What's Next
 
