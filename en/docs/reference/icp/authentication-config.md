@@ -1,5 +1,5 @@
 ---
-title: Authentication
+title: Authentication Configuration
 description: Authentication backend modes and full LDAP configuration key reference for the ICP Server.
 ---
 

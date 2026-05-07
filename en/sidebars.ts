@@ -13,6 +13,7 @@ import { connectorVersionedDocs } from './src/utils/sidebarUtils';
  *   GenAI             — "How do I build AI agents, RAG, or MCP?"
  *   Tutorials         — "Show me a complete, real example"
  *   Deploy & Operate  — "How do I ship, run, and secure this?"
+ *   Manage            — "How do I set up and manage ICP?"
  *   Reference         — "What's the exact syntax / config / API for Z?"
  */
 const sidebars: SidebarsConfig = {
@@ -2064,6 +2065,35 @@ const sidebars: SidebarsConfig = {
     },
 
     // ─────────────────────────────────────────────
+    // MANAGE
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Manage',
+      collapsed: true,
+      link: { type: 'doc', id: 'manage/icp/integration-control-plane' },
+      items: [
+        'manage/icp/install-icp',
+        'manage/icp/icp-console-overview',
+        'manage/icp/connect-runtime',
+        'manage/icp/observability-setup',
+        'manage/icp/access-control',
+        'manage/icp/manage-projects',
+        'manage/icp/manage-environments',
+        'manage/icp/manage-integrations',
+        'manage/icp/manage-runtimes',
+        {
+          type: 'category',
+          label: 'MI Profile',
+          items: [
+            'manage/icp/mi-profile/observability-setup-mi',
+            'manage/icp/mi-profile/connect-runtime-mi',
+          ],
+        },
+      ],
+    },
+
+    // ─────────────────────────────────────────────
     // REFERENCE
     // "What's the exact syntax / config / API for Z?"
     // ─────────────────────────────────────────────
@@ -2115,6 +2145,16 @@ const sidebars: SidebarsConfig = {
             'reference/cli/bal-scan',
           ],
         },
+        // ICP Configuration
+        {
+          type: 'category',
+          label: 'ICP Configuration',
+          items: [
+            'reference/icp/server-configuration',
+            'reference/icp/database-configuration',
+            'reference/icp/authentication-config',
+          ],
+        },
         // APIs
         {
           type: 'category',
@@ -2123,21 +2163,6 @@ const sidebars: SidebarsConfig = {
             'reference/api/management',
             'reference/api/icp',
             'reference/api/ballerina-documentation',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Deploying ICP',
-          link: { type: 'doc', id: 'reference/icp/integration-control-plane' },
-          items: [
-            'reference/icp/server-configuration',
-            'reference/icp/database-configuration',
-            'reference/icp/authentication',
-            'reference/icp/connect-runtime',
-            'reference/icp/connect-runtime-mi',
-            'reference/icp/observability-setup',
-            'reference/icp/observability-setup-mi',
-            'reference/icp/deployment',
           ],
         },
         'reference/supported-protocols',

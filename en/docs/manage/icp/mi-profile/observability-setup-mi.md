@@ -1,5 +1,5 @@
 ---
-title: MI Observability Setup
+title: "Install ICP : MI Observability"
 description: Set up centralized logs and metrics monitoring for MI runtimes using Fluent Bit and OpenSearch.
 ---
 
@@ -9,18 +9,14 @@ ICP provides centralized observability for MI runtimes. Application logs and per
 
 ## Architecture
 
-```
-                           wso2carbon.log
-┌──────────┐──────────────────────────────────▶┌───────────┐   HTTP    ┌────────────┐
-│    MI    │   synapse-analytics.log           │ Fluent Bit │─────────▶│ OpenSearch  │
-│ Runtime  │──────────────────────────────────▶└───────────┘           └─────┬──────┘
-└────┬─────┘                                                                │
-     │ heartbeat                                                            │ query
-     ▼                                                                      ▼
-┌─────────┐                                                        ┌──────────────┐
-│   ICP   │◀──────────────────────────────────────────────────────│ ICP Console  │
-│  Server │                    GraphQL / REST                      │  (Browser)   │
-└─────────┘                                                        └──────────────┘
+```mermaid
+flowchart LR
+    MI["MI Runtime"] -- "wso2carbon.log" --> FB["Fluent Bit"]
+    MI -- "synapse-analytics.log" --> FB
+    FB -- "HTTP" --> OS["OpenSearch"]
+    MI -- "heartbeat" --> ICP["ICP Server"]
+    OS -- "query" --> ICP
+    Console["ICP Console\n(Browser)"] -- "GraphQL / REST" --> ICP
 ```
 
 1. MI writes application logs to `wso2carbon.log` with an `[icp.runtimeId=<uuid>]` suffix on each line.
