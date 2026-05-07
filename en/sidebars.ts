@@ -37,7 +37,6 @@ const sidebars: SidebarsConfig = {
             'get-started/system-requirements',
             'get-started/install',
             'get-started/create-project',
-            'get-started/understand-ide',
           ],
         },
         {
