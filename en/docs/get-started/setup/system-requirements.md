@@ -1,7 +1,7 @@
 ---
-sidebar_position: 1
-title: System Requirements and Prerequisites
+title: System Requirements
 description: Hardware, software, and network requirements for WSO2 Integrator development.
+keywords: [wso2 integrator, system requirements, prerequisites, hardware, software, network]
 ---
 
 # System Requirements and Prerequisites
