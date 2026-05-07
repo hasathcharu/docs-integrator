@@ -1,4 +1,4 @@
-﻿---
+---
 sidebar_position: 1
 title: Natural Functions
 description: Single-page reference for natural functions in WSO2 Integrator, typed Ballerina functions whose body is plain English and evaluated by an LLM at runtime.
@@ -18,7 +18,7 @@ Natural expressions are an **experimental** language feature. The integration ru
 
 ## When to Use a Natural Function
 
-| Use a natural function when�?� | Look elsewhere when�?� |
+| Use a natural function when… | Look elsewhere when… |
 |---|---|
 | You have a single-step text task: classify, summarise, extract, rewrite. | The task needs tool calls or multi-step reasoning. Use an [AI Agent](/docs/genai/develop/agents/overview). |
 | You want the same prompt usable from many flows, fully typed. | You only need a one-off LLM call inside one flow. Use a [Direct LLM Call](/docs/genai/develop/direct-llm/overview). |
@@ -115,7 +115,7 @@ The Prompt node has two controls: the **pencil** (top-right) edits the prompt bo
 
 The Prompt node needs a **Model Provider** connection. This specifies the LLM it calls. Hover the cog on the right of the Prompt node and click **Configure Model Provider** to bind one.
 
-If a provider already exists in the project, pick it from the dropdown and click **Save**. If not, click **+ Create New Model Provider** and pick from the catalogue (OpenAI, Anthropic, Azure OpenAI, Default WSO2, �?�).
+If a provider already exists in the project, pick it from the dropdown and click **Save**. If not, click **+ Create New Model Provider** and pick from the catalogue (OpenAI, Anthropic, Azure OpenAI, Default WSO2, …).
 
 Adding a provider, the per-provider form fields, the supported models, and the advanced HTTP knobs are all documented in **[AI Connections and Stores: Model Providers](/docs/genai/develop/components/model-providers)**. You only need to do it once per project. Every natural function, direct LLM call, RAG `generate` node, and AI Agent in the project shares the same provider connections.
 
@@ -162,7 +162,7 @@ Three things tend to make natural-function bodies more reliable:
 
 ### What not to put in the prompt
 
-- **The output schema.** The return type drives that. Asking the LLM to *"return JSON with fields �?�"* is at best redundant and at worst fights the schema.
+- **The output schema.** The return type drives that. Asking the LLM to *"return JSON with fields …"* is at best redundant and at worst fights the schema.
 - **"Return JSON" instructions.** Same reason.
 - **Megabytes of unrelated context.** Prompts are paid per token. Use [RAG](/docs/genai/develop/rag/overview) to bring in only what's relevant.
 - **Secrets.** Anything in a prompt is sent to the LLM provider on every call.
@@ -201,7 +201,7 @@ If the model produces something that doesn't match the type, the runtime asks it
 
 ### Don't repeat the schema in the prompt
 
-Because the type already drives the schema, **writing *"please return JSON with fields �?�"* in the prompt is wrong**. It is redundant when it agrees with the type, and brittle when it doesn't. Set the return type and leave the schema out of the prompt. The prompt describes the *task*; the type drives the *shape*.
+Because the type already drives the schema, **writing *"please return JSON with fields …"* in the prompt is wrong**. It is redundant when it agrees with the type, and brittle when it doesn't. Set the return type and leave the schema out of the prompt. The prompt describes the *task*; the type drives the *shape*.
 
 ---
 
@@ -246,8 +246,8 @@ A natural function can also be wired up as an [agent tool](/docs/genai/develop/a
 
 ## What's Next
 
-- **[Customer Review Analyzer with Natural Function (Tutorial)](/docs/genai/tutorials/review-summarizer-natural-function)** �?" end-to-end tutorial that builds a `POST /api/v1/analyze` service using everything on this page.
-- **[AI Connections and Stores: Model Providers](/docs/genai/develop/components/model-providers)** �?" switch providers, tune temperature, max tokens, and retries for the Prompt node's connection.
-- **[Direct LLM Calls](/docs/genai/develop/direct-llm/overview)** �?" when you only need a single in-flow call without packaging it as a function.
-- **[AI Agents](/docs/genai/develop/agents/overview)** �?" when natural functions become tools an agent can choose to call.
-- **[What is a Natural Function?](/docs/genai/key-concepts/what-is-natural-function)** �?" conceptual background.
+- **[Customer Review Analyzer with Natural Function (Tutorial)](/docs/genai/tutorials/review-summarizer-natural-function)** — end-to-end tutorial that builds a `POST /api/v1/analyze` service using everything on this page.
+- **[AI Connections and Stores: Model Providers](/docs/genai/develop/components/model-providers)** — switch providers, tune temperature, max tokens, and retries for the Prompt node's connection.
+- **[Direct LLM Calls](/docs/genai/develop/direct-llm/overview)** — when you only need a single in-flow call without packaging it as a function.
+- **[AI Agents](/docs/genai/develop/agents/overview)** — when natural functions become tools an agent can choose to call.
+- **[What is a Natural Function?](/docs/genai/key-concepts/what-is-natural-function)** — conceptual background.
