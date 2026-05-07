@@ -114,14 +114,14 @@ Skip `mkdir C:\tmp` if the folder already exists.
    <TabItem value="unix" label="macOS / Linux" default>
 
    ```bash
-   echo "test" > /tmp/testfile.txt
+   echo "modify" > /tmp/testfile.txt
    ```
 
    </TabItem>
    <TabItem value="windows" label="Windows">
 
    ```bat
-   echo test > C:\tmp\testfile.txt
+   echo modify > C:\tmp\testfile.txt
    ```
 
    </TabItem>
@@ -143,6 +143,10 @@ Skip `mkdir C:\tmp` if the folder already exists.
 <TabItem value="code" label="Ballerina Code">
 
 The following complete, runnable Ballerina program produces the same integration shown in the visual designer steps.
+
+:::info Windows
+Change the listener `path` from `"/tmp"` to `"C:\\tmp"` (backslash escaped) before running the program.
+:::
 
 ```ballerina
 import ballerina/file;
@@ -169,22 +173,20 @@ Save this as `main.bal`, then run `bal run` from the project directory. With the
 <TabItem value="unix" label="macOS / Linux" default>
 
 ```bash
-echo "test" > /tmp/testfile.txt
+echo "modify" > /tmp/testfile.txt
 ```
 
 </TabItem>
 <TabItem value="windows" label="Windows">
 
 ```bat
-echo test > C:\tmp\testfile.txt
+echo modify > C:\tmp\testfile.txt
 ```
-
-On Windows, also change the listener `path` from `"/tmp"` to `"C:\\tmp"` in the program above (backslash escaped).
 
 </TabItem>
 </Tabs>
 
-The integration logs `File modified`.
+Confirm the run terminal shows the log line `File modified`.
 
 </TabItem>
 </Tabs>
