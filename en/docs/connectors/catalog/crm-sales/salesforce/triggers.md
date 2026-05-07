@@ -401,23 +401,28 @@ public isolated class RedisTokenStore {
     *salesforce:TokenStore;
 
     public isolated function acquireLock(string lockKey, int ttlSeconds) returns boolean|error {
-        // Redis: return redisClient->setNx("lock:sf_token", "1");
+        // Redis: SET lock:<lockKey> 1 NX EX <ttlSeconds>
+        // Example: redisClient->set(string `lock:${lockKey}`, "1", ttlSeconds, (), true)
     }
 
     public isolated function releaseLock(string lockKey) returns error? {
-        // Redis: _ = check redisClient->del(["lock:sf_token"]);
+        // Redis: DEL lock:<lockKey>
+        // Example: _ = check redisClient->del([string `lock:${lockKey}`]);
     }
 
     public isolated function getTokenData(string key) returns salesforce:TokenData?|error {
-        // Redis: deserialise GET "data:sf_token" → TokenData
+        // Redis: GET data:<key>  (deserialize JSON → TokenData)
+        // Example: string? json = check redisClient->get(string `data:${key}`);
     }
 
     public isolated function setTokenData(string key, salesforce:TokenData data) returns error? {
-        // Redis: SET "data:sf_token" tokenData.toJsonString()
+        // Redis: SET data:<key> <json>
+        // Example: _ = check redisClient->set(string `data:${key}`, data.toJsonString());
     }
 
     public isolated function clearTokenData(string key) returns error? {
-        // Redis: DEL "data:sf_token" "lock:sf_token"
+        // Redis: DEL data:<key> lock:<key>
+        // Example: _ = check redisClient->del([string `data:${key}`, string `lock:${key}`]);
     }
 }
 
