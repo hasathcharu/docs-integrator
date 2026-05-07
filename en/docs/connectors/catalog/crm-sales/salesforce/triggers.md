@@ -295,11 +295,11 @@ An isolated object interface for managing refresh token rotation. Implement this
 
 | Method | Signature | Description |
 |--------|-----------|-------------|
-| `acquireLock` | `acquireLock() returns error?` | Acquires a lock for thread-safe token operations. |
-| `releaseLock` | `releaseLock() returns error?` | Releases the lock. |
-| `getTokenData` | `getTokenData() returns TokenData?` | Retrieves the stored token data. |
-| `setTokenData` | `setTokenData(TokenData tokenData) returns error?` | Stores updated token data. |
-| `clearTokenData` | `clearTokenData() returns error?` | Clears stored token data. |
+| `acquireLock` | `acquireLock(string lockKey, int ttlSeconds) returns boolean&#124;error` | Attempts to acquire an advisory lock. Returns `true` if acquired, `false` if held by another replica, or an `error` if the store is unreachable. |
+| `releaseLock` | `releaseLock(string lockKey) returns error?` | Releases the advisory lock after a refresh cycle completes. |
+| `getTokenData` | `getTokenData(string key) returns TokenData?&#124;error` | Reads the current token data from the shared store. |
+| `setTokenData` | `setTokenData(string key, TokenData data) returns error?` | Writes updated token data after a successful refresh. |
+| `clearTokenData` | `clearTokenData(string key) returns error?` | Removes token data and its lock when the token family is permanently invalidated. |
 
 ### `TokenData`
 
@@ -400,23 +400,23 @@ configurable int sessionTimeoutSeconds = 3600;
 public isolated class RedisTokenStore {
     *salesforce:TokenStore;
 
-    public isolated function acquireLock() returns boolean|error {
+    public isolated function acquireLock(string lockKey, int ttlSeconds) returns boolean|error {
         // Redis: return redisClient->setNx("lock:sf_token", "1");
     }
 
-    public isolated function releaseLock() returns error? {
+    public isolated function releaseLock(string lockKey) returns error? {
         // Redis: _ = check redisClient->del(["lock:sf_token"]);
     }
 
-    public isolated function getTokenData() returns salesforce:TokenData? {
+    public isolated function getTokenData(string key) returns salesforce:TokenData?|error {
         // Redis: deserialise GET "data:sf_token" → TokenData
     }
 
-    public isolated function setTokenData(salesforce:TokenData tokenData) returns error? {
+    public isolated function setTokenData(string key, salesforce:TokenData data) returns error? {
         // Redis: SET "data:sf_token" tokenData.toJsonString()
     }
 
-    public isolated function clearTokenData() returns error? {
+    public isolated function clearTokenData(string key) returns error? {
         // Redis: DEL "data:sf_token" "lock:sf_token"
     }
 }
