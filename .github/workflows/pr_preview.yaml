@@ -1,8 +1,17 @@
 name: PR Preview (Vercel)
 
 on:
-  pull_request_target:
-    types: [labeled, unlabeled, synchronize, closed]
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "PR number"
+        required: true
+      action:
+        description: "deploy or remove"
+        required: false
+        default: "deploy"
 
 permissions:
   contents: read
@@ -17,17 +26,41 @@ jobs:
   deploy:
     name: Deploy preview
     if: |
-      (github.event.action == 'labeled' && github.event.label.name == 'preview') ||
-      (github.event.action == 'synchronize' && contains(github.event.pull_request.labels.*.name, 'preview'))
+      (github.event_name == 'workflow_dispatch' && inputs.action == 'deploy') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request != null &&
+       startsWith(github.event.comment.body, '/preview') &&
+       !startsWith(github.event.comment.body, '/preview-remove') &&
+       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: en
     steps:
+      - name: Resolve PR number and head SHA
+        id: pr
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          DISPATCH_PR: ${{ inputs.pr }}
+          COMMENT_PR: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            num="$DISPATCH_PR"
+          else
+            num="$COMMENT_PR"
+          fi
+          sha=$(gh pr view "$num" --repo "$REPO" --json headRefOid -q .headRefOid)
+          echo "num=$num" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+
       - name: Checkout PR head
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ steps.pr.outputs.sha }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -55,26 +88,43 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: pr-preview
+          number: ${{ steps.pr.outputs.num }}
           message: |
             <!-- pr-preview-marker -->
             Preview deployed: ${{ steps.deploy.outputs.url }}
 
-            Commit: ${{ github.event.pull_request.head.sha }}
+            Commit: ${{ steps.pr.outputs.sha }}
 
   teardown:
     name: Tear down preview
     if: |
-      (github.event.action == 'unlabeled' && github.event.label.name == 'preview') ||
-      (github.event.action == 'closed' && contains(github.event.pull_request.labels.*.name, 'preview'))
+      (github.event_name == 'workflow_dispatch' && inputs.action == 'remove') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request != null &&
+       startsWith(github.event.comment.body, '/preview-remove') &&
+       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
     runs-on: ubuntu-latest
     steps:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
+      - name: Resolve PR number
+        id: pr
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DISPATCH_PR: ${{ inputs.pr }}
+          COMMENT_PR: ${{ github.event.issue.number }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "num=$DISPATCH_PR" >> "$GITHUB_OUTPUT"
+          else
+            echo "num=$COMMENT_PR" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Find and remove preview deployment
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ steps.pr.outputs.num }}
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
@@ -97,6 +147,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: pr-preview
+          number: ${{ steps.pr.outputs.num }}
           message: |
             <!-- pr-preview-marker -->
             Preview removed.
