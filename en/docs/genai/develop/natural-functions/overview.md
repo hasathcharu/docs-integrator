@@ -1,19 +1,19 @@
 ---
 sidebar_position: 1
 title: Natural Functions
-description: Single-page reference for natural functions in WSO2 Integrator, typed Ballerina functions whose body is plain English and evaluated by an LLM at runtime.
+description: Single-page reference for natural functions in WSO2 Integrator, where function bodies are written in plain English and evaluated by an LLM at runtime.
 ---
 
 # Natural Functions
 
-A **natural function** is a Ballerina function whose body is written in **English** instead of code. You declare the signature, with typed parameters and a typed return, and describe the work in a `natural { ... }` block (the **Prompt** node in the visual designer). At runtime, WSO2 Integrator turns the return type into a JSON schema, sends both the prompt and the schema to a model provider, and gives you back a typed value.
+A **natural function** is a function whose body is written in **English** instead of code. You declare the signature (typed parameters and a typed return) and write the instructions in the **Prompt** node in the visual designer. At runtime, WSO2 Integrator turns the return type into a JSON schema, sends both the prompt and the schema to a model provider, and gives you back a typed value.
 
 This page is a single, end-to-end reference covering the form that creates the function, the Prompt node, the return type, and how to call it from a flow.
 
 > **Looking for a hands-on walkthrough?** See the **[Customer Review Analyzer with Natural Function](/docs/genai/tutorials/review-summarizer-natural-function)** tutorial. It builds the example shown on this page from an empty project to a working `POST /api/v1/analyze` endpoint.
 
 :::caution Experimental feature
-Natural expressions are an **experimental** language feature. The integration runtime adds the `--experimental` flag automatically when you click **Run** in WSO2 Integrator; from the terminal use `bal run --experimental`.
+Natural functions are an **experimental** feature. WSO2 Integrator adds the required runtime flag automatically when you click **Run**.
 :::
 
 ## When to Use a Natural Function
@@ -35,14 +35,14 @@ What you do in the visual designer:
 
 - Declare the function's **signature** (name, parameters, and return type) once in the **Create New Natural Function** form.
 - Bind a **Model Provider** to the Prompt node.
-- Write the **English instructions** in the Prompt node, with `${...}` interpolations for the parameters.
+- Write the **English instructions** in the Prompt node.
 
 What WSO2 Integrator handles for you:
 
 - Generating a JSON schema from the function's return type.
 - Sending the prompt and the schema to the bound model provider.
 - Parsing the response back into a typed return value.
-- Surfacing any parsing errors as a Ballerina `error`.
+- Surfacing any parsing errors.
 
 To build one, you do four things in order:
 
@@ -76,7 +76,7 @@ The form has three fields and a **Create** button.
 | Field | What it does |
 |---|---|
 | **Name** | Function identifier, in camelCase. |
-| **Parameters** | Zero or more typed inputs. Each parameter is a `{type, name, description}` triple. The name is what you reference inside the prompt with `${...}`. |
+| **Parameters** | Zero or more typed inputs. Each parameter is a `{type, name, description}` triple. |
 | **Return Type** | The shape of the value the function produces. Drives the JSON schema sent to the LLM. |
 
 ### Adding a Parameter
@@ -131,7 +131,7 @@ Click the pencil icon at the top-right of the Prompt node. An inline editor open
 
 | Toolbar action | Effect |
 |---|---|
-| **Insert** | Insert an `${parameter}` interpolation for any in-scope variable, or a snippet (block quote, code block). |
+| **Insert** | Insert a parameter reference for any in-scope variable, or a snippet (block quote, code block). |
 | **Bold / Italic / Underline** | Inline emphasis. The model treats Markdown emphasis as a hint to weight that term. |
 | **H1**, **lists**, **blockquote**, **table** | Structural Markdown. Useful for *Rules:*-style lists and *Examples:*-style sections. |
 | **Preview / Source** | Toggle between rendered Markdown and the literal text the runtime sends. |
@@ -139,18 +139,6 @@ Click the pencil icon at the top-right of the Prompt node. An inline editor open
 Click **Save**. The body collapses back into the Prompt node.
 
 ![Prompt node with the saved prompt body shown inline.](/img/genai/develop/natural-functions/52-natural-function-with-prompt.png)
-
-### Interpolation
-
-Any in-scope value can be embedded with `${...}`. Use the **Insert** menu or just type it.
-
-| What you interpolate | What the model sees |
-|---|---|
-| `${reviewText}` | The string itself, inline. |
-| `${reviews}` (an array) | Each item as JSON, joined into a list. |
-| `${customer}` (a record) | The record serialised as JSON. |
-| `${customer.name}` | Just the field. |
-| `${reviews.length()}` | The result of any in-scope expression. |
 
 ### Anatomy of a Good Prompt
 
@@ -171,7 +159,7 @@ Three things tend to make natural-function bodies more reliable:
 
 ## Typed Return Inference
 
-The headline feature of natural functions is this: **the return type is the contract**. When the runtime encounters a `natural { ... }` block, it:
+The headline feature of natural functions is this: **the return type is the contract**. When the runtime processes a natural function, it:
 
 1. Looks at the declared return type.
 2. Builds a JSON schema from that type and includes it in the LLM call.
@@ -237,7 +225,6 @@ A natural function can also be wired up as an [agent tool](/docs/genai/develop/a
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| `bal run` fails with *"natural expressions require --experimental"*. | The `--experimental` flag isn't on the command line. | Click **Run** in WSO2 Integrator (it adds the flag), or run `bal run --experimental` in the terminal. |
 | Compile error: *"Default model for natural functions not configured"*. | First-time setup missed. | Run **Ballerina: Configure default WSO2 model provider** from the Command Palette, or pick a provider via the cog icon on the Prompt node. |
 | Returned record has empty / wrong fields. | Prompt doesn't mention the fields the type expects, or descriptions are missing. | Add field doc comments on the type, or spell the fields out by name in the prompt. |
 | Function works in isolation but errors when called from a flow. | Bound parameter has a different shape than the function expects. | Check the binding in the Call Natural Function panel; bind to a value with the matching shape. |
