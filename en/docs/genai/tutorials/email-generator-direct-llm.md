@@ -56,7 +56,7 @@ Click **Define Payload** and:
 
 ![Define Payload dialog with sample JSON and type name EmailGeneratePayload.](/img/genai/develop/direct-llm/03-define-payload.png)
 
-The dialog produces a record with the right fields. From the WSO2 Integrator side you don't need to write the type by hand — the JSON sample drives it.
+The dialog produces a record with the right fields. There is no need to write the type by hand — the JSON sample drives it.
 
 ### Step 1.3: Define the response type
 
@@ -204,4 +204,4 @@ The LLM produced a complete, professionally written email — subject and body �
 ## What's next
 
 - **[Direct LLM Calls reference](/docs/genai/develop/direct-llm/overview)** -- the single-page feature reference covering the `generate` node, prompt editor, and typed responses.
-- **[AI Connections and Stores → Model Providers](/docs/genai/develop/components/model-providers)** -- switch the LLM provider for production (init params, supported models, advanced HTTP configs for OpenAI, Azure, Anthropic, Vertex, Mistral, DeepSeek, Ollama, OpenRouter).
+- **[Model Providers](/docs/genai/develop/components/model-providers)** -- switch the LLM provider for production (init params, supported models, advanced HTTP configs for OpenAI, Azure, Anthropic, Vertex, Mistral, DeepSeek, Ollama, OpenRouter).
