@@ -11,16 +11,17 @@ WSO2 Integrator provides migration tools to help you move existing integrations 
 
 ## Supported platforms and features
 
-| Source platform | WSO2 Integrator | CLI | AI Enhancement | Command |
-|---|:---:|:---:|:---:|---|
-| [MuleSoft](migrate-from-mulesoft.md) | ✓ | ✓ | ✓ | `bal migrate-mule` |
-| [TIBCO BusinessWorks](migrate-from-tibco-businessworks.md) | ✓ | ✓ | ✓ | `bal migrate-tibco` |
-| [Azure Logic Apps](migrate-from-azure-logic-apps.md) |  | ✓ | ✓ | `bal migrate-logicapps` |
+| Source platform | WSO2 Integrator | CLI | Rule-based | AI-powered |
+|---|:---:|:---:|:---:|:---:|
+| [MuleSoft](migrate-from-mulesoft.md)         | ✓ | ✓ | ✓ | ✓ (optional, currently not available in CLI) |
+| [TIBCO BusinessWorks](migrate-from-tibco-businessworks.md) | ✓ | ✓ | ✓ | ✓ (optional, currently not available in CLI) |
+| [Azure Logic Apps](migrate-from-azure-logic-apps.md)      | ✗ | ✓ | ✗ | ✓ (mandatory)   |
 
 **Legend:**
 - **WSO2 Integrator:** Migration supported via the WSO2 Integrator migration wizard UI.
 - **CLI:** Migration supported via the Ballerina CLI tool.
-- **AI Enhancement (WSO2 Integrator only):** AI-powered migration enhancement is available only in the WSO2 Integrator for MuleSoft and TIBCO.
+- **Rule-based:** Deterministic, rules-driven migration (non-AI). Available for MuleSoft and TIBCO only.
+- **AI-powered:** Migration uses AI. For MuleSoft and TIBCO, this is an optional enhancement (currently only available in WSO2 Integrator, not CLI). For Logic Apps, migration is performed entirely by AI and is mandatory.
 
 
 ## Migration workflow
@@ -40,21 +41,21 @@ After migration, complete the following post-migration steps:
 ### MuleSoft
 - Converts MuleSoft Anypoint flows (XML configurations) to Ballerina code.
 - Handles HTTP listeners, request connectors, DataWeave transformations, routers, error handling patterns, and more.
-- Migration is supported via both the WSO2 Integrator wizard (UI) and the CLI tool.
-- AI enhancement is available only in the wizard (UI) to further automate migration and resolve unmapped elements.
+- **Rule-based migration** is supported via both the WSO2 Integrator and the CLI tool.
+- **AI enhancement** is currently available only in the WSO2 Integrator to further automate migration and resolve unmapped elements.
 - See [Migrate from MuleSoft](migrate-from-mulesoft.md) for detailed instructions.
 
 ### TIBCO BusinessWorks
 - Converts TIBCO BusinessWorks process definitions to Ballerina code.
 - Handles process flows, activities, transitions, shared resources, error handling configurations, and more.
-- Migration is supported via both the WSO2 Integrator wizard (UI) and the CLI tool.
-- AI enhancement is available only in the wizard (UI) to further automate migration and resolve unmapped elements.
+- **Rule-based migration** is supported via both the WSO2 Integrator and the CLI tool.
+- **AI enhancement** is currently available only in the WSO2 Integrator to further automate migration and resolve unmapped elements.
 - See [Migrate from TIBCO BusinessWorks](migrate-from-tibco-businessworks.md) for detailed instructions.
 
 ### Azure Logic Apps
 - Converts Logic Apps workflow definitions (ARM templates and workflow JSON) to Ballerina code.
 - Handles triggers, actions, connectors, control flow, error handling patterns, and more.
-- Migration is currently supported only via the CLI tool. Wizard (UI) and AI enhancement are not available for Logic Apps at this time.
+- **Migration is fully AI-powered and available only via the CLI tool.** WSO2 Integrator support is not available for Logic Apps at this time.
 - See [Migrate from Azure Logic Apps](migrate-from-azure-logic-apps.md) for detailed instructions.
 
 ## Command reference
