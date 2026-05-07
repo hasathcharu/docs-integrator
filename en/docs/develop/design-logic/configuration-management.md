@@ -4,9 +4,6 @@ title: Configuration management
 description: Externalize integration settings with configurable variables and Config.toml for environment-specific deployments.
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Configuration management
 
 Integration projects typically run in multiple environments — development, staging, and production — each with different database endpoints, API keys, and feature flags. 
@@ -15,40 +12,22 @@ WSO2 Integrator uses Ballerina's built-in configuration system to separate setti
 
 ## Configurable variables
 
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-Configurable variables defined in your integration project are accessible across all its flows and nodes.
+WSO2 Integrator's configuration support is built on Ballerina's `configurable` keyword. For a guided walkthrough of declaring variables and supplying values through the visual designer, see [Configurations](../integration-artifacts/supporting/configurations.md).
 
 ![Config Editor UI in WSO2 Integrator showing configurable variables for the integration project and the panel for adding a new configurable variable](/img/develop/design-logic/configurations/config-editor-ui.png)
 
-To add a configurable variable through the visual designer, see [Configurations](../integration-artifacts/supporting/configurations.md#adding-a-configuration). To supply values for declared variables, use the **Config Editor** UI (low-code) or edit the `Config.toml` file in the project root.
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-Declare a configurable variable with the `configurable` keyword at the module level:
+Variables declared in your integration project are accessible across all its flows and nodes. The `?` placeholder marks a variable as required — it must be supplied at runtime from one of the [configuration sources](#configuration-sources); otherwise, the integration fails with a runtime error at startup.
 
 ```ballerina
-import ballerina/http;
-import ballerina/log;
-
-// Required -- no default, must be supplied via Config.toml or env var
+// Required -- must be supplied at runtime
 configurable string dbHost = ?;
-configurable string dbUser = ?;
 configurable string dbPassword = ?;
 
-// Optional -- has a default value
+// Optional -- uses the declared default if no value is supplied
 configurable int dbPort = 3306;
-configurable int maxRetries = 3;
 configurable decimal requestTimeoutSeconds = 30.0d;
 configurable boolean enableCaching = true;
 ```
-
-Config values must be provided through a supported configuration source (`Config.toml`, `BAL_CONFIG_VAR_*` env vars, `BAL_CONFIG_DATA`, or `-C` CLI args) for all variables with no default values (initialized with `?`); otherwise, the program fails with a runtime error at startup.
-
-</TabItem>
-</Tabs>
 
 ### Supported types
 
@@ -113,21 +92,14 @@ timeoutSeconds = 15.0
 ### Basic structure
 
 ```toml
+# Comments start with #
 dbHost = "localhost"
 dbPort = 3306
-dbUser = "root"
-dbPassword = "dev-password"
 enableCaching = true
 maxRetries = 3
 
+# Arrays use square brackets
 allowedOrigins = ["https://app.example.com", "https://admin.example.com"]
-
-[orderDb]
-host = "localhost"
-port = 3306
-username = "root"
-password = "dev-password"
-database = "orders_dev"
 ```
 
 ### Module-qualified keys
@@ -146,7 +118,19 @@ smtpHost = "smtp.example.com"
 smtpPort = 587
 ```
 
-## Environment variables
+## Configuration sources
+
+Configurable variables can be supplied from several sources. When the same variable is set in more than one place, the runtime resolves it using the first source from the table below (top → bottom, highest to lowest precedence):
+
+| Source | Example | Typical use |
+|---|---|---|
+| Individual env vars (`BAL_CONFIG_VAR_*`) | `BAL_CONFIG_VAR_DBHOST=localhost` | CI/CD pipelines, containers, secrets |
+| Command-line arguments | `bal run -- -CdbHost=localhost` | One-off overrides, local testing |
+| Inline TOML (`BAL_CONFIG_DATA`) | `BAL_CONFIG_DATA='dbHost="localhost"'` | Containerized runs without a config file |
+| TOML files (`Config.toml` / `BAL_CONFIG_FILES`) | `dbHost = "localhost"` | Per-environment configuration |
+| Code defaults | `configurable string dbHost = "localhost";` | Development fallback |
+
+### Environment variables
 
 Override any configurable variable with an environment variable using the pattern `BAL_CONFIG_VAR_<NAME>`, where `<NAME>` is the variable name in uppercase:
 
@@ -161,18 +145,6 @@ Point to an alternative `Config.toml` file:
 ```bash
 BAL_CONFIG_FILES=/etc/myapp/config.toml bal run
 ```
-
-### Priority order
-
-When the same variable is defined in more than one place, the runtime resolves it using the first source it finds from the list below (top → bottom, highest to lowest precedence):
-
-| Source | Example | Typical use |
-|---|---|---|
-| Individual env vars (`BAL_CONFIG_VAR_*`) | `BAL_CONFIG_VAR_DBHOST=localhost` | CI/CD pipelines, containers, secrets |
-| Command-line arguments | `bal run -- -CdbHost=localhost` | One-off overrides, local testing |
-| Inline TOML (`BAL_CONFIG_DATA`) | `BAL_CONFIG_DATA='dbHost="localhost"'` | Containerized runs without a config file |
-| TOML files (`Config.toml` / `BAL_CONFIG_FILES`) | `dbHost = "localhost"` | Per-environment configuration |
-| Code defaults | `configurable string dbHost = "localhost";` | Development fallback |
 
 ## Per-environment configuration
 
@@ -216,9 +188,7 @@ BAL_CONFIG_FILES=config/dev.toml bal run
 BAL_CONFIG_FILES=config/prod.toml bal run
 ```
 
-## Secrets management
-
-Never commit secrets to `Config.toml` in version control. Supply them through environment variables or a gitignored secrets file. For Kubernetes Secrets, HashiCorp Vault, AWS Secrets Manager, and TLS configuration, see [Secrets and encryption](../../deploy-operate/secure/secrets-encryption.md).
+Never commit secret-bearing configuration files to version control. For production credential handling, secret managers, and TLS configuration, see [Secrets and encryption](../../deploy-operate/secure/secrets-encryption.md).
 
 ## Complete example
 
