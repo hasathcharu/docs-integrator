@@ -1729,21 +1729,11 @@ const sidebars: SidebarsConfig = {
           label: 'Develop AI applications',
           items: [
             'genai/develop/overview',
-            // AI Connections and Stores (reference for shared AI primitives)
-            {
-              type: 'category',
-              label: 'AI Connections and Stores',
-              link: { type: 'doc', id: 'genai/develop/components/overview' },
-              collapsed: true,
-              items: [
-                'genai/develop/components/model-providers',
-                'genai/develop/components/embedding-providers',
-                'genai/develop/components/vector-stores',
-                'genai/develop/components/knowledge-bases',
-                'genai/develop/components/chunkers',
-                'genai/develop/components/memory',
-              ],
-            },
+            'genai/develop/components/model-providers',
+            'genai/develop/components/embedding-providers',
+            'genai/develop/components/vector-stores',
+            'genai/develop/components/knowledge-bases',
+            'genai/develop/components/chunkers',
             // Direct LLM Calls (single page)
             'genai/develop/direct-llm/overview',
             // Natural Functions (single page)
