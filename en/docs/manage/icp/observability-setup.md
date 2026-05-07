@@ -7,21 +7,18 @@ description: Set up centralized logs and metrics monitoring for BI runtimes usin
 
 ICP provides centralized observability for BI runtimes. Logs and metrics are collected via Fluent Bit, stored in OpenSearch, and displayed in the ICP Console.
 
-For MI runtimes, see [MI Observability Setup](observability-setup-mi.md).
+For MI runtimes, see [MI Observability Setup](mi-profile/observability-setup-mi.md).
 
 ## Architecture
 
-```
-┌──────────┐   log files   ┌───────────┐   HTTP    ┌────────────┐
-│    BI    │──────────────▶│ Fluent Bit │─────────▶│ OpenSearch  │
-│ Runtime  │               └───────────┘           └─────┬──────┘
-└────┬─────┘                                             │
-     │ heartbeat                                         │ query
-     ▼                                                   ▼
-┌─────────┐                                     ┌──────────────┐
-│   ICP   │◀────────────────────────────────────│ ICP Console  │
-│  Server │          GraphQL / REST              │  (Browser)   │
-└─────────┘                                     └──────────────┘
+```mermaid
+flowchart LR
+    BI["BI Runtime"] -- "app.log" --> FB["Fluent Bit"]
+    BI -- "metrics.log" --> FB
+    FB -- "HTTP" --> OS["OpenSearch"]
+    BI -- "heartbeat" --> ICP["ICP Server"]
+    OS -- "query" --> ICP
+    Console["ICP Console\n(Browser)"] -- "GraphQL / REST" --> ICP
 ```
 
 1. The BI runtime writes structured logs to two separate files: application logs and metrics logs.
@@ -30,18 +27,18 @@ For MI runtimes, see [MI Observability Setup](observability-setup-mi.md).
 
 ## Prerequisites
 
-| Component | Purpose |
-|-----------|---------|
-| OpenSearch | Log and metrics storage |
-| Fluent Bit | Log collection and forwarding |
-| ICP Server | Observability API layer |
-| ICP Console secret | Created in the Console under the organization's environment settings. Format: `<keyId>.<keyMaterial>`. |
+| Component | Prerequisite |
+|-----------|-------------|
+| ICP Server | Running, with OpenSearch connection configured in `deployment.toml` (see [Install ICP — OpenSearch](install-icp.md#opensearch-observability)) |
+| Integration | Connected to ICP with heartbeats working (see [Connect an Integration to ICP](connect-runtime.md)) |
+| OpenSearch | Deployed and reachable from ICP Server and Fluent Bit |
+| Fluent Bit | Installed on the machine running the BI runtime |
 
 ## Step 1: Deploy OpenSearch
 
 Any single-node or clustered OpenSearch deployment works. ICP needs HTTP(S) access to the OpenSearch REST API.
 
-Note the host, port, and credentials — you will configure them in the ICP Server and Fluent Bit.
+Note the host, port, and credentials — you will configure them in Fluent Bit (and in ICP Server's `deployment.toml` if not already done).
 
 ### Evaluation setup
 
@@ -87,7 +84,7 @@ Verify (note HTTPS and `-k` for the self-signed demo certificate):
 curl -sk -u admin:YourStrong@Pass2026! https://localhost:9200
 ```
 
-The demo security configuration keeps the security plugin **enabled** with self-signed TLS certificates and basic authentication. Set `tls On` and `tls.verify Off` in Fluent Bit, and use `https://` in the ICP Server config (see Steps 3 and 5).
+The demo security configuration keeps the security plugin **enabled** with self-signed TLS certificates and basic authentication. Set `tls On` and `tls.verify Off` in Fluent Bit, and use `https://` in the ICP Server config.
 
 :::warning
 The demo configuration is for evaluation only. In production, use properly signed certificates and strong credentials. See the [OpenSearch security documentation](https://opensearch.org/docs/latest/security/) for details.
@@ -140,35 +137,13 @@ curl -X PUT 'http://<opensearch-host>:9200/_index_template/wso2_integration_metr
   }'
 ```
 
+## Step 3: Enable Observability in the Integration
 
+These changes are additive — they build on the base configuration from [Connect an Integration to ICP](connect-runtime.md).
 
-## Step 3: Configure ICP Server
+### Ballerina.toml
 
-Add the OpenSearch connection to ICP Server's `deployment.toml`:
-
-```toml
-opensearchUrl = "https://localhost:9200"
-opensearchUsername = "admin"
-opensearchPassword = "<your-opensearch-password>"
-```
-
-If OpenSearch is running without TLS (e.g. with the security plugin disabled), use `http://`:
-
-```toml
-opensearchUrl = "http://localhost:9200"
-```
-
-:::warning
-The ICP config file ships with `opensearchUrl`, `opensearchUsername`, and `opensearchPassword` commented out near the bottom, after `[ballerina.http.traceLogAdvancedConfig]`. **Do not uncomment those lines.** Because they fall under a `[section]` header, Ballerina treats them as section-scoped values and rejects them. Always add the OpenSearch keys **before the first `[section]` header** — ideally the very first lines of the file.
-:::
-
-## Step 4: Configure the Integration
-
-Observability requires changes in the integration project itself — these are not server-side settings.
-
-### 1. Add dependencies and enable observability
-
-In `Ballerina.toml`, enable both remote management and observability:
+Add `observabilityIncluded` alongside the existing `remoteManagement`:
 
 ```toml
 [build-options]
@@ -178,7 +153,9 @@ observabilityIncluded = true
 
 `observabilityIncluded = true` is required for metrics collection. Without it, the `ballerinax/metrics.logs` module cannot emit per-request metrics.
 
-In your Ballerina project's `main.bal` (or any `.bal` file), import the ICP runtime bridge and metrics logger:
+### main.bal
+
+Add the metrics logger import alongside the existing bridge import:
 
 ```ballerina
 import wso2/icp.runtime.bridge as _;
@@ -187,7 +164,9 @@ import ballerinax/metrics.logs as _;
 
 Both are blank imports (`as _`) — they activate automatically at startup.
 
-### 2. Enable logging and metrics in `Config.toml`
+### Config.toml
+
+Add logging and metrics settings alongside the existing `[wso2.icp.runtime.bridge]` section:
 
 ```toml
 [ballerina.observe]
@@ -221,23 +200,7 @@ This produces two separate log files:
 The log file paths must match the Fluent Bit input `Path` patterns. Adjust both sides if you change the directory layout.
 :::
 
-### 3. Configure the ICP runtime bridge
-
-Also in `Config.toml`, configure the bridge so the runtime registers with ICP and sends heartbeats:
-
-```toml
-[wso2.icp.runtime.bridge]
-serverUrl = "https://<icp-server-host>:9445"
-secret = "<key-id>.<key-material>"
-project = "my-project"
-integration = "my-integration"
-environment = "dev"
-heartbeatInterval = 10
-```
-
-The `secret` must be created **before** starting the BI runtime. See [Connect an Integration to ICP](connect-runtime.md) for details.
-
-## Step 5: Configure Fluent Bit
+## Step 4: Configure Fluent Bit
 
 Fluent Bit tails the BI log files and ships them to OpenSearch.
 
@@ -449,7 +412,7 @@ For plain HTTP OpenSearch (no TLS), use `http://` and drop `-k`.
 
 ### Check ICP Console
 
-1. Log into the ICP Console at `https://<icp-host>:9446`.
+1. Log into the ICP Console at `https://<icp-host>:9445`.
 2. Navigate to **Projects → \<project\> → Components → \<component\>**.
 3. The component overview shows the service endpoints and environment cards with runtime status.
 4. Click the **Logs** icon in the sidebar (📋) — you should see runtime log entries with timestamps, log levels, and messages. Use the environment, level, and time range filters to narrow results.
@@ -473,7 +436,7 @@ curl http://localhost:8090/<your-endpoint>
 | Metrics page shows "No metrics data" | BI runtime has no inbound HTTP requests | Metrics are generated per-request — send traffic first |
 | Metrics page shows "No metrics data" | `metricsLogsEnabled` not set | Add `metricsLogsEnabled = true` to `[ballerina.observe]` in `Config.toml` |
 | Metrics page shows "No metrics data" | Metrics log file not configured | Set `logFilePath` in `[ballerinax.metrics.logs]` |
-| Metrics page shows "No metrics data" | Lua enrichment scripts missing from Fluent Bit config | Add the Lua `[FILTER]` blocks (especially `extract_bal_metrics_data`) — see Step 5 |
+| Metrics page shows "No metrics data" | Lua enrichment scripts missing from Fluent Bit config | Add the Lua `[FILTER]` blocks (especially `extract_bal_metrics_data`) — see Step 4 |
 | Logs page shows "Observability service is unavailable" | ICP Server can't reach OpenSearch | Verify `opensearchUrl` in ICP Server's `deployment.toml` |
 | OpenSearch rejects documents with "total fields [1000] exceeded" | Deeply nested JSON in log messages | Increase limit: `curl -X PUT '.../_settings' -d '{"index.mapping.total_fields.limit": 2000}'` or add to the index template |
 

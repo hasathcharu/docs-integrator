@@ -48,20 +48,6 @@ and `integration` pre-filled and the secret is scoped to that component.
 
 ## 2. Configure the Integration
 
-### Config.toml
-
-Place the snippet in the `Config.toml` next to your application jar, filling in any
-placeholder values.
-
-```toml
-[wso2.icp.runtime.bridge]
-serverUrl   = "https://<icp-host>:9445"
-environment = "dev"
-project     = "my-project"
-integration = "my-integration"
-secret      = "<generated secret>"
-```
-
 ### Ballerina.toml
 
 Enable remote management in `Ballerina.toml`:
@@ -79,9 +65,25 @@ Import the ICP runtime bridge in the integration entrypoint:
 import wso2/icp.runtime.bridge as _;
 ```
 
+This is a blank import (`as _`) — it activates automatically at startup.
+
 :::tip
 When you enable ICP monitoring through the WSO2 Integrator IDE, the `Ballerina.toml` and `main.bal` changes are applied automatically.
 :::
+
+### Config.toml
+
+Place the snippet in the `Config.toml` next to your application jar, filling in any
+placeholder values.
+
+```toml
+[wso2.icp.runtime.bridge]
+serverUrl   = "https://<icp-host>:9445"
+environment = "dev"
+project     = "my-project"
+integration = "my-integration"
+secret      = "<generated secret>"
+```
 
 ### Field Reference
 
@@ -136,3 +138,9 @@ runtime = "bi-node-2"
 | `Full heartbeat rejected` | Wrong or revoked secret | Generate a new secret in the console |
 | Runtime shows but status is not RUNNING | Heartbeats stopped | Check the BI process is alive and network is reachable |
 | `PKIX path building failed` | Self-signed ICP certificate | Set `enableSSL = false` (non-production) or provide the CA via `cert` |
+
+## Next Step
+
+Add centralized logs and metrics for your integration:
+
+➡️ **[Observability Setup](observability-setup.md)** — Configure OpenSearch, Fluent Bit, and log collection.

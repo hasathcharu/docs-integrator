@@ -123,6 +123,12 @@ const config: Config = {
           activeBaseRegex: '/docs/deploy-operate(/|$)',
         },
         {
+          to: '/docs/manage/icp/integration-control-plane',
+          label: 'Manage',
+          position: 'left',
+          activeBaseRegex: '/docs/manage(/|$)',
+        },
+        {
           to: '/docs/reference/overview',
           label: 'Reference',
           position: 'left',
