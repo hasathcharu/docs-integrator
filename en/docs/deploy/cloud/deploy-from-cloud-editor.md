@@ -45,3 +45,5 @@ Develop your integration in the cloud editor as you would in the WSO2 Integrator
 4. Click **Deploy**.
 
 WSO2 Cloud pushes the integration to the repository, builds it, and deploys it to the **Development** environment.
+
+{/* TODO: Add what's next after creating manage pages */}

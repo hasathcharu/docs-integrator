@@ -1,8 +1,9 @@
 ---
-title: Deploy Overview - WIP
+title: Deploy Overview
 description: Learn about the different deployment options for your WSO2 Integrator projects and how to choose the right one for your needs.
 keywords: [wso2 integrator, deployment, wso2 cloud, docker, kubernetes, vm-based deployment, integration control plane]
 ---
+{/* TODO: Work in progress */}
 
 # Deploy and operate
 

@@ -9,7 +9,7 @@ keywords: [wso2 integrator, wso2 cloud, import, project, git, github, gitlab, az
 If you have an existing project created with the WSO2 Integrator IDE in a Git repository, you can import it directly into WSO2 Cloud. During import, you configure each integration in the project and WSO2 Cloud creates them all at once.
 
 :::info Prerequisites
-- A project created with the WSO2 Integrator IDE and pushed to a remote Git repository (GitHub, GitLab, BitBucket, or Azure DevOps).
+- A project created with the WSO2 Integrator IDE and pushed to a remote Git repository (GitHub, GitLab, Bitbucket, or Azure DevOps).
 - A WSO2 Cloud account. Sign up at [WSO2 Cloud](https://console.devant.dev) if you don't have one.
 :::
 
@@ -37,3 +37,5 @@ If you have an existing project created with the WSO2 Integrator IDE in a Git re
 WSO2 Cloud creates all the integrations and navigates you to the newly created project home.
 
 ![Project Home](/img/deploy/cloud/import-project/project-home.png)
+
+{/* TODO: Add what's next after creating manage pages */}
