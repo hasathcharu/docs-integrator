@@ -1892,6 +1892,30 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    // ─────────────────────────────────────────────
+    // DEPLOY
+    // "How do I ship, run, and secure this?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Deploy',
+      collapsed: true,
+      link: { type: 'doc', id: 'deploy/overview' },
+      items: [
+        // Deploy
+        {
+          type: 'category',
+          label: 'Deploy to WSO2 Cloud',
+          link: { type: 'doc', id: 'deploy/cloud/overview' },
+          items: [
+            'deploy/cloud/push-from-ide',
+            'deploy/cloud/deploy-from-cloud-editor',
+            'deploy/cloud/import-project',
+            'deploy/cloud/import-integration'
+          ],
+        },
+      ],
+    },
 
     // ─────────────────────────────────────────────
     // DEPLOY & OPERATE
