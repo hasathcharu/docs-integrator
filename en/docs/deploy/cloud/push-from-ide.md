@@ -59,3 +59,5 @@ A browser opens showing your project on WSO2 Cloud.
    Once the deployment is complete, click **View in Console**.
 
 A browser opens showing the deployed integration directly on WSO2 Cloud.
+
+{/* TODO: Add what's next after creating manage pages */}
