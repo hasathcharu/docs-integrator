@@ -7,7 +7,7 @@ keywords: [wso2 integrator, observability, tracing, ai agents, dev-time trace, t
 
 # Observability
 
-When you run an agent, you want to see exactly what it did. Which tools it picked, what it sent to the LLM, what came back, and how long each step took. WSO2 Integrator ships with a **dev-time trace server**, a built-in tracing backend that runs alongside the IDE and streams spans into a **Traces** panel as your integration executes.
+When you run an agent, you want to see exactly what it did. Which tools it picked, what it sent to the LLM, what came back, and how long each step took. WSO2 Integrator ships with a **dev-time trace server**, a built-in tracing backend that runs alongside the IDE and streams spans into a **Traces** panel as your integration executes. With tracing on, the LLM's tool choices and interpretations of each result are visible in the spans, so you can debug agent behavior without adding print statements.
 
 This page covers how to turn tracing on for an agent during development. Production observability for deployed integrations is a separate topic and isn't covered here.
 
@@ -185,14 +185,44 @@ In the **Session Traces** view, click **Export** in the top-right and choose **E
 
 The exported file contains every trace in the current session, in the order they ran. Use this when you want to capture an entire conversation, for example to reproduce an issue end-to-end or to seed a regression suite.
 
-## Reading a trace
+## Connect to an external trace provider
 
-The trace is the primary way to understand what an agent actually did:
+The trace viewer described above is wired to the built-in **IDE trace provider**. To send traces to your existing observability stack instead (Jaeger, Zipkin, or any OpenTelemetry-compatible collector), swap the trace provider in your project files.
 
-- If the agent picked the wrong tool, the choice is visible in the LLM call span just before it.
-- If the final answer is wrong but the tool calls are right, the issue is in how the model interpreted the tool result. This is also visible in the next LLM call span.
+There's no low-code option for this. Switch the project to pro-code view and edit the configuration manually. The example below uses Jaeger. For other providers, follow the same pattern with the matching `ballerinax` extension. See the [Ballerina observability overview](https://ballerina.io/learn/overview-of-ballerina-observability/) for the full list of supported platforms.
 
-You don't need to add print statements or attach a debugger. Turn tracing on, run the agent, and read the trace.
+Three changes are required:
+
+1. In `Ballerina.toml`, include observability in the build:
+
+    ```toml
+    [build-options]
+    observabilityIncluded = true
+    ```
+
+2. In any `.bal` file in your project (for example, `trace_enabled.bal`), import the provider extension. The `as _` prefix is required because the module is imported only for its side effects:
+
+    ```ballerina
+    import ballerinax/jaeger as _;
+    ```
+
+3. In `Config.toml`, enable tracing and select the provider:
+
+    ```toml
+    [ballerina.observe]
+    tracingEnabled = true
+    tracingProvider = "jaeger"
+    ```
+
+When you run the integration, you should see a startup log line confirming the provider is wired up:
+
+```
+ballerina: started publishing traces to Jaeger on localhost:4317
+```
+
+Spans flow to the configured collector instead of the IDE trace viewer. To point at a non-local collector or tune sampling, add a `[ballerinax.jaeger]` section to `Config.toml` with provider-specific keys. See the [Ballerina Jaeger configuration guide](https://ballerina.io/learn/supported-observability-tools-and-platforms/jaeger/) for the full list of configurables.
+
+To switch back to the dev-time viewer, change the import to `ballerinax/idetraceprovider as _;` and set `tracingProvider = "idetraceprovider"` in `Config.toml`.
 
 ## What's next
 
