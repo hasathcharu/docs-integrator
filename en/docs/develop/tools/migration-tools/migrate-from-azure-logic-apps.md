@@ -20,7 +20,7 @@ The Azure Logic Apps migration tool converts Logic Apps workflow definitions (AR
 <Tabs>
 <TabItem value="ui" label="WSO2 Integrator">
 
-Currently, WSO2 Intregrator wizard-based migration is not available for Azure Logic Apps. Please use the CLI instructions in the next tab.
+Currently, WSO2 Integrator wizard-based migration is not available for Azure Logic Apps. Please use the CLI instructions in the next tab.
 
 </TabItem>
 <TabItem value="code" label="CLI" default>

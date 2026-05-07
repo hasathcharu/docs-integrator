@@ -30,10 +30,10 @@ Migration can be initiated using either the WSO2 Integrator migration wizard (UI
 After migration, complete the following post-migration steps:
 
 1. **Review:** Check the migration report and migration summary markdown files to understand what was done during migration and identify any items that may need manual attention.
-3. **Implement:** Complete any manually flagged items (custom logic, complex transformations, or unsupported elements).
-2. **Configure:** Set up `Config.toml` with connection details and environment-specific values.
+2. **Implement:** Complete any manually flagged items (custom logic, complex transformations, or unsupported elements).
+3. **Configure:** Set up `Config.toml` with connection details and environment-specific values.
 4. **Test:** Review any auto-migrated tests, and add or update tests as needed to ensure the migrated integrations behave as expected compared to the source system.
-5. **Deploy** Deploy to the WSO2 Integrator runtime.
+5. **Deploy:** Deploy to the WSO2 Integrator runtime.
 
 ## Tool summary
 
