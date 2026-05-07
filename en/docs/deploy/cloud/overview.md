@@ -4,9 +4,9 @@ description: Overview of the ways to deploy integrations to WSO2 Cloud from the 
 keywords: [wso2 integrator, wso2 cloud, deploy, overview, import, cloud editor]
 ---
 
-# WSO2 Cloud
+# WSO2 Cloud - Integration Platform
 
-WSO2 Cloud is a fully managed platform that builds and runs your integrations from a Git repository. There are three ways to get your integrations onto WSO2 Cloud, depending on where your work lives.
+WSO2 Cloud - Integration Platform is a fully managed platform that builds and runs your integrations from a Git repository. There are three ways to get your integrations onto WSO2 Cloud, depending on where your work lives.
 
 ## Deploy from the IDE
 
