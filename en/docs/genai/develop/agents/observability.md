@@ -9,8 +9,6 @@ keywords: [wso2 integrator, observability, tracing, ai agents, dev-time trace, t
 
 When you run an agent, you want to see exactly what it did. Which tools it picked, what it sent to the LLM, what came back, and how long each step took. WSO2 Integrator ships with a **dev-time trace server**, a built-in tracing backend that runs alongside the IDE and streams spans into a **Traces** panel as your integration executes. With tracing on, the LLM's tool choices and interpretations of each result are visible in the spans, so you can debug agent behavior without adding print statements.
 
-This page covers how to turn tracing on for an agent during development. Production observability for deployed integrations is a separate topic and isn't covered here.
-
 ## Enable tracing
 
 Tracing is off by default. The way you turn it on depends on how the agent is exposed.
@@ -103,7 +101,6 @@ Click **Timeline** at the top of the sidebar to switch from the list view to a G
 
 ![The Trace sidebar in Timeline view. Spans are laid out as horizontal bars on a time axis from 0 to about 3.5 seconds. The top bar is Math Tutor spanning the full run, with child bars for three gpt-4o-mini Chat calls interleaved with sumTool and subtractTool Execute Tool spans.](/img/genai/develop/agents/observability/15-timeline-view.png)
 
-
 ### Quick info pills
 
 Each span shows a row of quick info pills under its title, summarizing the metadata you care about most. The exact set depends on the span type.
@@ -138,7 +135,7 @@ The Output section behaves the same way.
 
 For an **Execute Tool** span, Input shows the named arguments the agent supplied and Output shows the returned value. The span header also carries a **Tool Description** pill so you can see what the agent thought the tool did.
 
-![The Execute Tool span detail for 'sumTool'. Pills show Latency 11ms and Tool Description 'Calculates the sum of two numbers'. The Input section labelled TOOL ARGUMENTS lists num1 = 3 and num2 = 2. The Output section labelled TOOL OUTPUT shows 5.0.](/img/genai/develop/agents/observability/14-execute-tool-detail.png)
+![The Execute Tool span detail for 'sumTool'. Pills show Latency 11ms and Tool Description 'Calculates the sum of two numbers'. The Input section labeled TOOL ARGUMENTS lists num1 = 3 and num2 = 2. The Output section labeled TOOL OUTPUT shows 5.0.](/img/genai/develop/agents/observability/14-execute-tool-detail.png)
 
 Some spans also expose an **Advanced Details** section with provider-specific metadata, such as raw response headers and finish reasons. Expand it when you need to dig deeper.
 
@@ -189,7 +186,7 @@ The exported file contains every trace in the current session, in the order they
 
 The trace viewer described above is wired to the built-in **IDE trace provider**. To send traces to your existing observability stack instead (Jaeger, Zipkin, or any OpenTelemetry-compatible collector), swap the trace provider in your project files.
 
-There's no low-code option for this. Switch the project to pro-code view and edit the configuration manually. The example below uses Jaeger. For other providers, follow the same pattern with the matching `ballerinax` extension. See the [Ballerina observability overview](https://ballerina.io/learn/overview-of-ballerina-observability/) for the full list of supported platforms.
+The example below uses Jaeger. For other providers, follow the same pattern with the matching `ballerinax` extension. See the [Ballerina observability overview](https://ballerina.io/learn/overview-of-ballerina-observability/) for the full list of supported platforms.
 
 Three changes are required:
 
