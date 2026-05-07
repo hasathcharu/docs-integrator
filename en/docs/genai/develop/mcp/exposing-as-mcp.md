@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Exposing a Service as MCP
-description: Reference for the MCP Service artifact in WSO2 Integrator — listener, service, tools, and session modes.
+description: Reference for the MCP Service artifact in WSO2 Integrator - listener, service, tools, and session modes.
 ---
 
 import ThemedImage from '@theme/ThemedImage';
@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 # Exposing a service as MCP
 
-An **MCP service** is a WSO2 Integrator artifact that publishes a set of tools over the Model Context Protocol. Any MCP-compatible client — Claude Desktop, GitHub Copilot, or another AI agent — can connect, discover the tools, and call them. This page covers the configuration options for the listener, service, and tools, including how to handle sessions and dynamic tool definitions.
+An **MCP service** is a WSO2 Integrator artifact that publishes a set of tools over the Model Context Protocol. Any MCP-compatible client (Claude Desktop, GitHub Copilot, or another AI agent) can connect, discover the tools, and call them. This page covers the configuration options for the listener, service, and tools, including how to handle sessions and dynamic tool definitions.
 
 ## Creating an MCP service
 
@@ -42,7 +42,7 @@ After clicking **Create**, WSO2 Integrator opens the service in the **MCP Servic
 | Element | What it does |
 |---|---|
 | **Listener** | The `mcp:Listener` the service runs on. Click the chip to swap it or edit its settings. |
-| **Tools** | The tools the service exposes. Empty by default — click **+ Add Tool** to add one. |
+| **Tools** | The tools the service exposes. Empty by default; click **+ Add Tool** to add one. |
 | **Configure** | Service-level settings: base path, server info, session mode, HTTP options. |
 | **Try It** | Send sample MCP requests to the service from inside the editor. |
 
@@ -96,7 +96,7 @@ Click the edit icon on the **Service Configuration** record to open the record e
 | Field | Description |
 |---|---|
 | **info.name** | Name of *your* server implementation (for example, `MCP Weather Server`). Sent to clients as `serverInfo.name` during initialization. Required. |
-| **info.version** | Version of your server implementation (for example, `1.0.0`). Sent as `serverInfo.version`. This is the version of *your* service, not the MCP protocol version — the protocol version is negotiated by the runtime. Required. |
+| **info.version** | Version of your server implementation (for example, `1.0.0`). Sent as `serverInfo.version`. This is the version of *your* service, not the MCP protocol version; the protocol version is negotiated by the runtime. Required. |
 | **sessionMode** | Session management mode. Options: `AUTO` (default), `STATEFUL`, `STATELESS`. See [Session modes](#session-modes). |
 | **httpConfig** | HTTP service configuration (CORS, auth, compression, validation, and so on). Same fields as the [HTTP service](../../../develop/integration-artifacts/service/http.md) `@http:ServiceConfig`. |
 | **options.capabilities** | Capabilities the server advertises during initialization. Defaults to `{tools: {}}`. |
@@ -178,7 +178,7 @@ For standard HTTP setups, only **Listen To** (the port) is required. Configure *
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
-`mcp:ListenerConfiguration` is an alias for `http:ListenerConfiguration` — every HTTP listener field applies to MCP listeners as well.
+`mcp:ListenerConfiguration` is an alias for `http:ListenerConfiguration`, so every HTTP listener field applies to MCP listeners as well.
 
 **Inline listener with a port**
 
@@ -246,11 +246,11 @@ Click **+ Add Tool** in the editor to open the **Tool Configuration** panel.
 | Field | Required | Description |
 |---|---|---|
 | **Tool Name** | Yes | Name MCP clients will see. Use camel-case and be descriptive: `getOrderStatus`, `searchProducts`. |
-| **Tool Description** | Yes | What the tool does and *when* the assistant should use it. The single most important field for tool discoverability — see [Writing a good tool description](#writing-a-good-tool-description). |
+| **Tool Description** | Yes | What the tool does and *when* the assistant should use it. The single most important field for tool discoverability. See [Writing a good tool description](#writing-a-good-tool-description). |
 | **Parameters** | No | Each parameter has a name, type, and description. Descriptions are included in the schema sent to the client. |
 | **Return Type** | Yes | Ballerina type returned. The output schema is generated from this. |
 
-After clicking **Save**, the tool appears as a row under **Tools** in the editor and BI generates a `remote function` with an `@mcp:Tool` annotation in the source.
+After clicking **Save**, the tool appears as a row under **Tools** in the editor and WSO2 Integrator generates a `remote function` with an `@mcp:Tool` annotation in the source.
 
 ![The MCP Service Editor with a single tool 'add' listed under Tools.](/img/genai/develop/mcp/06-mcp-service-with-tool.png)
 
@@ -289,7 +289,7 @@ When you want explicit control over the description or input schema, use the `@m
 | Field | Description |
 |---|---|
 | **description** | Tool description sent to clients. Overrides the function's doc comment. |
-| **schema** | A `map<json>` JSON Schema for the tool's parameters. Overrides the schema BI derives from parameter types. Use when you need richer schema metadata (enums, defaults, custom validation) than Ballerina types can express. |
+| **schema** | A `map<json>` JSON Schema for the tool's parameters. Overrides the schema WSO2 Integrator derives from parameter types. Use when you need richer schema metadata (enums, defaults, custom validation) than Ballerina types can express. |
 
 ```ballerina
 @mcp:Tool {
@@ -348,10 +348,10 @@ A generic description leads to bad tool selection downstream. If you can't write
 
 ## Advanced: `mcp:AdvancedService`
 
-When tool definitions need to come from configuration, a database, or some runtime source — not from compile-time `remote function`s — use `mcp:AdvancedService`. You implement two callbacks:
+When tool definitions need to come from configuration, a database, or some runtime source (not from compile-time `remote function`s), use `mcp:AdvancedService`. You implement two callbacks:
 
-- **`onListTools()`** — return the list of tools advertised to clients.
-- **`onCallTool(params, session)`** — dispatch a tool call by name.
+- **`onListTools()`**: return the list of tools advertised to clients.
+- **`onCallTool(params, session)`**: dispatch a tool call by name.
 
 ```ballerina
 import ballerina/mcp;
@@ -413,8 +413,8 @@ service mcp:AdvancedService /mcp on mcpListener {
 
 | Use `mcp:Service` when… | Use `mcp:AdvancedService` when… |
 |---|---|
-| Tools map cleanly to compile-time `remote function`s. | Tools are dynamic — defined in configuration, a database, or another service. |
-| You want BI to derive schemas automatically. | You want hand-crafted JSON schemas or extra validation. |
+| Tools map cleanly to compile-time `remote function`s. | Tools are dynamic (defined in configuration, a database, or another service). |
+| You want WSO2 Integrator to derive schemas automatically. | You want hand-crafted JSON schemas or extra validation. |
 | You want the simplest possible MCP server. | You want a dispatch-table architecture. |
 
 :::info
@@ -434,7 +434,7 @@ When you build a tool flow in the visual designer, errors returned or propagated
 return error(string `Invalid invoice ID '${invoiceId}'. Expected format INV-XXXXX.`);
 ```
 
-The error message is what the AI client will read, so make it actionable. Avoid bare `error()` with no message — the assistant has nothing to reason about.
+The error message is what the AI client will read, so make it actionable. Avoid bare `error()` with no message; the assistant has nothing to reason about.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -483,7 +483,7 @@ Once your service is running, MCP clients connect by URL.
 
 - **Keep the tool list small.** Fewer, better-described tools beat dozens of overlapping ones.
 - **Authenticate.** Anything you expose over MCP is, by default, accessible to whoever connects. Configure auth on `httpConfig.auth` (JWT, OAuth2, basic).
-- **Log tool calls.** Just like any other API surface — knowing who called what is essential for debugging and audit.
+- **Log tool calls.** Just like any other API surface; knowing who called what is essential for debugging and audit.
 - **Version explicitly.** When tool shapes change, prefer adding a new tool over silently changing an existing one. AI clients depend on stable schemas.
 
 ## What's next
