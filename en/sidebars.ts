@@ -1972,6 +1972,8 @@ const sidebars: SidebarsConfig = {
             'deploy-operate/secure/keystore-truststore',
             'deploy-operate/secure/runtime-security',
             'deploy-operate/secure/authentication',
+            'deploy-operate/secure/sso-configuration',
+            'deploy-operate/secure/api-security',
             'deploy-operate/secure/api-security-rate-limiting',
             'deploy-operate/secure/secrets-encryption',
             'deploy-operate/secure/ip-whitelisting',
