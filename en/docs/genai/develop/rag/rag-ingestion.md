@@ -61,11 +61,11 @@ A **Text Data Loader** reads a file from disk and wraps its content as an `ai:Do
 
 4. In the configuration panel:
 
-| Field | Value |
-|---|---|
-| **Paths** | Path to the file you want to ingest — e.g. `/resources/knowledge.pdf` |
-| **Name** | A variable name for the loader — e.g. `loader` |
-| **Result Type** | The variable type, set to `ai:TextDataLoader`. |
+    | Field | Value |
+    |---|---|
+    | **Paths** | Path to the file you want to ingest — e.g. `/resources/knowledge.pdf` |
+    | **Name** | A variable name for the loader — e.g. `loader` |
+    | **Result Type** | The variable type, set to `ai:TextDataLoader`. |
 
     ![Text Data Loader configuration form showing Paths, Name, and Result Type fields.](/img/genai/develop/rag/03-dataloader-form.png)
 
@@ -161,7 +161,7 @@ Add a **Log Info** node after the ingest call to confirm the pipeline finished.
 
 This is optional but useful during development and when the automation runs on a schedule.
 
-    ![Full RAG ingestion pipeline with data loader, knowledge base, ingest, and log nodes.](/img/genai/develop/rag/12-full-rag-ingestion-pipeline.png)
+![Full RAG ingestion pipeline with data loader, knowledge base, ingest, and log nodes.](/img/genai/develop/rag/12-full-rag-ingestion-pipeline.png)
 
 ---
 
