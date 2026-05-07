@@ -40,9 +40,9 @@ If you encounter certificate validation errors like:
 
 Follow these steps:
 
-1. Navigate to the `dependencies/`(It can be found under `/Applications/WSO2
+1. Navigate to the `dependencies/` folder (It can be found under `/Applications/WSO2
    Integrator.app/Contents/components/dependencies` in MacOS, `/usr/share/wso2-integrator/components/dependencies` in
-   Linux  and `C:\Users\luhee\AppData\Local\Programs\WSO2\Integrator\components\dependencies` in Windows) folder in your
+   Linux, and `%USERPROFILE%\AppData\Local\Programs\WSO2\Integrator\components\dependencies` in Windows) in your
    WSO2 Integrator installation directory where Java Runtime
    Environment (JRE) instances are located
 2. Identify proxy-associated certificates from your proxy vendor's documentation

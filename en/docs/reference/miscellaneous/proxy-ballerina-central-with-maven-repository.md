@@ -76,7 +76,7 @@ Follow the steps below to configure a Maven remote repository in JFrog Artifacto
 
 7. Copy the repository URL from the **Artifacts** view. You will use it when configuring the Ballerina client.
 
-## Setting up the WSO2 Integartor
+## Setting up the WSO2 Integrator
 
 You can configure only one proxy repository in the `<USER_HOME>/.ballerina/Settings.toml` file to use in place of Ballerina Central. A typical configuration looks like the following.
 

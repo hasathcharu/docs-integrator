@@ -87,5 +87,5 @@ Command-line tools reference:
 
 ## Miscellaneous
 
-- **[Configure a Network Proxy for Ballerina](miscellaneous/configure-a-network-proxy.md)** — Set up proxy access in corporate environments
+- **[Configure a Network Proxy for WSO2 Integrator](miscellaneous/configure-a-network-proxy.md)** — Set up proxy access in corporate environments
 - **[Proxy Ballerina Central with Maven Repository](miscellaneous/proxy-ballerina-central-with-maven-repository.md)** — Set up Maven repository proxy for Ballerina Central
