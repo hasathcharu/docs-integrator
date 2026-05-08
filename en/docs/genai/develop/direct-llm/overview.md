@@ -34,7 +34,7 @@ To build this you do three things, in order:
 
 1. **Make sure a Model Provider connection exists.** This is the connection to the LLM. Adding one (and the per-provider form fields, model lists, and advanced HTTP knobs) is documented in **[Model Providers](/docs/genai/develop/components/model-providers)**. You only need to do this once per project.
 2. [**Add the Generate Node**](#the-generate-node), the call itself.
-3. [**Write the Prompt**](#writing-the-prompt) and [**Pick the Expected Type**](#picking-the-expected-type).
+3. [**Write the prompt**](#the-prompt-editor) and pick the expected type.
 
 The rest of this page walks each step in order.
 
@@ -56,15 +56,17 @@ The `generate` action lives **on the model-provider connection itself**, not as 
 
 ### The configuration form
 
-When the form opens, three fields are all you need: the **Prompt**, the **Result** variable, and the **Expected Type**. Add the prompt that describes the work, pick the type you want the response in for your use case, and click **Save**. Both fields are covered in detail in [Writing the prompt](#writing-the-prompt) and [Picking the expected type](#picking-the-expected-type) below.
+When the form opens, three fields are all you need: the **Prompt**, the **Result** variable, and the **Expected Type**. Add the prompt that describes the work, pick the type you want the response in for your use case, and click **Save**.
 
 ![The Generate configuration panel for the aiWso2modelprovider generate action. The Prompt field shows the Insert menu open with options for Inputs, Variables, Configurables, Functions, and Documents. An Expected Type field is below, with a Save button.](/img/genai/develop/direct-llm/23-generate-action-configure-prompt.png)
 
 | Field | Required | What it does |
 |---|---|---|
-| **Prompt** | Yes | The instruction sent to the LLM. Detailed in [Writing the prompt](#writing-the-prompt). |
+| **Prompt** | Yes | The instruction sent to the LLM. Detailed in [The prompt editor](#the-prompt-editor). |
 | **Result** | Yes | The variable name where the response is stored. Used by later nodes. |
-| **Expected Type** | Yes | The Ballerina type the response should be parsed into. Detailed in [Picking the expected type](#picking-the-expected-type). |
+| **Expected Type** | Yes | The Ballerina type the response should be parsed into. |
+
+The **Expected Type** field is what makes the response come back as a real Ballerina value. A `string`, an `int`, a record, an array. Not a blob of text you have to parse yourself. The runtime derives a JSON schema from the type, asks the model to fill it, parses the response back, and hands the typed value to the next node. **You don't need to write any schema instructions in the prompt.** The type drives that automatically.
 
 There are no per-call overrides on the `generate` node. Anything you'd tune (temperature, max tokens, and so on) lives on the model provider connection and applies to every call that uses it. See [Model Providers](/docs/genai/develop/components/model-providers) for the full list of advanced configurations per provider.
 
@@ -74,13 +76,9 @@ Click **Save** and the node lands in the flow as `<provider>:generate` (for exam
 
 ---
 
-## Writing the prompt
+## The prompt editor
 
-The **Prompt** is the instruction you send to the LLM. The same rules apply across `generate` nodes, [natural functions](/docs/genai/develop/natural-functions/overview), and AI Agent **Instructions**.
-
-### The prompt editor
-
-Click any **Prompt** field and WSO2 Integrator opens a rich-text editor in a dialog. The toolbar gives you the usual formatting tools (Insert, undo/redo, Bold, Italic, Link, headings, quote, lists, tables, magic-wand AI assist) and a **Preview / Source** toggle.
+The **Prompt** is the instruction you send to the LLM. Click any **Prompt** field and WSO2 Integrator opens a rich-text editor in a dialog. The toolbar gives you the usual formatting tools (Insert, undo/redo, Bold, Italic, Link, headings, quote, lists, tables, magic-wand AI assist) and a **Preview / Source** toggle.
 
 ![The Prompt editor dialog opened with the toolbar at the top (Insert, undo/redo, Bold, Italic, Link, H1, quote, lists, table, AI assist) and the Insert menu open, showing five options: Inputs, Variables, Configurables, Functions, Documents.](/img/genai/develop/direct-llm/24-prompt-editor.png)
 
@@ -94,40 +92,7 @@ The **Insert** menu is the bridge between the prompt and the rest of your projec
 | **Magic-wand AI assist** | Suggests a prompt scaffold for you when you describe the task in one line. |
 | **Preview / Source** | Toggle between the rendered preview and the raw template source. |
 
-### Prompt practices
-
-The same prompt-writing practices apply across `generate` nodes, [Natural Functions](/docs/genai/develop/natural-functions/overview), and AI Agent **Instructions**. They are documented once in the key concept page **[Writing Effective Prompts](/docs/genai/key-concepts/writing-effective-prompts)**, covering interpolation (`${variable}`), structuring long prompts with Role / Task / Constraints sections, and what to leave out (secrets, hand-written schemas, "be smart" instructions).
-
 ---
-
-## Picking the expected type
-
-The **Expected Type** field on the `generate` node is what makes the response come back as a real Ballerina value. A `string`, an `int`, a record, an array. Not a blob of text you have to parse yourself.
-
-The runtime derives a JSON schema from the type, asks the model to fill it, parses the response back, and hands the typed value to the next node. **You don't need to write any schema instructions in the prompt.** The type drives that automatically.
-
-The full conceptual reference, including how to pick a type, why you should never describe the schema in the prompt, error handling, and tips for result types, is on the key concept page **[Typed Responses](/docs/genai/key-concepts/typed-responses)**.
-
-A quick orientation:
-
-| Use this Expected Type | When you want… |
-|---|---|
-| `string` | Free-form text, such as a summary, an email body, or a translation. |
-| A scalar (`int`, `decimal`, `boolean`) | A single number or yes/no answer. |
-| A record | Named fields, the most common choice in integrations. |
-| An array of records | A list of items. |
-| A union (e.g. `Approved\|Rejected`) | The answer is one of several shapes; `match` on it. |
-
----
-
-## Common mistakes
-
-| Symptom | Likely cause | Fix |
-|---|---|---|
-| Response comes back as a string of JSON instead of a parsed record. | Expected Type is `string`. | Set Expected Type to the record type. |
-| Response stops half-way. | Hit the model's max output tokens. | Raise **Maximum Tokens** in the model provider's [Advanced Configurations](/docs/genai/develop/components/model-providers#standard-http-advanced-configurations), or shorten the requested output. |
-| Same prompt produces wildly different answers. | Temperature is high. | Lower the temperature on the model provider connection. |
-| Parsing fails for some inputs in production. | The prompt and the type disagree, or the type is too loose. | Remove schema instructions from the prompt (see [Don't put the schema in the prompt](/docs/genai/key-concepts/typed-responses#dont-put-the-schema-in-the-prompt)); use closed records. |
 
 ## What's next
 
