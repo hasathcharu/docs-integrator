@@ -13,6 +13,7 @@ import { connectorVersionedDocs } from './src/utils/sidebarUtils';
  *   GenAI             — "How do I build AI agents, RAG, or MCP?"
  *   Tutorials         — "Show me a complete, real example"
  *   Deploy & Operate  — "How do I ship, run, and secure this?"
+ *   Manage            — "How do I set up and manage ICP?"
  *   Reference         — "What's the exact syntax / config / API for Z?"
  */
 const sidebars: SidebarsConfig = {
@@ -33,11 +34,12 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Set up',
+          link: { type: 'doc', id: 'get-started/setup/overview' },
           items: [
-            'get-started/system-requirements',
-            'get-started/install',
-            'get-started/create-project',
-            'get-started/understand-ide',
+            'get-started/setup/system-requirements',
+            'get-started/setup/local-setup',
+            'get-started/setup/sign-up-sign-in',
+            'get-started/setup/cloud-setup',
           ],
         },
         {
@@ -78,14 +80,36 @@ const sidebars: SidebarsConfig = {
             'develop/create-integrations/migrate-third-party-integrations',
           ],
         },
-        // 6.2 Project Views
+        // 6.2 Understand the IDE
         {
           type: 'category',
-          label: 'Project Views',
+          label: 'Understand the IDE',
+          link: { type: 'doc', id: 'develop/understand-ide/understand-ide' },
           items: [
-            'develop/project-views/project-view',
-            'develop/project-views/integration-view',
-            'develop/project-views/library-view',
+            'develop/understand-ide/integrator-app',
+            {
+              type: 'category',
+              label: 'Views',
+              items: [
+                'develop/understand-ide/views/project-view',
+                'develop/understand-ide/views/integration-view',
+                'develop/understand-ide/views/library-view',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Editors',
+              items: [
+                'develop/understand-ide/editors/flow-diagram-editor',
+                'develop/understand-ide/editors/service-design-editor',
+                'develop/understand-ide/editors/expression-editor',
+                'develop/understand-ide/editors/type-editor',
+                'develop/understand-ide/editors/type-diagram-editor',
+                'develop/understand-ide/editors/configure-editor',
+                'develop/understand-ide/editors/datamapper-editor',
+                'develop/understand-ide/editors/graphql-editor',
+              ],
+            },
           ],
         },
         // 6.3 Integration Artifacts
@@ -327,7 +351,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'AI',
-          link: { type: 'doc', id: 'connectors/catalog/built-in/ai/ai' },
+          link: { type: 'doc', id: 'connectors/catalog/built-in/ai/ai-overview' },
           items: [
             'connectors/catalog/built-in/ai/action-reference',
             'connectors/catalog/built-in/ai/trigger-reference',
@@ -1728,27 +1752,25 @@ const sidebars: SidebarsConfig = {
           label: 'Develop AI applications',
           items: [
             'genai/develop/overview',
-            // AI Connections and Stores (reference for shared AI primitives)
-            {
-              type: 'category',
-              label: 'AI Connections and Stores',
-              link: { type: 'doc', id: 'genai/develop/components/overview' },
-              collapsed: true,
-              items: [
-                'genai/develop/components/model-providers',
-                'genai/develop/components/embedding-providers',
-                'genai/develop/components/vector-stores',
-                'genai/develop/components/knowledge-bases',
-                'genai/develop/components/chunkers',
-                'genai/develop/components/memory',
-              ],
-            },
+            'genai/develop/components/model-providers',
+            'genai/develop/components/embedding-providers',
+            'genai/develop/components/vector-stores',
+            'genai/develop/components/knowledge-bases',
+            'genai/develop/components/chunkers',
             // Direct LLM Calls (single page)
             'genai/develop/direct-llm/overview',
             // Natural Functions (single page)
             'genai/develop/natural-functions/overview',
-            // RAG (single page)
-            'genai/develop/rag/overview',
+            // RAG
+            {
+              type: 'category',
+              label: 'RAG',
+              link: { type: 'doc', id: 'genai/develop/rag/overview' },
+              collapsed: true,
+              items: [
+                'genai/develop/rag/rag-ingestion'
+              ]
+            },
             // AI Agents
             {
               type: 'category',
@@ -1785,7 +1807,7 @@ const sidebars: SidebarsConfig = {
             'genai/tutorials/review-summarizer-natural-function',
             'genai/tutorials/building-hr-knowledge-base-rag',
             'genai/tutorials/building-a-customer-care-agent-mcp',
-            'genai/tutorials/building-it-helpdesk-chatbot-persistent-memory',
+            'genai/tutorials/it-helpdesk-chatbot',
             'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
           ],
         },
@@ -1900,6 +1922,30 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    // ─────────────────────────────────────────────
+    // DEPLOY
+    // "How do I ship, run, and secure this?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Deploy',
+      collapsed: true,
+      link: { type: 'doc', id: 'deploy/overview' },
+      items: [
+        // Deploy
+        {
+          type: 'category',
+          label: 'Deploy to WSO2 Cloud',
+          link: { type: 'doc', id: 'deploy/cloud/overview' },
+          items: [
+            'deploy/cloud/push-from-ide',
+            'deploy/cloud/deploy-from-cloud-editor',
+            'deploy/cloud/import-project',
+            'deploy/cloud/import-integration',
+          ],
+        },
+      ],
+    },
 
     // ─────────────────────────────────────────────
     // DEPLOY & OPERATE
@@ -1993,6 +2039,93 @@ const sidebars: SidebarsConfig = {
     },
 
     // ─────────────────────────────────────────────
+    // MANAGE
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Manage',
+      collapsed: true,
+      items: [
+        'manage/choosing-a-control-plane',
+        // Cloud
+        {
+          type: 'category',
+          label: 'WSO2 Cloud',
+          link: { type: 'doc', id: 'manage/cloud/overview' },
+          items: [
+            // Integrations
+            {
+              type: 'category',
+              label: 'Integrations',
+              items: [
+                'manage/cloud/integrations/viewing-deployed',
+                'manage/cloud/integrations/lifecycle',
+              ],
+            },
+            // Configuration Management
+            {
+              type: 'category',
+              label: 'Configurations',
+              link: { type: 'doc', id: 'manage/cloud/configurations/overview' },
+              items: [
+                'manage/cloud/configurations/runtime-configurations',
+                'manage/cloud/configurations/endpoint-configurations',
+                'manage/cloud/configurations/security-configurations',
+                'manage/cloud/configurations/build-configurations',
+                'manage/cloud/configurations/scaling-resource-limits',
+              ],
+            },
+            // Environments
+            {
+              type: 'category',
+              label: 'Environments',
+              link: { type: 'doc', id: 'manage/cloud/environments/overview' },
+              items: [
+                'manage/cloud/environments/promotion',
+                'manage/cloud/environments/promotion-approval',
+              ],
+            },
+            // Observability
+            {
+              type: 'category',
+              label: 'Observability',
+              link: { type: 'doc', id: 'manage/cloud/observability/overview' },
+              items: [
+                'manage/cloud/observability/runtime-logs',
+                'manage/cloud/observability/metrics',
+                'manage/cloud/observability/anomaly-detection-alerts',
+              ],
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'ICP',
+          link: { type: 'doc', id: 'manage/icp/integration-control-plane' },
+          items: [
+            'manage/icp/install-icp',
+            'manage/icp/icp-console-overview',
+            'manage/icp/connect-runtime',
+            'manage/icp/observability-setup',
+            'manage/icp/access-control',
+            'manage/icp/manage-projects',
+            'manage/icp/manage-environments',
+            'manage/icp/manage-integrations',
+            'manage/icp/manage-runtimes',
+            {
+              type: 'category',
+              label: 'MI Profile',
+              items: [
+                'manage/icp/mi-profile/observability-setup-mi',
+                'manage/icp/mi-profile/connect-runtime-mi',
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    // ─────────────────────────────────────────────
     // REFERENCE
     // "What's the exact syntax / config / API for Z?"
     // ─────────────────────────────────────────────
@@ -2040,8 +2173,17 @@ const sidebars: SidebarsConfig = {
             'reference/cli/bal-grpc',
             'reference/cli/bal-edi',
             'reference/cli/bal-health',
-            'reference/cli/ballerina-update-tool',
             'reference/cli/bal-scan',
+          ],
+        },
+        // ICP Configuration
+        {
+          type: 'category',
+          label: 'ICP Configuration',
+          items: [
+            'reference/icp/server-configuration',
+            'reference/icp/database-configuration',
+            'reference/icp/authentication-config',
           ],
         },
         // APIs
@@ -2055,22 +2197,7 @@ const sidebars: SidebarsConfig = {
             'reference/api/ballerina-documentation',
           ],
         },
-        {
-          type: 'category',
-          label: 'Deploying ICP',
-          link: { type: 'doc', id: 'reference/icp/integration-control-plane' },
-          items: [
-            'reference/icp/server-configuration',
-            'reference/icp/database-configuration',
-            'reference/icp/authentication',
-            'reference/icp/connect-runtime',
-            'reference/icp/connect-runtime-mi',
-            'reference/icp/observability-setup',
-            'reference/icp/observability-setup-mi',
-            'reference/icp/manage-mi-artficats',
-            'reference/icp/deployment',
-          ],
-        },
+
         'reference/supported-protocols',
         {
           type: 'category',
