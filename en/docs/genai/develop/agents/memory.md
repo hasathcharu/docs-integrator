@@ -93,8 +93,8 @@ Memory works as a sliding window. When new conversation turns exceed the configu
 
 | Strategy | Behavior | Configuration |
 |---|---|---|
-| **Overflow Trim (`TrimOverflowHandlerConfiguration`)** *(default)* | Removes the oldest messages one at a time until the new message fits within the memory window. | Optional: `trimCount` |
-| **ModelAssistedOverflowHandlerConfiguration** | Uses a model-assisted strategy to manage memory overflow. | Optional: `model` and `prompt` |
+| **Trim Overflow Handler Configuration`** *(default)* | Removes the oldest messages one at a time until the new message fits within the memory window. | Optional: `trimCount` |
+| **Model Assisted Overflow Handler** | Uses a model-assisted strategy to manage memory overflow. | Optional: `model` and `prompt` |
 
 The effective size of the memory window depends on the model’s context window, with additional space reserved for the system prompt and tool definitions. In most cases, no manual tuning is required.
 
@@ -103,13 +103,6 @@ The effective size of the memory window depends on the model’s context window,
 After memory is configured, the AI Agent block on the canvas displays the attached memory configuration as a sub-block.
 
 ![The AI Chat Agent canvas after Memory has been attached. The AI Agent block now has an additional inner block 'Memory: ShortTermMemory' between the agent name (AI Agent / stringResult) and the BlogReviewer label.](/img/genai/develop/agents/22-agent-with-memory-attached.png)
-
-The block now contains:
-
-- **AI Agent / `stringResult`** — The main agent block label.
-- **Memory: ShortTermMemory** — The attached memory configuration. Click to edit or use `⋮` to remove it.
-- **BlogReviewer** — The configured agent role.
-- *"Provide specific instructions on how the agent should behave."* — The instructions placeholder shown in the agent block.
 
 ## Sessions and isolation
 
@@ -126,8 +119,6 @@ The session ID is included in every chat request through `ai:ChatReqMessage.sess
 ## Custom memory
 
 For storage backends that are not available in the memory store picker, implement the `ai:Memory` interface in a custom class.
-
-> Custom implementations should import `ballerina/ai` and use the `ai:`-prefixed types such as `ai:Memory`, `ai:ChatMessage`, and `ai:MemoryError`.
 
 ```ballerina
 public type Memory distinct isolated object {
@@ -173,8 +164,6 @@ public isolated class PostgresMemory {
     }
 }
 ```
-
-Pass an instance to the agent’s `memory` field either through the source view or by registering it as a connection in the project.
 
 ## Editing memory after it is attached
 
