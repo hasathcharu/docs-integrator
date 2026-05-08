@@ -84,8 +84,8 @@ You can configure only one proxy repository in the `<USER_HOME>/.ballerina/Setti
 [[repository.maven]]
 id = "<repository-id>"        # This ID is used when pushing/pulling packages
 url = "<repository-url>"
-username = "<username> or <userId>"
-accesstoken = "<password> or <accesstoken>"
+username = "<username>"
+accesstoken = "<password-or-access-token>"
 proxyCentral = true
 ```
 
@@ -95,8 +95,8 @@ Replace the placeholders as follows.
 | --- | --- |
 | `<repository-id>` | A unique identifier for the repository entry (e.g., `nexus-proxy` or `artifactory-proxy`) |
 | `<repository-url>` | The full URL of the proxy repository you created in Nexus or Artifactory |
-| `<username> or <userId>` | Your Nexus or Artifactory username or user ID |
-| `<password> or <accesstoken>` | Your Nexus or Artifactory password or access token |
+| `<username>` | Your Nexus or Artifactory username or user ID |
+| `<password-or-access-token>` | Your Nexus or Artifactory password or access token (the `accesstoken` field accepts either) |
 
 Once the configuration is done, all Ballerina Central calls will be redirected through this Maven-based proxy repository.
 

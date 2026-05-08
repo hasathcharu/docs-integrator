@@ -40,23 +40,22 @@ If you encounter certificate validation errors like:
 
 Follow these steps:
 
-1. Navigate to the `dependencies/` folder (It can be found under `/Applications/WSO2
-   Integrator.app/Contents/components/dependencies` in MacOS, `/usr/share/wso2-integrator/components/dependencies` in
-   Linux, and `%USERPROFILE%\AppData\Local\Programs\WSO2\Integrator\components\dependencies` in Windows) in your
-   WSO2 Integrator installation directory where Java Runtime
-   Environment (JRE) instances are located
+1. Navigate to the `dependencies/` directory in your WSO2 Integrator installation (where the JRE is located):
+   - macOS: `/Applications/WSO2 Integrator.app/Contents/components/dependencies`
+   - Linux: `/usr/share/wso2-integrator/components/dependencies`
+   - Windows: `%USERPROFILE%\AppData\Local\Programs\WSO2\Integrator\components\dependencies`
 2. Identify proxy-associated certificates from your proxy vendor's documentation
 3. Run this administrative command:
 
-```
-<JRE>/bin/keytool.exe -import -trustcacerts -file <CERTS_PATH> -alias <ALIAS_NAME> -keystore <JRE>/lib/security/cacerts
+```bash
+<JRE>/bin/keytool -import -trustcacerts -file <CERTS_PATH> -alias <ALIAS_NAME> -keystore <JRE>/lib/security/cacerts
 ```
 
-## Configure Proxy Settings Via Environment Variables
+## Configure CA Certificate Settings Via Environment Variables
 
-Set proxy configurations system-wide using these environment variables:
+Set CA certificate configurations system-wide using these environment variables:
 
-```
+```bash
 BALLERINA_CA_BUNDLE # Path to the CA bundle file
 BALLERINA_CA_PASSWORD # Password for the CA bundle file
 BALLERINA_CA_CERT # Path to the CA certificate file
