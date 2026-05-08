@@ -15,7 +15,7 @@ In the **Test Explorer**, hover over the evaluation name and click the run icon 
 
 ![Test Explorer with the run icon highlighted next to the testToolTrajectory evaluation, with the evaluation flow visible on the canvas.](/img/genai/develop/agents/evaluations/run-evaluation.png)
 
-The evaluation iterates over every case in the wired [evalsets](evalsets.md) and records the pass rate against the target threshold.
+The evaluation iterates over every case in the selected [evalset](evalsets.md) and records the pass rate against the target threshold.
 
 ## Review the report
 
