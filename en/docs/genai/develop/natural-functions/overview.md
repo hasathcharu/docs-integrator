@@ -38,7 +38,7 @@ What WSO2 Integrator handles for you:
 To build one, you do four things in order:
 
 1. [**Create the function**](#creating-a-natural-function): name, parameters, and return type.
-2. [**Bind a model provider**](#configuring-the-model-provider): configure once per project, then reused.
+2. [**Bind a model provider**](#configuring-the-model-provider): the Default WSO2 Model Provider is bound automatically; swap it here if you want a different model provider.
 3. [**Write the prompt**](#writing-the-prompt) inside the **Prompt** node.
 4. [**Call it from a flow**](#calling-from-a-flow).
 
@@ -46,7 +46,7 @@ The rest of this page walks each step.
 
 ---
 
-## Creating a Natural Function
+## Creating a Natural Function {#creating-a-natural-function}
 
 There are two equivalent entry points; both open the same form.
 
@@ -102,17 +102,17 @@ The Prompt node has two controls: the **pencil** (top-right) edits the prompt bo
 
 ---
 
-## Configuring the Model Provider
+## Configuring the Model Provider {#configuring-the-model-provider}
 
-The Prompt node needs a **Model Provider** connection. This specifies the LLM it calls. Hover the cog on the right of the Prompt node and click **Configure Model Provider** to bind one.
+When you create a natural function, WSO2 Integrator automatically binds it to the **Default WSO2 Model Provider**, so the function can run as soon as it is created. To swap to a different model provider, hover the cog on the right of the Prompt node and click **Configure Model Provider**.
 
 If a provider already exists in the project, pick it from the dropdown and click **Save**. If not, click **+ Create New Model Provider** and pick from the catalogue (OpenAI, Anthropic, Azure OpenAI, Default WSO2, …).
 
-Adding a provider, the per-provider form fields, the supported models, and the advanced HTTP knobs are all documented in **[AI Connections and Stores: Model Providers](/docs/genai/develop/components/model-providers)**. You only need to do it once per project. Every natural function, direct LLM call, RAG `generate` node, and AI Agent in the project shares the same provider connections.
+Adding a provider, the per-provider form fields, the supported models, and the advanced HTTP knobs are all documented in **[AI Connections and Stores: Model Providers](/docs/genai/develop/components/model-providers)**. Every natural function, direct LLM call, RAG `generate` node, and AI Agent in the project shares the same provider connections.
 
 ---
 
-## Writing the Prompt
+## Writing the Prompt {#writing-the-prompt}
 
 Click the pencil icon at the top-right of the Prompt node. An inline editor opens; click **Expand Editor** for the full Markdown editor with formatting tools.
 
@@ -167,7 +167,7 @@ Because the type already drives the schema, **you don't have to write *"please r
 
 ---
 
-## Calling from a Flow
+## Calling from a Flow {#calling-from-a-flow}
 
 Once the function exists, calling it from a flow is one step.
 
