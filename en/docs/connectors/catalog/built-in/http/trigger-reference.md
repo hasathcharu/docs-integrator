@@ -122,8 +122,8 @@ Resource methods can return any of the following types to send a response:
 
 | Return Type | Description |
 |-------------|-------------|
-| `string`, `json`, `xml`, `byte[]` | Payload sent with the default status code(`201 CREATED` for POST resources and `200 OK` for others) and appropriate content type. |
-| `record` | Serialized as JSON with the default status code(`201 CREATED` for POST resources and `200 OK` for others). |
+| `string`, `json`, `xml`, `byte[]` | Payload sent with the default status code (`201 CREATED` for POST resources and `200 OK` for others) and appropriate content type. |
+| `record` | Serialized as JSON with the default status code (`201 CREATED` for POST resources and `200 OK` for others). |
 | `http:Ok`, `http:Created`, `http:Accepted`, ... | Status-code-specific response records with optional body and headers. |
 | `http:Response` | Full control over status code, headers, and body. |
 | `error` | Returns `500 Internal Server Error`. |
