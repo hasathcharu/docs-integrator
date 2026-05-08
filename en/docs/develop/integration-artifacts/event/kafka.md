@@ -47,39 +47,39 @@ Consume messages from Apache Kafka topics with consumer group management, offset
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
+import ballerina/log;
 import ballerinax/kafka;
 
-configurable string bootstrapServers = "localhost:9092";
-configurable string groupId = "order-processor";
+configurable string bootstrapServers = "localhost:9092"; 
+configurable string groupId = "order-processor"; 
+configurable string kafkaTopic = "orders";
 
-type OrderEvent record {|
-    string orderId;
-    string customerId;
-    decimal amount;
-    string timestamp;
-|};
+// Creates a Kafka producer using the configurable bootstrapServers
+kafka:Producer kafkaProducer = check new (bootstrapServers);
 
-listener kafka:Listener orderListener = new ({
-    bootstrapServers: bootstrapServers,
+listener kafka:Listener kafkaListener = new (bootstrapServers, {
     groupId: groupId,
-    topics: ["orders"],
+    topics: [kafkaTopic],
+    offsetReset: kafka:OFFSET_RESET_LATEST, // skip old messages, only consume new ones
     pollingInterval: 1,
-    autoCommit: false
+    autoCommit: false // required when using caller->commit()
 });
 
-service on orderListener {
+service kafka:Service on kafkaListener {
 
-    remote function onConsumerRecord(kafka:Caller caller, OrderEvent[] orders) returns error? {
-        foreach OrderEvent order in orders {
-            log:printInfo("Processing order", orderId = order.orderId, amount = order.amount);
-            check processOrder(order);
+    remote function onConsumerRecord(kafka:AnydataConsumerRecord[] messages, kafka:Caller caller) returns error? {
+        foreach kafka:AnydataConsumerRecord msg in messages {
+            do {
+                byte[] msgBytes = check msg.value.ensureType();
+                string jsonStr = check string:fromBytes(msgBytes);
+                OrderEvent orderEvent = check jsonStr.fromJsonStringWithType();
+                processOrder(orderEvent); // Implement a processing logic under processOrder() method in functions.bal file
+                log:printInfo("onConsumerRecord triggered", orderId = orderEvent.orderId);
+            } on fail error e {
+                log:printError("Failed to process message, skipping", 'error = e, offset = msg.offset.offset, partition = msg.offset.partition.partition);
+            }
         }
-        // Manual commit after successful processing
         check caller->commit();
-    }
-
-    remote function onError(kafka:Error err) {
-        log:printError("Kafka consumer error", 'error = err);
     }
 }
 ```
