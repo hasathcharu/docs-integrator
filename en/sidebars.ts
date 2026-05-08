@@ -2197,6 +2197,15 @@ const sidebars: SidebarsConfig = {
         },
         'reference/ballerina-by-example',
         'reference/ballerina-specifications',
+        // Miscellaneous
+        {
+          type: 'category',
+          label: 'Miscellaneous',
+          items: [
+            'reference/miscellaneous/configure-a-network-proxy',
+            'reference/miscellaneous/proxy-ballerina-central-with-maven-repository',
+          ],
+        },
         // Appendix
         {
           type: 'category',
@@ -2208,15 +2217,6 @@ const sidebars: SidebarsConfig = {
             'reference/faq',
             'reference/appendix/troubleshooting',
             'reference/release-notes',
-          ],
-        },
-        // Miscellaneous
-        {
-          type: 'category',
-          label: 'Miscellaneous',
-          items: [
-            'reference/miscellaneous/configure-a-network-proxy',
-            'reference/miscellaneous/proxy-ballerina-central-with-maven-repository',
           ],
         },
       ],
