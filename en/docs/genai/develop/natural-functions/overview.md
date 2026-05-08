@@ -116,7 +116,7 @@ Adding a provider, the per-provider form fields, the supported models, and the a
 
 Click the pencil icon at the top-right of the Prompt node. An inline editor opens; click **Expand Editor** for the full Markdown editor with formatting tools.
 
-![Prompt editor open on the Prompt node, ready to write the prompt body.](/img/genai/develop/natural-functions/51-natural-funciton-add-prompt.png)
+![Prompt editor open on the Prompt node, ready to write the prompt body.](/img/genai/develop/natural-functions/51-natural-function-add-prompt.png)
 
 | Toolbar action | Effect |
 |---|---|
