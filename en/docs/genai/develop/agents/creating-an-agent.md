@@ -109,7 +109,7 @@ service /blogReviewer on chatAgentListener {
 
 ## What's next
 
-- **[Tools](tools.md)** — Add tools and integrations to the agent.
-- **[Memory](memory.md)** — Configure conversational and persistent memory.
-- **[Observability](observability.md)** — Monitor traces, logs, and execution details.
-- **[Evaluations](evaluations.md)** — Test and evaluate agent behavior and response quality.
+- **[Tools](tools.md)** - Add tools and integrations to the agent.
+- **[Memory](memory.md)** - Configure conversational and persistent memory.
+- **[Observability](observability.md)** - Monitor traces, logs, and execution details.
+- **[Evaluations](evaluations.md)** - Test and evaluate agent behavior and response quality.

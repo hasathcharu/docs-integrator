@@ -69,6 +69,6 @@ The chat interface reuses the same session across interactions, enabling memory-
 
 - **[Creating an Agent](creating-an-agent.md)** - Learn how to create and configure agents using the AI Chat Agent Wizard.
 - **[Tools](tools.md)** - Add functions, connectors, and integrations to your agents.
-- **[Memory](memory.md)** — Configure conversational and persistent memory.
-- **[Observability](observability.md)** — Monitor traces, logs, and execution details.
-- **[Evaluations](evaluations.md)** — Test and evaluate agent behavior and response quality.
+- **[Memory](memory.md)** - Configure conversational and persistent memory.
+- **[Observability](observability.md)** - Monitor traces, logs, and execution details.
+- **[Evaluations](evaluations.md)** - Test and evaluate agent behavior and response quality.
