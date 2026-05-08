@@ -1761,8 +1761,16 @@ const sidebars: SidebarsConfig = {
             'genai/develop/direct-llm/overview',
             // Natural Functions (single page)
             'genai/develop/natural-functions/overview',
-            // RAG (single page)
-            'genai/develop/rag/overview',
+            // RAG
+            {
+              type: 'category',
+              label: 'RAG',
+              link: { type: 'doc', id: 'genai/develop/rag/overview' },
+              collapsed: true,
+              items: [
+                'genai/develop/rag/rag-ingestion'
+              ]
+            },
             // AI Agents
             {
               type: 'category',
