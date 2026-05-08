@@ -83,7 +83,7 @@ internal_domain_name = "order-service.internal"
 
 ## `[cloud.deployment.autoscaling]`
 
-Configures horizontal pod autoscaling for Kubernetes deployments. HPA is enabled by default when a `PodAutoscalerModel` is present.
+Configures horizontal pod autoscaling for Kubernetes deployments. HPA is enabled by default unless `enable = false` is set.
 
 ```toml
 [cloud.deployment.autoscaling]
