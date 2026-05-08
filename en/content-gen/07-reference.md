@@ -218,11 +218,11 @@
 
 ### Section: WSO2 Integration Control Plane (ICP)
 
-The ICP reference is split across the following pages under `en/docs/reference/icp/`:
+The ICP reference is split across the following pages under `en/docs/manage/icp/`:
 
 #### Page: Overview
 
-**File:** `en/docs/reference/icp/index.md`
+**File:** `en/docs/manage/icp/index.md`
 
 **What to cover:**
 
@@ -241,7 +241,7 @@ The ICP reference is split across the following pages under `en/docs/reference/i
 
 #### Page: Database Configuration
 
-**File:** `en/docs/reference/icp/database.md`
+**File:** `en/docs/reference/icp/database-configuration.md`
 
 **What to cover:**
 
@@ -251,7 +251,7 @@ The ICP reference is split across the following pages under `en/docs/reference/i
 
 #### Page: Authentication
 
-**File:** `en/docs/reference/icp/authentication.md`
+**File:** `en/docs/reference/icp/authentication-config.md`
 
 **What to cover:**
 
@@ -261,7 +261,7 @@ The ICP reference is split across the following pages under `en/docs/reference/i
 
 #### Page: Connecting a Runtime to ICP
 
-**File:** `en/docs/reference/icp/runtime-connection.md`
+**File:** `en/docs/manage/icp/runtime-connection.md`
 
 **What to cover:**
 
@@ -270,15 +270,6 @@ The ICP reference is split across the following pages under `en/docs/reference/i
 - Configuration key tables for both runtimes
 - Port 9445 noted as the runtime communication port
 
-#### Page: Deployment
-
-**File:** `en/docs/reference/icp/deployment.md`
-
-**What to cover:**
-
-- Docker Compose profiles table (local, mysql, postgresql, mssql, observability, test)
-- Distribution build command (`./gradlew build`) and output path
-- Extract, `cd` into the bin directory, and start commands for Linux/macOS and Windows
 
 ---
 
