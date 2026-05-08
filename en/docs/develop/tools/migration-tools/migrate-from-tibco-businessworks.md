@@ -12,13 +12,13 @@ import TabAwareToc from '@site/src/components/TabAwareToc';
 
 ## Overview
 
-The TIBCO migration tool converts TIBCO BusinessWorks process definitions to Ballerina code. It handles process flows, activities, transitions, shared resources, error handling configurations and more.
+The TIBCO migration tool converts TIBCO BusinessWorks process definitions to Ballerina code. It handles process flows, activities, transitions, shared resources, error handling configurations, and more.
 
 ## Run the TIBCO migration tool
 
 <TabAwareToc />
 <Tabs>
-<TabItem value="ui" label="Wizard" default>
+<TabItem value="ui" label="WSO2 Integrator" default>
 
 The migration wizard guides you through a 5-step process to convert your TIBCO BusinessWorks project(s) into a WSO2 Integrator project.
 
