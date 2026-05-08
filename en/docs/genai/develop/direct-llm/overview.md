@@ -28,7 +28,7 @@ See the **[Email Generator with Direct LLM](/docs/genai/tutorials/email-generato
 
 A typical flow with a direct LLM call has a `generate` node sitting between your inputs and the next step, with a small wire to the model-provider connection on the right.
 
-![A WSO2 Integrator flow on the canvas showing Start, Declare Variable (blogTitle), Declare Variable (blogContent), and openai:generate (result) connected to a small openaiModelprov node on the right with the OpenAI logo, then log:printInfo with template `${result}`, then Error Handler.](/img/genai/develop/direct-llm/18-generate-saved-flow.png)
+![A WSO2 Integrator flow on the canvas showing Start, an ai:generate node bound to an aiWso2modelprovider connection on the right, then log:printInfo with template `string ${summary}`, then Return, then Error Handler.](/img/genai/develop/direct-llm/21-complete-flow-with-direct-llm.png)
 
 To build this you do three things, in order:
 
@@ -50,21 +50,21 @@ The `generate` node is the workhorse of direct LLM calls. It sends a single prom
 
 ### Where to find it
 
-The `generate` action lives **on the model-provider connection itself**, not as a standalone node under AI. Once a provider exists, open the **Model Providers** panel on the right side of the flow editor, expand the connection (for example `azureOpenaimodelprovider`), and click **Generate**.
+The `generate` action lives **on the model-provider connection itself**, not as a standalone node under AI. Once a provider exists, open the **Model Providers** panel on the right side of the flow editor, expand the connection, and click **Generate**.
 
-![The Model Providers right-side panel with azureOpenaimodelprovider expanded, showing the Generate action highlighted with a short description: it sends the prompt to the model and produces a value that conforms to the configured Expected Type. Other connections (anthropicModelprovider, openaiModelprovider, wso2ModelProvider) are collapsed below.](/img/genai/develop/direct-llm/15-generate-action-providers-panel.png)
+![The right-side Model Providers panel with aiWso2modelprovider expanded, showing two actions: Chat and Generate. The Generate action is highlighted with a description that it sends a chat request to the model and generates a value that belongs to the type corresponding to the type descriptor argument.](/img/genai/develop/direct-llm/22-pick-generate-action.png)
 
 ### The configuration form
 
 When the form opens, three fields are all you need: the **Prompt**, the **Result** variable, and the **Expected Type**. Add the prompt that describes the work, pick the type you want the response in for your use case, and click **Save**. Both fields are covered in detail in [Writing the prompt](#writing-the-prompt) and [Picking the expected type](#picking-the-expected-type) below.
 
-![The Generate configuration panel for openaiModelprovider generate. Below the header: a Prompt* field with rich-text content; a Result* field set to 'result'; an Expected Type* field set to 'string'; a Save button.](/img/genai/develop/direct-llm/16-generate-form-rendered.png)
+![The Generate configuration panel for the aiWso2modelprovider generate action. The Prompt field shows the Insert menu open with options for Inputs, Variables, Configurables, Functions, and Documents. An Expected Type field is below, with a Save button.](/img/genai/develop/direct-llm/23-generate-action-configure-prompt.png)
 
 | Field | Required | What it does |
 |---|---|---|
-| **Prompt*** | Yes | The instruction sent to the LLM. Detailed in [Writing the prompt](#writing-the-prompt). |
-| **Result*** | Yes | The variable name where the response is stored. Used by later nodes. |
-| **Expected Type*** | Yes | The Ballerina type the response should be parsed into. Detailed in [Picking the expected type](#picking-the-expected-type). |
+| **Prompt** | Yes | The instruction sent to the LLM. Detailed in [Writing the prompt](#writing-the-prompt). |
+| **Result** | Yes | The variable name where the response is stored. Used by later nodes. |
+| **Expected Type** | Yes | The Ballerina type the response should be parsed into. Detailed in [Picking the expected type](#picking-the-expected-type). |
 
 There are no per-call overrides on the `generate` node. Anything you'd tune (temperature, max tokens, and so on) lives on the model provider connection and applies to every call that uses it. See [Model Providers](/docs/genai/develop/components/model-providers) for the full list of advanced configurations per provider.
 
@@ -82,11 +82,9 @@ The **Prompt** is the instruction you send to the LLM. The same rules apply acro
 
 Click any **Prompt** field and WSO2 Integrator opens a rich-text editor in a dialog. The toolbar gives you the usual formatting tools (Insert, undo/redo, Bold, Italic, Link, headings, quote, lists, tables, magic-wand AI assist) and a **Preview / Source** toggle.
 
-![The Prompt editor dialog open with the toolbar at the top and a structured prompt in the body: Role, Task, Output, Summary, and a Scores (1–10) table. The Preview tab is selected; no popups are open.](/img/genai/develop/direct-llm/20-prompt-editor-preview.png)
+![The Prompt editor dialog opened with the toolbar at the top (Insert, undo/redo, Bold, Italic, Link, H1, quote, lists, table, AI assist) and the Insert menu open, showing five options: Inputs, Variables, Configurables, Functions, Documents.](/img/genai/develop/direct-llm/24-prompt-editor.png)
 
-The **Insert** menu is the bridge between the prompt and the rest of your project. Open it to pull in values from anywhere in scope, request inputs, flow variables, configurables, project functions, or RAG documents, and they land in the prompt as `${...}` interpolations.
-
-![The Prompt editor dialog with the Insert menu opened, showing five sub-options: Inputs, Variables (highlighted), Configurables, Functions, Documents, over the same Role / Task / Output / Scores body.](/img/genai/develop/direct-llm/17-prompt-editor-insert-menu.png)
+The **Insert** menu is the bridge between the prompt and the rest of your project. Open it to pull in values from anywhere in scope: request inputs, flow variables, configurables, project functions, or RAG documents.
 
 | Element | What it does |
 |---|---|
@@ -95,8 +93,6 @@ The **Insert** menu is the bridge between the prompt and the rest of your projec
 | **H1 / Quote / Lists / Tables** | Structure the prompt visually. Helpful for long prompts. |
 | **Magic-wand AI assist** | Suggests a prompt scaffold for you when you describe the task in one line. |
 | **Preview / Source** | Toggle between the rendered preview and the raw template source. |
-
-The prompt is stored as a Ballerina **template literal** (`` `...` ``). The editor is just a friendly view onto that template. Picking a value from the **Insert** menu is the same as typing `${variableName}` by hand.
 
 ### Prompt practices
 
