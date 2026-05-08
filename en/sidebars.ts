@@ -2055,6 +2055,17 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/environments/promotion-approval',
               ],
             },
+            // Observability
+            {
+              type: 'category',
+              label: 'Observability',
+              link: { type: 'doc', id: 'manage/cloud/observability/overview' },
+              items: [
+                'manage/cloud/observability/runtime-logs',
+                'manage/cloud/observability/metrics',
+                'manage/cloud/observability/anomaly-detection-alerts',
+              ],
+            },
           ],
         },
         {
