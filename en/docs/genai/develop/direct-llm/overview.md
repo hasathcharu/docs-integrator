@@ -32,7 +32,7 @@ A typical flow with a direct LLM call has a `generate` node sitting between your
 
 To build this you do three things, in order:
 
-1. **Pick a Model Provider connection.** The Default WSO2 Model Provider works without any setup. To use a different provider (OpenAI, Anthropic, Azure OpenAI, etc.), see **[Model Providers](/docs/genai/develop/components/model-providers)**.
+1. **Pick a Model Provider connection.** You can use the **Default WSO2 Model Provider**, or see **[Model Providers](/docs/genai/develop/components/model-providers)** for other providers (OpenAI, Anthropic, Azure OpenAI, etc.).
 2. [**Add the Generate Node**](#the-generate-node), the call itself.
 3. [**Write the prompt**](#the-prompt-editor) and pick the expected type.
 
@@ -66,7 +66,7 @@ When the form opens, three fields are all you need: the **Prompt**, the **Result
 | **Result** | Yes | The variable name where the response is stored. Used by later nodes. |
 | **Expected Type** | Yes | The Ballerina type the response should be parsed into. |
 
-The **Expected Type** field is what makes the response come back as a real Ballerina value. A `string`, an `int`, a record, an array. Not a blob of text you have to parse yourself. The runtime derives a JSON schema from the type, asks the model to fill it, parses the response back, and hands the typed value to the next node. **You don't need to write any schema instructions in the prompt.** The type drives that automatically.
+The **Expected Type** field is what makes the response come back as a typed value. A `string`, an `int`, a record, an array. Not a blob of text you have to parse yourself. The runtime derives a JSON schema from the type, asks the model to fill it, parses the response back, and hands the typed value to the next node. **You don't need to write any schema instructions in the prompt.** The type drives that automatically.
 
 There are no per-call overrides on the `generate` node. Anything you'd tune (temperature, max tokens, and so on) lives on the model provider connection and applies to every call that uses it. See [Model Providers](/docs/genai/develop/components/model-providers) for the full list of advanced configurations per provider.
 
