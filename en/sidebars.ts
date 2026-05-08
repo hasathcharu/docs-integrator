@@ -593,6 +593,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/developer-tools/github/setup-guide',
             'connectors/catalog/developer-tools/github/actions',
+            'connectors/catalog/developer-tools/github/triggers',
             'connectors/catalog/developer-tools/github/example',
           ],
         },
@@ -1510,6 +1511,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ecommerce/shopify.admin/setup-guide',
             'connectors/catalog/ecommerce/shopify.admin/actions',
+            'connectors/catalog/ecommerce/shopify.admin/triggers',
             'connectors/catalog/ecommerce/shopify.admin/example',
           ],
         },
@@ -1591,6 +1593,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/communication/twilio/setup-guide',
             'connectors/catalog/communication/twilio/actions',
+            'connectors/catalog/communication/twilio/triggers',
             ...connectorVersionedDocs('connectors/catalog/communication/twilio'),
             'connectors/catalog/communication/twilio/example',
           ],
