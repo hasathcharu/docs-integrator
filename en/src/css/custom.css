@@ -854,3 +854,10 @@ hr {
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+.zoomable-img-link,
+.zoomable-img-link:hover {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
