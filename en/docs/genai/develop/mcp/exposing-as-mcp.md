@@ -241,7 +241,7 @@ Tools are the operations the MCP service exposes. Each tool has a name, a descri
 
 Click **+ Add Tool** in the editor to open the **Tool Configuration** panel.
 
-![The Tool Configuration panel for an MCP service showing Tool Name, Tool Description, Parameters, and Return Type fields.](/img/genai/develop/mcp/02-mcp-tool-configuration.png)
+![The Tool Configuration panel showing Tool Name, Tool Description, Parameters, and Return Type fields, with the MCP Service editor visible behind it.](/img/genai/develop/mcp/02-mcp-tool-configuration.png)
 
 | Field | Required | Description |
 |---|---|---|
