@@ -1771,7 +1771,17 @@ const sidebars: SidebarsConfig = {
                 'genai/develop/agents/tools',
                 'genai/develop/agents/memory',
                 'genai/develop/agents/observability',
-                'genai/develop/agents/evaluations',
+                {
+                  type: 'category',
+                  label: 'Evaluations',
+                  link: { type: 'doc', id: 'genai/develop/agents/evaluations/overview' },
+                  collapsed: true,
+                  items: [
+                    'genai/develop/agents/evaluations/evalsets',
+                    'genai/develop/agents/evaluations/creating-evaluations',
+                    'genai/develop/agents/evaluations/running-evaluations',
+                  ],
+                },
               ],
             },
             // MCP Integration

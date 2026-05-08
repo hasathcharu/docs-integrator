@@ -217,6 +217,6 @@ To switch back to the dev-time viewer, change the import to `ballerinax/idetrace
 
 ## What's next
 
-- **[Evaluations](evaluations.md)** — turn observed behavior into automated regression checks.
+- **[Evaluations](evaluations/overview.md)** — turn observed behavior into automated regression checks.
 - **[Tools](tools.md)** — clear tool descriptions are the biggest lever on what shows up in traces.
 - **[Memory](memory.md)** — every turn's memory contents appear in the LLM call spans.
