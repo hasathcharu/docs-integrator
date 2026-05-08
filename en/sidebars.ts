@@ -2089,7 +2089,6 @@ const sidebars: SidebarsConfig = {
             'reference/cli/bal-grpc',
             'reference/cli/bal-edi',
             'reference/cli/bal-health',
-            'reference/cli/ballerina-update-tool',
             'reference/cli/bal-scan',
           ],
         },
