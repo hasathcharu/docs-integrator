@@ -13,7 +13,7 @@ This page is a single, end-to-end reference covering the form that creates the f
 > **Looking for a hands-on walkthrough?** See the **[Customer Review Analyzer with Natural Function](/docs/genai/tutorials/review-summarizer-natural-function)** tutorial. It builds the example shown on this page from an empty project to a working `POST /api/v1/analyze` endpoint.
 
 :::caution Experimental feature
-Natural functions are an experimental feature. Enable experimental features in WSO2 Integrator before using them.
+Natural functions are an experimental feature. Enable experimental features in WSO2 Integrator before using them: open **Settings**, expand **Extensions**, select the **Ballerina** extension, and tick **Experimental: Enable Experimental Feature**.
 :::
 
 ## How a Natural Function Looks
