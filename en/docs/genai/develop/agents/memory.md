@@ -6,9 +6,7 @@ description: Reference for configuring AI agent memory in WSO2 Integrator — sh
 
 # Memory
 
-Memory enables an AI agent to retain information from previous interactions within a conversation. When an agent runs on `ai:Listener`, WSO2 Integrator automatically manages session-based memory.
-
-The **Configure Memory** dialog allows you to control how memory is handled, including what information is stored, where it is stored, and how long it is retained.
+Memory is the infrastructure enabling AI systems to store, recall, and utilize past interactions to deliver personalized, continuous, and context-aware experiences. It transforms stateless models into persistent, long-term assistants by managing short-term conversations and long-term user preferences.
 
 ## Configure memory
 
