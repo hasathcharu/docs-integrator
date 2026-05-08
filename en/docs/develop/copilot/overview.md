@@ -51,6 +51,12 @@ Once your integration is running, you can try out your services directly through
 
 ![Copilot running curl commands against a running service.](/img/develop/copilot/try-it.png)
 
+## Debugging
+
+Copilot can run your integrations and read the runtime logs to debug issues as they occur.
+
+![Copilot debugging an integration by reproducing the failing request, inspecting the HTTP response and service logs, and identifying a case-sensitivity bug in the team filter.](/img/develop/copilot/debuging-using-service-logs.png)
+
 ## Web tools
 
 If Copilot needs external context or up-to-date documentation, it can trigger web tools to search the internet. Copilot always asks for permission before performing a search. You can enable or disable this via the toggle in the input bar.
