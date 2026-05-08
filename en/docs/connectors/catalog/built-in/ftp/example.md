@@ -1,10 +1,3 @@
----
-connector: true
-connector_name: "ftp"
-title: "Example"
-description: "Build an FTP automation that retrieves a JSON file and a trigger-driven service that processes new CSV files."
----
-
 # Example
 
 ## FTP Example
