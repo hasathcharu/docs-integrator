@@ -80,14 +80,36 @@ const sidebars: SidebarsConfig = {
             'develop/create-integrations/migrate-third-party-integrations',
           ],
         },
-        // 6.2 Project Views
+        // 6.2 Understand the IDE
         {
           type: 'category',
-          label: 'Project Views',
+          label: 'Understand the IDE',
+          link: { type: 'doc', id: 'develop/understand-ide/understand-ide' },
           items: [
-            'develop/project-views/project-view',
-            'develop/project-views/integration-view',
-            'develop/project-views/library-view',
+            'develop/understand-ide/integrator-app',
+            {
+              type: 'category',
+              label: 'Views',
+              items: [
+                'develop/understand-ide/views/project-view',
+                'develop/understand-ide/views/integration-view',
+                'develop/understand-ide/views/library-view',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Editors',
+              items: [
+                'develop/understand-ide/editors/flow-diagram-editor',
+                'develop/understand-ide/editors/service-design-editor',
+                'develop/understand-ide/editors/expression-editor',
+                'develop/understand-ide/editors/type-editor',
+                'develop/understand-ide/editors/type-diagram-editor',
+                'develop/understand-ide/editors/configure-editor',
+                'develop/understand-ide/editors/datamapper-editor',
+                'develop/understand-ide/editors/graphql-editor',
+              ],
+            },
           ],
         },
         // 6.3 Integration Artifacts

@@ -1,22 +1,22 @@
 ---
 sidebar_position: 3
-title: Library View
+title: Library view
 description: Build and manage reusable libraries in WSO2 Integrator.
 ---
 
-# Library View
+# Library view
 
-The Library View is a dedicated view in WSO2 Integrator for creating utilities and shared resources that you can use across multiple integrations. Rather than building executable integrations, you use the Library View to bundle shared type definitions, utility functions, custom connections, and data mapper configurations into a centralized module that other integrations can depend on.
+The Library view is a dedicated view in WSO2 Integrator for creating utilities and shared resources that you can use across multiple integrations. Rather than building executable integrations, you use the Library view to bundle shared type definitions, utility functions, custom connections, and data mapper configurations into a centralized module that other integrations can depend on.
 
-![Library View overview](/img/develop/project-views/library-view/overview.png)
+![Library view overview](/img/develop/understand-ide/views/library-view/overview.png)
 
-The activity bar, project explorer, editor toolbar, and deployment options panel work the same as in the [Project View](project-view.md). See that page for details. This page covers what's specific to a single library: the library overview canvas and toolbar.
+The activity bar, project explorer, editor toolbar, and deployment options panel work the same as in the [Project view](project-view.md). See that page for details. This page covers what's specific to a single library: the library overview canvas and toolbar.
 
 ## Library overview canvas
 
-The library overview canvas is the central area of the Library View. It provides a dashboard for the library, showing the library name as a heading and an **Artifacts summary** with cards for the total number of defined types, functions, data mappers, and connections.
+The library overview canvas is the central area of the Library view. It provides a dashboard for the library, showing the library name as a heading and an **Artifacts summary** with cards for the total number of defined types, functions, data mappers, and connections.
 
-![Library overview canvas](/img/develop/project-views/library-view/library-overview-canvas.png)
+![Library overview canvas](/img/develop/understand-ide/views/library-view/library-overview-canvas.png)
 
 ## Add reusable artifacts
 
@@ -28,7 +28,7 @@ Click the **+ Add Artifacts** button at the top right of the canvas to add a new
 - **Connection**
 - **Configuration**
 
-![Add artifacts menu](/img/develop/project-views/library-view/add-artifacts.png)
+![Add artifacts menu](/img/develop/understand-ide/views/library-view/add-artifacts.png)
 
 For detailed information on configuring each specific artifact type, see the [Integration artifacts](/docs/develop/integration-artifacts) documentation.
 
@@ -36,7 +36,7 @@ For detailed information on configuring each specific artifact type, see the [In
 
 Clicking any of the artifact category cards on the main canvas (such as **Functions** or **Types**) navigates to a specific list view for those artifacts.
 
-![Artifact list view](/img/develop/project-views/library-view/artifact-list.png)
+![Artifact list view](/img/develop/understand-ide/views/library-view/artifact-list.png)
 
 From this view, you can:
 
@@ -46,9 +46,9 @@ From this view, you can:
 
 ## Toolbar
 
-The toolbar sits at the top of the Library View and provides quick access to actions for configuring and publishing your library.
+The toolbar sits at the top of the Library view and provides quick access to actions for configuring and publishing your library.
 
-![Toolbar](/img/develop/project-views/library-view/toolbar.png)
+![Toolbar](/img/develop/understand-ide/views/library-view/toolbar.png)
 
 | Action | Description |
 |---|---|
@@ -58,11 +58,9 @@ The toolbar sits at the top of the Library View and provides quick access to act
 
 ## README section
 
-The README section at the bottom of the Library View displays the contents of your library's `README.md` file. Use it to document the library's purpose, setup instructions, and usage notes so other developers know how to consume it. Click **Edit** to modify the README directly. 
+The README section at the bottom of the Library view displays the contents of your library's `README.md` file. Use it to document the library's purpose, setup instructions, and usage notes so other developers know how to consume it. Click **Edit** to modify the README directly.
 
-![README](/img/develop/project-views/library-view/readme.png)
-
-
+![README](/img/develop/understand-ide/views/library-view/readme.png)
 
 ## What's next
 
