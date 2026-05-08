@@ -32,7 +32,7 @@ A typical flow with a direct LLM call has a `generate` node sitting between your
 
 To build this you do three things, in order:
 
-1. **Make sure a Model Provider connection exists.** This is the connection to the LLM. Adding one (and the per-provider form fields, model lists, and advanced HTTP knobs) is documented in **[Model Providers](/docs/genai/develop/components/model-providers)**. You only need to do this once per project.
+1. **Pick a Model Provider connection.** The Default WSO2 Model Provider works without any setup. To use a different provider (OpenAI, Anthropic, Azure OpenAI, etc.), see **[Model Providers](/docs/genai/develop/components/model-providers)**.
 2. [**Add the Generate Node**](#the-generate-node), the call itself.
 3. [**Write the prompt**](#the-prompt-editor) and pick the expected type.
 
