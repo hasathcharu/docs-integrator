@@ -157,5 +157,3 @@ Because every arithmetic operation goes through a Ballerina function, the answer
 ## What's next
 
 - [Build a Sample Hotel Booking Agent](hotel-booking-agent.md) — Add memory and multiple domain tools
-- [What is an AI Agent?](/docs/genai/key-concepts/what-is-ai-agent) — Understand the agent architecture
-- [What are Tools?](/docs/genai/key-concepts/what-are-tools) — Learn tool design patterns

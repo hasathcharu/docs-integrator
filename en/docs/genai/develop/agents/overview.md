@@ -139,4 +139,3 @@ For project-level run controls (Configure / Run / Debug), see the [Multi-Artifac
 - **[Memory](memory.md)** — multi-turn conversations.
 - **[Observability](observability.md)** — see what your agent is doing in production.
 - **[Evaluations](evaluations.md)** — keep agent quality from regressing.
-- **[What is an AI Agent?](/docs/genai/key-concepts/what-is-ai-agent)** — conceptual background.

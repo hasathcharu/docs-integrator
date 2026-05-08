@@ -177,7 +177,7 @@ You don't need to write a prompt that interleaves chunks and the question yourse
 
 ### Generate
 
-`ai:generate` calls the LLM with the augmented message. The Prompt field references `${aiChatusermessage.content}` so the model sees the chunks plus the question, and the **Expected Type** field shapes the response (see [Typed Responses](/docs/genai/key-concepts/typed-responses)).
+`ai:generate` calls the LLM with the augmented message. The Prompt field references `${aiChatusermessage.content}` so the model sees the chunks plus the question, and the **Expected Type** field shapes the response.
 
 ![A BI HTTP-service resource flow showing Start → ai:retrieve → ai:augmentUserQuery, with the right-side panel showing aiWso2modelprovider → generate. The Prompt field uses the content of the augmented chat user message; Result and Expected Type fields are below.](/img/genai/develop/rag/23-rag-generate-augmented-prompt.png)
 
@@ -242,4 +242,3 @@ For deep changes — different vector store, different embedding model, custom c
 - **[Direct LLM Calls](/docs/genai/develop/direct-llm/overview)**, the `generate` node and Expected Type binding used at the end of the query flow.
 - **[Natural Functions](/docs/genai/develop/natural-functions/overview)**, package a RAG-augmented prompt as a typed reusable function.
 - **[AI Agents](/docs/genai/develop/agents/overview)**, wrap retrieval as an agent tool when the task needs multi-step reasoning.
-- **[What is RAG?](/docs/genai/key-concepts/what-is-rag)**, conceptual background.

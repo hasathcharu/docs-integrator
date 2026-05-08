@@ -216,4 +216,3 @@ A short decision tree:
 
 - **[Tools](tools.md)** — give the agent capabilities it can apply across remembered turns.
 - **[Observability](observability.md)** — see how memory shapes each turn's reasoning.
-- **[What is AI Agent Memory?](/docs/genai/key-concepts/what-is-agent-memory)** — conceptual background.

@@ -95,7 +95,7 @@ The prompt is stored as a Ballerina **template literal** (`` `...` ``). The edit
 
 ### Prompt Practices
 
-The same prompt-writing practices apply across `generate` nodes, [Natural Functions](/docs/genai/develop/natural-functions/overview), and AI Agent **Instructions**. They are documented once in the key concept page **[Writing Effective Prompts](/docs/genai/key-concepts/writing-effective-prompts)** — covering interpolation (`${variable}`), structuring long prompts with Role / Task / Constraints sections, and what to leave out (secrets, hand-written schemas, "be smart" instructions).
+The same prompt-writing practices apply across `generate` nodes, [Natural Functions](/docs/genai/develop/natural-functions/overview), and AI Agent **Instructions** — interpolation (`${variable}`), structuring long prompts with Role / Task / Constraints sections, and what to leave out (secrets, hand-written schemas, "be smart" instructions).
 
 ---
 
@@ -104,8 +104,6 @@ The same prompt-writing practices apply across `generate` nodes, [Natural Functi
 The **Expected Type** field on the `generate` node is what makes the response come back as a real Ballerina value — a `string`, an `int`, a record, an array — not a blob of text you have to parse yourself.
 
 The runtime derives a JSON schema from the type, asks the model to fill it, parses the response back, and hands the typed value to the next node. **You don't need to write any schema instructions in the prompt** — the type drives that automatically.
-
-The full conceptual reference, including how to pick a type, why you should never describe the schema in the prompt, error handling, and tips for result types, is on the key concept page **[Typed Responses](/docs/genai/key-concepts/typed-responses)**.
 
 A quick orientation:
 
@@ -126,15 +124,12 @@ A quick orientation:
 | Response comes back as a string of JSON instead of a parsed record. | Expected Type is `string`. | Set Expected Type to the record type. |
 | Response stops half-way. | Hit the model's max output tokens. | Raise **Maximum Tokens** in the model provider's [Advanced Configurations](/docs/genai/develop/components/model-providers#standard-http-advanced-configurations), or shorten the requested output. |
 | Same prompt produces wildly different answers. | Temperature is high. | Lower the temperature on the model provider connection. |
-| Parsing fails for some inputs in production. | The prompt and the type disagree, or the type is too loose. | Remove schema instructions from the prompt — see [Typed Responses → Don't put the schema in the prompt](/docs/genai/key-concepts/typed-responses#dont-put-the-schema-in-the-prompt); use closed records. |
+| Parsing fails for some inputs in production. | The prompt and the type disagree, or the type is too loose. | Remove schema instructions from the prompt; use closed records. |
 
 ## What's Next
 
 - **[Email Generator with Direct LLM (Tutorial)](/docs/genai/tutorials/email-generator-direct-llm)** — build a complete `POST /emails/generate` service from scratch using everything on this page.
-- **[Writing Effective Prompts](/docs/genai/key-concepts/writing-effective-prompts)** — interpolation, structuring long prompts, and what to leave out.
-- **[Typed Responses](/docs/genai/key-concepts/typed-responses)** — the full reference for the Expected Type field.
 - **[AI Connections and Stores → Model Providers](/docs/genai/develop/components/model-providers)** — switch the LLM provider for production; tune temperature, max tokens, retries.
 - **[Natural Functions](/docs/genai/develop/natural-functions/overview)** — when the same prompt is used in many places, package it as a typed function.
 - **[RAG](/docs/genai/develop/rag/overview)** — ground the model's answers in your own documents.
 - **[AI Agents](/docs/genai/develop/agents/overview)** — if the task needs tools or multi-turn reasoning.
-- **[What is an LLM?](/docs/genai/key-concepts/what-is-llm)** — conceptual background.

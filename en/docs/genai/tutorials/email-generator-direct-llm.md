@@ -125,7 +125,7 @@ The prompt has three natural parts:
 | **Inputs** | `${senderName}`, `${recipientName}`, `${intent}`, `${timeSlots}` — pulled in from `EmailGeneratePayload`. |
 | **Task** | *"Write a short email… ask them to pick one… polite, professional tone."* |
 
-> **Why no "return JSON" instruction?** The **Expected Type** field on the next step handles that for you — see [Typed Responses → Don't Put the Schema in the Prompt](/docs/genai/key-concepts/typed-responses#dont-put-the-schema-in-the-prompt).
+> **Why no "return JSON" instruction?** The **Expected Type** field on the next step handles that for you — you don't have to put the schema in the prompt.
 
 ### Step 3.2 — Bind the Result and Save
 
@@ -140,7 +140,7 @@ Click **Save**.
 
 ![emailGenerator > generate form with prompt, Result generatedEmail, and Expected Type EmailGenerateResponse.](/img/genai/develop/direct-llm/10-generate-config.png)
 
-The Expected Type is what makes the response come back structured. Without it you'd get a string and have to parse JSON yourself; with it, you get a typed `EmailGenerateResponse` directly. (See [Typed Responses](/docs/genai/key-concepts/typed-responses) for more.)
+The Expected Type is what makes the response come back structured. Without it you'd get a string and have to parse JSON yourself; with it, you get a typed `EmailGenerateResponse` directly.
 
 ### Step 3.3 — Add a Return Step
 
@@ -202,6 +202,5 @@ The LLM produced a complete, professionally written email — subject and body �
 
 - **[Direct LLM Calls reference](/docs/genai/develop/direct-llm/overview)** — the single-page feature reference covering the `generate` node, prompt editor, and typed responses.
 - **[AI Connections and Stores → Model Providers](/docs/genai/develop/components/model-providers)** — switch the LLM provider for production (init params, supported models, advanced HTTP configs for OpenAI, Azure, Anthropic, Vertex, Mistral, DeepSeek, Ollama, OpenRouter).
-- **[Writing Effective Prompts](/docs/genai/key-concepts/writing-effective-prompts)** — go deeper on structuring long prompts and avoiding common pitfalls.
 - **[Natural Functions](/docs/genai/develop/natural-functions/overview)** — package this same prompt as a reusable typed function.
 - **[Review Summarizer with Natural Function](review-summarizer-natural-function.md)** — a similar tutorial built around natural functions.

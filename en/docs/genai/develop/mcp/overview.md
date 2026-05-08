@@ -8,8 +8,6 @@ description: Reference for MCP features in WSO2 Integrator — exposing services
 
 WSO2 Integrator can be both an **MCP server** (exposing your integrations as standardised tools for AI assistants) and an **MCP client** (using tools published by other MCP servers from inside your own AI agents).
 
-This section is the feature reference. For the protocol concepts see [What is MCP?](/docs/genai/key-concepts/what-is-mcp).
-
 ## Features at a Glance
 
 | Feature | What it is | Where you find it in BI |
@@ -88,4 +86,3 @@ For Streamable HTTP, the listener exposes a single endpoint (e.g. `http://localh
 
 - **[Exposing a Service as MCP](exposing-as-mcp.md)** — turn your integration into an MCP server.
 - **[Consuming MCP from an Agent](consuming-mcp-from-agent.md)** — let your agent use tools from any MCP server.
-- **[What is MCP?](/docs/genai/key-concepts/what-is-mcp)** — protocol concepts.
