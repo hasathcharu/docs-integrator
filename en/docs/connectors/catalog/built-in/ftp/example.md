@@ -1,10 +1,11 @@
+---
+connector: true
+connector_name: "ftp"
+title: "Example"
+description: "Build an FTP automation that retrieves a JSON file and a trigger-driven service that processes new CSV files."
+---
+
 # Example
-
-
-## Table of Contents
-
-- [FTP Example](#ftp-example)
-- [FTP Trigger Example](#ftp-trigger-example)
 
 ## FTP Example
 
@@ -19,9 +20,10 @@ Build a WSO2 Integrator automation that connects to a remote FTP server, retriev
 
 ```mermaid
 flowchart LR
-    A((User)) --> B[getJson Operation]
-    B --> C[FTP Connector]
-    C --> D((FTP Server))
+    A((User)) --> B[main Automation]
+    B --> C[getJson Operation]
+    C <--> D[(FTP Server)]
+    C --> E[log:printInfo]
 ```
 
 ### Prerequisites
@@ -95,13 +97,21 @@ The `main` automation entry point appears in the sidebar under **Entry Points**,
 
 3. Select **Get Json** and fill in the operation form:
 
-- **Path** : Path to the JSON file on the FTP server (for example, `/data/sample.json`)
-- **Result** : Name of the variable that stores the returned value
+- **Path** : Location of the JSON file on the FTP server (for example, `/data/sample.json`)
+- **Result** : Name of the variable that stores the returned value (for example, `data`)
 - **Target Type** : The expected return type (`json`)
 
 4. Select **Save**.
 
 ![FTP getJson operation configuration filled with all values](/img/connectors/catalog/built-in/ftp/ftp_screenshot_05_getjson_form.png)
+
+#### Step 7: Add a log statement to inspect the result
+
+To log the retrieved JSON, select the **+** below the **Get Json** node and choose **Log Info** from the **Logging** section in the side panel. Enter the log statement using the result variable name you set in Step 6:
+
+`log:printInfo(data.toJsonString())`
+
+WSO2 Integrator renders the `log:printInfo` node in the flow canvas.
 
 ![Completed FTP automation flow](/img/connectors/catalog/built-in/ftp/ftp_screenshot_06_completed_flow.png)
 
@@ -160,6 +170,8 @@ Select the FTP/SFTP trigger card to open the trigger configuration form. Bind ea
 
 For string fields, select **Open Helper Panel** → **Configurables** tab → **+ New Configurable**, enter the name and default value, then select **Save**. The configurable chip appears in the field. For the **Port Number** field (integer type), first switch from **Number** to **Expression** mode, then select **Open Helper Panel** to access the Configurables tab and create the `ftpPort` configurable. Leave **Authentication** set to **Basic Authentication** and **Protocol** set to **ftp**.
 
+For SFTP, set Protocol to sftp, change the port to `22`, and use the SFTP authentication form (private key or password) in place of Basic Authentication.
+
 ![FTP trigger configuration form with all five listener parameters bound to configurable chips before selecting Create](/img/connectors/catalog/built-in/ftp/ftp_trigger_screenshots_02_trigger_config_form.png)
 
 #### Step 3: Set actual values for your configurations
@@ -186,7 +198,11 @@ Return to the FTP Integration service view. The service shows a **File Handlers*
 
 - `onCreate` — triggered when a new file is created or detected
 - `onDelete` — triggered when a file is deleted
-- `onError` — triggered when a processing error occurs
+- `onError` — invoked by the runtime as a fall-through when content cannot be bound to the typed parameter of a format-specific handler (for example, malformed JSON). Unlike `onCreate` and `onDelete`, this is not a server-side event — it is a binding-failure callback.
+
+:::note
+The Visual Designer groups handlers by event category. `onCreate` generates one of `onFile` / `onFileText` / `onFileJson` / `onFileXml` / `onFileCsv` based on the File Format you choose; `onDelete` generates `onFileDelete`. `onError` is independent of file format and complements any of the above.
+:::
 
 ![Service view with Select Handler to Add side panel open listing FTP handler options](/img/connectors/catalog/built-in/ftp/ftp_trigger_screenshots_04_add_handler_panel.png)
 
@@ -198,7 +214,7 @@ Select **onCreate** to open the **New On Create Handler Configuration** panel. S
 - **After File Processing → Success** : Set to `Move` with destination `/tmp/success`
 - **After File Processing → Error** : Set to `Move` with destination `/tmp/error`
 
-These paths determine what happens to the source file after your handler runs—successful processing moves the file to the success directory, while any returned `error` routes it to the error directory.
+These paths drive the `@ftp:FunctionConfig` annotation's `afterProcess` (Success) and `afterError` (Error) actions — see Trigger Reference for the full annotation surface.
 
 ![onCreate handler configuration form showing File Format CSV, success move-to path, and error move-to path configured before saving](/img/connectors/catalog/built-in/ftp/ftp_trigger_screenshots_05_message_define_value.png)
 
@@ -206,7 +222,9 @@ Select **Save** to register the `onFileCsv` handler on the service.
 
 #### Step 7: Add a log statement to the handler
 
-After the handler is saved, WSO2 Integrator opens the **onFileCsv** flow canvas. To observe incoming file metadata at runtime, add a `log:printInfo` call to the handler body by selecting the **+** icon in the flow chart and choosing **Log Info** from the **Logging** section in the side panel. Enter the log statement:
+After the handler is saved, WSO2 Integrator opens the **onFileCsv** flow canvas. The generated handler receives the parsed CSV content alongside an `ftp:FileInfo` record (`fileInfo`) describing the source file — path, name, size, timestamps, and attributes. We will log this metadata on each invocation.
+
+To observe incoming file metadata at runtime, add a `log:printInfo` call to the handler body by selecting the **+** icon in the flow chart and choosing **Log Info** from the **Logging** section in the side panel. Enter the log statement:
 
 `log:printInfo(fileInfo.toJsonString())`
 
