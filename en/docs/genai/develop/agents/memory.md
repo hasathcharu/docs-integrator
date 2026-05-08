@@ -93,7 +93,7 @@ Memory works as a sliding window. When new conversation turns exceed the configu
 
 | Strategy | Behavior | Configuration |
 |---|---|---|
-| **Trim Overflow Handler Configuration`** *(default)* | Removes the oldest messages one at a time until the new message fits within the memory window. | Optional: `trimCount` |
+| **Trim Overflow Handler Configuration** *(default)* | Removes the oldest messages one at a time until the new message fits within the memory window. | Optional: `trimCount` |
 | **Model Assisted Overflow Handler** | Uses a model-assisted strategy to manage memory overflow. | Optional: `model` and `prompt` |
 
 The effective size of the memory window depends on the model’s context window, with additional space reserved for the system prompt and tool definitions. In most cases, no manual tuning is required.
