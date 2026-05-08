@@ -12,13 +12,13 @@ import TabAwareToc from '@site/src/components/TabAwareToc';
 
 ## Overview
 
-The MuleSoft migration tool converts MuleSoft Anypoint flows (XML configurations) to Ballerina code. It handles HTTP listeners, request connectors, DataWeave transformations, routers, error handling patterns and more.
+The MuleSoft migration tool converts MuleSoft Anypoint flows (XML configurations) to Ballerina code. It handles HTTP listeners, request connectors, DataWeave transformations, routers, error handling patterns, and more.
 
 ## Run the MuleSoft migration tool
 
 <TabAwareToc />
 <Tabs>
-<TabItem value="ui" label="Wizard" default>
+<TabItem value="ui" label="WSO2 Integrator" default>
 
 The migration wizard guides you through a 5-step process to convert your MuleSoft project(s) into a WSO2 Integrator project.
 

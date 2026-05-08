@@ -1,22 +1,22 @@
 ---
 sidebar_position: 2
-title: Integration View
-description: Work with the Integration View to build and manage individual integrations.
+title: Integrator view
+description: Work with the Integrator view to build and manage individual integrations.
 ---
 
-# Integration View
+# Integrator view
 
-The Integration View is the primary development interface in WSO2 Integrator. Use it to build, test, and deploy a single integration. It combines a project explorer, a visual design canvas, and deployment options in one unified workspace.
+The Integrator view is the primary development interface in WSO2 Integrator. Use it to build, test, and deploy a single integration. It combines a project explorer, a visual design canvas, and deployment options in one unified workspace.
 
-![Integration View overview](/img/develop/project-views/integration-view/overview.png)
+![Integrator view overview](/img/develop/understand-ide/views/integration-view/overview.png)
 
-The activity bar, project explorer, editor toolbar, and deployment options panel work the same as in the [Project View](project-view.md). See that page for details. This page covers what's specific to a single integration: the design canvas and toolbar.
+The activity bar, project explorer, editor toolbar, and deployment options panel work the same as in the [Project view](project-view.md). See that page for details. This page covers what's specific to a single integration: the design canvas and toolbar.
 
 ## Design canvas
 
-The design canvas is the central area of the Integration View. It displays a visual overview of your integration, showing how entry points, listeners, connections, and services relate to each other.
+The design canvas is the central area of the Integrator view. It displays a visual overview of your integration, showing how entry points, listeners, connections, and services relate to each other.
 
-![Design canvas](/img/develop/project-views/integration-view/design-canvas.png)
+![Design canvas](/img/develop/understand-ide/views/integration-view/design-canvas.png)
 
 ### Service diagram
 
@@ -58,9 +58,9 @@ Click the **+ Add Artifact** button at the top of the canvas to add a new compon
 
 ## Toolbar
 
-The toolbar sits at the top of the Integration View and provides quick access to common actions for building, running, and debugging your integration.
+The toolbar sits at the top of the Integrator view and provides quick access to common actions for building, running, and debugging your integration.
 
-![Toolbar](/img/develop/project-views/integration-view/toolbar.png)
+![Toolbar](/img/develop/understand-ide/views/integration-view/toolbar.png)
 
 | Action | Description |
 |---|---|
@@ -71,9 +71,9 @@ The toolbar sits at the top of the Integration View and provides quick access to
 
 ## README section
 
-The README section at the bottom of the Integration View displays the contents of your project's `README.md` file. Use it to document the purpose, setup instructions, and usage notes for your integration.
+The README section at the bottom of the Integrator view displays the contents of your project's `README.md` file. Use it to document the purpose, setup instructions, and usage notes for your integration.
 
-![Readme](/img/develop/project-views/integration-view/readme.png)
+![Readme](/img/develop/understand-ide/views/integration-view/readme.png)
 
 Click **Edit** to modify the README directly. You can also click **Generate with AI** to create a README automatically based on your project's components and configuration.
 
