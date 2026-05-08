@@ -1713,7 +1713,7 @@ const sidebars: SidebarsConfig = {
               type: 'category',
               label: 'Building your first AI integration',
               items: [
-                'genai/getting-started/build-a-smart-calculator-assistant',
+                'genai/getting-started/build-a-sentiment-analyzer',
                 'genai/getting-started/build-a-sample-hotel-booking-agent',
               ],
             },
