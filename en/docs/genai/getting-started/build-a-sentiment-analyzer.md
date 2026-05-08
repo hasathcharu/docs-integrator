@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
-title: "Build a Sentiment Analyzer"
-description: Build your first AI integration — an HTTP service that uses a direct LLM call to classify customer reviews.
+title: "Build a sentiment analyzer"
+description: Build your first AI integration. An HTTP service that uses a direct LLM call to classify customer reviews.
 keywords: [wso2 integrator, ai, llm, direct llm call, sentiment analysis, quick start, ballerina ai]
 ---
 
@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Build a Sentiment Analyzer
+# Build a sentiment analyzer
 
 **Time:** Under 10 minutes | **What you'll build:** An HTTP service that listens on `POST /analyze`, sends a customer review to an LLM, and returns the sentiment as `POSITIVE`, `NEGATIVE`, or `NEUTRAL`.
 
@@ -27,7 +27,7 @@ A direct LLM call is the simplest way to use AI in an integration: you send a pr
 
 ## Step 1: Add an HTTP service
 
-1. Select your integration from the project panel.
+1. Select your integration from the Project overview canvas.
 2. In the Design canvas, select **Add Artifact**.
 3. Select **HTTP Service** under **Integration as API**.
 4. Keep **Service Contract** as **Design From Scratch**.
@@ -183,7 +183,7 @@ Run and test the integration from WSO2 Integrator using the **Try It** panel as 
 
 The model provider's `generate` method takes a backtick template prompt and an expected return type. Behind the scenes the LLM is instructed to produce output that conforms to that type, and the response is parsed and validated before being returned to your code.
 
-Because the return type is an enum, the LLM cannot return free-form text — it must pick one of `POSITIVE`, `NEGATIVE`, or `NEUTRAL`. If the model returns anything else, the call fails with a typed error rather than silently passing bad data downstream.
+Because the return type is an enum, the LLM cannot return free-form text. It must pick one of `POSITIVE`, `NEGATIVE`, or `NEUTRAL`. If the model returns anything else, the call fails with a typed error rather than silently passing bad data downstream.
 
 This is what differentiates a direct LLM call from a raw chat completion: you write the call as if it were a normal function and let the type system do the work.
 
