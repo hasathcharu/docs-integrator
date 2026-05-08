@@ -329,7 +329,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'AI',
-          link: { type: 'doc', id: 'connectors/catalog/built-in/ai/ai' },
+          link: { type: 'doc', id: 'connectors/catalog/built-in/ai/ai-overview' },
           items: [
             'connectors/catalog/built-in/ai/action-reference',
             'connectors/catalog/built-in/ai/trigger-reference',
