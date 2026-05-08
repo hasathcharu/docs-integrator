@@ -2,7 +2,7 @@
 title: Setting up
 description: Prerequisites and Copilot sign-in steps to start building AI-powered integrations with WSO2 Integrator.
 keywords: [wso2 integrator, copilot, getting started, sign in]
-slug: /develop/copilot/getting-started
+slug: /develop/copilot/setting-up
 ---
 
 # Setting up

@@ -2,7 +2,7 @@
 title: "Using Copilot"
 description: "AI-powered tool that generates integration artifacts from natural language prompts or OpenAPI specifications."
 keywords: [wso2 integrator, copilot, ai, integration generation]
-slug: /develop/copilot/overview
+slug: /develop/copilot/using-copilot
 ---
 
 # Using Copilot
