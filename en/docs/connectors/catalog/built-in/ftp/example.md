@@ -84,7 +84,7 @@ Select **Save Connection** to persist the connection. The form closes and the ca
 
 1. Select **+ Add Artifact** on the canvas toolbar.
 2. Under **Automation**, select the **Automation** tile.
-3. Select **Create** — no additional configuration is needed.
+3. Select **Create**. No additional configuration is needed.
 
 The `main` automation entry point appears in the sidebar under **Entry Points**, and the canvas switches to the Automation flow editor showing a **Start** node.
 
@@ -198,7 +198,7 @@ Return to the FTP Integration service view. The service shows a **File Handlers*
 
 - `onCreate` — triggered when a new file is created or detected
 - `onDelete` — triggered when a file is deleted
-- `onError` — invoked by the runtime as a fall-through when content cannot be bound to the typed parameter of a format-specific handler (for example, malformed JSON). Unlike `onCreate` and `onDelete`, this is not a server-side event — it is a binding-failure callback.
+- `onError` — invoked by the runtime as a fall-through when content cannot be bound to the typed parameter of a format-specific handler (for example, malformed JSON). Unlike `onCreate` and `onDelete`, this is not a server-side event. It is a binding-failure callback.
 
 :::note
 The Visual Designer groups handlers by event category. `onCreate` generates one of `onFile` / `onFileText` / `onFileJson` / `onFileXml` / `onFileCsv` based on the File Format you choose; `onDelete` generates `onFileDelete`. `onError` is independent of file format and complements any of the above.
@@ -214,7 +214,7 @@ Select **onCreate** to open the **New On Create Handler Configuration** panel. S
 - **After File Processing → Success** : Set to `Move` with destination `/tmp/success`
 - **After File Processing → Error** : Set to `Move` with destination `/tmp/error`
 
-These paths drive the `@ftp:FunctionConfig` annotation's `afterProcess` (Success) and `afterError` (Error) actions — see Trigger Reference for the full annotation surface.
+These paths drive the `@ftp:FunctionConfig` annotation's `afterProcess` (Success) and `afterError` (Error) actions. See Trigger Reference for the full annotation surface.
 
 ![onCreate handler configuration form showing File Format CSV, success move-to path, and error move-to path configured before saving](/img/connectors/catalog/built-in/ftp/ftp_trigger_screenshots_05_message_define_value.png)
 
@@ -222,7 +222,7 @@ Select **Save** to register the `onFileCsv` handler on the service.
 
 #### Step 7: Add a log statement to the handler
 
-After the handler is saved, WSO2 Integrator opens the **onFileCsv** flow canvas. The generated handler receives the parsed CSV content alongside an `ftp:FileInfo` record (`fileInfo`) describing the source file — path, name, size, timestamps, and attributes. We will log this metadata on each invocation.
+After the handler is saved, WSO2 Integrator opens the **onFileCsv** flow canvas. The generated handler receives the parsed CSV content alongside an `ftp:FileInfo` record (`fileInfo`) describing the source file (path, name, size, timestamps, and attributes). We will log this metadata on each invocation.
 
 To observe incoming file metadata at runtime, add a `log:printInfo` call to the handler body by selecting the **+** icon in the flow chart and choosing **Log Info** from the **Logging** section in the side panel. Enter the log statement:
 
@@ -246,7 +246,7 @@ Select **Run Integration** in the WSO2 Integrator toolbar to start the integrati
 - **Native FTP CLI**: Use an FTP command-line client (for example, `ftp` or `lftp`) to connect to the server and upload a CSV file to the monitored directory.
 - **FTP client application**: Use a graphical FTP client such as FileZilla to upload a CSV file to the monitored path on the server.
 
-When a new CSV file appears at the monitored FTP path, the `onFileCsv` handler fires. The file metadata—name, size, path, and last modified time—is logged to the console via `log:printInfo`, and the source file is moved to `/tmp/success` on completion.
+When a new CSV file appears at the monitored FTP path, the `onFileCsv` handler fires. The file metadata (name, size, path, and last modified time) is logged to the console via `log:printInfo`, and the source file is moved to `/tmp/success` on completion.
 
 ### Try it yourself
 

@@ -291,7 +291,7 @@ Writes byte content to a remote file. Supports overwrite and append modes.
 |------|------|----------|-------------|
 | `path` | <code>string</code> | Yes | The destination file path on the remote server. |
 | `content` | <code>byte[]</code> | Yes | The byte content to write. |
-| `option` | <code>FileWriteOption</code> | No | Write mode — `OVERWRITE` (default) or `APPEND`. |
+| `option` | <code>FileWriteOption</code> | No | Write mode with `OVERWRITE` (default) or `APPEND`. |
 
 **Returns:** `Error?`
 
@@ -318,7 +318,7 @@ Writes string content to a remote file. Supports overwrite and append modes.
 |------|------|----------|-------------|
 | `path` | <code>string</code> | Yes | The destination file path on the remote server. |
 | `content` | <code>string</code> | Yes | The text content to write. |
-| `option` | <code>FileWriteOption</code> | No | Write mode — `OVERWRITE` (default) or `APPEND`. |
+| `option` | <code>FileWriteOption</code> | No | Write mode with `OVERWRITE` (default) or `APPEND`. |
 
 **Returns:** `Error?`
 
@@ -347,7 +347,7 @@ Note that APPEND performs raw text concatenation, which can produce invalid JSON
 |------|------|----------|-------------|
 | `path` | <code>string</code> | Yes | The destination file path on the remote server. |
 | `content` | <code>json&#124;record &#123;&#125;</code> | Yes | The JSON content to write. |
-| `option` | <code>FileWriteOption</code> | No | Write mode — `OVERWRITE` (default) or `APPEND`. |
+| `option` | <code>FileWriteOption</code> | No | Write mode with `OVERWRITE` (default) or `APPEND`. |
 
 **Returns:** `Error?`
 
@@ -376,7 +376,7 @@ Note that APPEND performs raw text concatenation, which can produce invalid JSON
 |------|------|----------|-------------|
 | `path` | <code>string</code> | Yes | The destination file path on the remote server. |
 | `content` | <code>xml&#124;record &#123;&#125;</code> | Yes | The XML content to write. |
-| `option` | <code>FileWriteOption</code> | No | Write mode — `OVERWRITE` (default) or `APPEND`. |
+| `option` | <code>FileWriteOption</code> | No | Write mode with `OVERWRITE` (default) or `APPEND`. |
 
 **Returns:** `Error?`
 
@@ -403,7 +403,7 @@ Writes CSV content to a remote file. Supports overwrite and append modes.
 |------|------|----------|-------------|
 | `path` | <code>string</code> | Yes | The destination file path on the remote server. |
 | `content` | <code>string[][]&#124;record &#123;&#125;[]</code> | Yes | The CSV content as a 2D string array or record array. |
-| `option` | <code>FileWriteOption</code> | No | Write mode — `OVERWRITE` (default) or `APPEND`. |
+| `option` | <code>FileWriteOption</code> | No | Write mode with `OVERWRITE` (default) or `APPEND`. |
 
 **Returns:** `Error?`
 
@@ -434,7 +434,7 @@ Writes a byte stream to a remote file, suitable for large files.
 |------|------|----------|-------------|
 | `path` | <code>string</code> | Yes | The destination file path on the remote server. |
 | `content` | <code>stream&lt;byte[], error?&gt;</code> | Yes | The byte stream to write. |
-| `option` | <code>FileWriteOption</code> | No | Write mode — `OVERWRITE` (default) or `APPEND`. |
+| `option` | <code>FileWriteOption</code> | No | Write mode with `OVERWRITE` (default) or `APPEND`. |
 
 **Returns:** `Error?`
 
@@ -462,7 +462,7 @@ Writes a CSV stream to a remote file, suitable for large datasets.
 |------|------|----------|-------------|
 | `path` | <code>string</code> | Yes | The destination file path on the remote server. |
 | `content` | <code>stream&lt;string[]&#124;record &#123;&#125;, error?&gt;</code> | Yes | The CSV row stream to write. |
-| `option` | <code>FileWriteOption</code> | No | Write mode — `OVERWRITE` (default) or `APPEND`. |
+| `option` | <code>FileWriteOption</code> | No | Write mode with `OVERWRITE` (default) or `APPEND`. |
 
 **Returns:** `Error?`
 

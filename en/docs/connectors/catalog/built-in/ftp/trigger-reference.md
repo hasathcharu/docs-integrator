@@ -5,7 +5,7 @@ connector_name: "ftp"
 
 # Triggers
 
-The `ballerina/ftp` connector supports event-driven file processing through a polling-based listener. The `ftp:Listener` periodically monitors a configured directory on a remote FTP/SFTP server for file changes and delivers new file content to your service callbacks in the format you choose — bytes, text, JSON, XML, or CSV.
+The `ballerina/ftp` connector supports event-driven file processing through a polling-based listener. The `ftp:Listener` periodically monitors a configured directory on a remote FTP/SFTP server for file changes and delivers new file content to your service callbacks in the format you choose (bytes, text, JSON, XML, or CSV).
 
 The connector exposes several components:
 | Component | Role |
@@ -13,7 +13,7 @@ The connector exposes several components:
 | `ftp:Listener` | Polls a remote FTP/SFTP directory at a configurable interval and detects new or deleted files. |
 | `ftp:Service` | Hosts one or more remote functions that are invoked on file events. Multiple format-specific handlers can be combined on a single service to route different file types to different methods.|
 | `ftp:Caller` | An FTP client passed to callbacks, enabling additional file operations (read, write, move, delete) within the handler. |
-| `ftp:FileInfo` | Metadata record describing a remote file — path, name, size, timestamps, and attributes. | 
+| `ftp:FileInfo` | Metadata record describing a remote file such as path, name, size, timestamps, and attributes. | 
 
 For action-based operations, see the [Action Reference](action-reference.md).
 
@@ -53,7 +53,7 @@ The listener supports the following connection strategy:
 | `coordination` | <code>CoordinationConfig</code> | `()` | Distributed task coordination. When set, multiple listener members coordinate so that only one polls at a time and the others act as warm standby. |
 
 :::note
-The deprecated fields `path`, `fileNamePattern`, `fileAgeFilter`, and `fileDependencyConditions` still exist on `ListenerConfiguration` but should not be used in new code. Configure these on the service via `@ftp:ServiceConfig` instead — see [File Dependency and Trigger Conditions](dependency-and-trigger-conditions.md).
+The deprecated fields `path`, `fileNamePattern`, `fileAgeFilter`, and `fileDependencyConditions` still exist on `ListenerConfiguration` but should not be used in new code. Configure these on the service via `@ftp:ServiceConfig` instead, see [File Dependency and Trigger Conditions](dependency-and-trigger-conditions.md).
 :::
 
 ### Initializing the listener
@@ -119,7 +119,7 @@ An `ftp:Service` is a Ballerina service attached to an `ftp:Listener`. It monito
 ### Callback signatures
 
 :::note
-`fileInfo` and `caller` are independently optional in the declaration. Valid `onFile` shapes include `(content)`, `(content, fileInfo)`, `(content, caller)`, and `(content, fileInfo, caller)`. When both `fileInfo` and `caller` are declared, they must appear in that order — the compiler plugin rejects other orderings.                                           
+`fileInfo` and `caller` are independently optional in the declaration. Valid `onFile` shapes include `(content)`, `(content, fileInfo)`, `(content, caller)`, and `(content, fileInfo, caller)`. When both `fileInfo` and `caller` are declared, they must appear in that order. The compiler plugin rejects other orderings.                                           
 :::
 
 | Function | Signature | Description |
@@ -128,12 +128,12 @@ An `ftp:Service` is a Ballerina service attached to an `ftp:Listener`. It monito
 | `onFileText` | <code>remote function onFileText(string content, ftp:FileInfo fileInfo, ftp:Caller caller) returns error?</code> | Invoked for each new file detected in a polling cycle, delivering content as a string. `fileInfo` and `caller` are both optional.|
 | `onFileJson` | <code>remote function onFileJson(json&#124;record {} content, ftp:FileInfo fileInfo, ftp:Caller caller) returns error?</code> | Invoked for each new file detected in a polling cycle. Content is delivered as a `json` value or bound to a user-defined `record` type. `fileInfo` and `caller` are both optional. |
 | `onFileXml` | <code>remote function onFileXml(xml&#124;record {} content, ftp:FileInfo fileInfo, ftp:Caller caller) returns error?</code> | Invoked for each new file detected in a polling cycle. Content is delivered as an `xml` value or bound to a user-defined `record` type. `fileInfo` and `caller` are both optional. |
-| `onFileCsv` | <code>remote function onFileCsv(string[][]&#124;record {}[]&#124;stream&lt;string[], error?&gt;&#124;stream&lt;record {}, error?&gt; content, ftp:FileInfo fileInfo, ftp:Caller caller) returns error?</code> | Invoked for each new CSV file detected in a polling cycle. Content can be delivered as `string[][]`, `record[]`, or as a stream of either — pick the array form for small files and the stream form for large datasets. `fileInfo` and `caller` are both optional. |
+| `onFileCsv` | <code>remote function onFileCsv(string[][]&#124;record {}[]&#124;stream&lt;string[], error?&gt;&#124;stream&lt;record {}, error?&gt; content, ftp:FileInfo fileInfo, ftp:Caller caller) returns error?</code> | Invoked for each new CSV file detected in a polling cycle. Content can be delivered as `string[][]`, `record[]`, or as a stream of either. Pick the array form for small files and the stream form for large datasets. `fileInfo` and `caller` are both optional. |
 | `onFileDelete` | <code>remote function onFileDelete(string deletedFile, ftp:Caller caller) returns error?</code> | Invoked once per file detected as deleted in a polling cycle, receiving the deleted file's path. `caller` is optional. |
-| `onError` | <code>remote function onError(ftp:Error err, ftp:Caller caller) returns error?</code> | Invoked when the runtime cannot bind a file's content to the typed parameter of a format-specific handler — for example, an `onFileJson` handler receiving malformed JSON. `caller` is optional. |
+| `onError` | <code>remote function onError(ftp:Error err, ftp:Caller caller) returns error?</code> | Invoked when the runtime cannot bind a file's content to the typed parameter of a format-specific handler. For example, an `onFileJson` handler receiving malformed JSON. `caller` is optional. |
 
 :::note
-The `|` in the content parameter lists the supported alternative types — declare the parameter with **one** of them. For example, `onFile` can be declared with `byte[]` *or* `stream<byte[], error?>`, but not both at once.
+The `|` in the content parameter lists the supported alternative types. The parameter should only be decalred with **one** of them. For example, `onFile` can be declared with `byte[]` *or* `stream<byte[], error?>`, not both at once.
 
 Multiple format-specific handlers (`onFile`, `onFileText`, `onFileJson`, `onFileXml`, `onFileCsv`) can coexist on the same service to route different file types to different methods using `@ftp:FunctionConfig`'s `fileNamePattern`. `onFileDelete` and `onError`can be added alongside any of them.
 :::
@@ -206,7 +206,7 @@ Use the `@ftp:ServiceConfig` annotation to specify the `path` to monitor and an 
 
 ### Post-processing for `onError`
  
-Declaring `onError` overrides the content method's `afterError` action — only `@ftp:FunctionConfig` annotations on `onError` itself are honoured. To quarantine files that fail binding, set both `afterProcess` (runs when `onError` returns successfully) and `afterError` (runs if `onError` itself returns an error):
+Declaring `onError` overrides the content method's `afterError` action. Only `@ftp:FunctionConfig` annotations on `onError` itself are honoured. To quarantine files that fail binding, set both `afterProcess` (runs when `onError` returns successfully) and `afterError` (runs if `onError` itself returns an error):
 
 ```ballerina         
 @ftp:FunctionConfig {                                 
@@ -218,7 +218,7 @@ remote function onError(ftp:Error err) returns error? {
 }
 ```
 
-If onError is not declared, the runtime falls back to the content method's afterError action — so simple cases can configure quarantine on onFileJson / onFileCsv directly without an onError handler.
+If onError is not declared, the runtime falls back to the content method's afterError action. So simple cases can configure quarantine on onFileJson / onFileCsv directly without an onError handler.
 
 ---
 
@@ -269,11 +269,11 @@ If onError is not declared, the runtime falls back to the content method's after
 | Field | Type | Description |
 |-------|------|-------------|
 | `username` | <code>string</code> | The username for authentication. |
-| `password` | <code>string</code> | The password for authentication. Optional — omit when authenticating with a private key only.|
+| `password` | <code>string</code> | The password for authentication. Optional, omit when authenticating with a private key only.|
 
 ### `PrivateKey`
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `path` | <code>string</code> | Path to the SSH private key file. |
-| `password` | <code>string</code> | Passphrase for the private key. Optional — omit if the key is unencrypted.|
+| `password` | <code>string</code> | Passphrase for the private key. Optional, omit if the key is unencrypted.|
