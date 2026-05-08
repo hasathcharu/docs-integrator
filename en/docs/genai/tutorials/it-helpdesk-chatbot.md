@@ -71,10 +71,11 @@ In this section, you will create the integration project and configure the AI ag
 
 Create a new integration project by following the instructions in [Create a project](develop/create-integrations/create-a-project.md).
 
-### Step 2: Define the data types
+### Step 2: Define the data type
 
-Define the following data types.
-
+Define the following data type.
+<Tabs>
+<TabItem value="code" label="Ballerina Code">
 ```ballerina
 # types.bal
 type KbArticle record {|
@@ -86,17 +87,37 @@ type KbArticle record {|
     float relevanceScore;
 |};
 ```
+</TabItem>
+</Tabs>
 
+Initialize the `kbArticles`.
+
+<Tabs>
+<TabItem value="code" label="Ballerina Code">
+```ballerina
+final KbArticle[] & readonly kbArticles = [
+    {
+        articleId: "KB-101",
+        title: "VPN Troubleshooting",
+        content: "Restart the VPN client and reconnect.",
+        category: "network",
+        tags: ["vpn"],
+        relevanceScore: 0.95
+    }
+];
+```
+</TabItem>
+</Tabs>
 ### Step 3: Create the AI agent
 
-Create the AI agent named `itHelpDeskAgent` by following the instructions in [Create an Agent](genai/develop/agents/creating-an-agent.md).
+Create the AI agent named `itHelpDeskAgent` by following the instructions in [Creating an Agent](genai/develop/agents/creating-an-agent.md).
 
 ### Step 4: Update the system prompt
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-- Click the created agent and add the following instructions.
+- Click the created agent and add the instructions.
 
 ![Add instruction](/img/genai/tutorials/hr-knowledge-base-rag/28-add-instruction.png)
 
@@ -123,13 +144,15 @@ final ai:Agent itHelpDeskAgent = check new (
     tools = []
 );
 ```
-
 </TabItem>
 </Tabs>
 
 ### Step 5: Add a tool to the agent
 
 Add the following tool to the agent by following the instructions in [Create custom tool — hand-crafted definitions](genai/develop/agents/tools.md#4-create-custom-tool--hand-crafted-definitions).
+
+<Tabs>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 # agents.bal
@@ -149,11 +172,19 @@ isolated function searchKnowledgeBase(string query) returns string {
     return "No matching knowledge base article found.";
 }
 ```
+</TabItem>
+</Tabs>
 
 ### Step 6: Add persistent memory to the agent
 
-Add persistent memory by following the instructions in [Memory](genai/develop/agents/memory).
+Add persistent memory by following the instructions in [Memory](genai/develop/agents/memory.md).
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+    ![Agent with inmemory](/img/genai/develop/agents/29-agent-with-inmemory.png)
+</TabItem>
+
+<TabItem value="code" label="Ballerina Code">
 ```ballerina
 # agents.bal
 import ballerinax/ai.memory.mssql;
@@ -192,6 +223,8 @@ final ai:Agent itHelpDeskAgent = check new (
     tools = [searchKnowledgeBase]
 );
 ```
+</TabItem>
+</Tabs>
 
 ### Step 8: Run and test the integration
 
@@ -201,25 +234,37 @@ final ai:Agent itHelpDeskAgent = check new (
 
 2. Ask a question as an employee:
 
+<Tabs>
+<TabItem value="bash" label="Curl Command" default>
+
 ```bash
 curl -X POST http://localhost:9090/hthr/chat \
   -H "Content-Type: application/json" \
   -d '{
-        "sessionId":"EMP-1001",
-        "message":"My VPN is not working"
+        "sessionId": "EMP-1001",
+        "message": "My VPN is not working"
       }'
 ```
 
+</TabItem>
+</Tabs>
+
 Example response:
 
+<Tabs>
+<TabItem value="bash" label="Response" default>
 ```json
 {
   "message":"To address your VPN issue, please restart the VPN client and try reconnecting. If you have already done this, let me know for further assistance!"
 }
 ```
+</TabItem>
+</Tabs>
 
 3. Continue the conversation using the same `sessionId`:
 
+<Tabs>
+<TabItem value="bash" label="Curl Command" default>
 ```bash
 curl -X POST http://localhost:9090/hthr/chat \
   -H "Content-Type: application/json" \
@@ -228,8 +273,13 @@ curl -X POST http://localhost:9090/hthr/chat \
         "message":"I already restarted it"
       }'
 ```
+</TabItem>
+</Tabs>
 
 Example response:
+
+<Tabs>
+<TabItem value="bash" label="Response" default>
 
 ```json
 {
@@ -243,9 +293,13 @@ Example response:
 If you need more help, just let me know!"
 }
 ```
+</TabItem>
+</Tabs>
 
 4. Continue the conversation again using the same `sessionId`:
 
+<Tabs>
+<TabItem value="bash" label="Curl Command" default>
 ```bash
 curl -X POST http://localhost:9090/hthr/chat \
   -H "Content-Type: application/json" \
@@ -254,8 +308,12 @@ curl -X POST http://localhost:9090/hthr/chat \
         "message":"Any other suggestions?"
       }'
 ```
+</TabItem>
+</Tabs>
 
 Example response:
+<Tabs>
+<TabItem value="bash" label="Response" default>
 
 ```json
 {
@@ -269,8 +327,13 @@ Example response:
 Let me know if you need anything else!"
 }
 ```
+</TabItem>
+</Tabs>
 
 5. Restart the service and reconnect using the same `sessionId`:
+
+<Tabs>
+<TabItem value="bash" label="Curl Command" default>
 
 ```bash
 curl -X POST http://localhost:9090/hthr/chat \
@@ -280,20 +343,23 @@ curl -X POST http://localhost:9090/hthr/chat \
         "message":"Do you remember my issue?"
       }'
 ```
+</TabItem>
+</Tabs>
 
 Example response:
 
+<Tabs>
+<TabItem value="bash" label="Response" default>
 ```json
 {
   "message":"Yes, your issue is that your VPN is not working, and you've already restarted the client. Would you like me to assist you with anything specific regarding that?"
 }
 ```
+</TabItem>
+</Tabs>
 
-The AI agent remembers previous conversations because the conversation history is stored in persistent MSSQL-backed memory and retrieved using the same `sessionId`.
+The AI agent remembers previous conversations because the conversation history is stored in persistent MSSQL backed memory and retrieved using the same `sessionId`.
 
 ## What's next
 
-- [Memory Configuration](/docs/genai/agents/memory-configuration) — Explore memory options in depth
-- [Chat Agents](/docs/genai/agents/chat-agents) — Learn more about chat agent patterns
-- [Agent Tracing](/docs/genai/agent-observability/agent-tracing) — Add observability and debugging
-- [Troubleshooting](/docs/genai/reference/troubleshooting) — Common issues and solutions
+[Building a Legal Document Q&A System with MCP and RAG](genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag.md) — Explore memory options in depth
