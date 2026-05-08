@@ -9,6 +9,10 @@ keywords: [wso2 integrator, ai agent, evaluation, visual designer, llm-as-judge]
 
 An **evaluation** is the function that scores agent behaviour against an evalset. You start by filling a short form, and WSO2 Integrator opens the rest of the configuration in the visual designer.
 
+:::info Prerequisites
+For the **From Evalset** path (the most common), have at least one evalset in your project. See [Create evalsets](evalsets.md) to capture or import one. The **Standalone/Custom** path does not need an evalset.
+:::
+
 ## Start a new evaluation
 
 1. Open the **Test Explorer** by clicking the test beaker icon in the activity bar.
@@ -26,20 +30,38 @@ An **evaluation** is the function that scores agent behaviour against an evalset
 | **How would you like to build this evaluation?** | Pick **From Evalset** to score against an existing evalset, or **Standalone/Custom** to define your own evaluation behaviour without an evalset. |
 | **Evalset File** | The evalset to use. Shown when **From Evalset** is selected. |
 
+:::tip
+Consider lowering the **Minimum Pass Rate** below 100%. Agent responses are non-deterministic, so a small amount of run-to-run variation is expected even when the agent is behaving correctly. A threshold around 80–90% tolerates that variance while still catching real regressions.
+:::
+
 #### When to use each build option
 
 - **From Evalset.** Score the agent against the conversations captured in an evalset. Best when you have a representative dataset to replay.
 - **Standalone/Custom.** Define the evaluation entirely with your own logic. Use this for custom behaviour that does not fit the conversation-trace format, or when you do not have an evalset yet.
 
-After you click **Save**, the evaluation opens in the visual designer for further configuration.
+After you click **Save**, the evaluation opens in the visual designer for further configuration. To reopen it later, click the flow icon next to the evaluation in the **Test Explorer**.
 
-:::tip
-Consider lowering the **Minimum Pass Rate** below 100%. Agent responses are non-deterministic, so a small amount of run-to-run variation is expected even when the agent is behaving correctly. A threshold around 80–90% tolerates that variance while still catching real regressions.
-:::
+![Test Explorer with the flow icon highlighted next to the testToolTrajectory evaluation, opening its visual designer flow on the canvas.](/img/genai/develop/agents/evaluations/open-evaluation-flow.png)
 
 ## Build the evaluation logic
 
-The evaluation opens in the visual designer with a **Start** node. It receives a `thread` input that exposes the messages and traces from each evalset entry. Most evaluations iterate over those traces and run their checks inside the loop.
+The evaluation opens in the visual designer with a **Start** node. It receives a `thread` input, which is one `ai:ConversationThread` per evalset entry. Most evaluations iterate over its captured turns.
+
+### Available inputs
+
+| Field | Type | What it holds |
+|---|---|---|
+| `thread.id` | `string` | Session ID of the captured conversation. |
+| `thread.traces` | `ai:Trace[]` | The list of turns captured in the evalset. |
+
+Each entry in `thread.traces` is an `ai:Trace`:
+
+| Field | Type | What it holds |
+|---|---|---|
+| `trace.userMessage.content` | `string` | The user input that triggered the turn. |
+| `trace.toolCalls` | array | Tool calls the agent made during this turn. |
+| `trace.output` | record | The agent's final response, with `content` and `toolCalls`. |
+| `trace.tools` | array | Tools available to the agent at the time. |
 
 ### Iterate over each trace
 
@@ -81,6 +103,8 @@ This replays each trace's original input against the current agent build and cap
 The agent runs once per trace and stores its response in `actualTrace`, which the rest of the evaluation can compare against the expected trace.
 
 ### Compare the result with the expected trace
+
+`trace` holds the **expected** behaviour recorded in the evalset, while `actualTrace` holds what the current agent run produced. The job of this step is to compare the two with assertion nodes.
 
 Use the assertion nodes under **Test** in the node panel to score each trace. Available checks include `assertTrue`, `assertFalse`, `assertEquals`, `assertNotEquals`, `assertExactEquals`, `assertNotExactEquals`, `assertFail`, and `mock`.
 
