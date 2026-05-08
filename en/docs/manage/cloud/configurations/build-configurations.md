@@ -27,3 +27,8 @@ You can control how your integration is built on WSO2 Cloud - Integration Platfo
 4. Click **Save**.
 
 The updated settings apply from the next build onwards. To verify, you can trigger a build manually by clicking the **Build Latest** button.
+
+## What's next
+
+- [Runtime configurations](./runtime-configurations.md) — Set configurable values and secrets your integration reads at runtime.
+- [Endpoint configurations](./endpoint-configurations.md) — Control the visibility of your integration's endpoints per environment.

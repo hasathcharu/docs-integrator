@@ -21,8 +21,6 @@ You can configure the **Environment Promotion** workflow to require an approval 
 
     ![Configure Workflow dialog showing Roles and Assignees fields](/img/manage/cloud/environments/promotion-approvals/who-can-respond.png)
 
-6. In the **Configure Workflow** dialog:
-
     | Field | Description |
     |---|---|
     | **Roles** | Select the roles whose members can review and respond to approval requests. |
@@ -32,7 +30,7 @@ You can configure the **Environment Promotion** workflow to require an approval 
     You can also update these settings later by clicking the edit icon next to the workflow toggle.
     :::
 
-7. Click **Save**.
+6. Click **Save**.
 
 ## Request to promote
 

@@ -33,4 +33,4 @@ After the first promotion, subsequent promotions to the same environment use the
 ## What's next
 
 - [Promotion approvals](./promotion-approval.md) — Require approvals before an integration is promoted to a protected environment.
-- [Runtime configurations](../cloud/configurations/runtime-configurations.md) — Update configuration values for a specific environment after promotion.
+- [Runtime configurations](../configurations/runtime-configurations.md) — Update configuration values for a specific environment after promotion.

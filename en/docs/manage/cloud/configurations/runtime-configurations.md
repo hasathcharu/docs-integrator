@@ -34,7 +34,7 @@ To mark a value as a secret:
 3. Next to the configurable field you want to protect, click the padlock icon.
 4. Click **Update**.
 
-The value is stored in the secret vault, and cannot be viewed once saved. You can only replace it with a new value by clicking **Update Sensitive Content** button.
+The value is stored in the secret vault, and cannot be viewed once saved. You can only replace it with a new value by clicking the **Update Sensitive Content** button.
 
 ## Configuration groups
 

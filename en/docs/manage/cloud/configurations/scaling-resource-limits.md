@@ -66,9 +66,6 @@ For HTTP integrations, scale-to-zero is enabled by default on deploy and promote
 
 1. In the left navigation, click **Admin**, then click **Scaling**.
 2. Click the **Scale-to-zero** card.
-
-    <!-- TODO: Add screenshot of the scale-to-zero card in the Scaling view -->
-
 3. Set the **Max replicas** the integration can scale up to under high traffic.
 4. Optionally, adjust the **Target pending requests** threshold.
 5. Click **Save**.
@@ -90,8 +87,6 @@ You can configure scale-to-zero independently for each environment. The deployme
 
 If the first request to a scale-to-zero integration returns a `503` error, the readiness probe may not allow enough time for your integration to start. Adjust the readiness probe in **Admin** > **Health Checks** to match your integration's startup time.
 
-<!-- ## What's next
+## What's next
 
-- [Integration lifecycle](../integrations/lifecycle.md) — Manage scheduling, stopping, and scaling for deployed integrations.
-- [Endpoints and networking](../integrations/endpoints-networking.md) — Configure endpoints and network visibility for your integrations.
-- [Configurations](./configurations.md) — Set runtime configuration values per environment. -->
+- [Environments](../environments/overview) — Organize your integration lifecycle with multiple environments.

@@ -2436,6 +2436,47 @@ const sidebars: SidebarsConfig = {
       link: { type: 'doc', id: 'manage/overview' },
       items: [
         'manage/choosing-a-control-plane',
+        // Cloud
+        {
+          type: 'category',
+          label: 'WSO2 Cloud',
+          link: { type: 'doc', id: 'manage/cloud/overview' },
+          items: [
+            // Integrations
+            {
+              type: 'category',
+              label: 'Integrations',
+              items: [
+                'manage/cloud/integrations/viewing-deployed',
+                'manage/cloud/integrations/lifecycle',
+              ],
+            },
+            // Configuration Management
+            {
+              type: 'category',
+              label: 'Configurations',
+              link: { type: 'doc', id: 'manage/cloud/configurations/overview' },
+              items: [
+                'manage/cloud/configurations/runtime-configurations',
+                'manage/cloud/configurations/endpoint-configurations',
+                'manage/cloud/configurations/security-configurations',
+                'manage/cloud/configurations/build-configurations',
+                'manage/cloud/configurations/scaling-resource-limits',
+              ],
+            },
+            // Environments
+            {
+              type: 'category',
+              label: 'Environments',
+              link: { type: 'doc', id: 'manage/cloud/environments/overview' },
+              items: [
+                'manage/cloud/environments/promotion',
+                'manage/cloud/environments/promotion-approval',
+              ],
+            },
+          ],
+        },
+        // ICP
         {
           type: 'category',
           label: 'ICP',
@@ -2456,45 +2497,6 @@ const sidebars: SidebarsConfig = {
               items: [
                 'manage/icp/mi-profile/observability-setup-mi',
                 'manage/icp/mi-profile/connect-runtime-mi',
-              ],
-            },
-          ],
-        },
-        // Cloud
-        {
-          type: 'category',
-          label: 'WSO2 Cloud',
-          items: [
-            // Integrations
-            {
-              type: 'category',
-              label: 'Integrations',
-              items: [
-                'manage/cloud/integrations/viewing-deployed',
-                'manage/cloud/integrations/lifecycle',
-              ],
-            },
-            // Configuration Management
-            {
-              type: 'category',
-              label: 'Configuration',
-              link: { type: 'doc', id: 'manage/cloud/configurations/overview' },
-              items: [
-                'manage/cloud/configurations/runtime-configurations',
-                'manage/cloud/configurations/endpoint-configurations',
-                'manage/cloud/configurations/security-configurations',
-                'manage/cloud/configurations/build-configurations',
-                'manage/cloud/configurations/scaling-resource-limits',
-              ],
-            },
-            // Environments
-            {
-              type: 'category',
-              label: 'Environments',
-              link: { type: 'doc', id: 'manage/cloud/environments/overview' },
-              items: [
-                'manage/cloud/environments/promotion',
-                'manage/cloud/environments/promotion-approval',
               ],
             },
           ],
