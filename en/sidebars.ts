@@ -208,7 +208,21 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-        // 6.4 Design Integration Logic
+        // 6.4 Flow Design Elements
+        {
+          type: 'category',
+          label: 'Flow design elements',
+          link: { type: 'doc', id: 'develop/flow-design-elements/flow-design-elements' },
+          items: [
+            'develop/flow-design-elements/statement-nodes',
+            'develop/flow-design-elements/control-nodes',
+            'develop/flow-design-elements/ai-nodes',
+            'develop/flow-design-elements/error-handling-nodes',
+            'develop/flow-design-elements/concurrency-nodes',
+            'develop/flow-design-elements/logging-nodes',
+          ],
+        },
+        // 6.5 Design Integration Logic
         {
           type: 'category',
           label: 'Design integration logic',
