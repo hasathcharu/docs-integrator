@@ -65,7 +65,7 @@ Select the connector.
 
 ![The Add Connection dialog showing the AI-related connector catalogue.](/img/genai/develop/shared/09-add-connection-ai-catalogue.png)
 
-After selecting a connector, BI displays the available operations. Select the operations that the agent should be allowed to invoke. Each selected operation becomes available as an agent tool.
+After selecting a connector, WSO2 Integrator displays the available operations. Select the operations that the agent should be allowed to invoke. Each selected operation becomes available as an agent tool.
 
 The tool metadata, including descriptions, parameters, and input/output schemas, is automatically derived from the connector definition. You only need to provide the tool name.
 
@@ -135,7 +135,7 @@ The dialog provides the following options for creating a function:
 | **Description** (return) | No | A short description of the return value. |
 | **Advanced Configurations** | No | Additional settings such as visibility and Agent Identity client configuration. |
 
-After clicking **Create**, BI generates a stub function annotated with `@ai:AgentTool`. You can then implement the tool logic inside the generated function.
+After clicking **Create**, WSO2 Integrator generates a stub function annotated with `@ai:AgentTool`. You can then implement the tool logic inside the generated function.
 
 ## After adding a tool
 
