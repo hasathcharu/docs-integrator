@@ -358,7 +358,7 @@ Example response:
 </TabItem>
 </Tabs>
 
-The AI agent remembers previous conversations because the conversation history is stored in persistent MSSQL backed memory and retrieved using the same `sessionId`.
+The AI agent remembers previous conversations because the conversation history is stored in persistent MSSQL-backed memory and retrieved using the same `sessionId`.
 
 ## What's next
 
