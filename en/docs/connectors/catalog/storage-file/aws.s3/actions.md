@@ -170,7 +170,7 @@ Parameters:
 |------|------|----------|-------------|
 | `bucketName` | `string` | Yes | The name of the bucket. |
 | `objectName` | `string` | Yes | The key (name) for the new object. |
-| `payload` | `string|xml|json|byte[]|stream&lt;io:Block, io:Error?&gt;` | Yes | The content to upload. |
+| `payload` | `string\|xml\|json\|byte[]\|stream&lt;io:Block, io:Error?&gt;` | Yes | The content to upload. |
 | `cannedACL` | `CannedACL?` | No | Canned ACL for the object. |
 | `objectCreationHeaders` | `ObjectCreationHeaders?` | No | Optional headers such as `contentType`, `cacheControl`, `contentEncoding`. |
 | `userMetadataHeaders` | `map&lt;string&gt;` | No | User-defined metadata key-value pairs to attach to the object. |
@@ -256,7 +256,7 @@ Parameters:
 |------|------|----------|-------------|
 | `bucketName` | `string` | Yes | The name of the bucket. |
 | `objectName` | `string` | Yes | The key of the object. |
-| `action` | `ObjectAction|ObjectCreationHeaders|ObjectRetrievalHeaders` | Yes | The action — `RETRIEVE` for download, `CREATE` for upload, or the relevant headers record. |
+| `action` | `ObjectAction\|ObjectCreationHeaders\|ObjectRetrievalHeaders` | Yes | The action — `RETRIEVE` for download, `CREATE` for upload, or the relevant headers record. |
 | `expires` | `int` | No | Validity period in seconds. Default is `1800` (30 minutes). |
 | `partNo` | `int?` | No | Part number for multipart uploads. |
 | `uploadId` | `string?` | No | Upload ID for multipart uploads. |
@@ -322,7 +322,7 @@ Parameters:
 |------|------|----------|-------------|
 | `objectName` | `string` | Yes | The key of the object. |
 | `bucketName` | `string` | Yes | The name of the bucket. |
-| `payload` | `string|xml|json|byte[]|stream&lt;io:Block, io:Error?&gt;` | Yes | The part content. |
+| `payload` | `string\|xml\|json\|byte[]\|stream&lt;io:Block, io:Error?&gt;` | Yes | The part content. |
 | `uploadId` | `string` | Yes | The upload ID from `createMultipartUpload`. |
 | `partNumber` | `int` | Yes | The sequential part number (starting from 1). |
 | `uploadPartHeaders` | `UploadPartHeaders?` | No | Optional headers such as `contentLength`, `contentMD5`. |
