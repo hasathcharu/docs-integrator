@@ -1,13 +1,18 @@
 ---
 sidebar_position: 2
 title: Runtime Security
-description: Best practices for securing integrations in WSO2 Integrator at runtime, including JVM hardening, non-root execution, and network policies.
-keywords: [wso2 integrator, runtime security, jvm hardening, non-root, network policy, security]
+description: Best practices for securing integrations in WSO2 Integrator at runtime, including JVM hardening, keystores, non-root execution, and network policies.
+keywords: [wso2 integrator, runtime security, jvm hardening, non-root, container security, network policy]
 ---
 
 # Runtime Security
 
 Securing integrations in WSO2 Integrator at runtime involves hardening the JVM, managing keystores and certificates, running as non-root, and applying network-level controls. This page covers production security best practices.
+
+:::info Prerequisites
+- WSO2 Integrator installed and a working integration ([Install guide](../../get-started/install.md))
+- A target environment: Linux VM, Docker, or Kubernetes cluster
+:::
 
 ## JVM hardening
 
@@ -43,7 +48,7 @@ java -version
 
 ## Keystores and truststores
 
-Creating keystores, truststores is covered in detail in [Keystores and Truststores](keystore-truststore.md). That page covers:
+Creating keystores and truststores is covered in detail in [Keystores and truststores](keystore-truststore.md). That page covers:
 
 - Generating keystores and truststores using `keytool`
 - Configuring TLS and mutual TLS for HTTP and gRPC services
