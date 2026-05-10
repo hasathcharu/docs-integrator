@@ -1844,24 +1844,12 @@ const sidebars: SidebarsConfig = {
             'tutorials/multi-system-data-reconciliation',
           ],
         },
-        // Enterprise Integration Patterns (EIP)
         {
           type: 'category',
           label: 'Enterprise integration patterns',
           items: [
-            'tutorials/patterns/content-based-router',
+            'tutorials/patterns/normalizer',
             'tutorials/patterns/message-filter',
-            'tutorials/patterns/scatter-gather',
-            'tutorials/patterns/recipient-list',
-            'tutorials/patterns/message-translator',
-            'tutorials/patterns/circuit-breaker-retry',
-            'tutorials/patterns/saga-compensation',
-            'tutorials/patterns/publish-subscribe',
-            'tutorials/patterns/guaranteed-delivery',
-            'tutorials/patterns/idempotent-receiver',
-            'tutorials/patterns/api-gateway-orchestration',
-            'tutorials/patterns/agent-tool-orchestration',
-            'tutorials/patterns/rag-pipeline',
           ],
         },
         // Pre-Built Integration Samples

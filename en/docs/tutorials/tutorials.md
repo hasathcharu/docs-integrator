@@ -28,21 +28,6 @@ Step-by-step guides that build a real integration from scratch:
 | **[File Batch ETL](file-batch-etl-pipeline.md)** | Batch extract-transform-load from files |
 | **[Healthcare HL7/FHIR](healthcare-hl7fhir-integration.md)** | Healthcare data integration with HL7 and FHIR |
 
-## Enterprise integration patterns
-
-Battle-tested patterns for distributed systems:
-
-| Pattern | Use case |
-|---|---|
-| **[Content-Based Router](patterns/content-based-router.md)** | Route to different endpoints based on message content |
-| **[Scatter-Gather](patterns/scatter-gather.md)** | Fan-out requests and aggregate responses |
-| **[Circuit Breaker & Retry](patterns/circuit-breaker-retry.md)** | Resilient calls to unreliable services |
-| **[Saga / Compensation](patterns/saga-compensation.md)** | Distributed transactions with rollback |
-| **[Publish-Subscribe](patterns/publish-subscribe.md)** | Decouple producers and consumers |
-| **[Guaranteed Delivery](patterns/guaranteed-delivery.md)** | Ensure messages are never lost |
-
-[View all patterns &rarr;](patterns/content-based-router.md)
-
 ## Pre-Built samples
 
 Ready-to-run integration samples you can clone and customize:

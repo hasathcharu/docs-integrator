@@ -281,6 +281,4 @@ curl -X POST http://localhost:8090/orders/route \
 
 ## What's next
 
-- [Content-Based Router Pattern](../patterns/content-based-router.md) -- The underlying EIP pattern
 - [Data Transformation Pipeline](build-a-data-transformation-pipeline.md) -- Transform data between systems
-- [Scatter-Gather Pattern](../patterns/scatter-gather.md) -- Send to multiple backends simultaneously

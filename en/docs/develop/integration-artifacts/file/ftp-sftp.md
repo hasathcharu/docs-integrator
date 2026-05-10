@@ -901,7 +901,7 @@ The listener controls **how** to connect — protocol, host, authentication, pol
 | **SFTP Compression** | SSH compression algorithms to negotiate with the server (SFTP only). | — |
 | **SFTP SSH Known Hosts** | Path to an SSH `known_hosts` file (SFTP only). | — |
 | **CSV Fail Safe** | Fail-safe options for CSV content processing. Malformed records are skipped and written to a side file in the working directory. | — |
-| **Retry Config** | Retry configuration for transient failures during polling or file retrieval. For the retry-with-backoff mechanics and field reference, see [`ftp:RetryConfig`](https://central.ballerina.io/ballerina/ftp/latest#RetryConfig); for the broader pattern, see the [Circuit breaker tutorial](../../../tutorials/patterns/circuit-breaker-retry.md). | — |
+| **Retry Config** | Retry configuration for transient failures during polling or file retrieval. For the retry-with-backoff mechanics and field reference, see [`ftp:RetryConfig`](https://central.ballerina.io/ballerina/ftp/latest#RetryConfig). | — |
 | **Coordination** | Distributed coordination for multi-instance deployments. See [High availability](high-availability-and-coordination.md). | — |
 
 </TabItem>
@@ -933,7 +933,7 @@ listener ftp:Listener ftpListener = new (
 | `connectTimeout` | `decimal` | `30.0` | Connection timeout in seconds. |
 | `socketConfig` | `ftp:SocketConfig?` | — | Socket timeout configuration. See [`ftp:SocketConfig` reference](https://central.ballerina.io/ballerina/ftp/latest#SocketConfig). |
 | `fileTransferMode` | `ftp:FileTransferMode` | `BINARY` | File transfer mode (`BINARY` or `ASCII`). Use `ASCII` only for text-only files on servers that require line-ending conversion. |
-| `retryConfig` | `ftp:RetryConfig?` | — | Retry configuration for failed polling attempts. See [`ftp:RetryConfig`](https://central.ballerina.io/ballerina/ftp/latest#RetryConfig) and the [Circuit breaker tutorial](../../../tutorials/patterns/circuit-breaker-retry.md). |
+| `retryConfig` | `ftp:RetryConfig?` | — | Retry configuration for failed polling attempts. See [`ftp:RetryConfig`](https://central.ballerina.io/ballerina/ftp/latest#RetryConfig). |
 | `coordination` | `ftp:CoordinationConfig?` | — | Distributed coordination for multi-instance deployments. See [High availability](high-availability-and-coordination.md). |
 
 </TabItem>
