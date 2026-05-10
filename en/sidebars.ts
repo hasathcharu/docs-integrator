@@ -1821,26 +1821,17 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       link: { type: 'doc', id: 'tutorials/tutorials' },
       items: [
-        // Walkthroughs
+        // Tutorials
         {
           type: 'category',
-          label: 'Walkthroughs',
+          label: 'Tutorials',
           items: [
             'tutorials/salesforce-database-sync',
             'tutorials/kafka-event-processing-pipeline',
             'tutorials/rest-api-aggregation-service',
             'tutorials/pdf-generation-service',
-            'tutorials/walkthroughs/route-messages-based-content',
-            'tutorials/walkthroughs/build-a-data-transformation-pipeline',
             'tutorials/file-batch-etl-pipeline',
-            'tutorials/walkthroughs/build-email-notification-service',
-            'tutorials/walkthroughs/build-a-change-data-capture-service',
             'tutorials/healthcare-hl7fhir-integration',
-            'tutorials/walkthroughs/process-edi-documents-from-ftp',
-            'tutorials/walkthroughs/process-csv-files-from-ftp-fail-safe-error-handling',
-            'tutorials/walkthroughs/process-ftp-order-batches-age-filter-and-file-dependency',
-            'tutorials/walkthroughs/watch-a-local-directory-csv-files',
-            'tutorials/walkthroughs/stream-large-csv-files-from-sftp',
             'tutorials/multi-system-data-reconciliation',
           ],
         },

@@ -130,7 +130,7 @@ const sections: SectionCard[] = [
   },
   {
     title: 'Tutorials',
-    description: 'End-to-end walkthroughs, integration patterns, and sample projects.',
+    description: 'End-to-end tutorials, integration patterns, and sample projects.',
     link: '/docs/tutorials/overview',
     icon: <IconTutorials />,
     iconBg: '#FFF8EB',

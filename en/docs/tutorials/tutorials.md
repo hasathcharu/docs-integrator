@@ -14,7 +14,7 @@ Complete, end-to-end examples you can follow from start to finish. Each tutorial
 **Develop** pages are handbook lookups (3 min, specific answer). **Tutorials** are narrative walkthroughs (30-45 min, follow along). Different modes, different content.
 :::
 
-## Walkthroughs
+## Tutorials
 
 Step-by-step guides that build a real integration from scratch:
 
@@ -23,8 +23,6 @@ Step-by-step guides that build a real integration from scratch:
 | **[Salesforce-Database Sync](salesforce-database-sync.md)** | Bi-directional sync between Salesforce and a database |
 | **[Kafka Event Pipeline](kafka-event-processing-pipeline.md)** | Event processing pipeline with Kafka |
 | **[REST API Aggregation](rest-api-aggregation-service.md)** | Service orchestration across multiple REST APIs |
-| **[Content-Based Routing](walkthroughs/route-messages-based-content.md)** | Route messages based on content |
-| **[Data Transformation](walkthroughs/build-a-data-transformation-pipeline.md)** | Transform data between formats |
 | **[File Batch ETL](file-batch-etl-pipeline.md)** | Batch extract-transform-load from files |
 | **[Healthcare HL7/FHIR](healthcare-hl7fhir-integration.md)** | Healthcare data integration with HL7 and FHIR |
 

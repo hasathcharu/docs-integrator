@@ -55,5 +55,4 @@ bal run
 ## What's next
 
 - [Sample Projects](../samples/projects.md) -- Larger sample projects with multiple features
-- [End-to-End Walkthroughs](../walkthroughs/route-messages-based-content.md) -- Step-by-step tutorials
 - [Connectors](../../connectors/overview) -- Browse the full connector catalog
