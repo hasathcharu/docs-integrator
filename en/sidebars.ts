@@ -1783,19 +1783,19 @@ const sidebars: SidebarsConfig = {
                 'genai/develop/mcp/consuming-mcp-from-agent',
               ],
             },
-          ],
-        },
-        // Tutorials
-        {
-          type: 'category',
-          label: 'Tutorials',
-          items: [
-            'genai/tutorials/email-generator-direct-llm',
-            'genai/tutorials/review-summarizer-natural-function',
-            'genai/tutorials/building-hr-knowledge-base-rag',
-            'genai/tutorials/building-a-customer-care-agent-mcp',
-            'genai/tutorials/it-helpdesk-chatbot',
-            'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
+            // Tutorials
+            {
+              type: 'category',
+              label: 'Tutorials',
+              items: [
+                'genai/tutorials/email-generator-direct-llm',
+                'genai/tutorials/review-summarizer-natural-function',
+                'genai/tutorials/building-hr-knowledge-base-rag',
+                'genai/tutorials/building-a-customer-care-agent-mcp',
+                'genai/tutorials/it-helpdesk-chatbot',
+                'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
+              ],
+            },
           ],
         },
         // Reference
