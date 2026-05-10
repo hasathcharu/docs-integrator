@@ -123,6 +123,12 @@ const config: Config = {
           activeBaseRegex: '/docs/deploy-operate(/|$)',
         },
         {
+          to: '/docs/manage/icp/integration-control-plane',
+          label: 'Manage',
+          position: 'left',
+          activeBaseRegex: '/docs/manage(/|$)',
+        },
+        {
           to: '/docs/reference/overview',
           label: 'Reference',
           position: 'left',
@@ -149,8 +155,8 @@ const config: Config = {
         {
           title: 'Develop',
           items: [
-            { label: 'Integration artifacts', to: '/docs/develop/integration-artifacts/overview' },
-            { label: 'Transform', to: '/docs/develop/integration-artifacts/supporting/data-mapper/data-mapper' },
+            { label: 'Integration artifacts', to: '/docs/develop/integration-artifacts' },
+            { label: 'Transform', to: '/docs/develop/transform/data-mapper' },
             { label: 'Test', to: '/docs/develop/test/try-it' },
             { label: 'Connectors', to: '/docs/connectors/overview' },
             { label: 'AI Integrations', to: '/docs/genai/overview' },

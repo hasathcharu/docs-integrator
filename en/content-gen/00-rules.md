@@ -60,6 +60,7 @@ If AI is helping YOU code faster (Copilot, AI suggestions, AI test gen) → stay
 | visual designer | drag-and-drop editor, canvas |
 | pro-code | source code view, text mode |
 | agent | bot, assistant |
+| integration/ library | package |
 
 **NEVER use MI/ESB terms:** mediators, sequences, proxy services, message stores, message processors, inbound endpoints, API artifacts.
 
