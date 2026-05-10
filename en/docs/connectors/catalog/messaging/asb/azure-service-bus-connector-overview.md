@@ -1,6 +1,6 @@
 # Azure Service Bus Connector Overview
 
-Azure Service Bus is a fully managed enterprise message broker with message queues and publish-subscribe topics. The Ballerina `ballerinax/asb` connector (v3.8.3) provides programmatic access to Azure Service Bus for sending, receiving, and administering messages across queues, topics, and subscriptions, enabling reliable cloud messaging in your Ballerina integration flows.
+Azure Service Bus is a fully managed enterprise message broker with message queues and publish-subscribe topics. The Ballerina `ballerinax/asb` connector (v3.9.1) provides programmatic access to Azure Service Bus for sending, receiving, and administering messages across queues, topics, and subscriptions, enabling reliable cloud messaging in your Ballerina integration flows.
 
 
 ## Key features
@@ -40,7 +40,7 @@ Supported trigger events:
 | Message received | `onMessage` | Fired when a message is received from the configured queue or subscription. |
 | Message retrieval error | `onError` | Fired when an error occurs during message retrieval. |
 
-See the **[Trigger Reference](triggers.md)** for listener configuration, service callbacks, and the `EventData` payload structure.
+See the **[Trigger Reference](triggers.md)** for listener configuration, service callbacks, and the `asb:Message` payload structure.
 
 ## Documentation
 

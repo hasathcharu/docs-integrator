@@ -129,7 +129,7 @@ service asb:Service on asbListener {
         );
 
         // Settle the message manually
-        check caller->complete(message);
+        check caller->complete();
     }
 
     remote function onError(asb:MessageRetrievalError 'error) returns error? {
@@ -172,16 +172,31 @@ The `onError` callback is optional. If not implemented, retrieval errors are log
 
 ### `Caller`
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `complete()` | `function` | Completes the message, removing it from the queue. |
-| `abandon()` | `function` | Abandons the message, releasing its lock. |
-| `deadLetter()` | `function` | Moves the message to the dead-letter sub-queue. |
-| `defer()` | `function` | Defers the message for later retrieval by sequence number. |
+| Method | Parameters | Returns | Description |
+|--------|------------|---------|-------------|
+| `complete` | — | `error?` | Completes the message, removing it from the queue. |
+| `abandon` | `*propertiesToModify` — optional rest-record of `anydata` key-value pairs to set on the message before releasing the lock | `error?` | Abandons the message, releasing its lock for redelivery. |
+| `deadLetter` | `*DeadLetterOptions` — optional `deadLetterReason: string`, `deadLetterErrorDescription: string`, `propertiesToModify: map<anydata>` | `error?` | Moves the message to the dead-letter sub-queue. |
+| `defer` | `*propertiesToModify` — optional rest-record of `anydata` key-value pairs | `error?` | Defers the message. Unlike `MessageReceiver.defer()`, this does not return the sequence number — read `message.sequenceNumber` before calling if you need it. Retrieve the deferred message via `receiver->receiveDeferred(sequenceNumber)`. |
 
 ### `MessageRetrievalError`
 
+`asb:MessageRetrievalError` is a `distinct Error` carrying an `ErrorContext` detail record. Access the detail via `err.detail()`.
+
 | Field | Type | Description |
 |-------|------|-------------|
-| `message` | `string` | The error message describing what went wrong during message retrieval. |
-| `cause` | `error?` | The underlying cause of the error, if available. |
+| `entityPath` | `string` | The entity path (queue or subscription) where the error occurred. |
+| `className` | `string` | The name of the class that originated the error. |
+| `namespace` | `string` | The Service Bus namespace associated with the error. |
+| `errorSource` | `string` | The function or action that was the source of the error. |
+| `reason` | `string` | A description of the reason for the error. |
+
+```ballerina
+remote function onError(asb:MessageRetrievalError err) returns error? {
+    asb:ErrorContext detail = err.detail();
+    log:printError("Message retrieval failed",
+        entityPath = detail.entityPath,
+        reason = detail.reason
+    );
+}
+```

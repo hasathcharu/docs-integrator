@@ -93,9 +93,9 @@ In the **Service Designer**, click the **Configure** icon in the header to open 
 | **Max Auto Lock Renew Duration** | Maximum lock renewal duration in seconds under `PEEK_LOCK` mode. Set to `0` to disable auto-renewal. Auto-renewal is disabled for `RECEIVE_AND_DELETE` mode. | `300` |
 | **Amqp Retry Options** | Retry configuration for the underlying AMQP message receiver. | `{}` |
 | **Additional Values** | Key-value pairs for additional connection or entity configuration. | `{}` |
-| **Auto Complete** | When enabled, messages are automatically completed on successful handler execution and abandoned on failure. | — |
+| **Auto Complete** | When enabled, messages are automatically completed on successful handler execution and abandoned on failure. | `true` |
 | **Prefetch Count** | Number of messages to prefetch from the broker. | `0` |
-| **Max Concurrency** | Maximum number of concurrent messages this listener processes at one time. | `0` |
+| **Max Concurrency** | Maximum number of concurrent messages this listener processes at one time. | `1` |
 
 Click **+ Attach Listener** to attach an additional listener to the same service.
 
@@ -128,9 +128,9 @@ listener asb:Listener asbListener = new ({
 | `maxAutoLockRenewDuration` | `int` | `300` | Lock renewal timeout in seconds under `PEEK_LOCK` |
 | `amqpRetryOptions` | `asb:AmqpRetryOptions?` | — | AMQP retry configuration |
 | `additionalValues` | `map<string>?` | — | Additional key-value configuration |
-| `autoComplete` | `boolean?` | — | Auto-complete messages on success |
+| `autoComplete` | `boolean` | `true` | Auto-complete messages on success |
 | `prefetchCount` | `int` | `0` | Number of messages to prefetch |
-| `maxConcurrency` | `int` | `0` | Maximum concurrent message processing |
+| `maxConcurrency` | `int` | `1` | Maximum concurrent message processing |
 
 </TabItem>
 </Tabs>
@@ -173,7 +173,7 @@ service on asbListener {
 
         check processInvoice(invoice);
         // Complete the message to remove it from the queue
-        check caller->complete(message);
+        check caller->complete();
     }
 }
 ```
@@ -202,13 +202,14 @@ The `onMessage` handler receives an `asb:Message` parameter with the message con
 | `messageId` | `string?` | Unique message identifier set by the sender. |
 | `contentType` | `string?` | MIME content type of the message body (e.g., `application/json`). |
 | `correlationId` | `string?` | Correlation identifier for request/reply patterns. |
-| `subject` | `string?` | Application-specific message subject. |
+| `label` | `string?` | Application-specific label for the message. Corresponds to the Azure Service Bus "Subject" property. |
+| `sessionId` | `string?` | Session identifier for session-aware entities. |
 | `enqueuedTime` | `string?` | Time the message was added to the queue. |
-| `properties` | `map<anydata>?` | Custom application properties attached to the message. |
+| `applicationProperties` | `ApplicationProperties?` | Custom application properties attached to the message. Access values via `message.applicationProperties?.properties`. |
 
 ## What's next
 
 - [RabbitMQ](rabbitmq.md) — consume messages from RabbitMQ queues
 - [Kafka](kafka.md) — consume messages from Apache Kafka topics
 - [Connections](../supporting/connections.md) — reuse Azure Service Bus connection strings across services
-- [Azure Service Bus connector reference](../../../connectors/catalog/messaging/azure-service-bus/overview.md) — full connector API reference
+- [Azure Service Bus connector reference](../../../connectors/catalog/messaging/asb/azure-service-bus-connector-overview.md) — full connector API reference
