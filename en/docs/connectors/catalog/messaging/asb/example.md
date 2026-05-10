@@ -1,3 +1,9 @@
+---
+title: Examples
+description: Step-by-step examples for sending messages, receiving messages, and setting up event-driven triggers with the Azure Service Bus connector.
+keywords: [wso2 integrator, azure service bus, asb, example, sender, receiver, trigger]
+---
+
 # Examples
 
 - [ASB MessageSender Example](#asb-messagesender-example)
@@ -335,3 +341,9 @@ Try this sample in WSO2 Integration Platform.
 [![Deploy to Devant](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/asb_trigger_sample)
 
 [View source on GitHub](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/connectors/asb_trigger_sample)
+
+## What's next
+
+- [Action Reference](actions.md) — full reference for all client operations
+- [Trigger Reference](triggers.md) — detailed listener and service configuration
+- [Setup Guide](setup-guide.md) — Azure Service Bus namespace and connection string setup

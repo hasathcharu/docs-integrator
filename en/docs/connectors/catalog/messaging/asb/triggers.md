@@ -1,5 +1,7 @@
 ---
 title: Triggers
+description: Event-driven integration with Azure Service Bus using asb:Listener, service callbacks, and the Caller for message settlement.
+keywords: [wso2 integrator, azure service bus, asb, trigger, listener, onMessage, onError, event]
 ---
 # Triggers
 
@@ -96,10 +98,10 @@ An `asb:Service` is a Ballerina service attached to an `asb:Listener`. It implem
 
 | Function | Signature | Description |
 |----------|-----------|-------------|
-| `onMessage` | `remote function onMessage(asb:Message message, asb:Caller caller) returns error?` | Invoked when a message is received from the configured queue or subscription. Use the `caller` to settle the message when `autoComplete` is `false`. |
-| `onError` | `remote function onError(asb:MessageRetrievalError 'error) returns error?` | Invoked when an error occurs during message retrieval from Azure Service Bus. |
+| `onMessage` | `remote function onMessage(asb:Message message) returns error?` or `remote function onMessage(asb:Message message, asb:Caller caller) returns error?` | Invoked when a message is received. Include `asb:Caller` only when using `autoComplete: false` for manual settlement. When `autoComplete: true` (default), omit `caller` — messages are completed automatically. |
+| `onError` | `remote function onError(asb:MessageRetrievalError 'error) returns error?` | Invoked when an error occurs during message retrieval. Optional — if not implemented, retrieval errors are logged but not surfaced to your code. |
 
-:::note
+:::info
 When `autoComplete` is `true` (the default), messages are automatically completed after `onMessage` returns successfully. Set it to `false` for manual settlement.
 :::
 
@@ -138,7 +140,7 @@ service asb:Service on asbListener {
 }
 ```
 
-:::note
+:::info
 The `onError` callback is optional. If not implemented, retrieval errors are logged but not handled by your code.
 :::
 
@@ -151,7 +153,7 @@ The `onError` callback is optional. If not implemented, retrieval errors are log
 | Field | Type | Description |
 |-------|------|-------------|
 | `body` | `anydata` | The message body content. |
-| `contentType` | `string?` | The content type of the message body (e.g., `TEXT`, `JSON`, `XML`, `BYTE_ARRAY`). |
+| `contentType` | `string?` | The MIME content type of the message body. Use the connector constants `asb:TEXT` (`"text/plain"`), `asb:JSON` (`"application/json"`), `asb:XML` (`"application/xml"`), or `asb:BYTE_ARRAY` (`"application/octet-stream"`). |
 | `messageId` | `string?` | A unique identifier for the message. |
 | `to` | `string?` | The destination address of the message. |
 | `replyTo` | `string?` | The address to reply to. |
@@ -163,7 +165,7 @@ The `onError` callback is optional. If not implemented, retrieval errors are log
 | `timeToLive` | `int?` | The message time-to-live in seconds. |
 | `sequenceNumber` | `int?` | The unique sequence number assigned by Service Bus. |
 | `lockToken` | `string?` | The lock token for the message (used in `PEEK_LOCK` mode). |
-| `applicationProperties` | `map<anydata>?` | A map of custom application-specific properties. |
+| `applicationProperties` | `ApplicationProperties?` | Custom application properties attached to the message. Access values via `message.applicationProperties?.properties`. |
 | `deliveryCount` | `int?` | The number of times delivery has been attempted. |
 | `enqueuedTime` | `string?` | The UTC time when the message was enqueued. |
 | `enqueuedSequenceNumber` | `int?` | The enqueued sequence number. |
@@ -200,3 +202,9 @@ remote function onError(asb:MessageRetrievalError err) returns error? {
     );
 }
 ```
+
+## What's next
+
+- [Action Reference](actions.md) — use `MessageReceiver` for polling-based message consumption
+- [Setup Guide](setup-guide.md) — obtain the connection string required for the listener
+- [Example](example.md) — complete worked example for event-driven trigger setup

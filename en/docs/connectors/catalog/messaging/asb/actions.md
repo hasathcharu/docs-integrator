@@ -1,5 +1,7 @@
 ---
 title: Actions
+description: Full reference for MessageSender, MessageReceiver, and Administrator client operations — parameters, return types, and sample code.
+keywords: [wso2 integrator, azure service bus, asb, send, receive, admin, actions, queue, topic]
 ---
 # Actions
 
@@ -173,10 +175,7 @@ check sender->cancel(sequenceNumber);
 
 Closes the sender connection and releases resources.
 
-Parameters:
-
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
+No parameters.
 
 Returns: `error?`
 
@@ -322,7 +321,10 @@ Returns: `error?`
 Sample code:
 
 ```ballerina
-asb:Message message = check receiver->receive();
+asb:Message? message = check receiver->receive(serverWaitTime = 60);
+if message is () {
+    return;
+}
 check receiver->complete(message);
 ```
 
@@ -451,17 +453,14 @@ check receiver->renewLock(message);
 
 Closes the receiver connection and releases resources.
 
-Parameters:
-
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
+No parameters.
 
 Returns: `error?`
 
 Sample code:
 
 ```ballerina
-check receiver->close();
+check receiver->closeReceiver();
 ```
 
 </details>
@@ -1029,4 +1028,10 @@ asb:RuleProperties[] rules = check admin->listRules("my-topic", "my-sub");
 ```
 
 </details>
+
+## What's next
+
+- [Trigger Reference](triggers.md) — event-driven integration using `asb:Listener`
+- [Setup Guide](setup-guide.md) — obtain the connection string required for all clients
+- [Example](example.md) — complete worked examples for sender, receiver, and trigger
 
