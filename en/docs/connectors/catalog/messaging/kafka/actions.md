@@ -1,5 +1,6 @@
 ---
 title: Actions
+description: Full reference for Kafka producer and consumer operations, parameters, and sample code.
 ---
 # Actions
 

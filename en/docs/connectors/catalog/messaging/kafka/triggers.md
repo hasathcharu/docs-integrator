@@ -1,5 +1,6 @@
 ---
 title: Triggers
+description: Reference for event-driven Kafka integration using the kafka:Listener and kafka:Service model.
 ---
 # Triggers
 
