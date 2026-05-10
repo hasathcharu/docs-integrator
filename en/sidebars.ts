@@ -1848,15 +1848,12 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Migration guides',
           items: [
-            'tutorials/migration/coming-from-mi',
             'tutorials/migration/coming-from-mulesoft',
             'tutorials/migration/coming-from-tibco',
-            'tutorials/migration/coming-from-boomi',
           ],
         },
       ],
     },
-    // ─────────────────────────────────────────────
     // DEPLOY
     // "How do I ship, run, and secure this?"
     // ─────────────────────────────────────────────
