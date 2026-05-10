@@ -1,10 +1,11 @@
 ---
 sidebar_position: 9
-title: Ballerina by Example
+title: Ballerina by example
 description: Index of 200+ runnable Ballerina examples organized by category with links to ballerina.io.
+keywords: [wso2 integrator, ballerina, examples, bbe, learning resources, reference]
 ---
 
-# Ballerina by Example
+# Ballerina by example
 
 Ballerina by Example (BBE) is a collection of over 200 runnable code examples that demonstrate Ballerina language features and library capabilities. Each example includes source code, expected output, and can be executed directly. All examples are hosted on [ballerina.io/learn/by-example](https://ballerina.io/learn/by-example/).
 
@@ -225,8 +226,8 @@ bal run
 
 Alternatively, use the "Run" button on each example page at [ballerina.io/learn/by-example](https://ballerina.io/learn/by-example/).
 
-## See also
+## What's next
 
-- [Ballerina Syntax Quick Reference](/docs/reference/language/syntax) -- Language cheat sheet
-- [Ballerina API Documentation](api/ballerina-documentation.md) -- Full API docs
-- [Specifications](ballerina-specifications.md) -- Language and platform specifications
+- [Ballerina syntax quick reference](language/ballerina-syntax-quick-reference.md) — Language cheat sheet
+- [Ballerina API documentation](api/ballerina-documentation.md) — Full API docs
+- [Specifications](ballerina-specifications.md) — Language and platform specifications
