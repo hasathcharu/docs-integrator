@@ -143,6 +143,9 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Mutations | GraphQL mutations | [View](https://ballerina.io/learn/by-example/graphql-mutations/) |
 | Input Types | GraphQL input types | [View](https://ballerina.io/learn/by-example/graphql-input-types/) |
 | Subscriptions | GraphQL subscriptions | [View](https://ballerina.io/learn/by-example/graphql-subscriptions/) |
+| GraphQL Client Query | Query a GraphQL endpoint from a client | [View](https://ballerina.io/learn/by-example/graphql-client-query-endpoint/) |
+| Client Partial Response | Handle partial responses on the client | [View](https://ballerina.io/learn/by-example/graphql-client-handle-partial-response/) |
+| Client Error Handling | Handle error responses on the client | [View](https://ballerina.io/learn/by-example/graphql-client-error-handling/) |
 
 ## WebSocket
 
@@ -150,16 +153,30 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 |---------|-------------|------|
 | WebSocket Service | Basic WebSocket server | [View](https://ballerina.io/learn/by-example/websocket-service/) |
 | WebSocket Client | WebSocket client | [View](https://ballerina.io/learn/by-example/websocket-client/) |
+| Service Send/Receive | Send and receive messages on a WebSocket service | [View](https://ballerina.io/learn/by-example/websocket-basic-sample/) |
+| Service Payload Validation | Validate incoming payloads with constraints | [View](https://ballerina.io/learn/by-example/websocket-service-payload-constraint-validation/) |
+| Service Error Handling | Handle errors on a WebSocket service | [View](https://ballerina.io/learn/by-example/websocket-service-error-handling/) |
+| Client Payload Validation | Validate payloads from a WebSocket client | [View](https://ballerina.io/learn/by-example/websocket-client-payload-constraint-validation/) |
 
 ## Messaging
 
 | Example | Description | Link |
 |---------|-------------|------|
-| Kafka Producer | Kafka message producer | [View](https://ballerina.io/learn/by-example/kafka-producer/) |
-| Kafka Consumer | Kafka message consumer | [View](https://ballerina.io/learn/by-example/kafka-consumer/) |
+| Kafka Producer | Kafka message producer | [View](https://ballerina.io/learn/by-example/kafka-producer-produce-message/) |
+| Kafka Consumer | Kafka message consumer | [View](https://ballerina.io/learn/by-example/kafka-consumer-payload-data-binding/) |
+| Kafka Service: Consume | Consume messages with a Kafka service | [View](https://ballerina.io/learn/by-example/kafka-service-consume-message/) |
+| Kafka Service: Constraints | Validate Kafka message payloads | [View](https://ballerina.io/learn/by-example/kafka-service-constraint-validation/) |
+| Kafka Service: Errors | Handle errors in a Kafka service | [View](https://ballerina.io/learn/by-example/kafka-service-error-handling/) |
 | RabbitMQ Producer | RabbitMQ publisher | [View](https://ballerina.io/learn/by-example/rabbitmq-producer/) |
 | RabbitMQ Consumer | RabbitMQ consumer | [View](https://ballerina.io/learn/by-example/rabbitmq-consumer/) |
-| NATS Pub/Sub | NATS publish/subscribe | [View](https://ballerina.io/learn/by-example/nats-basic-pub-sub/) |
+| RabbitMQ Acknowledged Consumer | Consumer with client acknowledgement | [View](https://ballerina.io/learn/by-example/rabbitmq-consumer-with-client-acknowledgement/) |
+| RabbitMQ Transactional Consumer | Consumer in a transactional context | [View](https://ballerina.io/learn/by-example/rabbitmq-transaction-consumer/) |
+| RabbitMQ Queue Declare | Declare a queue from a client | [View](https://ballerina.io/learn/by-example/rabbitmq-queue-declare/) |
+| NATS Subscribe | Consume messages from a NATS subject | [View](https://ballerina.io/learn/by-example/nats-basic-sub/) |
+| NATS Publish | Publish messages to a NATS subject | [View](https://ballerina.io/learn/by-example/nats-basic-pub/) |
+| NATS Request/Reply | Send a request and receive a reply | [View](https://ballerina.io/learn/by-example/nats-basic-request/) |
+| NATS Service Reply | Reply from a NATS service | [View](https://ballerina.io/learn/by-example/nats-basic-reply/) |
+| NATS JetStream | Publish through JetStream | [View](https://ballerina.io/learn/by-example/nats-jetstream-pub/) |
 
 ## Database
 
@@ -181,6 +198,23 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Read/Write XML | XML file processing | [View](https://ballerina.io/learn/by-example/io-xml/) |
 | FTP Client | FTP file operations | [View](https://ballerina.io/learn/by-example/ftp-client/) |
 | FTP Listener | FTP file event listener | [View](https://ballerina.io/learn/by-example/ftp-service/) |
+
+## MQTT
+
+| Example | Description | Link |
+|---------|-------------|------|
+| MQTT Service | Subscribe to messages from an MQTT broker | [View](https://ballerina.io/learn/by-example/mqtt-service-subscribe-message/) |
+| MQTT Client | Publish messages to an MQTT broker | [View](https://ballerina.io/learn/by-example/mqtt-client-publish-message/) |
+
+## TCP and UDP
+
+| Example | Description | Link |
+|---------|-------------|------|
+| TCP Service | Send and receive bytes on a TCP listener | [View](https://ballerina.io/learn/by-example/tcp-listener/) |
+| TCP Client | Send and receive bytes from a TCP client | [View](https://ballerina.io/learn/by-example/tcp-client/) |
+| UDP Service | Send and receive datagrams on a UDP listener | [View](https://ballerina.io/learn/by-example/udp-listener/) |
+| UDP Client | Send and receive datagrams from a UDP client | [View](https://ballerina.io/learn/by-example/udp-client/) |
+| UDP Connected Client | Send and receive datagrams over a connected UDP client | [View](https://ballerina.io/learn/by-example/udp-connect-client/) |
 
 ## Security
 
@@ -208,6 +242,27 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 | Counter Metrics | Prometheus counters | [View](https://ballerina.io/learn/by-example/counter-metrics/) |
 | Gauge Metrics | Prometheus gauges | [View](https://ballerina.io/learn/by-example/gauge-metrics/) |
 | Tracing | Distributed tracing | [View](https://ballerina.io/learn/by-example/tracing/) |
+
+## AI integrations
+
+Examples that demonstrate the building blocks for AI-powered integrations: direct LLM calls, retrieval-augmented generation (RAG), Model Context Protocol (MCP) servers, AI agents, and natural expressions.
+
+| Example | Description | Link |
+|---------|-------------|------|
+| Direct LLM Calls | Single-shot calls to a large language model | [View](https://ballerina.io/learn/by-example/direct-llm-calls/) |
+| Direct LLM Calls with History | Conversational LLM calls with chat history | [View](https://ballerina.io/learn/by-example/direct-llm-calls-with-history/) |
+| Direct LLM Calls with Multimodal Input | Pass images and other media to an LLM | [View](https://ballerina.io/learn/by-example/direct-llm-calls-with-multimodal-input/) |
+| RAG with In-Memory Vector Store | Retrieval-augmented generation using an in-memory store | [View](https://ballerina.io/learn/by-example/rag-with-in-memory-vector-store/) |
+| RAG Ingestion (External Store) | Index documents into an external vector store | [View](https://ballerina.io/learn/by-example/rag-ingestion-with-external-vector-store/) |
+| RAG Query (External Store) | Query an external vector store for grounded answers | [View](https://ballerina.io/learn/by-example/rag-query-with-external-vector-store/) |
+| MCP Service | Expose tools through a Model Context Protocol server | [View](https://ballerina.io/learn/by-example/mcp-service/) |
+| MCP Advanced Service | Advanced MCP server features | [View](https://ballerina.io/learn/by-example/mcp-service-advanced/) |
+| AI Agent with Local Tools | Agent that calls local Ballerina functions as tools | [View](https://ballerina.io/learn/by-example/ai-agent-local-tools/) |
+| AI Agent with MCP Integration | Agent backed by tools served from an MCP server | [View](https://ballerina.io/learn/by-example/ai-agent-mcp-integration/) |
+| AI Agent with External Endpoints | Agent that calls external HTTP APIs as tools | [View](https://ballerina.io/learn/by-example/ai-agent-external-endpoint-integration/) |
+| Chat Agents | Multi-turn conversational AI agent | [View](https://ballerina.io/learn/by-example/chat-agents/) |
+| AI Agent with Tool Kits | Agent organized around grouped tool kits | [View](https://ballerina.io/learn/by-example/ai-agent-tool-kit/) |
+| Natural Expressions | Use the `natural` expression to call LLMs inline | [View](https://ballerina.io/learn/by-example/natural-expressions/) |
 
 ## Running examples locally
 
