@@ -81,15 +81,21 @@ The Ballerina MySQL connector requires the MySQL JDBC driver. The simplest appro
 import ballerinax/mysql.driver as _;
 ```
 
+If you are using the CDC listener instead of (or in addition to) the action client, import the CDC driver bundle, which packages the JDBC driver alongside the Debezium engine:
+
+```ballerina
+import ballerinax/mysql.cdc.driver as _;
+```
+
 Alternatively, you can specify a particular driver version in your `Ballerina.toml`:
 
 ```toml
 [[platform.java21.dependency]]
-groupId = "mysql"
-artifactId = "mysql-connector-java"
-version = "8.0.30"
+groupId = "com.mysql"
+artifactId = "mysql-connector-j"
+version = "8.4.0"
 ```
 
 :::note
-The `ballerinax/mysql.driver` package bundles the latest compatible MySQL JDBC driver. You only need to configure `Ballerina.toml` if you require a specific driver version. For MySQL Connector/J 8.0.31 and later, use `groupId = "com.mysql"` and `artifactId = "mysql-connector-j"`.
+The `ballerinax/mysql.driver` and `ballerinax/mysql.cdc.driver` packages bundle the latest compatible MySQL JDBC driver. You only need to configure `Ballerina.toml` if you require a specific driver version. For MySQL Connector/J 8.0.30 and earlier, use the legacy coordinates `groupId = "mysql"` and `artifactId = "mysql-connector-java"`.
 :::
