@@ -1,215 +1,76 @@
 ---
 sidebar_position: 9
 title: Message Filter
-description: "Integration pattern: Message Filter -- selectively process messages that match specific criteria."
+description: "Implement the Message Filter pattern with WSO2 Integrator."
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Message Filter
 
-The Message Filter pattern removes unwanted messages from a channel so that only messages meeting specific criteria are passed to the downstream processor. This is one of the most fundamental Enterprise Integration Patterns for controlling message flow.
+Use the Message Filter pattern to evaluate each incoming message and continue the flow only for messages that satisfy the selected condition.
 
-## Problem
+## Implementation overview
 
-Your integration receives a stream of messages, but only a subset of them are relevant to the downstream system. Processing every message wastes resources and can introduce errors if the downstream system receives data it cannot handle.
+Place the filter where the message first has enough context for the decision. The source can be a service, an event handler, a file or database flow, or a consumer loop. Accepted messages can be forwarded, published, returned, stored, or passed to another function.
 
-## Solution
+Choose the filtering construct based on where the decision belongs:
 
-Place a filter between the message source and the processor that evaluates each message against a set of criteria. Messages that match the criteria are forwarded; messages that do not match are discarded or routed to an alternative channel.
+- Use [if/else statements](/docs/develop/design-logic/control-flow#ifelse-statements) for message-content or message-header checks. Model the accepted path as the first condition, and add `else if` or `else` branches only when other accepted outcomes need handling.
+- Use [`match` expressions](/docs/develop/design-logic/control-flow#match-expressions) when the filter key is a discrete value. Handle matching cases and leave the default case empty when unmatched messages must be dropped.
+- Use [query expressions](/docs/develop/design-logic/query-expressions) with `where` for collection-level filtering when messages are processed as records in a collection.
+- Use listener-level or resource-level filtering when the input artifact can reject or separate messages before custom flow logic runs. For API-driven inputs, [HTTP services](/docs/develop/integration-artifacts/service/http) provide resource matching, guards, binding, and interceptors. Other service and event artifacts provide their own listener or handler selection points.
+- Use protocol-native filters when the messaging system can scope delivery before the consumer flow runs. For RabbitMQ, route through [queues](/docs/develop/integration-artifacts/event/rabbitmq#service-configuration) and [exchanges with binding keys](/docs/connectors/catalog/messaging/rabbitmq/actions#exchange-management). For Kafka, use listener [topics and partition assignment strategy](/docs/develop/integration-artifacts/event/kafka#listener-configuration), or consumer [topic-partition assignments](/docs/connectors/catalog/messaging/kafka/actions#subscribe--assign) in manual consumer loops.
+- Add manual `if` or `match` guards in consumer flows when the source cannot narrow delivery enough or when the filter depends on payload content.
 
-```mermaid
-flowchart LR
-    All([All Messages])
-    Filter{"Message Filter<br/>(criteria)"}
-    Processor([Processor])
-    Discard([Discard / Alt Channel])
+## Design the integration
 
-    All ----> Filter
-    Filter -- Match ----> Processor
-    Filter -- No Match ----> Discard
-```
+### Filter and forward matching messages
 
-## When to use it
+This example uses an HTTP resource as the message source and an HTTP call as the accepted path. The resource applies a priority condition before the forward action: only high-priority messages are forwarded, and all other messages complete without a forward action.
 
-- **Event filtering** -- Process only high-priority alerts from a monitoring stream
-- **Data quality gates** -- Discard incomplete or malformed records before loading
-- **Tenant isolation** -- Route messages for a specific tenant and ignore others
-- **Deduplication preprocessing** -- Filter out messages you have already seen
-- **Compliance filtering** -- Exclude records from restricted regions
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
 
-## Implementation
+1. Create an HTTP service with a `POST` resource that accepts the example message.
+2. Add a record type named `Message` with `id`, `source`, `subject`, and `priority` fields.
+3. Add constants for the accepted priority values.
+4. Because this example forwards accepted messages to an HTTP endpoint, add an HTTP connection named `outboundChannel`.
+5. Add an **If** node to the resource flow.
+6. Set the **If** condition to `message.priority == HIGH_PRIORITY`.
+7. In the matching branch, add an HTTP **Post** operation that sends `message` to `/messages`.
+8. Leave the non-matching branch empty so messages that fail the filter are not forwarded.
 
-### Basic message filter
+![Message Filter flow](/img/tutorials/patterns/message-filter-visual-designer.png)
 
-Filter incoming order events to process only high-value orders:
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/http;
-import ballerina/log;
 
-type OrderEvent record {|
-    string orderId;
-    string customerId;
-    decimal amount;
-    string region;
-    string priority;
+const HIGH_PRIORITY = 1;
+const MEDIUM_PRIORITY = 2;
+const LOW_PRIORITY = 3;
+
+type Message record {|
+    string id;
+    string source;
+    string subject;
+    HIGH_PRIORITY|MEDIUM_PRIORITY|LOW_PRIORITY priority;
 |};
 
-service /orders on new http:Listener(8090) {
+final http:Client outboundChannel = check new ("http://api.outbound.channel.com.balmock.io");
 
-    resource function post events(OrderEvent event) returns http:Ok|http:Accepted {
-        // Filter: only process high-value orders
-        if event.amount >= 1000.00d {
-            log:printInfo("Processing high-value order",
-                orderId = event.orderId,
-                amount = event.amount
-            );
-            check processOrder(event);
-            return http:OK;
-        }
-
-        log:printInfo("Filtered out low-value order",
-            orderId = event.orderId,
-            amount = event.amount
-        );
-        return http:ACCEPTED;
-    }
-}
-
-function processOrder(OrderEvent event) returns error? {
-    // Forward to downstream processing
-}
-```
-
-### Multi-Criteria filter
-
-Apply multiple filter conditions using a predicate function:
-
-```ballerina
-type FilterCriteria record {|
-    decimal? minAmount;
-    string[]? allowedRegions;
-    string[]? allowedPriorities;
-|};
-
-function shouldProcess(OrderEvent event, FilterCriteria criteria) returns boolean {
-    // Check minimum amount
-    if criteria.minAmount is decimal && event.amount < criteria.minAmount {
-        return false;
-    }
-
-    // Check allowed regions
-    string[]? regions = criteria.allowedRegions;
-    if regions is string[] && regions.indexOf(event.region) is () {
-        return false;
-    }
-
-    // Check allowed priorities
-    string[]? priorities = criteria.allowedPriorities;
-    if priorities is string[] && priorities.indexOf(event.priority) is () {
-        return false;
-    }
-
-    return true;
-}
-
-// Usage
-FilterCriteria criteria = {
-    minAmount: 500.00d,
-    allowedRegions: ["US", "EU", "UK"],
-    allowedPriorities: ["high", "critical"]
-};
-
-// In the service handler:
-if shouldProcess(event, criteria) {
-    check processOrder(event);
-}
-```
-
-### Streaming filter with Kafka
-
-Filter messages from a Kafka topic before processing:
-
-```ballerina
-import ballerinax/kafka;
-import ballerina/log;
-
-configurable string kafkaBrokers = "localhost:9092";
-
-listener kafka:Listener kafkaListener = new ({
-    bootstrapServers: kafkaBrokers,
-    groupId: "order-filter-group",
-    topics: ["all-orders"]
-});
-
-final kafka:Producer filteredProducer = check new ({
-    bootstrapServers: kafkaBrokers
-});
-
-service on kafkaListener {
-    remote function onConsumerRecord(kafka:ConsumerRecord[] records) returns error? {
-        foreach kafka:ConsumerRecord rec in records {
-            OrderEvent event = check rec.value.fromJsonStringWithType();
-
-            if shouldProcess(event, criteria) {
-                // Forward matching messages to the filtered topic
-                check filteredProducer->send({
-                    topic: "high-value-orders",
-                    key: event.orderId,
-                    value: event.toJsonString()
-                });
-            } else {
-                log:printDebug("Message filtered", orderId = event.orderId);
-            }
+service /api/v1 on new http:Listener(8080) {
+    resource function post message(Message message) returns error? {
+        if message.priority == HIGH_PRIORITY {
+            _ = check outboundChannel->/messages.post(message, targetType = http:Response);
         }
     }
 }
 ```
 
-## Variations
-
-### Discard vs. route to dead letter
-
-A simple filter discards non-matching messages. A more robust approach routes them to a dead letter channel for auditing or reprocessing:
-
-```ballerina
-function filterAndRoute(OrderEvent event) returns error? {
-    if shouldProcess(event, criteria) {
-        check processOrder(event);
-    } else {
-        // Route to dead letter instead of discarding
-        check filteredProducer->send({
-            topic: "filtered-orders-dlq",
-            key: event.orderId,
-            value: event.toJsonString()
-        });
-    }
-}
-```
-
-### Configurable filters
-
-Load filter criteria from configuration to change filtering behavior without redeploying:
-
-```ballerina
-configurable decimal minOrderAmount = 500.00d;
-configurable string[] allowedRegions = ["US", "EU"];
-
-FilterCriteria criteria = {
-    minAmount: minOrderAmount,
-    allowedRegions: allowedRegions,
-    allowedPriorities: ()
-};
-```
-
-## Considerations
-
-- **Logging filtered messages** -- Always log filtered messages at DEBUG level for troubleshooting
-- **Metrics** -- Track the filter rate (filtered vs. passed) to detect anomalies
-- **Filter ordering** -- Apply the cheapest filter criteria first to short-circuit evaluation
-- **Avoid side effects** -- The filter predicate should be pure and not modify the message
-
-## Related patterns
-
-- [Content-Based Router](content-based-router.md) -- Routes messages to different destinations based on content (filter routes to one destination or discards)
-- [Idempotent Receiver](idempotent-receiver.md) -- Filters duplicate messages specifically
-- [Message Translator](message-translator.md) -- Transforms messages rather than filtering them
+</TabItem>
+</Tabs>
