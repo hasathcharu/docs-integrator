@@ -1817,7 +1817,7 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Guides',
       collapsed: true,
       link: { type: 'doc', id: 'tutorials/tutorials' },
       items: [

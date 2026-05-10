@@ -1,12 +1,12 @@
 ---
-title: Tutorials
+title: Guides
 sidebar_label: Overview
 sidebar_position: 0
-slug: /tutorials/overview
+slug: /guides/overview
 description: "Show me a complete, real example."
 ---
 
-# Tutorials
+# Guides
 
 Complete, end-to-end examples you can follow from start to finish. Each tutorial takes 30-45 minutes and results in a working integration you can deploy.
 
