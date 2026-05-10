@@ -1843,38 +1843,6 @@ const sidebars: SidebarsConfig = {
             'tutorials/patterns/message-filter',
           ],
         },
-        // Pre-Built Integration Samples
-        {
-          type: 'category',
-          label: 'Pre-built integration samples',
-          items: [
-            'tutorials/pre-built/integration-samples',
-            'tutorials/pre-built/google-sheets-salesforce-contacts',
-            'tutorials/pre-built/github-email-summary',
-            'tutorials/pre-built/google-drive-onedrive-sync',
-            'tutorials/pre-built/mysql-salesforce-products',
-            'tutorials/pre-built/gmail-salesforce-leads-openai',
-            'tutorials/pre-built/kafka-salesforce-price-book',
-            'tutorials/pre-built/salesforce-twilio-sms',
-            'tutorials/pre-built/hubspot-google-contacts',
-            'tutorials/pre-built/ftp-edi-salesforce-opportunity',
-            'tutorials/pre-built/shopify-outlook-welcome-email',
-          ],
-        },
-        // Sample Projects
-        {
-          type: 'category',
-          label: 'Sample projects',
-          items: [
-            'tutorials/samples/projects',
-            'tutorials/samples/hospital-service',
-            'tutorials/samples/e-commerce-order-service',
-            'tutorials/samples/event-driven-microservices-kafka',
-            'tutorials/samples/data-service-bal-persist',
-            'tutorials/samples/restful-api-visual-data-mapper',
-            'tutorials/samples/ai-personal-assistant',
-          ],
-        },
         // Migration Guides
         {
           type: 'category',
