@@ -77,6 +77,13 @@ Consume messages from Apache Kafka topics with consumer group management, offset
 import ballerina/log;
 import ballerinax/kafka;
 
+// should add under types.bal file
+type OrderEvent record {|
+    string orderId;
+    string customerId;
+    decimal amount;
+|};
+
 configurable string bootstrapServers = "localhost:9092"; 
 configurable string groupId = "order-processor"; 
 configurable string kafkaTopic = "orders";
