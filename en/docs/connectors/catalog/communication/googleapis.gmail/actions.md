@@ -9,13 +9,13 @@ The `ballerinax/googleapis.gmail` package exposes the following clients:
 
 | Client | Purpose |
 |--------|---------|
-| [`Client`](#client) | Gmail REST API — messages, drafts, threads, labels, history, profile, and attachments. |
+| [`Client`](#client) | Gmail REST API: messages, drafts, threads, labels, history, profile, and attachments. |
 
 ---
 
 ## Client
 
-Gmail REST API — messages, drafts, threads, labels, history, profile, and attachments.
+Gmail REST API: messages, drafts, threads, labels, history, profile, and attachments.
 
 ### Configuration
 
@@ -1023,7 +1023,7 @@ Sample code:
 
 ```ballerina
 gmail:Label updated = check gmail->/users/me/labels/["Label_25"].put({
-    name: "Invoices - Paid",
+    name: "Invoices: Paid",
     labelListVisibility: "labelShow",
     messageListVisibility: "show"
 });
@@ -1032,7 +1032,7 @@ gmail:Label updated = check gmail->/users/me/labels/["Label_25"].put({
 Sample response:
 
 ```ballerina
-{"id": "Label_25", "name": "Invoices - Paid", "type": "user", "labelListVisibility": "labelShow", "messageListVisibility": "show"}
+{"id": "Label_25", "name": "Invoices: Paid", "type": "user", "labelListVisibility": "labelShow", "messageListVisibility": "show"}
 ```
 
 </div>
@@ -1060,14 +1060,14 @@ Sample code:
 
 ```ballerina
 gmail:Label patched = check gmail->/users/me/labels/["Label_25"].patch({
-    name: "Invoices - Archived"
+    name: "Invoices: Archived"
 });
 ```
 
 Sample response:
 
 ```ballerina
-{"id": "Label_25", "name": "Invoices - Archived", "type": "user", "labelListVisibility": "labelShow", "messageListVisibility": "show"}
+{"id": "Label_25", "name": "Invoices: Archived", "type": "user", "labelListVisibility": "labelShow", "messageListVisibility": "show"}
 ```
 
 </div>
