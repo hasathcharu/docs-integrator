@@ -4,12 +4,16 @@ title: Message Filter
 description: "Implement the Message Filter pattern with WSO2 Integrator."
 ---
 
-import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import {
+  EipReferenceLink,
+  PatternImplementationTabs,
+  PatternImage,
+} from '@site/src/utils/eipPatternComponents';
 
 # Message Filter
 
-Use the Message Filter pattern to evaluate each incoming message and continue the flow only for messages that satisfy the selected condition. <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/Filter.html" target="_blank" rel="noopener noreferrer" aria-label="Enterprise Integration Patterns Message Filter reference" title="EIP Reference"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: '-2px' }}><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" /></svg></a>
+Use the Message Filter pattern to evaluate each incoming message and continue the flow only for messages that satisfy the selected condition. <EipReferenceLink href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/Filter.html" label="Enterprise Integration Patterns Message Filter reference" />
 
 The pattern is implemented by placing a filtering construct at the point where the integration has enough context to decide whether a message should continue. Use flow-level constructs when the decision depends on data the integration reads or derives. Use boundary or source-level constructs when the decision can be made from metadata or delivery rules before the main processing path starts.
 
@@ -17,7 +21,7 @@ The pattern is implemented by placing a filtering construct at the point where t
 
 Use predicate-based filtering with [if/else statements](/docs/develop/design-logic/control-flow#ifelse-statements) when each message carries the fields needed for a single boolean decision, such as priority, source, header, or status. The accepted path contains the forwarding or processing action. The rejected path does nothing or handles the rejection separately.
 
-<Tabs>
+<PatternImplementationTabs>
 <TabItem value="ui" label="Visual Designer" default>
 
 1. Open the flow and [add a step](/docs/develop/design-logic/visual-flow-designer#adding-steps-to-the-flow).
@@ -26,11 +30,10 @@ Use predicate-based filtering with [if/else statements](/docs/develop/design-log
 4. Add the accepted action inside the matching branch.
 5. Leave the other branch empty when unmatched messages should be discarded.
 
-<img
+<PatternImage
   src="/img/tutorials/patterns/message-filter-visual-designer.png"
   alt="Message Filter flow"
-  width="560"
-  style={{ display: 'block', margin: '0 auto' }}
+  width={560}
 />
 
 </TabItem>
@@ -64,13 +67,13 @@ service /api/v1 on new http:Listener(8080) {
 ```
 
 </TabItem>
-</Tabs>
+</PatternImplementationTabs>
 
 ## Collection-level filtering
 
 Use collection-level filtering with [query expressions](/docs/develop/design-logic/query-expressions) when the flow already has a group of messages or records and only a subset should continue. Keep the predicate in the `where` clause so the result is the accepted collection.
 
-<Tabs>
+<PatternImplementationTabs>
 <TabItem value="ui" label="Visual Designer" default>
 
 1. Open the flow and [add a step](/docs/develop/design-logic/visual-flow-designer#adding-steps-to-the-flow).
@@ -79,11 +82,10 @@ Use collection-level filtering with [query expressions](/docs/develop/design-log
 4. Enter a query expression with a `where` clause for the filter predicate.
 5. Use the resulting collection in the next processing or forwarding step.
 
-<img
+<PatternImage
   src="/img/tutorials/patterns/message-filter-collection-filter.png"
   alt="Collection-level Message Filter flow"
-  width="720"
-  style={{ display: 'block', margin: '0 auto' }}
+  width={720}
 />
 
 </TabItem>
@@ -111,13 +113,13 @@ function filterHighPriorityMessages(Message[] messages) returns Message[] {
 ```
 
 </TabItem>
-</Tabs>
+</PatternImplementationTabs>
 
 ## Boundary-level filtering
 
 Use boundary-level filtering when the input artifact can reject or route messages before custom flow logic runs. For HTTP-facing inputs, use a [request interceptor](/docs/connectors/catalog/built-in/http/trigger-reference#interceptors) when the decision can be made from request metadata before the resource executes. Other inputs can use their own handler, listener, or subscription selection points.
 
-<Tabs>
+<PatternImplementationTabs>
 <TabItem value="ui" label="Visual Designer" default>
 
 1. Add the source artifact, such as an [HTTP service](/docs/develop/integration-artifacts/service/http#creating-an-http-service).
@@ -173,13 +175,13 @@ service /events on eventListener {
 ```
 
 </TabItem>
-</Tabs>
+</PatternImplementationTabs>
 
 ## Broker-side delivery filtering
 
 Use broker-side delivery filtering when RabbitMQ can reduce what reaches the flow before consumption. Route matching messages into a dedicated queue with a direct exchange and binding key, then configure the RabbitMQ trigger to consume only that queue. Use [RabbitMQ exchange bindings](/docs/connectors/catalog/messaging/rabbitmq/actions#exchange-management) to bind the accepted-message queue to the exchange with the accepted routing key.
 
-<Tabs>
+<PatternImplementationTabs>
 <TabItem value="ui" label="Visual Designer" default>
 
 1. Add the [RabbitMQ event integration](/docs/develop/integration-artifacts/event/rabbitmq#creating-a-rabbitmq-service).
@@ -230,4 +232,4 @@ service rabbitmq:Service on rabbitmqListener {
 ```
 
 </TabItem>
-</Tabs>
+</PatternImplementationTabs>
