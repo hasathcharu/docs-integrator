@@ -86,7 +86,7 @@ Select **Save** to create the connection. The canvas updates and the **pubsubPub
 
 2. Select **Publish** to open the operation configuration form.
 3. Configure the operation fields:
-  - **Message** : Select the **Expression** toggle, then create a `string` configurable named `pubsubMessagePayload` via the helper panel. Enter `{data: pubsubMessagePayload.toBytes()}` as the expression: `.toBytes()` converts the string to `byte[]` as required by `pubsub:Message`.
+  - **Message** : Select the **Expression** toggle, then create a `string` configurable named `pubsubMessagePayload` via the helper panel. Enter `{data: pubsubMessagePayload}` as the expression. Non-byte values are serialized automatically; use `.toBytes()` (`{data: pubsubMessagePayload.toBytes()}`) only when you want to pass raw bytes explicitly.
   - **Result** : Leave as `result` (the variable name for the returned message ID)
   - **Result Type** : `string` (the `publish` operation returns the published message ID)
 4. Select **Save** to add the `publish` step to the flow.

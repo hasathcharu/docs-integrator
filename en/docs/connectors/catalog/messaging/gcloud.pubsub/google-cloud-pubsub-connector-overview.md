@@ -47,7 +47,7 @@ See the **[Trigger Reference](triggers.md)** for listener configuration, service
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a Google Cloud project, enabling the Pub/Sub API, and generating a service account key to authenticate the connector.
 
 
-* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for the client: operations, parameters, return types, and sample code.
 
 * **[Trigger Reference](triggers.md)**: Reference for event-driven integration using the listener and service model.
 

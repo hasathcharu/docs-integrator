@@ -47,8 +47,8 @@ For each non-boolean field visible in the connection configuration form, open it
 
 - **Hostname** : The hostname of the SAP S/4HANA server that exposes the Incoterms OData service endpoint
 - **Config** : The connection configuration record containing authentication credentials for the SAP S/4HANA API, structured as a `ConnectionConfig` with nested `CredentialsConfig`:
- - **username** : The SAP system username used to authenticate requests to the Incoterms API
- - **password** : The SAP system password associated with the username for API authentication
+  - **username** : The SAP system username used to authenticate requests to the Incoterms API
+  - **password** : The SAP system password associated with the username for API authentication
 
 ![Connection form with all parameters bound to configurable variables before saving](/img/connectors/catalog/erp-business/sap.s4hana.api_sd_incoterms_srv/sap_s4hana_apisdincotermssrv_screenshot_02_connection_form.png)
 

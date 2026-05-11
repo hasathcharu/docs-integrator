@@ -41,7 +41,7 @@ The connector requires the hostname (or IP address) of the SAP system's HTTP/HTT
 
 1. Confirm the HTTPS port with your SAP Basis team: the default is `443` for HTTPS.
 2. The base URL for the service will be:
-    ```
+    ```bash
     https://<hostname>:<port>/sap/opu/odata/sap/API_SALES_INQUIRY_SRV
     ```
 3. Verify connectivity from your integration host by opening the above URL in a browser or

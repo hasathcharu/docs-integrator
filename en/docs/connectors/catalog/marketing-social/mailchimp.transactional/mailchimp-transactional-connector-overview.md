@@ -34,7 +34,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 * **[Setup Guide](setup-guide.md)**: This guide walks you through creating a Mailchimp Transactional (Mandrill) account and obtaining the API key required to use the connector.
 
 
-* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for the client: operations, parameters, return types, and sample code.
 
 ## How to contribute
 
