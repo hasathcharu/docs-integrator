@@ -2018,7 +2018,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Capacity planning',
           items: [
-            'deploy-operate/capacity-planning/capacity-planning',
+            'deploy-operate/capacity-planning/overview',
             'deploy-operate/capacity-planning/performance-reports',
           ],
         },
