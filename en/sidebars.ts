@@ -1742,22 +1742,6 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-        // Key Concepts
-        {
-          type: 'category',
-          label: 'Key concepts',
-          items: [
-            'genai/key-concepts/what-is-llm',
-            'genai/key-concepts/what-is-a-natural-function',
-            'genai/key-concepts/what-is-ai-agent',
-            'genai/key-concepts/what-are-tools',
-            'genai/key-concepts/what-is-ai-agent-memory',
-            'genai/key-concepts/what-is-mcp',
-            'genai/key-concepts/what-is-rag',
-            'genai/key-concepts/writing-effective-prompts',
-            'genai/key-concepts/typed-responses',
-          ],
-        },
         // Develop AI Applications
         {
           type: 'category',
