@@ -13,8 +13,8 @@ The platform uses **roles**, **groups**, and a **mapping level** to control acce
 - **Role**: A role is a collection of permissions. The platform provides a predefined set of roles with permissions assigned to them.
 - **Group**: A group is a collection of users. A user group requires one or more roles to be assigned to it so that the users in those groups inherit the relevant permissions via the assigned roles.
 - **Mapping level**: A mapping level defines the extent at which a role-group mapping applies. The platform has two resource levels:
-    - **Organization**: You can assign a role to a group within the organization. This ensures that all users in the group inherit the permissions granted by that role across all organizational resources. For example, if a user has the `edit_project` permission at the organization mapping level, that user can edit all projects in the organization.
-    - **Project**: You can assign a role to a group within a specific project. This ensures that users in the group inherit the permissions granted by that role only within the context of that project. For example, if a user has the `edit_project` permission at the project mapping level, that user can only edit the specified project.
+    - **Organization**: You can assign a role to a group within the organization. This ensures that all users in the group inherit the permissions granted by that role across all organizational resources. For example, if a user has the `Project Management` permission at the organization mapping level, that user can edit all projects in the organization.
+    - **Project**: You can assign a role to a group within a specific project. This ensures that users in the group inherit the permissions granted by that role only within the context of that project. For example, if a user has the `Project Management` permission at the project mapping level, that user can only edit the specified project.
 
 Authorization works by assigning a role to a group at a specified level. The level at which you assign the role determines the extent of permissions granted to users.
 

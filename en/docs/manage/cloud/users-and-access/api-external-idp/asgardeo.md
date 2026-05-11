@@ -43,4 +43,4 @@ You have successfully configured Asgardeo as an external IdP in WSO2 Cloud.
 
 ## What's next
 
-- [Configure Azure Active Directory for API Access Control](./azure.md) — Configure Azure Active Directory as an external IdP to consume APIs on WSO2 cloud
+- [Configure Azure Active Directory for API Access Control](./azure.md) — Configure Azure Active Directory as an external IdP to consume APIs on WSO2 Cloud

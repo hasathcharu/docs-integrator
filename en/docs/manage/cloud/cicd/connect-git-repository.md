@@ -116,6 +116,6 @@ Authorizing with an Azure DevOps personal access token grants the following perm
 
 ## What's next
 
-- [Manage deployment pipelines](../cicd/deployment-pipelines.md) — Define the promotion flow of integrations across environments in your organization
+- [Manage deployment pipelines](./deployment-pipelines.md) — Define the promotion flow of integrations across environments in your organization
 - [Configurations overview](../configurations/overview.md) — Manage runtime values and build settings for deployed integrations
 - [Environments overview](../environments/overview.md) — Control how integrations are promoted across environments
