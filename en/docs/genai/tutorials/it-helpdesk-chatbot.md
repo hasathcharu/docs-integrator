@@ -32,7 +32,7 @@ Before getting started, ensure that the following requirements are met:
 
 - Install the [WSO2 Integrator VS Code extension](/docs/get-started/install)
 - Set up an MSSQL database for agent memory persistence
-- Have a basic understanding of memory configuration concepts. For more information, refer to [Memory Configuration](/docs/genai/agents/memory-configuration)
+- Have a basic understanding of memory configuration concepts. For more information, refer to [Memory](/docs/genai/develop/agents/memory)
 
 ## Architecture
 
