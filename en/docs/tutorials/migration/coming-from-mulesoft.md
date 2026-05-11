@@ -574,16 +574,3 @@ service on orderListener {
     }
 }
 ```
-
-## Summary
-
-You've migrated a MuleSoft integration to WSO2 Integrator. You cloned the sample project, ran the migration tool, reviewed the migration report, fixed up items requiring manual attention, configured `Config.toml` with your credentials, and verified the result locally. The same five steps apply to any Anypoint project: get the source, run the tool, fix up, test, and deploy.
-
-
-## What's next
-
-- [Migrate from MuleSoft](/docs/develop/tools/migration-tools/migrate-from-mulesoft): Detailed tool reference with screenshots
-- [Coming from TIBCO BusinessWorks](coming-from-tibco.md): TIBCO migration guide
-- [Coming from Azure Logic Apps](coming-from-azure-logic-apps.md): Azure Logic Apps migration guide
-- [Connectors](/docs/connectors/overview): Find the right connector for your integration
-- [Deploy & Operate](/docs/deploy-operate/overview): Deploy your migrated integrations
