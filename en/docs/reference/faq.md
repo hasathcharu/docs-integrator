@@ -10,15 +10,18 @@ keywords: [wso2 integrator, faq, frequently asked questions, troubleshooting]
 
 ### What is WSO2 Integrator?
 
-WSO2 Integrator is a Ballerina-powered integration platform that combines low-code visual design and pro-code development. It allows developers to build, test, and deploy integrations that connect APIs, databases, messaging systems, SaaS applications, and AI services. The platform includes a VS Code extension with a visual designer, a comprehensive connector library, and built-in observability.
+WSO2 Integrator is a Ballerina-powered integration platform that combines low-code visual design and pro-code development. It allows developers to build, test, and deploy integrations that connect APIs, databases, messaging systems, SaaS applications, and AI services. The WSO2 Integrator IDE offers a visual designer and a code editor with full bidirectional sync, alongside a comprehensive connector library and built-in observability.
 
-### What types of integrations can I build?
+### How can integrations be triggered?
 
-WSO2 Integrator supports three primary integration types:
+WSO2 Integrator supports several entry points for kicking off an integration:
 
 - **Services:** Network-accessible endpoints (HTTP, GraphQL, gRPC, WebSocket) that respond to incoming requests
 - **Automations:** Scheduled or manually triggered jobs that run without an external request (cron-based, interval-based, or one-time)
-- **Event Handlers:** Reactive integrations triggered by messages from Kafka, RabbitMQ, NATS, MQTT, or other event sources
+- **Event handlers:** Reactive integrations triggered by messages from Kafka, RabbitMQ, NATS, MQTT, or other event sources
+- **File-driven flows:** Integrations triggered by changes on a local file system or an SFTP/FTP location
+
+Any of these entry points can use AI agents, data transformations, and connectors to build any integration pattern.
 
 ### What protocols and standards does WSO2 Integrator support?
 
@@ -38,13 +41,13 @@ WSO2 Integrator is built on the Ballerina Swan Lake distribution. The exact dist
 
 ### Is WSO2 Integrator open source?
 
-WSO2 Integrator builds on Ballerina, which is open source under the Apache 2.0 license. The WSO2 Integrator VS Code extension and tooling are provided by WSO2. Check the WSO2 licensing page for specific license details.
+WSO2 Integrator builds on Ballerina, which is open source under the Apache 2.0 license. The WSO2 Integrator IDE and tooling are provided by WSO2. Check the WSO2 licensing page for specific license details.
 
 ## Development
 
 ### Do I need to know Ballerina to use WSO2 Integrator?
 
-Not to get started. The visual designer handles most common integration scenarios through visual configuration. However, learning Ballerina unlocks advanced capabilities such as custom data transformations, complex error handling, and concurrency patterns. The visual designer and code editor sync bidirectionally, so you can switch between modes at any time.
+Not to get started. WSO2 Integrator offers full parity between the visual designer and the code editor, so any integration can be built end-to-end in low-code. Developers already comfortable with Ballerina may find pro-code more familiar for complex flows, but neither mode locks you out of any capability. Changes in one view are instantly reflected in the other.
 
 ### Can I use existing Ballerina packages?
 
@@ -52,7 +55,7 @@ Yes. Any package published on [Ballerina Central](https://central.ballerina.io) 
 
 ### What IDE support is available?
 
-WSO2 Integrator provides a VS Code extension that includes:
+The WSO2 Integrator IDE includes:
 
 - Visual designer
 - Sequence diagram view
@@ -64,7 +67,7 @@ WSO2 Integrator provides a VS Code extension that includes:
 
 ### How do I debug my integrations?
 
-WSO2 Integrator supports standard VS Code debugging. Set breakpoints in either the visual designer or the code editor, then launch the debugger. You can also use remote debugging by running `bal run --debug <port>` and attaching the VS Code debugger to the specified port.
+WSO2 Integrator supports standard breakpoint-based debugging. Set breakpoints in either the visual designer or the code editor, then launch the debugger from the IDE. You can also use remote debugging by running `bal run --debug <port>` and attaching the IDE's debugger to the specified port.
 
 ### Can I write tests for my integrations?
 
@@ -87,7 +90,7 @@ Yes. WSO2 Integrator includes first-class support for AI agents, retrieval-augme
 
 ### Which LLM and vector store providers are supported?
 
-WSO2 Integrator ships connectors for major LLM providers (OpenAI, Anthropic, Azure OpenAI, Google) and vector stores (Pinecone, Weaviate, in-memory). See the [Connectors catalog](/docs/connectors/catalog/ai-ml/ai-machine-learning) for the current list.
+WSO2 Integrator ships connectors for major LLM providers and vector stores. See the [Connectors catalog](/docs/connectors/catalog/ai-ml/ai-machine-learning) for the current list.
 
 ## Deploy and operate
 
@@ -118,7 +121,7 @@ This allows you to use the same built artifact across development, staging, and 
 
 ### How do I handle secrets and sensitive configuration?
 
-Use separate configuration files for secrets and reference them via the `BAL_CONFIG_FILES` environment variable. In Kubernetes, mount secrets as files or inject them as environment variables using `BAL_CONFIG_VAR_*` prefixes. Never commit secrets to version control in `Config.toml`. See the [Environment Variables](/docs/reference/config/environment-variables) reference for details.
+WSO2 Integrator uses `Config.toml` files for runtime configuration. For secrets, keep them in a separate `Config.toml` (or another file referenced via the `BAL_CONFIG_FILES` environment variable) that is not checked into version control. Never commit secret values to git, whether they sit in `Config.toml` or anywhere else. In Kubernetes, mount the secret file from a `Secret`, or inject individual values as environment variables using `BAL_CONFIG_VAR_*` prefixes. See the [Environment Variables](/docs/reference/config/environment-variables) reference for details.
 
 ### Does WSO2 Integrator support horizontal scaling?
 
