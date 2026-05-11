@@ -1,10 +1,10 @@
 ---
-title: GitHub Connector Overview
+title: "Overview"
 description: Manage repositories, issues, pull requests, and more using the Ballerina ballerinax/github connector for GitHub's REST API.
 keywords: [wso2 integrator, github connector, ballerinax github, rest api, repositories, issues, pull requests]
 ---
 
-# GitHub Connector Overview
+# Overview
 
 GitHub is a widely used platform for version control and collaboration, allowing developers to work together on projects from anywhere. The Ballerina `ballerinax/github` connector (v5.1.0) provides programmatic access to GitHub through its REST API (version 2022-11-28), enabling you to automate tasks, manage repositories, issues, pull requests, and more directly from Ballerina integration flows.
 
