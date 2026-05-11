@@ -271,20 +271,7 @@ const sidebars: SidebarsConfig = {
             'develop/debugging/performance-profiling',
           ],
         },
-        // 6.8 Organize Code
-        {
-          type: 'category',
-          label: 'Organize code',
-          items: [
-            'develop/organize-code/packages-modules',
-            'develop/organize-code/package-references-imports',
-            'develop/organize-code/dependencies',
-            'develop/organize-code/workspaces',
-            {type: 'doc', id: 'develop/organize-code/style-guide', label: 'Code Style Guide & Formatting'},
-            {type: 'doc', id: 'develop/organize-code/generate-documentation', label: 'Generating Code Documentation'},
-          ],
-        },
-        // 6.9 Tools
+        // 6.8 Tools
         {
           type: 'category',
           label: 'Tools',
@@ -1761,8 +1748,16 @@ const sidebars: SidebarsConfig = {
             'genai/develop/direct-llm/overview',
             // Natural Functions (single page)
             'genai/develop/natural-functions/overview',
-            // RAG (single page)
-            'genai/develop/rag/overview',
+            // RAG
+            {
+              type: 'category',
+              label: 'RAG',
+              link: { type: 'doc', id: 'genai/develop/rag/overview' },
+              collapsed: true,
+              items: [
+                'genai/develop/rag/rag-ingestion'
+              ]
+            },
             // AI Agents
             {
               type: 'category',
@@ -1914,6 +1909,30 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    // ─────────────────────────────────────────────
+    // DEPLOY
+    // "How do I ship, run, and secure this?"
+    // ─────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Deploy',
+      collapsed: true,
+      link: { type: 'doc', id: 'deploy/overview' },
+      items: [
+        // Deploy
+        {
+          type: 'category',
+          label: 'Deploy to WSO2 Cloud',
+          link: { type: 'doc', id: 'deploy/cloud/overview' },
+          items: [
+            'deploy/cloud/push-from-ide',
+            'deploy/cloud/deploy-from-cloud-editor',
+            'deploy/cloud/import-project',
+            'deploy/cloud/import-integration',
+          ],
+        },
+      ],
+    },
 
     // ─────────────────────────────────────────────
     // DEPLOY & OPERATE
@@ -2014,6 +2033,58 @@ const sidebars: SidebarsConfig = {
       label: 'Manage',
       collapsed: true,
       items: [
+        'manage/choosing-a-control-plane',
+        // Cloud
+        {
+          type: 'category',
+          label: 'WSO2 Cloud',
+          link: { type: 'doc', id: 'manage/cloud/overview' },
+          items: [
+            // Integrations
+            {
+              type: 'category',
+              label: 'Integrations',
+              items: [
+                'manage/cloud/integrations/viewing-deployed',
+                'manage/cloud/integrations/lifecycle',
+              ],
+            },
+            // Configuration Management
+            {
+              type: 'category',
+              label: 'Configurations',
+              link: { type: 'doc', id: 'manage/cloud/configurations/overview' },
+              items: [
+                'manage/cloud/configurations/runtime-configurations',
+                'manage/cloud/configurations/endpoint-configurations',
+                'manage/cloud/configurations/security-configurations',
+                'manage/cloud/configurations/build-configurations',
+                'manage/cloud/configurations/scaling-resource-limits',
+              ],
+            },
+            // Environments
+            {
+              type: 'category',
+              label: 'Environments',
+              link: { type: 'doc', id: 'manage/cloud/environments/overview' },
+              items: [
+                'manage/cloud/environments/promotion',
+                'manage/cloud/environments/promotion-approval',
+              ],
+            },
+            // Observability
+            {
+              type: 'category',
+              label: 'Observability',
+              link: { type: 'doc', id: 'manage/cloud/observability/overview' },
+              items: [
+                'manage/cloud/observability/runtime-logs',
+                'manage/cloud/observability/metrics',
+                'manage/cloud/observability/anomaly-detection-alerts',
+              ],
+            },
+          ],
+        },
         {
           type: 'category',
           label: 'ICP',
@@ -2089,7 +2160,6 @@ const sidebars: SidebarsConfig = {
             'reference/cli/bal-grpc',
             'reference/cli/bal-edi',
             'reference/cli/bal-health',
-            'reference/cli/ballerina-update-tool',
             'reference/cli/bal-scan',
           ],
         },
@@ -2135,6 +2205,15 @@ const sidebars: SidebarsConfig = {
         },
         'reference/ballerina-by-example',
         'reference/ballerina-specifications',
+        // Miscellaneous
+        {
+          type: 'category',
+          label: 'Miscellaneous',
+          items: [
+            'reference/miscellaneous/configure-a-network-proxy',
+            'reference/miscellaneous/proxy-ballerina-central-with-maven-repository',
+          ],
+        },
         // Appendix
         {
           type: 'category',
