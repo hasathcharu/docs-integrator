@@ -7,7 +7,7 @@ description: Parse, transform, and generate EDI documents.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# EDI Processing
+# EDI processing
 
 Work with Electronic Data Interchange (EDI) formats used in supply chain, healthcare, and financial integrations. Ballerina provides the `ballerina/edi` module for parsing and serializing EDI data, and the `bal edi` CLI tool for generating type-safe code from EDI schemas.
 
@@ -23,7 +23,7 @@ All standards follow the same workflow: define a schema, generate Ballerina code
 
 ## Setting up the EDI tool
 
-Install the `bal edi` tool to generate Ballerina code from EDI schemas.
+Pull the `bal edi` tool to generate Ballerina code from EDI schemas.
 
 ```bash
 bal tool pull edi
@@ -38,35 +38,75 @@ The `bal edi` tool reads an EDI schema (in JSON format) and generates Ballerina 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. Click the **Add** icon and select **Add New Library**.
-2. Enter `purchase_order` as the library name and confirm.
+1. After creating a new integration, click the **+ Add Artifact** icon.
+2. Select **Library** as the type, enter `documents` as the library name, and click **Add Library**.
+
+   ![Add New Library](/img/develop/transform/edi/add-new-library.png)
 
 </TabItem>
 </Tabs>
 
+Here we will use the following json as the edi schema
+
+```json
+{
+  "name": "Document",
+  "delimiters": {
+    "segment": "~",
+    "field": "*",
+    "component": ":",
+    "repetition": "^"
+  },
+  "segments": [
+    {
+      "code": "BEG",
+      "tag": "BEG",
+      "minOccurances": 1,
+      "maxOccurances": 1,
+      "fields": [
+        {"tag": "purposeCode"},
+        {"tag": "typeCode"},
+        {"tag": "poNumber"},
+        {"tag": "releaseNumber"},
+        {"tag": "date"}
+      ]
+    },
+    {
+      "code": "SE",
+      "tag": "SE",
+      "minOccurances": 1,
+      "maxOccurances": -1,
+      "fields": [
+        {"tag": "code"},
+        {"tag": "segmentCount"},
+        {"tag": "controlNumber"}
+      ]
+    }
+  ]
+}
+```
+
+And the EDI content as below.
+
+```bash
+BEG*00*SA*PO-001*20260511~
+SE*4*0001~
+```
+
 Then, from inside the new library directory, run the code generator against your schema.
 
 ```bash
-bal edi codegen -i path/to/order_schema.json -o order.bal
+bal edi codegen -i path/to/schema.json -o document.bal
 ```
 
-This produces:
+This generates the followings in the output file:
 
-- **Record types** matching each segment and composite in the schema.
-- **`fromEdiString()`** -- a parser function that reads EDI text into the generated records.
-- **`toEdiString()`** -- a serializer function that converts records back to EDI format.
-
-## Converting x12 and EDIFACT schemas
-
-Convert standard X12 or EDIFACT schema definitions into Ballerina's JSON schema format.
-
-```bash
-# Convert an X12 schema to Ballerina EDI schema
-bal edi convertX12Schema -i x12/850.xsd -o schemas/purchase_order.json
-
-# Convert an EDIFACT schema
-bal edi convertEdifactSchema -i edifact/ORDERS_D96A.sef -o schemas/edifact_order.json
-```
+- **Record types** -- matching each segment and composite in the schema.
+- **`fromEdiString`** -- Convert an EDI string to a Ballerina record.
+- **`toEdiString`** -- Convert a Ballerina record to an EDI string.
+- **`getSchema`** -- Get the EDI schema as an `EdiSchema` object.
+- **`fromEdiStringWithSchema`** -- Convert an EDI string to a Ballerina record using a pre-loaded schema.
+- **`toEdiStringWithSchema`** -- Convert a Ballerina record to an EDI string using a pre-loaded schema.
 
 ## Parsing EDI documents
 
@@ -75,28 +115,54 @@ Once you have generated code from a schema, parse EDI text into typed Ballerina 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. **Add an Action or Variable step** — In the flow designer, use the generated `fromEdiString()` function to parse EDI content into a typed record.
-2. Select the EDI text input and assign the output to your defined record type.
+1. Open your main integration and click **+ Add Artifact** on the canvas.
+2. Select **Automation** from the artifacts panel.
+
+   ![Artifacts panel with Automation selected](/img/develop/transform/edi/automation.png)
+
+3. In the flow designer, click **+** between the **Start** and **Error Handler** nodes. In the **Statement** panel on the right, click **Call Function**.
+
+   ![Call Function in the Statement panel](/img/develop/transform/edi/call-function.png)
+
+4. In the **Functions** panel, scroll to the **io** section and select **fileReadString**.
+
+   ![Select fileReadString from io functions](/img/develop/transform/edi/file-read-string.png)
+
+5. Set **Path** to the path of your EDI file (e.g., `document1.edi`) and **Result** to `ediContent`, then click **Save**.
+
+   ![Configure fileReadString inputs](/img/develop/transform/edi/add-inputs-file-read-string.png)
+
+6. Click **+** again and select **Call Function**. In the **Functions** panel under **Within Project > documents**, select **fromEdiString**.
+
+   ![Select fromEdiString from the documents library](/img/develop/transform/edi/from-edi-string.png)
+
+7. Set **Edi Text** to `ediContent` and **Result** to `documents`, then click **Save**.
+
+   ![Configure fromEdiString inputs](/img/develop/transform/edi/populate-from-edi-string.png)
+
+8. Click **+** again. In the right panel, expand the **Logging** section and select **Log Info**.
+
+   ![Select Log Info from the Logging panel](/img/develop/transform/edi/log-info.png)
+
+9. In the **Msg** field, select **Expression**, enter `documents.toString()`, and click **Save**.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/io;
-import generated/purchase_order as po;
+import ballerina/log;
+
+import <add-org-name>/documents;
 
 public function main() returns error? {
-    // Read EDI content from a file
-    string ediText = check io:fileReadString("purchase_order.edi");
-
-    // Parse into a typed record
-    po:PurchaseOrder order = check po:fromEdiString(ediText);
-
-    io:println("Order ID: ", order.header.purchaseOrderNumber);
-    io:println("Buyer: ", order.header.buyerName);
-
-    foreach po:LineItem item in order.lineItems {
-        io:println(string `  ${item.productId}: ${item.quantity} units @ $${item.unitPrice}`);
+    do {
+        string ediContent = check io:fileReadString("path/to/document.edi");
+        documents:Document documents = check documents:fromEdiString(string `${ediContent}`);
+        log:printInfo(documents.toString());
+    } on fail error e {
+        log:printError("Error occurred", 'error = e);
+        return e;
     }
 }
 ```
@@ -111,38 +177,160 @@ Build EDI documents from Ballerina records and serialize them to the standard te
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. **Construct the Record** — In the flow designer, use a **Variable** step to define the record that holds your EDI data.
-2. **Serialize to EDI** — Add an **Action** step and call the generated `toEdiString()` function to convert the record into an EDI text string.
+1. Click **+ Add Artifact** and select **Automation**.
+2. In the flow designer, click **+** and select **Declare Variable**. Set **Name** to `document`, **Type** to `documents:Document`, and enter the following as the **Expression**, then click **Save**.
+
+   ```json
+    {
+        "BEG":{
+            "purposeCode":"BEG",
+            "typeCode":"00",
+            "poNumber":"SA",
+            "releaseNumber":"PO-001",
+            "date":"20260511"
+        },
+        "SE":[
+            {
+                "code":"SE",
+                "segmentCount":"4",
+                "controlNumber":"0001"
+            }
+        ]
+    }
+   ```
+
+   ![Declare document variable](/img/develop/transform/edi/declare-document-variable.png)
+
+3. Click **+** and select **Call Function**. Under the **documents** section, select **toEdiString**. Set **Data** to `document` and **Result** to `ediResult`, then click **Save**.
+
+   ![Configure toEdiString inputs](/img/develop/transform/edi/populate-to-edi-string.png)
+
+4. Click **+** and select **Log Info**. Set **Msg** to `ediResult`, then click **Save**.
+
+   ![Configure Log Info with ediResult](/img/develop/transform/edi/log-print-info.png)
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
-import ballerina/io;
-import generated/purchase_order as po;
+import ballerina/log;
+
+import <add-org-name>/documents;
 
 public function main() returns error? {
-    po:PurchaseOrder order = {
-        header: {
-            purchaseOrderNumber: "PO-20250315",
-            orderDate: "20250315",
-            buyerName: "Acme Corp"
-        },
-        lineItems: [
-            {productId: "WDG-01", quantity: 100, unitPrice: 29.99, uom: "EA"},
-            {productId: "GDG-02", quantity: 50, unitPrice: 49.99, uom: "EA"}
-        ]
-    };
-
-    // Serialize to EDI text
-    string ediOutput = check po:toEdiString(order);
-    check io:fileWriteString("output.edi", ediOutput);
-    io:println("EDI document written successfully");
+    do {
+        documents:Document document = {
+            "BEG": {
+                "purposeCode": "BEG",
+                "typeCode": "00", 
+                "poNumber": "SA", 
+                "releaseNumber": "PO-001", 
+                "date": "20260511"
+            },
+            "SE": [
+                {
+                    "code": "SE", 
+                    "segmentCount": "4", 
+                    "controlNumber": "0001"
+                }
+            ]
+        };
+        string ediResult = check documents:toEdiString(document);
+        log:printInfo(string `${ediResult}`);
+    } on fail error e {
+        log:printError("Error occurred", 'error = e);
+        return e;
+    }
 }
 ```
 
 </TabItem>
 </Tabs>
+
+## EDI to JSON/XML conversion
+
+A common integration pattern is converting EDI documents to JSON or XML for downstream systems.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Click **+** and select **Declare Variable**. Set **Name** to `document`, **Type** to `documents:Document`, and enter the following as the **Expression**, then click **Save**.
+
+   ```json
+   {
+       "BEG": {
+           "purposeCode": "BEG",
+           "typeCode": "00",
+           "poNumber": "SA",
+           "releaseNumber": "PO-001",
+           "date": "20260511"
+       },
+       "SE": [
+           {
+               "code": "SE",
+               "segmentCount": "4",
+               "controlNumber": "0001"
+           }
+       ]
+   }
+   ```
+
+   ![Declare document variable](/img/develop/transform/edi/declare-document-variable.png)
+
+2. Click **+** and select **Declare Variable**. Set **Name** to `jsonDocument`, **Type** to `json`, and **Expression** to `document.toJson()`, then click **Save**.
+
+   ![Declare JSON variable](/img/develop/transform/edi/declare-json-variable.png)
+
+3. Click **+** and select **Call Function**. Under the `io` section, select **fileWriteJson**. Set **Path** to `document.json` and **Content** to `jsonDocument`, then click **Save**.
+
+   ![Configure fileWriteJson inputs](/img/develop/transform/edi/populate-file-write-json.png)
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+```ballerina
+import ballerina/data.xmldata;
+import ballerina/io;
+import ballerina/log;
+
+import nuvindu/documents;
+
+public function main() returns error? {
+    do {
+        documents:Document document = {
+            "BEG": {
+                "purposeCode": "BEG",
+                "typeCode": "00",
+                "poNumber": "SA",
+                "releaseNumber": "PO-001",
+                "date": "20260511"
+            },
+            "SE": [
+                {
+                    "code": "SE",
+                    "segmentCount": "4",
+                    "controlNumber": "0001"
+                }
+            ]
+        };
+        json jsonDocument = document.toJson();
+        check io:fileWriteJson("document.json", jsonDocument);
+    } on fail error e {
+        log:printError("Error occurred", 'error = e);
+        return e;
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+The `json` value produced by `toJson()` can also be converted to XML using the `ballerina/data.xmldata` module. Call `xmldata:toXml()` on the record directly and write the result with `io:fileWriteString`.
+
+```ballerina
+xml documentXml = check xmldata:toXml(document);
+check io:fileWriteString("document.xml", documentXml.toString());
+```
 
 ## Low-Level EDI processing
 
@@ -151,8 +339,10 @@ For dynamic or schema-less scenarios, use the `ballerina/edi` module directly to
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. **Load Schema** — Add a **Variable** step in the flow designer to read your schema JSON and initialize the `edi:EdiSchema`.
-2. **Parse to JSON** — Use an **Action** step to call `edi:fromEdiString()` with your dynamic schema to parse the EDI content into JSON.
+1. Click **+** and select **Call Function**. Under the `io` section, select **fileReadString**. Set **Path** to the path of your EDI file and **Result** to `ediText`, then click **Save**.
+2. Click **+** and select **Call Function**. Under the `io` section, select **fileReadJson**. Set **Path** to the path of your schema file and **Result** to `schema`, then click **Save**.
+3. Click **+** and select **Declare Variable**. Set **Name** to `ediSchema`, **Type** to `edi:EdiSchema`, and **Expression** to `check schema.fromJsonWithType()`, then click **Save**.
+4. Click **+** and select **Call Function**. Under the `edi` section, select **fromEdiString**. Set **Edi Text** to `ediText`, **Schema** to `ediSchema`, and **Result** to `invoiceData`, then click **Save**.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -171,70 +361,6 @@ public function main() returns error? {
     json invoiceData = check edi:fromEdiString(ediText, ediSchema);
     io:println(invoiceData.toJsonString());
 }
-```
-
-</TabItem>
-</Tabs>
-
-## EDI to JSON/XML conversion
-
-A common integration pattern is converting EDI documents to JSON or XML for downstream systems.
-
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-1. **Parse EDI** — Use an **Action** step to parse the EDI text into a typed record using the generated function.
-2. **Convert to JSON/XML** — Add a **Variable** step and use the `.toJson()` method or the `xmldata:toXml()` function to convert the parsed record into JSON or XML.
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-```ballerina
-import ballerina/io;
-import ballerina/data.xmldata;
-import generated/purchase_order as po;
-
-public function main() returns error? {
-    string ediText = check io:fileReadString("order.edi");
-    po:PurchaseOrder order = check po:fromEdiString(ediText);
-
-    // EDI to JSON
-    json orderJson = order.toJson();
-    check io:fileWriteJson("order.json", orderJson);
-
-    // EDI to XML
-    xml orderXml = check xmldata:toXml(order);
-    check io:fileWriteString("order.xml", orderXml.toString());
-}
-```
-
-</TabItem>
-</Tabs>
-
-## Creating EDI packages
-
-Bundle multiple EDI schemas into a reusable Ballerina package so other teams can parse EDI messages with a single import.
-
-```bash
-# Generate a complete package from multiple schemas
-bal edi packagegen -i schemas/ -o edi_library/
-```
-
-Consumers of the package can then parse EDI documents in a single line:
-
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-1. **Import the Package** — Ensure your generated EDI package is available in your workspace.
-2. **Use the Parser** — In the flow designer, add an **Action** step referencing the imported package's `fromEdiString()` function to parse the EDI content.
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-```ballerina
-import acme/edi_library.purchase_order as po;
-
-po:PurchaseOrder order = check po:fromEdiString(ediContent);
 ```
 
 </TabItem>
