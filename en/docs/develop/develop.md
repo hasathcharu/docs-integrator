@@ -23,8 +23,7 @@ Tools that help **you** code faster (Copilot, AI test generation, AI-assisted da
 | | |
 |---|---|
 | **[Create integrations](create-integrations/create-a-new-integration.md)** | Start new projects from the WSO2 Integrator IDE or `bal new`, explore samples, build libraries, or migrate from MuleSoft, TIBCO, and WSO2 MI |
-| **[Project views](project-views/project-view.md)** | Switch between Project, Integration, and Library views in the IDE |
-| **[Organize code](organize-code/packages-modules.md)** | Packages, modules, package references, dependencies, workspaces, code style, and generated documentation |
+| **[Understand the IDE](understand-ide/understand-ide.md)** | Get to know the Integrator app, its views, and its editors |
 
 ## Build
 

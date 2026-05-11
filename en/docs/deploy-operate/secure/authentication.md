@@ -1,12 +1,13 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 title: Authentication
-description: Configure OAuth 2.0, JWT, and mTLS authentication for production services.
+description: Configure OAuth 2.0, JWT, and mTLS authentication for production services in WSO2 Integrator.
+keywords: [wso2 integrator, authentication, oauth 2.0, jwt, mtls, security]
 ---
 
-# Authentication (OAuth 2.0, JWT, mTLS)
+# Authentication
 
-Secure your production services with industry-standard authentication mechanisms. Ballerina provides declarative auth configuration at the service level.
+Secure your production services with industry-standard authentication mechanisms. WSO2 Integrator provides declarative auth configuration at the service level.
 
 ## JWT validation
 
@@ -91,18 +92,18 @@ scopes = ["admin", "read"]
 
 ## Mutual TLS (mTLS)
 
-Require client certificates for service-to-service authentication:
+Require client certificates for service-to-service authentication. Before configuring mTLS, set up your keystores and truststores as described in [Keystores and truststores](keystore-truststore.md).
 
 ```ballerina
 listener http:Listener mtlsListener = new (9443, {
     secureSocket: {
         key: {
-            certFile: "/certs/server.crt",
-            keyFile: "/certs/server.key"
+            certFile: "/path/to/server.crt",
+            keyFile: "/path/to/server.key"
         },
         mutualSsl: {
             verifyClient: http:REQUIRE,
-            cert: "/certs/trusted-client-ca.crt"
+            cert: "/path/to/ca.crt"
         }
     }
 });
@@ -110,7 +111,7 @@ listener http:Listener mtlsListener = new (9443, {
 
 ## Combining authentication methods
 
-Support multiple auth mechanisms on a single service — Ballerina tries each in order:
+Support multiple auth mechanisms on a single service. WSO2 Integrator tries each handler in order:
 
 ```ballerina
 @http:ServiceConfig {
@@ -124,5 +125,6 @@ service /api on secureListener { }
 
 ## What's next
 
-- [API Security & Rate Limiting](api-security-rate-limiting.md) — Rate limiting and input validation
-- [Secrets & Encryption](secrets-encryption.md) — Manage credentials securely
+- [SSO configuration](sso-configuration.md) — Set up single sign-on using OpenID Connect
+- [API security and rate limiting](api-security-rate-limiting.md) — Rate limiting and input validation for your APIs
+- [Secrets and encryption](secrets-encryption.md) — Manage credentials securely
