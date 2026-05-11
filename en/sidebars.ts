@@ -2060,6 +2060,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Manage',
       collapsed: true,
+      link: { type: 'doc', id: 'manage/overview' },
       items: [
         'manage/choosing-a-control-plane',
         // Cloud
@@ -2088,6 +2089,7 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/configurations/security-configurations',
                 'manage/cloud/configurations/build-configurations',
                 'manage/cloud/configurations/scaling-resource-limits',
+                'manage/cloud/configurations/custom-domain',
               ],
             },
             // Environments
@@ -2098,6 +2100,7 @@ const sidebars: SidebarsConfig = {
               items: [
                 'manage/cloud/environments/promotion',
                 'manage/cloud/environments/promotion-approval',
+                'manage/cloud/environments/create',
               ],
             },
             // Observability
@@ -2110,6 +2113,35 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/observability/metrics',
                 'manage/cloud/observability/anomaly-detection-alerts',
               ],
+            },
+            // CI/CD
+            {
+              type: 'category',
+              label: 'CI/CD',
+              link: { type: 'doc', id: 'manage/cloud/cicd/overview' },
+              items: [
+                'manage/cloud/cicd/connect-git-repository',
+                'manage/cloud/cicd/deployment-pipelines',
+              ],
+            },
+            // Users and Access
+            {
+              type: 'category',
+              label: 'Users and access',
+              link: { type: 'doc', id: 'manage/cloud/users-and-access/overview' },
+              items: [
+                    'manage/cloud/users-and-access/access-control',
+                    'manage/cloud/users-and-access/configure-enterprise-login',
+                    {
+                        type: 'category',
+                        label: 'Access APIs with an External IdP',
+                        link: { type: 'doc', id: 'manage/cloud/users-and-access/api-external-idp/overview' },
+                        items: [
+                            'manage/cloud/users-and-access/api-external-idp/asgardeo',
+                            'manage/cloud/users-and-access/api-external-idp/azure',
+                        ],
+                    },
+                ],
             },
             {
               type: 'category',
