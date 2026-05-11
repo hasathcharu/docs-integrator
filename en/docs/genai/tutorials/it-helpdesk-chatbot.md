@@ -359,7 +359,3 @@ Example response:
 </Tabs>
 
 The AI agent remembers previous conversations because the conversation history is stored in persistent MSSQL backed memory and retrieved using the same `sessionId`.
-
-## What's next
-
-[Building a Legal Document Q&A System with MCP and RAG](genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag.md) - Explore memory options in depth
