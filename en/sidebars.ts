@@ -2083,7 +2083,6 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/observability/anomaly-detection-alerts',
               ],
             },
-            // Billing
             {
               type: 'category',
               label: 'Billing',
