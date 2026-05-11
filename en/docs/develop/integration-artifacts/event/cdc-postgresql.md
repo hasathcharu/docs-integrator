@@ -72,9 +72,9 @@ The connector uses a logical replication slot (default name `debezium`) and a pu
 
 5. WSO2 Integrator opens the service in the **Service Designer**. The canvas shows the attached listener pill and the table name pill.
 
-   ![Service Designer showing the PostgreSQL CDC service canvas](/img/develop/integration-artifacts/event/cdc-postgresql/step-service-designer.png)
-
 6. Click **+ Add Handler** to add event handlers.
+
+   ![Service Designer showing the PostgreSQL CDC service canvas](/img/develop/integration-artifacts/event/cdc-postgresql/step-service-designer.png)
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
