@@ -17,7 +17,7 @@ A guide for developers migrating integrations from MuleSoft Anypoint to WSO2 Int
 - How MuleSoft concepts (flows, DataWeave, connectors) translate to their WSO2 Integrator equivalents
 - How to configure credentials, test, and run your migrated integration
 
-**Time:** ~45 minutes
+**Time:** ~30–45 minutes
 
 **Prerequisites:**
 - WSO2 Integrator installed (UI wizard path), **or** Ballerina installed with `bal` on your PATH (CLI path)
@@ -49,7 +49,7 @@ cd integration-samples/integrator-default-profile/third-party-integration-sample
 
 Take a moment to look at the project structure. It follows the standard Mule 4 layout:
 
-```
+```bash
 Mule-API-Integration/
 ├── pom.xml                        # Maven configuration
 ├── mule-artifact.json             # Mule application descriptor
