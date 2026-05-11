@@ -19,7 +19,7 @@ CDC must be enabled on the SQL Server database and on the specific tables you wa
 
 Before creating the integration:
 
-- **SQL Server Agent must be running.** CDC relies on Agent jobs to copy changes from the transaction log into change tables. If the agent isn't running, no change events are published. Verify by running `EXEC master.dbo.xp_servicecontrol N'QueryState', N'SQLServerAGENT';` and confirming the returned state is **Running**.
+- **SQL Server Agent must be running.** CDC relies on Agent jobs to copy changes from the transaction log into change tables. If the agent isn't running, no change events are published. Verify by running `EXEC master.dbo.xp_servicecontrol N'QueryState', N'SQLServerAGENT';` and confirming the returned state indicates the service is running.
 - Enable CDC on the target database and on each table you want to track.
 
 ```sql
