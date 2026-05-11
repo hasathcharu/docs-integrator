@@ -255,7 +255,7 @@ bal openapi -i <openapi-spec-path> [options]
 | `--nullable` | — | No | `false` | Generate nullable types for optional fields |
 | `--client-methods` | — | No | `resource` | Client method type: `resource` or `remote` |
 | `--with-tests` | — | No | `false` | Generate test skeletons for the client or service |
-| `--with-service-type` | — | No | `false` | Generate a service type (interface) for service validation |
+| `--with-service-contract` | — | No | `false` | Generate a service contract type for compile-time service validation |
 | `--license` | — | No | — | Path to a license header file to include in generated files |
 | `--status-code-binding` | — | No | `false` | Generate status-code-specific return types |
 | `--single-file` | — | No | `false` | Generate all types and client/service in a single file |
@@ -263,7 +263,7 @@ bal openapi -i <openapi-spec-path> [options]
 ### Export flags
 
 ```bash
-bal openapi export <ballerina-file> [options]
+bal openapi -i <ballerina-service-file> [options]
 ```
 
 | Flag | Required | Default | Description |

@@ -22,6 +22,8 @@ The `bal persist` tool generates type-safe client APIs for data persistence acro
 | Google Sheets | `ballerinax/persist.googlesheets` |
 | Redis | `ballerinax/persist.redis` |
 
+
+
 ## Connect to a database
 
 <Tabs>
@@ -186,7 +188,7 @@ bal persist migrate --datastore mysql --module db add_phone_column
 
 The command generates a timestamped migration directory under `persist/migrations/`:
 
-```
+```text
 persist/
   migrations/
     20240115120000_add_phone_column/
@@ -258,7 +260,7 @@ bal persist push --datastore <datastore> --module <module>
 | `--datastore` | Yes | — | Target data store: `mysql`, `mssql`, `postgresql`, or `sqlite` |
 | `--module` | Yes | — | Name of the module containing the data model |
 
-## Supported data stores
+## Data store migration support
 
 | Data store | `--datastore` value | Migrations | Notes |
 |---|---|---|---|
