@@ -110,51 +110,6 @@ public type SimpleOrder record {|
 |};
 ```
 
-### Using the generated code
-
-**Parsing incoming EDI messages:**
-
-```ballerina
-import ballerina/log;
-import <add-the-project-name>.orders;
-
-function processIncomingOrder(string rawEdi) returns error? {
-    // Parse EDI text into a typed SimpleOrder record
-    orders:SimpleOrder newOrder = check orders:fromEdiString(rawEdi);
-
-    log:printInfo("Order received",
-        orderId = newOrder.header.orderId,
-        organization = newOrder.header.organization
-    );
-
-    foreach orders:Items_Type item in newOrder.items {
-        log:printInfo("Item", item = item.item, quantity = item?.quantity);
-    }
-}
-```
-
-**Generating outbound EDI messages:**
-
-```ballerina
-import <add-the-project-name>.orders;
-
-function generateOrderEdi() returns string|error {
-    orders:SimpleOrder newOrder = {
-        header: {
-            orderId: "ORD-001",
-            organization: "HealthCare Inc.",
-            date: "20240101"
-        },
-        items: [
-            {item: "Aspirin", quantity: 100},
-            {item: "Insulin", quantity: 50}
-        ]
-    };
-
-    return orders:toEdiString(newOrder);
-}
-```
-
 ## Generating a library package
 
 Use `libgen` to generate a complete Ballerina library package from a directory of EDI schemas. The library organizes each schema into a separate module and includes REST connectors for EDI-to-JSON and JSON-to-EDI conversions.
