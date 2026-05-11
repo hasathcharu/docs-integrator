@@ -1,12 +1,13 @@
 ---
-sidebar_position: 4
-title: Secrets & Encryption
-description: Manage secrets and configure encryption at rest and in transit.
+sidebar_position: 6
+title: Secrets and Encryption
+description: Manage secrets and configure encryption at rest and in transit for WSO2 Integrator services.
+keywords: [wso2 integrator, secrets, encryption, config.toml, vault, kubernetes secrets, tls]
 ---
 
-# Secrets & Encryption
+# Secrets and Encryption
 
-Protect sensitive data in your integrations — API keys, database passwords, certificates, and tokens.
+Protect sensitive data in your integrations, including API keys, database passwords, certificates, and tokens.
 
 ## Secrets in Config.toml
 
@@ -78,7 +79,7 @@ spec:
             secretName: integration-config
 ```
 
-## HashiCorp vault integration
+## HashiCorp Vault integration
 
 Fetch secrets from Vault at startup using a Ballerina initialization function:
 
@@ -100,7 +101,7 @@ function getSecret(string path) returns string|error {
 
 For production, use the Vault Agent sidecar pattern to inject secrets as environment variables or files.
 
-## AWS secrets manager
+## AWS Secrets Manager
 
 ```ballerina
 import ballerinax/aws.secretsmanager;
@@ -116,14 +117,16 @@ string dbPassword = check smClient->getSecretValue("prod/db/password");
 
 ## TLS configuration
 
+For a detailed guide on creating keystores and truststores, see [Keystores and truststores](keystore-truststore.md).
+
 ### Server TLS
 
 ```ballerina
 listener http:Listener secureListener = new (9443, {
     secureSocket: {
         key: {
-            certFile: "/certs/server.crt",
-            keyFile: "/certs/server.key"
+            certFile: "/path/to/server.crt",
+            keyFile: "/path/to/server.key"
         }
     }
 });
@@ -144,35 +147,38 @@ final http:Client secureClient = check new ("https://internal-api.example.com", 
 ```ballerina
 listener http:Listener mtlsListener = new (9443, {
     secureSocket: {
-        key: {certFile: "/certs/server.crt", keyFile: "/certs/server.key"},
+        key: {
+            certFile: "/path/to/server.crt",
+            keyFile: "/path/to/server.key"
+        },
         mutualSsl: {
             verifyClient: http:REQUIRE,
-            cert: "/certs/trusted-client-ca.crt"
+            cert: "/path/to/ca.crt"
         }
     }
 });
 ```
 
-## Encryption at REST
+## Encryption at rest
 
 For database encryption, configure at the database level:
 
-- **MySQL** — Enable InnoDB tablespace encryption
-- **PostgreSQL** — Use pgcrypto extension or Transparent Data Encryption
-- **MongoDB** — Enable encryption at rest with WiredTiger
-- **AWS RDS** — Enable storage encryption in RDS settings
+- **MySQL**: Enable InnoDB tablespace encryption
+- **PostgreSQL**: Use pgcrypto extension or Transparent Data Encryption
+- **MongoDB**: Enable encryption at rest with WiredTiger
+- **AWS RDS**: Enable storage encryption in RDS settings
 
 ## Best practices
 
-1. **Never hardcode secrets** in source code — always use `configurable` variables.
+1. **Never hardcode secrets** in source code. Always use `configurable` variables.
 2. **Never commit Config.toml** to version control.
 3. **Use a secrets manager** (Vault, AWS Secrets Manager, Azure Key Vault) in production.
-4. **Rotate secrets regularly** — use short-lived tokens where possible.
-5. **Enable TLS everywhere** — all service-to-service communication should be encrypted.
+4. **Rotate secrets regularly.** Use short-lived tokens where possible.
+5. **Enable TLS everywhere.** All service-to-service communication should be encrypted.
 6. **Use mTLS** for sensitive internal service communication.
 
 ## What's next
 
-- [Authentication](authentication.md) — Secure service endpoints
-- [Compliance](compliance-considerations.md) — Audit logging and data protection
-- [Runtime Security](runtime-security.md) — Additional runtime security measures
+- [Authentication](authentication.md) — Secure service endpoints with OAuth 2.0, JWT, and mTLS
+- [Compliance considerations](compliance-considerations.md) — Audit logging and data protection
+- [Runtime security](runtime-security.md) — Additional runtime security settings

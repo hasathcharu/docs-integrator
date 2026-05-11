@@ -1,10 +1,11 @@
 ---
 title: "Overview"
+description: Overview of the Ballerina Kafka connector — producer and consumer for Apache Kafka integration.
 ---
 
 # Overview
 
-Apache Kafka is a distributed event streaming platform used for building real-time data pipelines and streaming applications. The Ballerina `ballerinax/kafka` connector (v4.6.3) provides a Producer client for publishing messages, a Consumer client for polling messages, and a Listener for event-driven consumption — enabling seamless Kafka integration in Ballerina workflows.
+Apache Kafka is a distributed event streaming platform used for building real-time data pipelines and streaming applications. The Ballerina `ballerinax/kafka` connector (v4.6.5) provides a Producer client for publishing messages, a Consumer client for polling messages, and a Listener for event-driven consumption — enabling seamless Kafka integration in Ballerina workflows.
 
 
 ## Key features
@@ -40,7 +41,7 @@ Supported trigger events:
 |-------|----------|-------------|
 | Records received | `onConsumerRecord` | Fired when one or more records are consumed from the subscribed Kafka topic(s). |
 
-See the **[Trigger Reference](triggers.md)** for listener configuration, service callbacks, and the `EventData` payload structure.
+See the **[Trigger Reference](triggers.md)** for listener configuration, service callbacks, and the `BytesConsumerRecord` payload structure.
 
 ## Documentation
 
