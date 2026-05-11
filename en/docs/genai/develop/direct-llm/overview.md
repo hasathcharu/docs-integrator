@@ -12,7 +12,7 @@ A **direct LLM call** is the simplest way to use AI in WSO2 Integrator. You add 
 This page is a single, end-to-end reference for everything you need to make that call work in WSO2 Integrator: adding a model provider, dropping a `generate` node, writing the prompt, and binding the response to a Ballerina type.
 
 :::tip Looking for a hands-on walkthrough?
-See the **[Email Generator with Direct LLM](/docs/genai/tutorials/email-generator-direct-llm)** tutorial. It builds a `POST /emails/generate` service end to end using everything described on this page.
+See the **[Email Generator with Direct LLM](/docs/genai/tutorials/email-generator-direct-llm)** tutorial. It builds a `POST /emails/generate` service end-to-end using everything described on this page.
 :::
 
 ## When to use direct LLM calls
