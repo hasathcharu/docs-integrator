@@ -6,11 +6,11 @@ keywords: [wso2 integrator, flow diagram editor, error handling, error handler, 
 
 # Error handling
 
-The **Error Handling** section of the node panel covers nodes that catch errors in the flow, raise an error value to the caller, or abort the strand entirely. Every flow in WSO2 Integrator has an automatic **Error Handler** branch on the side of the canvas that catches any error raised in the main flow. Use the nodes here to refine that behavior or to raise errors yourself.
+The **Error Handling** section of the node palette covers nodes that catch errors in the flow, raise an error value to the caller, or abort the strand entirely. Use the nodes here to add error-handling logic to a flow or to raise errors yourself.
 
 ## ErrorHandler
 
-Catches and handles errors that occur during the flow's execution. The default branch appears on the canvas without configuration; add steps inside it to log, transform, or compensate when an error is caught.
+Wraps a section of the flow in a `do { } on fail error err { }` block so that any error raised inside the `do` block is caught and routed to the `on fail` branch. Add the node where you want to start catching errors.
 
 ![ErrorHandler button in the Error Handling section](/img/develop/flow-design-elements/error-handler-node.png)
 
@@ -18,7 +18,7 @@ The configuration form requires no parameters and does not return a result. The 
 
 ![ErrorHandler info panel showing Configuration Complete](/img/develop/flow-design-elements/error-handler-info.png)
 
-To customize how errors are handled, add steps inside the **ErrorHandler** branch. For example, log the error with the nodes in [Logging](./logging.md), transform it into an HTTP error response, or trigger a compensating action.
+Add steps inside the **ErrorHandler** branch to log, transform, or compensate when an error is caught. For example, log the error with the nodes in [Logging](./logging.md), transform it into an HTTP error response, or trigger a compensating action.
 
 ## Fail
 
@@ -34,7 +34,7 @@ Raises a Ballerina error value that propagates up the call stack until an enclos
 
 ## Panic
 
-Aborts the current strand immediately and propagates the panic up the call stack. Unlike a regular error from **Fail**, a panic is not normally caught. Reserve **Panic** for unrecoverable conditions such as violated invariants, missing required configuration, or programming bugs. For expected error conditions, use **Fail**.
+Aborts the current strand and unwinds the call stack. A panic represents an abnormal, unrecoverable condition that should not be handled as a regular error, such as a division by zero or an out-of-memory failure. Unlike a value raised with **Fail**, a panic bypasses the normal `on fail` error path and is not caught by an enclosing **ErrorHandler**. Reserve **Panic** for conditions where the integration genuinely cannot continue, and use **Fail** for expected, recoverable errors. See the [Panics example](https://ballerina.io/learn/by-example/panics/) in the Ballerina documentation for the underlying language semantics.
 
 ![Panic button in the Error Handling section](/img/develop/flow-design-elements/panic-node.png)
 
