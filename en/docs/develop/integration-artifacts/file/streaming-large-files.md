@@ -1,12 +1,12 @@
 ---
-title: Streaming Large Files
+title: Streaming large files
 description: Process large CSV and binary files row-by-row or in byte chunks without loading the entire file into memory.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Streaming Large Files
+# Streaming large files
 
 By default, a file handler loads the whole file into memory before it runs. For files in the hundreds of megabytes or larger, that can exhaust the integration's memory budget. Enabling **Stream (Large Files)** when configuring a handler changes how files are processed, delivering data row by row (CSV) or in chunks (RAW) so memory usage stays constant regardless of file size.
 
@@ -27,15 +27,15 @@ Streaming is supported on **CSV** and **RAW** handlers only. **JSON** and **XML*
 
 On the **Add File Handler** form:
 
-1. Pick **onCreate** as the handler variant and the appropriate **File Format** — **CSV** or **RAW**.
-2. (CSV only) Click **+ Define Row Schema** and describe each column as a field on a Ballerina record — for example, a row with `orderId` / `quantity` / `unitPrice`. This lets each row arrive as a typed record instead of a raw `string[]`.
+1. Pick **onCreate** as the handler variant and the appropriate **File Format**, either **CSV** or **RAW**.
+2. (CSV only) Click **+ Define Row Schema** and describe each column as a field on a Ballerina record. For example, a row with `orderId` / `quantity` / `unitPrice`. This lets each row arrive as a typed record instead of a raw `string[]`.
 3. Select **Stream (Large Files)**.
 
    ![Add File Handler form with Stream (Large Files) selected](/img/develop/integration-artifacts/file/streaming-large-files/step-stream-option.png)
 
 4. Fill in **After File Processing** and the rest of the form as usual, then click **Save**.
 
-The handler is saved with its `content` parameter wrapped in a stream — `stream<Order, error?>` for a typed CSV, `stream<string[], error?>` if you skipped the row schema, or `stream<byte[], error?>` for RAW.
+The handler is saved with its `content` parameter wrapped in a stream, i.e., `stream<Order, error?>` for a typed CSV, `stream<string[], error?>` if you skipped the row schema, or `stream<byte[], error?>` for RAW.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -66,7 +66,7 @@ service on ftpListener {
 }
 ```
 
-**Streaming raw CSV rows** (skip the row schema — each row is a `string[]`):
+**Streaming raw CSV rows** (skip the row schema. Each row is a `string[]`):
 
 ```ballerina
 remote function onFileCsv(stream<string[], error?> content,

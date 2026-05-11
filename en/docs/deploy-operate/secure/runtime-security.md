@@ -1,12 +1,13 @@
 ---
-sidebar_position: 6
+sidebar_position: 2
 title: Runtime Security
-description: Best practices for securing Ballerina integrations at runtime -- JVM hardening, keystores, non-root execution, and network policies.
+description: Best practices for securing integrations in WSO2 Integrator at runtime, including JVM hardening, non-root execution, and network policies.
+keywords: [wso2 integrator, runtime security, jvm hardening, non-root, network policy, security]
 ---
 
 # Runtime Security
 
-Securing your Ballerina integrations at runtime involves hardening the JVM, managing keystores and certificates, running as non-root, and applying network-level controls. This page covers production security best practices.
+Securing integrations in WSO2 Integrator at runtime involves hardening the JVM, managing keystores and certificates, running as non-root, and applying network-level controls. This page covers production security best practices.
 
 ## JVM hardening
 
@@ -48,7 +49,7 @@ Creating keystores, truststores is covered in detail in [Keystores and Truststor
 - Configuring TLS and mutual TLS for HTTP and gRPC services
 - Keeping certificate paths and passwords out of source code using `Config.toml` and environment variables
 
-## Non-Root execution
+## Non-root execution
 
 ### Linux
 
@@ -184,7 +185,7 @@ spec:
 
 ## What's next
 
-- [Keystores and Truststores](keystore-truststore.md) -- Create and configure TLS certificates, keystores, and truststores
-- [Secrets & Encryption](secrets-encryption.md) -- Manage secrets and encryption
-- [Authentication](authentication.md) -- Configure authentication for services
-- [API Security](api-security-rate-limiting.md) -- Secure your API endpoints
+- [Keystores and truststores](keystore-truststore.md) — Create and configure TLS certificates, keystores, and truststores
+- [Authentication](authentication.md) — Configure authentication for services
+- [API security and rate limiting](api-security-rate-limiting.md) — Secure your API endpoints
+- [Secrets and encryption](secrets-encryption.md) — Manage secrets and encryption
