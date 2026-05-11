@@ -46,9 +46,9 @@ java -version
 # Ensure JDK 17.0.x or later with latest patch
 ```
 
-## Keystores and truststores
+## Keystores and Truststores
 
-Creating keystores and truststores is covered in detail in [Keystores and truststores](keystore-truststore.md). That page covers:
+Creating keystores and truststores is covered in detail in [Keystores and Truststores](keystore-truststore.md). That page covers:
 
 - Generating keystores and truststores using `keytool`
 - Configuring TLS and mutual TLS for HTTP and gRPC services
@@ -190,7 +190,7 @@ spec:
 
 ## What's next
 
-- [Keystores and truststores](keystore-truststore.md) — Create and configure TLS certificates, keystores, and truststores
+- [Keystores and Truststores](keystore-truststore.md) — Create and configure TLS certificates, keystores, and truststores
 - [Authentication](authentication.md) — Configure authentication for services
-- [API security and rate limiting](api-security-rate-limiting.md) — Secure your API endpoints
-- [Secrets and encryption](secrets-encryption.md) — Manage secrets and encryption
+- [API Security and Rate Limiting](api-security-rate-limiting.md) — Secure your API endpoints
+- [Secrets and Encryption](secrets-encryption.md) — Manage secrets and encryption
