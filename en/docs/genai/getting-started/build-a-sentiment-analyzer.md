@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 
 # Build a sentiment analyzer
 
-**Time:** Under 10 minutes | **What you'll build:** An HTTP service that listens on `POST /analyze`, sends a customer review to an LLM, and returns the sentiment as `POSITIVE`, `NEGATIVE`, or `NEUTRAL`.
+**Time:** Under 10 minutes | **What you'll build:** An HTTP service that listens on `POST /analyze`, sends a customer review to an LLM, and returns the sentiment (`POSITIVE`, `NEGATIVE`, or `NEUTRAL`) along with a confidence score.
 
 A direct LLM call is the simplest way to use AI in an integration: you send a prompt, the model returns a value, and Ballerina enforces the return type. This quick start shows the full cycle: define the result type, configure a model provider, make the call, and test it.
 
@@ -82,13 +82,13 @@ The LLM call returns one of three values. Define an enum so Ballerina can enforc
 3. Select **+ Add Model Provider**, then choose **WSO2 Model Provider**.
 4. Keep the default name and select **Save**. The provider is added under **Connections**.
 5. Select the **Generate** action.
-6. Set **Prompt** to `Classify the sentiment of this customer review as POSITIVE, NEGATIVE, or NEUTRAL. Review: ${payload.text}`.
-7. Set the result variable name to `td`.
-8. Set **Expected Type** to `Sentiment`.
-9. Select **Save**.
+6. Set **Prompt** to `Classify the sentiment of this customer review and provide a confidence score between 0.0 and 1.0 indicating how confident you are in the classification. Review: ${payload.text}`.
+7. Set the result variable name to `sentimentResult`.
+8. For **Expected Type**, create a new record type `SentimentResult` with two fields: `sentiment` of type `Sentiment` and `confidence` of type `float`. Select **Save** in the type creator.
+9. Back in the Generate panel, select `SentimentResult` in the **Expected Type** field, then select **Save**.
 
 <ThemedImage
-    alt="Configuring the Generate action with the classification prompt and Sentiment as the expected return type"
+    alt="Configuring the Generate action with the classification prompt and SentimentResult as the expected return type"
     sources={{
         light: useBaseUrl('/img/genai/getting-started/build-a-sentiment-analyzer/add-prompt-and-return-type.png'),
         dark: useBaseUrl('/img/genai/getting-started/build-a-sentiment-analyzer/add-prompt-and-return-type.png'),
@@ -99,7 +99,7 @@ The LLM call returns one of three values. Define an enum so Ballerina can enforc
 
 1. Select **+** below the **ai:generate** node.
 2. Select **Return**.
-3. Set **Expression** to `td`.
+3. Set **Expression** to `sentimentResult`.
 4. Select **Save**.
 
 <ThemedImage
@@ -115,10 +115,10 @@ The LLM call returns one of three values. Define an enum so Ballerina can enforc
 1. Select **Run**.
 2. Select **Try It** in the confirmation dialog.
 3. Send a `POST` to `/analyze` with the body `{"text": "Absolutely loved this product! Best purchase I made all year."}`.
-4. Confirm the response is `"POSITIVE"`.
+4. Confirm the response includes `"sentiment":"POSITIVE"` along with a `confidence` score.
 
 <ThemedImage
-    alt="Running the integration and testing it with the Try It panel showing a POSITIVE sentiment response"
+    alt="Running the integration and testing it with the Try It panel showing a POSITIVE sentiment response with a confidence score"
     sources={{
         light: useBaseUrl('/img/genai/getting-started/build-a-sentiment-analyzer/run-and-test.png'),
         dark: useBaseUrl('/img/genai/getting-started/build-a-sentiment-analyzer/run-and-test.png'),
@@ -128,23 +128,24 @@ The LLM call returns one of three values. Define an enum so Ballerina can enforc
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
-The following Ballerina program produces the same integration shown in the Visual Designer steps. The code wraps the result in a `SentimentResponse` record so the response is `{"sentiment":"POSITIVE"}` instead of a bare JSON string.
+The following Ballerina program produces the same integration shown in the Visual Designer steps. The LLM returns a `SentimentResult` record so the response includes both the sentiment and a confidence score (for example, `{"sentiment":"POSITIVE","confidence":0.98}`).
 
 `types.bal`:
 
 ```ballerina
-public enum Sentiment {
+enum Sentiment {
     POSITIVE,
     NEGATIVE,
     NEUTRAL
 }
 
-public type ReviewRequest record {|
+type AnalyzePayload record {|
     string text;
 |};
 
-public type SentimentResponse record {|
+type SentimentResult record {|
     Sentiment sentiment;
+    float confidence;
 |};
 ```
 
@@ -164,17 +165,18 @@ import ballerina/http;
 listener http:Listener httpDefaultListener = http:getDefaultListener();
 
 service / on httpDefaultListener {
-    resource function post analyze(ReviewRequest payload) returns SentimentResponse|error {
-        Sentiment sentiment = check aiWso2modelprovider->generate(
-            `Classify the sentiment of this customer review as POSITIVE, NEGATIVE, or NEUTRAL.
+    resource function post analyze(@http:Payload AnalyzePayload payload) returns SentimentResult|error {
+        SentimentResult sentimentResult = check aiWso2modelprovider->generate(
+            `Classify the sentiment of this customer review and provide a confidence score
+            between 0.0 and 1.0 indicating how confident you are in the classification.
             Review: ${payload.text}`
         );
-        return {sentiment};
+        return sentimentResult;
     }
 }
 ```
 
-Run and test the integration from WSO2 Integrator using the **Try It** panel as shown in Step 6. The response is `{"sentiment":"POSITIVE"}`.
+Run and test the integration from WSO2 Integrator using the **Try It** panel as shown in Step 6. The response will look similar to `{"sentiment":"POSITIVE","confidence":0.98}`, with the actual sentiment and confidence score determined by the model.
 
 </TabItem>
 </Tabs>
@@ -183,7 +185,7 @@ Run and test the integration from WSO2 Integrator using the **Try It** panel as 
 
 The model provider's `generate` method takes a backtick template prompt and an expected return type. Behind the scenes the LLM is instructed to produce output that conforms to that type, and the response is parsed and validated before being returned to your code.
 
-Because the return type is an enum, the LLM cannot return free-form text. It must pick one of `POSITIVE`, `NEGATIVE`, or `NEUTRAL`. If the model returns anything else, the call fails with a typed error rather than silently passing bad data downstream.
+Because the `sentiment` field is an enum, the LLM cannot return free-form text for it. It must pick one of `POSITIVE`, `NEGATIVE`, or `NEUTRAL`. If the model returns anything else, the call fails with a typed error rather than silently passing bad data downstream.
 
 This is what differentiates a direct LLM call from a raw chat completion: you write the call as if it were a normal function and let the type system do the work.
 
