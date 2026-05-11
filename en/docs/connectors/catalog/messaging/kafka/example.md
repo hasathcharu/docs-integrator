@@ -1,3 +1,8 @@
+---
+title: Example
+description: End-to-end examples for Kafka producer, consumer, and trigger integration using the Ballerina Kafka connector.
+---
+
 # Example
 
 ## Table of contents
