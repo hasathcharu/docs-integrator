@@ -1,6 +1,6 @@
 ---
 title: CDC for PostgreSQL
-description: Capture real-time data changes from PostgreSQL tables using Change Data Capture, with handlers for insert, update, delete, and read events.
+description: Capture real-time data changes from PostgreSQL tables using Change Data Capture, with handlers for insert, update, delete, truncate, and read events.
 keywords: [wso2 integrator, cdc, postgresql, change data capture, event integration, debezium, logical replication]
 ---
 
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # CDC for PostgreSQL
 
-PostgreSQL CDC integrations capture row-level changes from PostgreSQL tables in real time using Debezium-based Change Data Capture. Use them for data synchronization, audit logging, and event-driven workflows that must react to database inserts, updates, and deletes without polling.
+PostgreSQL CDC integrations capture row-level changes from PostgreSQL tables in real time using Debezium-based Change Data Capture. Use them for data synchronization, audit logging, and event-driven workflows that must react to database inserts, updates, deletes, and truncates without polling.
 
 :::note
 Logical replication must be enabled on the PostgreSQL database and on the specific tables you want to track before creating this integration. See [Prerequisites](#prerequisites).
@@ -64,7 +64,7 @@ The connector uses a logical replication slot (default name `debezium`) and a pu
    |---|---|---|
    | **Listener Name** | Identifier for the listener created with this service. | `postgresqlCdcListener` |
    | **Secure Socket** | SSL/TLS configuration for a secure connection. | — |
-   | **Options** | Additional options for the CDC engine as a record expression. Common keys include `snapshotMode` (for example, `cdc:NO_DATA` to skip the initial snapshot) and `skippedOperations` (for example, `[cdc:TRUNCATE, cdc:UPDATE, cdc:DELETE]` to capture only inserts). | — |
+   | **Options** | Additional options for the CDC engine as a record expression. Common keys include `snapshotMode` (for example, `cdc:NO_DATA` to skip the initial snapshot) and `skippedOperations` (for example, `[cdc:TRUNCATE, cdc:UPDATE, cdc:DELETE]` to skip truncate, update, and delete events; note that snapshot reads still trigger `onRead` unless `snapshotMode` is also set to `cdc:NO_DATA`). | — |
 
    Under **Table**, enter the fully qualified table name to capture events from in the format `<database>.<schema>.<table>` (for example, `mydb.public.customers`).
 
@@ -221,7 +221,7 @@ The `database` value (`postgresql:PostgresDatabaseConnection`) has these fields:
 | `secure` | `cdc:SecureDatabaseConnection?` | — | SSL/TLS connection configuration |
 | `replicationConfig` | `postgresql:ReplicationConfiguration?` | — | Logical decoding plugin and slot configuration |
 | `publicationConfig` | `postgresql:PublicationConfiguration?` | — | Publication name and autocreate mode |
-| `tasksMax` | `int` | `1` | Maximum connector tasks |
+| `tasksMax` | `int` | `1` | Maximum connector tasks. The PostgreSQL connector always uses a single task, so this value is ignored |
 | `connectTimeout` | `decimal?` | — | Connection timeout in seconds |
 
 For the full set of fields (including `messageKeyColumns`, `includedColumns`, `excludedColumns`, and `streamingConfig`), see the [`ballerinax/postgresql` package on Ballerina Central](https://central.ballerina.io/ballerinax/postgresql/latest).
@@ -236,16 +236,16 @@ For the full set of fields (including `messageKeyColumns`, `includedColumns`, `e
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-In the **Service Designer**, click **+ Add Handler**. The **Select Handler to Add** panel lists `onRead`, `onCreate`, `onUpdate`, `onDelete`, and `onError`.
+In the **Service Designer**, click **+ Add Handler**. The **Select Handler to Add** panel lists `onRead`, `onCreate`, `onUpdate`, `onDelete`, `onTruncate`, and `onError`.
 
 `onRead`, `onCreate`, `onUpdate`, and `onDelete` each open a configuration panel with a **+ Define Database Entry** option to define the expected record type for the change event. Expand **Advanced Parameters** to find the **TableName** checkbox, which scopes the handler to a specific table. Click **Save** to add the handler.
 
-`onError` is added directly without additional configuration.
+`onTruncate` and `onError` are added directly without additional configuration.
 
 ![onRead/onCreate/onUpdate/onDelete handler configuration panel](/img/develop/integration-artifacts/event/cdc-postgresql/step-add-handler.png)
 
 :::note Truncate events
-PostgreSQL emits `TRUNCATE` operations, but there is no dedicated handler for them. By default, `skippedOperations` includes `TRUNCATE`, so these events are dropped. To process them, set `skippedOperations: []` (or omit `TRUNCATE` from the list) in **Options** and handle the operation through your downstream logic.
+By default, `TRUNCATE` operations are in the `skippedOperations` list, so `onTruncate` is not invoked. To receive truncate events, remove `cdc:TRUNCATE` from `skippedOperations` (for example, set it to `[]`) in **Options**.
 :::
 
 </TabItem>
@@ -284,13 +284,17 @@ service cdc:Service on postgresqlCdcListener {
         check syncToDownstream("DELETE", before);
     }
 
+    remote function onTruncate(string tableName) returns error? {
+        log:printInfo("Table truncated", tableName = tableName);
+    }
+
     remote function onError(error err) returns error? {
         log:printError("CDC processing error", 'error = err);
     }
 }
 ```
 
-The handler parameter types are inferred at runtime from the row data. Declare a record type that matches your table columns (as shown by `Customer` above), or use `record {}` to accept any shape.
+The `onCreate`, `onUpdate`, `onDelete`, and `onRead` handlers receive the row data as `record {}` (or a typed record matching your table columns, as shown by `Customer` above). `onTruncate` accepts no parameters, or a single `string tableName` parameter that holds the name of the truncated table.
 
 </TabItem>
 </Tabs>
@@ -303,6 +307,7 @@ The handler parameter types are inferred at runtime from the row data. Declare a
 | `onCreate` | A row is inserted into the tracked table | Syncing new records to downstream systems |
 | `onUpdate` | A row is updated in the tracked table | Propagating field changes |
 | `onDelete` | A row is deleted from the tracked table | Removing records from downstream systems |
+| `onTruncate` | The tracked table is truncated (PostgreSQL only; skipped by default) | Clearing or resetting downstream data |
 | `onError` | A CDC processing error occurs | Logging failures and sending alerts |
 
 ## What's next
