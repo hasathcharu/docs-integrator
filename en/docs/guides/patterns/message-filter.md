@@ -11,11 +11,11 @@ import TabItem from '@theme/TabItem';
 
 Use the Message Filter pattern to evaluate each incoming message and continue the flow only for messages that satisfy the selected condition. <a href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/Filter.html" target="_blank" rel="noopener noreferrer" aria-label="Enterprise Integration Patterns Message Filter reference" title="EIP Reference"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: '-2px' }}><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" /></svg></a>
 
-In WSO2 Integrator, this maps to Ballerina constructs that decide whether a message should continue: conditional control flow for one-message predicates, query expressions for collections, listener or resource selection at the boundary, and connector or broker settings when the source can narrow delivery before the flow runs.
+The pattern is implemented by placing a filtering construct at the point where the integration has enough context to decide whether a message should continue. Use flow-level constructs when the decision depends on data the integration reads or derives. Use boundary or source-level constructs when the decision can be made from metadata or delivery rules before the main processing path starts.
 
 ## Predicate-based filtering
 
-Use predicate-based filtering with [if/else statements](/docs/develop/design-logic/control-flow#ifelse-statements) when each message carries the fields needed for a single boolean decision, such as priority, source, header, or status. The accepted path contains the forwarding or processing action; the rejected path does nothing or handles the rejection separately.
+Use predicate-based filtering with [if/else statements](/docs/develop/design-logic/control-flow#ifelse-statements) when each message carries the fields needed for a single boolean decision, such as priority, source, header, or status. The accepted path contains the forwarding or processing action. The rejected path does nothing or handles the rejection separately.
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
@@ -79,13 +79,35 @@ Use collection-level filtering with [query expressions](/docs/develop/design-log
 4. Enter a query expression with a `where` clause for the filter predicate.
 5. Use the resulting collection in the next processing or forwarding step.
 
+<img
+  src="/img/tutorials/patterns/message-filter-collection-filter.png"
+  alt="Collection-level Message Filter flow"
+  width="720"
+  style={{ display: 'block', margin: '0 auto' }}
+/>
+
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
-Message[] highPriorityMessages = from Message message in messages
-    where message.priority == HIGH_PRIORITY
-    select message;
+// docs-fold-start: Supporting definitions
+const HIGH_PRIORITY = 1;
+const MEDIUM_PRIORITY = 2;
+const LOW_PRIORITY = 3;
+
+type Message record {|
+    string id;
+    string source;
+    string subject;
+    HIGH_PRIORITY|MEDIUM_PRIORITY|LOW_PRIORITY priority;
+|};
+// docs-fold-end
+
+function filterHighPriorityMessages(Message[] messages) returns Message[] {
+    return from Message message in messages
+        where message.priority == HIGH_PRIORITY
+        select message;
+}
 ```
 
 </TabItem>
@@ -93,7 +115,7 @@ Message[] highPriorityMessages = from Message message in messages
 
 ## Boundary-level filtering
 
-Use boundary-level filtering when the input artifact can reject or route messages before custom flow logic runs. For HTTP-facing inputs, use a [request interceptor](/docs/connectors/catalog/built-in/http/trigger-reference#interceptors) when the decision can be made from request metadata before the resource executes; other inputs can use their own handler, listener, or subscription selection points.
+Use boundary-level filtering when the input artifact can reject or route messages before custom flow logic runs. For HTTP-facing inputs, use a [request interceptor](/docs/connectors/catalog/built-in/http/trigger-reference#interceptors) when the decision can be made from request metadata before the resource executes. Other inputs can use their own handler, listener, or subscription selection points.
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
@@ -108,7 +130,17 @@ Use boundary-level filtering when the input artifact can reject or route message
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
+// docs-fold-start: Supporting definitions
 import ballerina/http;
+
+type OrderCreated record {|
+    string id;
+    string priority;
+|};
+
+function processOrder(OrderCreated event) returns error? {
+}
+// docs-fold-end
 
 listener http:Listener eventListener = new (8080,
     interceptors = [new HighPriorityFilter()]
@@ -145,34 +177,56 @@ service /events on eventListener {
 
 ## Broker-side delivery filtering
 
-Use broker-side delivery filtering when the messaging system can reduce what reaches the flow before consumption. RabbitMQ can narrow delivery through queues, exchanges, and binding keys; Kafka can narrow delivery through subscribed topics, partition assignment, or explicit topic-partition assignments. See the generic [Connections](/docs/develop/integration-artifacts/supporting/connections) page for connector creation, and the connector-specific configuration for [RabbitMQ listener queues](/docs/connectors/catalog/messaging/rabbitmq/triggers#service), [RabbitMQ binding keys](/docs/connectors/catalog/messaging/rabbitmq/actions#exchange-management), [Kafka listener topics](/docs/connectors/catalog/messaging/kafka/triggers#configuration), and [Kafka topic-partition assignments](/docs/connectors/catalog/messaging/kafka/actions#subscribe--assign).
+Use broker-side delivery filtering when RabbitMQ can reduce what reaches the flow before consumption. Route matching messages into a dedicated queue with a direct exchange and binding key, then configure the RabbitMQ trigger to consume only that queue. Use [RabbitMQ exchange bindings](/docs/connectors/catalog/messaging/rabbitmq/actions#exchange-management) to bind the accepted-message queue to the exchange with the accepted routing key.
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. Add the broker source from the event integration guides: [RabbitMQ](/docs/develop/integration-artifacts/event/rabbitmq#creating-a-rabbitmq-service) or [Kafka](/docs/develop/integration-artifacts/event/kafka#creating-a-kafka-consumer).
-2. Configure the [connection](/docs/develop/integration-artifacts/supporting/connections) for the broker.
-3. For RabbitMQ, set the queue in the [service configuration](/docs/develop/integration-artifacts/event/rabbitmq#service-configuration). Use exchange and binding-key setup when the broker should route only matching messages.
-4. For Kafka, set the subscribed topics in the [listener configuration](/docs/develop/integration-artifacts/event/kafka#listener-configuration). Use explicit partition assignment when only selected partitions should be consumed.
-5. Add processing steps only for the messages delivered by that broker-side filter.
+1. Add the [RabbitMQ event integration](/docs/develop/integration-artifacts/event/rabbitmq#creating-a-rabbitmq-service).
+2. Configure the RabbitMQ trigger connection with the broker host and port.
+3. Set **Queue Name** to the queue that receives accepted messages, such as `high-priority-orders`.
+4. Create the RabbitMQ broker resources with connector actions or broker administration: declare a direct exchange, declare the accepted-message queue, and bind the queue to the exchange with the accepted routing key.
+5. Publish messages to that exchange with the routing key that matches the accepted binding key, such as `orders.priority.high`.
+6. Add processing steps only for messages delivered to the accepted-message queue.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
+// docs-fold-start: Supporting definitions
+import ballerinax/rabbitmq;
+
+configurable string rabbitmqHost = "localhost";
+configurable int rabbitmqPort = 5672;
+const ORDERS_EXCHANGE = "orders.events";
+const ACCEPTED_ORDERS_QUEUE = "high-priority-orders";
+const ACCEPTED_ORDERS_BINDING_KEY = "orders.priority.high";
+
+listener rabbitmq:Listener rabbitmqListener = check new (rabbitmqHost, rabbitmqPort);
+rabbitmq:Client rabbitmqClient = check new (rabbitmqHost, rabbitmqPort);
+
+function configureBrokerDeliveryFilter() returns error? {
+    check rabbitmqClient->exchangeDeclare(ORDERS_EXCHANGE, rabbitmq:DIRECT_EXCHANGE, config = {
+        durable: true
+    });
+    check rabbitmqClient->queueDeclare(ACCEPTED_ORDERS_QUEUE, config = {
+        durable: true
+    });
+    check rabbitmqClient->queueBind(ACCEPTED_ORDERS_QUEUE, ORDERS_EXCHANGE, ACCEPTED_ORDERS_BINDING_KEY);
+}
+
+function processOrder(rabbitmq:AnydataMessage message) returns error? {
+}
+// docs-fold-end
+
 @rabbitmq:ServiceConfig {
-    queueName: "high-priority-orders"
+    queueName: ACCEPTED_ORDERS_QUEUE
 }
 service rabbitmq:Service on rabbitmqListener {
     remote function onMessage(rabbitmq:AnydataMessage message) returns error? {
         check processOrder(message);
     }
 }
-
-listener kafka:Listener kafkaListener = new (kafka:DEFAULT_URL, {
-    groupId: "orders",
-    topics: ["high-priority-orders"]
-});
 ```
 
 </TabItem>
