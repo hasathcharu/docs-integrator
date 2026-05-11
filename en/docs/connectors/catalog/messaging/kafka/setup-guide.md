@@ -1,5 +1,6 @@
 ---
 title: Setup Guide
+description: Set up a local or managed Apache Kafka cluster and obtain the connection details required to use the Ballerina Kafka connector.
 ---
 # Setup Guide
 

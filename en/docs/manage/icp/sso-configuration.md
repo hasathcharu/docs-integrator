@@ -1,14 +1,14 @@
 ---
 title: SSO Configuration
-description: Configure Single Sign-On using OpenID Connect (OIDC) for the Integration Control Plane.
+description: Configure Single Sign-On using OpenID Connect (OIDC) for the Integration Control Plane in WSO2 Integrator.
+keywords: [wso2 integrator, sso, single sign-on, oidc, openid connect, authentication, icp]
 ---
 
 # SSO Configuration
 
-ICP supports Single Sign-On via OpenID Connect (OIDC), allowing users to authenticate through your organization's identity provider. SSO coexists with local username/password authentication — users can use either method.
+ICP supports Single Sign-On via OpenID Connect (OIDC), allowing users to authenticate through your organization's identity provider. SSO coexists with local username/password authentication. Users can use either method.
 
-## Prerequisites
-
+:::info Prerequisites
 Before configuring SSO in ICP, complete the following in your identity provider:
 
 1. Register a new OIDC application (also called a "client" or "app registration").
@@ -17,9 +17,10 @@ Before configuring SSO in ICP, complete the following in your identity provider:
    - Local/on-prem (distribution pack): `http://localhost:9446/auth/callback`
    - Production: `https://<your-icp-domain>/auth/callback`
 4. Ensure the identity provider includes the following claims in the ID token:
-   - `sub` — required
-   - `email` or `preferred_username` — at least one is required
-   - `name` — recommended (used for display names)
+   - `sub` (required)
+   - `email` or `preferred_username` (at least one required)
+   - `name` (recommended, used for display names)
+:::
 
 ## Step 1: Collect OIDC Endpoints
 
@@ -74,9 +75,9 @@ Restart the ICP server after saving changes.
 | `ssoClientSecret` | Client secret from your identity provider |
 | `ssoRedirectUri` | Redirect URI registered with your identity provider |
 | `ssoUsernameClaim` | Claim to use as the ICP username: `email` or `preferred_username` |
-| `ssoScopes` | OIDC scopes to request — `openid` is required |
+| `ssoScopes` | OIDC scopes to request. `openid` is required. |
 
-## Provider-Specific Examples
+## Provider-specific examples
 
 ### Asgardeo
 
@@ -153,7 +154,7 @@ ssoUsernameClaim = "preferred_username"
 ssoScopes = ["openid", "email", "profile"]
 ```
 
-## User Provisioning
+## User provisioning
 
 When a user authenticates via SSO for the first time, ICP automatically creates a local account. The account username is taken from the claim specified in `ssoUsernameClaim`. The display name is resolved in the following order:
 
@@ -179,7 +180,7 @@ After the account is created, an administrator must assign the appropriate roles
 | User is missing required claims | The identity provider is not including `sub` and `email` or `preferred_username` in the ID token | Configure your identity provider to include these claims. Verify `ssoUsernameClaim` matches a claim your provider returns. |
 | User authenticated successfully but has no access | User account was created but has no assigned roles | An administrator must grant roles to the account in ICP. See [Access Control](access-control.md). |
 
-## Frequently Asked Questions
+## Frequently asked questions
 
 **Can a user authenticate with both SSO and a local password?**  
 SSO and local password authentication are independent. If the same email address is used for both, they are treated as separate accounts. Users should use one method consistently.
