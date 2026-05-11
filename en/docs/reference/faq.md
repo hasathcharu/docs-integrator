@@ -151,20 +151,7 @@ See the [ICP API Reference](/docs/reference/api/icp-api) for programmatic access
 
 ## Migration
 
-### How does WSO2 Integrator relate to WSO2 Micro Integrator (MI)?
-
-WSO2 Integrator is a new Ballerina-based integration platform that offers a low-code visual designer with pro-code parity. WSO2 MI continues to be fully supported as part of the WSO2 Integration Platform, with its own dedicated documentation at [mi.docs.wso2.com](https://mi.docs.wso2.com).
-
-The two products take different approaches to integration development:
-
-| | WSO2 Integrator | WSO2 MI |
-|---|---|---|
-| **Language** | Ballerina | XML (Synapse) |
-| **Development** | Code-first with visual designer | XML artifact editing with Integration Studio |
-| **Deployment** | Executable JARs, Docker images | CAR files |
-| **Connectors** | Ballerina Central packages | Synapse connectors |
-
-If you are starting a new project, WSO2 Integrator is the recommended choice. If you have existing MI deployments, see [Coming from WSO2 MI](/docs/tutorials/migration/from-wso2-mi) or continue using MI with its [dedicated documentation](https://mi.docs.wso2.com).
+<!-- TODO: Add an MI positioning question (how WSO2 Integrator relates to WSO2 MI)-->
 
 ### Can I migrate from MuleSoft or TIBCO?
 
