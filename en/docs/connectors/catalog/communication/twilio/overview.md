@@ -1,10 +1,11 @@
 ---
+title: "Overview"
 connector: true
 connector_name: "twilio"
 connector_version: "5.0.x"
 ---
 
-# Twilio Connector Overview
+# Overview
 
 Twilio is a cloud communications platform that provides APIs for SMS, voice calls, WhatsApp messaging, and more. The Ballerina `ballerinax/twilio` connector (v5.0.1) offers programmatic access to the Twilio REST API (v2010-04-01), enabling you to send messages, make voice calls, manage phone numbers, and handle recordings from your Ballerina integration flows.
 

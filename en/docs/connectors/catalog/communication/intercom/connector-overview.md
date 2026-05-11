@@ -1,9 +1,9 @@
 ---
-title: "Intercom Connector Overview"
+title: "Overview"
 description: "Use the Intercom connector to manage contacts, conversations, tickets, articles, and companies from your WSO2 Integrator flows."
 ---
 
-# Intercom Connector Overview
+# Overview
 
 Intercom is a customer messaging platform that enables businesses to communicate with customers through chat, email, and automated workflows. The Ballerina `ballerinax/intercom` connector (v0.1.0) provides programmatic access to the Intercom REST API (v2.15), enabling you to manage contacts, conversations, tickets, articles, tags, and companies within your integration flows.
 

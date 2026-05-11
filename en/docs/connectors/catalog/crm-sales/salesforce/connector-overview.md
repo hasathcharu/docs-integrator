@@ -1,11 +1,11 @@
 ---
 connector: true
 connector_name: "salesforce"
-title: "Salesforce"
+title: "Overview"
 description: "Overview of the ballerinax/salesforce connector for WSO2 Integrator."
 ---
 
-# Salesforce Connector Overview
+# Overview
 
 Salesforce is a cloud-based CRM platform that provides tools for sales, service, marketing, and more. The Ballerina `ballerinax/salesforce` connector (v8.6.0) provides programmatic access to Salesforce through the REST API, Bulk API, SOAP API, and Change Data Capture / Platform Events, enabling you to integrate Salesforce data into your Ballerina integration flows.
 
