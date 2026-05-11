@@ -10,7 +10,7 @@ Electronic Data Interchange (EDI) is a set of standards that enables organizatio
 
 An EDI message is a sequence of **segments**. Each segment begins with a couple of character segment identifiers (e.g., `HDR`, `ITM`) followed by one or more **data elements** separated by a data element separator. A segment ends with a segment terminator. For example:
 
-```
+```bash
 HDR*ORDER_1201*ABC_Store*2008-01-01~
 ITM*A-250*12~
 ```
@@ -78,7 +78,7 @@ public function main() returns error? {
 
 **Sample EDI input:**
 
-```
+```bash
 HDR*ORDER_1201*ABC_Store*2008-01-01~
 ITM*A-250*12~
 ITM*A-45*100~
@@ -122,7 +122,7 @@ public function main() returns error? {
             {"code": "ITM", "item": "B-250", "quantity": 10}
         ]
     };
-    edi:EdiSchema schema = check edi:getSchema(check io:fileReadJson("schema.json"));
+    edi:EdiSchema schema = check edi:getSchema(check io:fileReadJson("path/to/schema.json"));
     string ediText = check edi:toEdiString(newOrder, schema);
     io:println(ediText);
 }
@@ -130,7 +130,7 @@ public function main() returns error? {
 
 **Output:**
 
-```
+```bash
 HDR*ORDER_1201*ABC_Store*2008-01-01~
 ITM*A-250*12~
 ITM*B-250*10~

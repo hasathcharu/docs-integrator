@@ -49,7 +49,7 @@ The EDI tool uses JSON schema files to describe EDI message structures — segme
 
 **Sample EDI:**
 
-```text
+```bash
 HDR*HDR123*ACME_CORP*20240519~
 ITM*Pen*10~
 ITM*Notebook*5~
