@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 6
 title: Runtime Security
 description: Best practices for securing integrations in WSO2 Integrator at runtime, including JVM hardening, keystores, non-root execution, and network policies.
 keywords: [wso2 integrator, runtime security, jvm hardening, non-root, container security, network policy]
