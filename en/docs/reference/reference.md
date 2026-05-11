@@ -47,7 +47,6 @@ Command-line tools reference:
 | **[bal grpc](cli/bal-grpc.md)**            | Generate code from .proto files              |
 | **[bal edi](cli/bal-edi.md)**              | EDI schema processing                        |
 | **[bal health](cli/bal-health.md)**        | FHIR/HL7 health tool                         |
-| **[Scan Tool](cli/bal-scan.md)**           | Static analysis rules                        |
 
 ## APIs
 

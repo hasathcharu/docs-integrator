@@ -2201,8 +2201,7 @@ const sidebars: SidebarsConfig = {
             'reference/cli/bal-graphql',
             'reference/cli/bal-grpc',
             'reference/cli/bal-edi',
-            'reference/cli/bal-health',
-            'reference/cli/bal-scan',
+            'reference/cli/bal-health'
           ],
         },
         // ICP Configuration
