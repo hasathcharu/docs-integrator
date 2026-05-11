@@ -3542,7 +3542,7 @@ Returns: `redis:Error?`
 Sample code:
 
 ```ballerina
-check redis->close();
+check redis.close();
 ```
 
 </div>
