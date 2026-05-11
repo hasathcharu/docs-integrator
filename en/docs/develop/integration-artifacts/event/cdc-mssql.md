@@ -1,12 +1,13 @@
 ---
-title: CDC - MSSQL
+title: CDC for Microsoft SQL Server
 description: Capture real-time data changes from Microsoft SQL Server tables using Change Data Capture, with handlers for insert, update, delete, and read events.
+keywords: [wso2 integrator, cdc, microsoft sql server, mssql, change data capture, event integration, debezium]
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# CDC - MSSQL
+# CDC for Microsoft SQL Server
 
 Microsoft SQL Server CDC integrations capture row-level changes from SQL Server tables in real time using Debezium-based Change Data Capture. Use them for data synchronization, audit logging, and event-driven workflows that must react to database inserts, updates, and deletes without polling.
 
@@ -16,7 +17,10 @@ CDC must be enabled on the SQL Server database and on the specific tables you wa
 
 ## Prerequisites
 
-Enable CDC on the target SQL Server database and table before configuring the integration.
+Before creating the integration:
+
+- **SQL Server Agent must be running.** CDC relies on Agent jobs to copy changes from the transaction log into change tables. If the agent isn't running, no change events are published. Verify with `EXEC master.dbo.xp_servicecontrol N'QueryState', N'SQLServerAGENT';` (expected: `Running.`).
+- Enable CDC on the target database and on each table you want to track.
 
 ```sql
 -- Enable CDC on the database
@@ -24,12 +28,15 @@ EXEC sys.sp_cdc_enable_db;
 
 -- Enable CDC on a specific table
 EXEC sys.sp_cdc_enable_table
-    @source_schema = N'dbo',
-    @source_name   = N'customers',
-    @role_name     = NULL;
+    @source_schema        = N'dbo',
+    @source_name          = N'customers',
+    @role_name            = NULL,
+    @supports_net_changes = 1;
 ```
 
-## Creating a CDC for MSSQL service
+Enabling CDC on a table creates a change table at `cdc.<schema>_<table>_CT`, which the Debezium connector reads from. For advanced Debezium properties, see the [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html).
+
+## Create a CDC service for Microsoft SQL Server
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
@@ -38,7 +45,7 @@ EXEC sys.sp_cdc_enable_table
 2. In the **Artifacts** panel, select **CDC for Microsoft SQL Server** under **Event Integration**.
 3. In the creation form, select **Create new** to configure a new listener.
 
-   ![CDC for MSSQL creation form — connection fields](/img/develop/integration-artifacts/event/cdc-mssql/step-creation-form.png)
+   ![Microsoft SQL Server CDC creation form: connection fields](/img/develop/integration-artifacts/event/cdc-mssql/step-creation-form.png)
 
    Under **Listener Configurations**, fill in the following fields:
 
@@ -51,8 +58,6 @@ EXEC sys.sp_cdc_enable_table
    | **Databases** | List of databases to capture changes from. Click **+ Add Item** to add each database name. | Required |
    | **Schemas** | Regular expressions matching schema names to capture changes from. Click **+ Add Item** to add each pattern. | — |
 
-   <!-- ![CDC for MSSQL creation form — advanced configuration and table](/img/develop/integration-artifacts/event/cdc-mssql/step-creation-form-2.png) -->
-
    Expand **Advanced Configurations** for additional settings:
 
    | Field | Description | Default |
@@ -60,15 +65,19 @@ EXEC sys.sp_cdc_enable_table
    | **Listener Name** | Identifier for the listener created with this service. | `mssqlCdcListener` |
    | **Database Instance** | Microsoft SQL Server named instance (if applicable). | — |
    | **Secure Socket** | SSL/TLS configuration for a secure connection. | — |
-   | **Options** | Additional options for the CDC engine as a record expression. | — |
+   | **Options** | Additional options for the CDC engine as a record expression. Common keys include `snapshotMode` (for example, `"no_data"` to skip the initial snapshot) and `skippedOperations` (for example, `[cdc:TRUNCATE, cdc:UPDATE, cdc:DELETE]` to capture only inserts). | — |
 
-   Under **Table**, enter the fully-qualified table name to capture events from in the format `<database>.<schema>.<table>` (for example, `mydb.dbo.customers`).
+   Under **Table**, enter the fully qualified table name to capture events from in the format `<database>.<schema>.<table>` (for example, `mydb.dbo.customers`).
+
+   :::tip One table per artifact
+   The connector supports capturing changes from multiple databases, schemas, and tables, but the recommended pattern is one database, schema, and table per artifact. To track multiple tables, create additional artifacts that reuse the same database connection.
+   :::
 
 4. Click **Create**.
 
 5. WSO2 Integrator opens the service in the **Service Designer**. The canvas shows the attached listener pill and the table name pill.
 
-   ![Service Designer showing the CDC MSSQL service canvas](/img/develop/integration-artifacts/event/cdc-mssql/step-service-designer.png)
+   ![Service Designer showing the Microsoft SQL Server CDC service canvas](/img/develop/integration-artifacts/event/cdc-mssql/step-service-designer.png)
 
 6. Click **+ Add Handler** to add event handlers.
 
@@ -127,11 +136,11 @@ In the **Service Designer**, click the **Configure** icon in the header to open 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-![CDC MSSQL Configuration panel — service config and listener connection](/img/develop/integration-artifacts/event/cdc-mssql/step-service-config.png)
+![Microsoft SQL Server CDC Configuration panel: service config and listener connection](/img/develop/integration-artifacts/event/cdc-mssql/step-service-config.png)
 
 | Field | Description |
 |---|---|
-| **Service Config** | Advanced CDC configuration as a record expression. The `tables` field sets the fully-qualified table name (format: `<database>.<schema>.<table>`). |
+| **Service Config** | Advanced CDC configuration as a record expression. The `tables` field sets the fully qualified table name (format: `<database>.<schema>.<table>`). |
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -152,8 +161,8 @@ In the **CDC for Microsoft SQL Server Configuration** panel, select **mssqlCdcLi
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
-<!-- 
-![Listener configuration — Database, Engine Name, Internal Schema Storage, Offset Storage, Liveness Interval, Options](/img/develop/integration-artifacts/event/cdc-mssql/step-listener-config.png) -->
+
+![Listener configuration: Database, Engine Name, Internal Schema Storage, Offset Storage, Liveness Interval, Options](/img/develop/integration-artifacts/event/cdc-mssql/step-listener-config.png)
 
 | Field | Description | Default |
 |---|---|---|
@@ -168,6 +177,10 @@ In the **CDC for Microsoft SQL Server Configuration** panel, select **mssqlCdcLi
 Click **+ Attach Listener** to attach an additional listener to the same service.
 
 Click **Save Changes** to apply updates.
+
+:::tip Polling interval
+The Debezium SQL Server connector reads changes from CDC change tables on a polling cycle. To tune the cycle, set Debezium properties such as `poll.interval.ms` in the **Options** field (for example, `{ "poll.interval.ms": "1000" }`).
+:::
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
