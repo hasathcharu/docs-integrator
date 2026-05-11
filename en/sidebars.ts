@@ -1757,7 +1757,8 @@ const sidebars: SidebarsConfig = {
               link: { type: 'doc', id: 'genai/develop/rag/overview' },
               collapsed: true,
               items: [
-                'genai/develop/rag/rag-ingestion'
+                'genai/develop/rag/rag-ingestion',
+                'genai/develop/rag/rag-query'
               ]
             },
             // AI Agents
