@@ -17,7 +17,7 @@ This guide walks you through obtaining a Mailchimp API key required to use the M
 3. Navigate to **Extras** > **API keys**.
 4. Click **Create A Key**.
 5. Give your key a descriptive label (e.g., `Ballerina Connector`).
-6. Copy the generated API key immediately — it will not be shown again.
+6. Copy the generated API key immediately: it will not be shown again.
 
 :::warning
 Store your API key securely. Do not commit it to source control. Use Ballerina's `configurable` feature and a `Config.toml` file to supply it at runtime.
@@ -38,5 +38,5 @@ https://us21.api.mailchimp.com/3.0
 ```
 
 :::tip
-You can also find your server prefix by logging in to Mailchimp and checking the URL in your browser — it starts with the data center code (e.g., `us21.admin.mailchimp.com`).
+You can also find your server prefix by logging in to Mailchimp and checking the URL in your browser: it starts with the data center code (e.g., `us21.admin.mailchimp.com`).
 :::
