@@ -19,6 +19,10 @@ No configuration is needed. ICP creates the H2 credentials database automaticall
 H2 is for evaluation and development only. For production deployments, use PostgreSQL, MySQL, or MSSQL.
 :::
 
+:::warning
+The default `admin` / `admin` credentials are publicly known. Change the password immediately after first login via **Profile** > **Change Password**.
+:::
+
 ---
 
 ## Connecting an External Database
@@ -44,7 +48,11 @@ psql -h <host> -U <admin_user> -d <credentials_db> \
   -f db-scripts/credentials_postgresql_init.sql
 ```
 
-The init script seeds the `admin` user with a bcrypt hash of the default password `admin`. **Change this password immediately** after first login via **Access Control** > **Users** > **Reset Password**.
+The init script seeds the `admin` user with a bcrypt hash of the default password `admin`.
+
+:::warning
+The default `admin` / `admin` credentials are publicly known. Change the password immediately after first login via **Profile** > **Change Password**.
+:::
 
 ### Step 3 — Configure deployment.toml
 
