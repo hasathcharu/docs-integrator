@@ -267,7 +267,7 @@ Modify XML structures by updating child elements or attributes. XML mutation is 
 
 1. **Add a Variable step** — Create a **Declare Variable** step with the type set to `xml:Element` and initialize it using an XML literal.
 
-2. **Add a Custom Expression step** — Click **+** and select **Custom Expression**. Enter the XML mutation expression, such as `doc.setChildren(xml '...')`, to update the XML structure. The mutation operation appears as a **Custom Expression** node in the flow.
++2. **Add a Custom Expression step** — Click **+** and select **Custom Expression**. Enter the XML mutation expression, such as ``doc.setChildren(xml `<status>completed</status>`)``, to update the XML structure. The mutation operation appears as a **Custom Expression** node in the flow.
 
 3. **Update XML content** — Use XML mutation functions to replace child nodes, append content, or modify existing XML values as required by the integration logic.
 
