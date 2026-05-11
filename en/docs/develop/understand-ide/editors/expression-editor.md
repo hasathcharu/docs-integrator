@@ -24,7 +24,7 @@ The Expression editor appears in every side panel and form that takes a value, i
 
 ## Helper pane
 
-The helper pane is a side menu that lists everything you can drop into the current expression. It opens automatically when you start typing in the Expression editor, and you can also open it manually by selecting the expand icon next to the field. The pane groups available items into four categories: **Inputs**, **Variables**, **Configurables**, and **Functions**. This grouping helps you locate the right reference without leaving the editor.
+The helper pane is a side menu that lists everything you can drop into the current expression. It opens automatically when you start typing in the Expression editor, and you can also open or close it manually using the helper pane toggle next to the field. The pane groups available items into four categories: **Inputs**, **Variables**, **Configurables**, and **Functions**. This grouping helps you locate the right reference without leaving the editor.
 
 ![Expression editor helper pane](/img/develop/understand-ide/editors/expression-editor/helper-pane.png)
 
