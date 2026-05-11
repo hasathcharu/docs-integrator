@@ -1,7 +1,7 @@
 ---
 sidebar_position: 9
 title: EDI Tool
-description: Generate Ballerina types and parsers from EDI schema definitions for B2B data exchange.
+description: Generate Ballerina types and parsers from EDI schema definitions.
 ---
 
 # EDI tool
