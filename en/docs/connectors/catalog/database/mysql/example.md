@@ -39,7 +39,11 @@ flowchart LR
 
 ### Step 2: Fill in the MySQL connection parameters
 
-In the **Configure MySQL** form, expand **Advanced Configurations** to reveal all connection fields. Use the **Configurables** tab in the helper panel to bind each field to a configurable variable, keeping credentials out of source code:
+In the **Configure MySQL** form, expand **Advanced Configurations** to reveal all connection fields. Use the **Configurables** tab in the helper panel to bind each field to a configurable variable, keeping credentials out of source code. For each parameter listed below:
+
+1. Open the helper panel beside the field and go to the **Configurables** tab.
+2. Select an existing configurable or click **+ New Configurable**.
+3. Supply a camelCase name and the appropriate type, then click **Save**. The configurable is injected into the field.
 
 - **host** (string) : MySQL server hostname
 - **user** (string) : database username

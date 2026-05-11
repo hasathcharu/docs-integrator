@@ -39,7 +39,11 @@ flowchart LR
 
 ### Step 2: Fill in the connection parameters
 
-In the **Configure MongoDB** panel, switch the **Connection** field to **Expression** mode and use the **Configurables** tab in the helper panel to bind each field to a configurable variable:
+In the **Configure MongoDB** panel, bind each field to a configurable variable using Expression mode in the **Connection** textbox. For each parameter listed below:
+
+1. Open the helper panel beside the field and go to the **Configurables** tab.
+2. Select an existing configurable or click **+ New Configurable**.
+3. Supply a camelCase name and the appropriate type, then click **Save**. The configurable is injected into the field.
 
 - **serverAddress.host** (string) : MongoDB server hostname or IP address
 - **serverAddress.port** (int) : MongoDB server port number
