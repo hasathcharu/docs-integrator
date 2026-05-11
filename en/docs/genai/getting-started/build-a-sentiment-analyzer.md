@@ -193,6 +193,6 @@ This is what differentiates a direct LLM call from a raw chat completion: you wr
 
 ## What's next
 
-- [Build a Sample Hotel Booking Agent](build-a-sample-hotel-booking-agent.md) — Add tools and memory for a multi-turn agent
+- [Build a Hotel Availability Agent](build-a-hotel-availability-agent.md) — Add custom tools and session-scoped memory
 - [What is an AI Agent?](/docs/genai/key-concepts/what-is-ai-agent) — Understand the agent architecture
 - [What are Tools?](/docs/genai/key-concepts/what-are-tools) — Learn tool design patterns
