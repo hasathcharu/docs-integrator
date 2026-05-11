@@ -57,8 +57,8 @@ Analyzing individual Ballerina files that are part of a package is not allowed. 
 
 | Option | Required | Default | Description |
 |--------|----------|---------|-------------|
-| `--target-dir=<path>` | No | `target/scan` | Specify a target directory for analysis reports |
-| `--scan-report` | No | `false` | Generate an HTML report with detailed analysis results |
+| `--target-dir=<path>` | No | `target/report` | Specify a custom target directory for analysis reports |
+| `--scan-report` | No | `false` | Generate an HTML report alongside the JSON result in `target/report` |
 | `--format=<ballerina\|sarif>` | No | `ballerina` | Specify the report format (default: `ballerina`) |
 | `--list-rules` | No | `false` | Display all available analysis rules and exit |
 | `--include-rules=<rule1,...>` | No | All rules | Run analysis for specific rules only (comma-separated list) |
@@ -79,7 +79,7 @@ This command will:
 
 - Compile and analyze all `.bal` files in the current package
 - Print results to the console
-- Save results in JSON format in the `target/scan` directory
+- Save results in JSON format in the `target/report` directory
 
 To analyze a specific package:
 
