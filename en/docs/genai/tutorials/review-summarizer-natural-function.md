@@ -31,7 +31,7 @@ The first run may also prompt you for the `wso2aiKey` configuration value. The *
 1. **Create the natural function.** Define a typed signature, a return type with a record, an English prompt body, and a model-provider connection.
 2. **Create the HTTP service** that exposes the function over `POST /api/v1/analyze`.
 3. **Wire the resource flow** to call the natural function and return the typed response.
-4. **Run and test** the service end to end.
+4. **Run and test** the service end-to-end.
 
 ---
 
