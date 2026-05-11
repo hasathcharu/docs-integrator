@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-Build a WSO2 Integrator automation that connects to a MongoDB server and retrieves a database handle using the `mongodbClient → getDatabase` operation. The integration uses configurable variables to keep credentials out of source code, and runs on a scheduled Automation entry point.
+Build a WSO2 Integrator automation that connects to a MongoDB server and retrieves a database handle using the `getDatabase` operation on `mongodbClient`. The integration uses configurable variables to keep credentials out of source code, and runs on a scheduled Automation entry point.
 
 **Operations used:**
 - **Get Database** — retrieves a `mongodb:Database` handle from the connected MongoDB server
@@ -29,7 +29,7 @@ flowchart LR
 
 ### Step 1: Open the connector palette and search for MongoDB
 
-1. On the main canvas, click **+ Add Connector** to open the connector palette.
+1. On the main canvas, click **+ Add Connection** to open the connector palette.
 2. Type **MongoDB** in the search box.
 3. Select the **MongoDB** card (`ballerinax/mongodb`).
 
@@ -39,15 +39,15 @@ flowchart LR
 
 ### Step 2: Fill in the connection parameters
 
-In the **Configure MongoDB** panel, bind each field to a configurable variable using Expression mode in the **Connection** textbox. Configure the following parameters:
+In the **Configure MongoDB** panel, switch the **Connection** field to **Expression** mode and use the **Configurables** tab in the helper panel to bind each field to a configurable variable:
 
-- **serverAddress.host**: MongoDB server hostname or IP address
-- **serverAddress.port**: MongoDB server port number
-- **auth.username**: Database username
-- **auth.password**: Database password
-- **auth.database**: Authentication database name
+- **serverAddress.host** (string) : MongoDB server hostname or IP address
+- **serverAddress.port** (int) : MongoDB server port number
+- **auth.username** (string) : database username
+- **auth.password** (string) : database password
+- **auth.database** (string) : authentication database name
 
-Set **Connection Name** to `mongodbClient`.
+After creating all five configurables, set **Connection Name** to `mongodbClient`.
 
 ![MongoDB connection form fully filled with all parameters before saving](/img/connectors/catalog/database/mongodb/mongodb_screenshot_02_connection_config.png)
 
@@ -60,13 +60,13 @@ Click **Save Connection** to persist the connection. The `mongodbClient` node ap
 ### Step 4: Set actual values for your configurables
 
 1. In the left panel, click **Configurations**.
-2. Set a value for each configurable listed below:
+2. Set a value for each configurable listed below.
 
-- **mongoHost**: string : hostname or IP of your MongoDB server
-- **mongoPort**: int : port your MongoDB server listens on
-- **mongoUsername**: string : username for MongoDB authentication
-- **mongoPassword**: string : password for MongoDB authentication
-- **mongoDatabase**: string : name of the authentication database
+- **mongoHost** (string) : hostname or IP of your MongoDB server
+- **mongoPort** (int) : port your MongoDB server listens on
+- **mongoUsername** (string) : username for MongoDB authentication
+- **mongoPassword** (string) : password for MongoDB authentication
+- **mongoDatabase** (string) : name of the authentication database
 
 ## Configuring the MongoDB get database operation
 
@@ -75,6 +75,8 @@ Click **Save Connection** to persist the connection. The `mongodbClient` node ap
 1. On the main canvas, click **+ Add Artifact**.
 2. Choose **Automation** under the Automation heading.
 3. Leave all defaults and click **Create**.
+
+The automation flow canvas opens, showing a **Start** node and an **Error Handler** node with an empty step slot between them.
 
 ### Step 6: Select and configure the get database operation
 
