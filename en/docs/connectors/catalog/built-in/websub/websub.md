@@ -5,7 +5,7 @@ title: "WebSub"
 description: "Overview of the ballerina/websub connector for WSO2 Integrator."
 ---
 
-WebSub is a W3C recommended publish-subscribe protocol built on HTTP that enables real-time content delivery through webhooks. The Ballerina `ballerina/websub` connector (v2.15.0) provides both subscriber-side functionality: discovering hubs, managing subscriptions, and receiving content distribution events: enabling you to build event-driven integrations that react to content updates in real time.
+WebSub is a W3C-recommended publish-subscribe protocol built on HTTP that enables real-time content delivery through webhooks. The Ballerina `ballerina/websub` connector (v2.15.0) provides subscriber-side functionality for discovering hubs, managing subscriptions, and receiving content distribution events, enabling you to build event-driven integrations that react to content updates in real time.
 
 
 ## Key features

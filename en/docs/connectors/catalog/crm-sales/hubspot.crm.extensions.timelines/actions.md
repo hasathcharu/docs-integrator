@@ -88,7 +88,7 @@ Sample response:
       "name": "Pet Activity",
       "objectType": "CONTACT",
       "headerTemplate": "# Pet activity for {{petName}}",
-      "detailTemplate": "Pet **{{petName}}** (age {{petAge}}): color: {{petColor}}",
+      "detailTemplate": "Pet **{{petName}}** (age {{petAge}}), color: {{petColor}}",
       "tokens": [
         {"name": "petName", "label": "Pet Name", "type": "string"},
         {"name": "petAge", "label": "Pet Age", "type": "number"},
@@ -143,7 +143,7 @@ TimelineEventTemplateCreateRequest eventTemplate = {
         }
     ],
     headerTemplate: "# Pet activity for {{petName}}",
-    detailTemplate: "Pet **{{petName}}** (age {{petAge}}): color: {{petColor}}"
+    detailTemplate: "Pet **{{petName}}** (age {{petAge}}), color: {{petColor}}"
 };
 TimelineEventTemplate result =
     check timelinesClient->/[appId]/event\-templates.post(eventTemplate);
@@ -157,7 +157,7 @@ Sample response:
   "name": "Pet Activity",
   "objectType": "CONTACT",
   "headerTemplate": "# Pet activity for {{petName}}",
-  "detailTemplate": "Pet **{{petName}}** (age {{petAge}}): color: {{petColor}}",
+  "detailTemplate": "Pet **{{petName}}** (age {{petAge}}), color: {{petColor}}",
   "tokens": [
     {"name": "petName", "label": "Pet Name", "type": "string"},
     {"name": "petAge", "label": "Pet Age", "type": "number"},
@@ -205,7 +205,7 @@ Sample response:
   "name": "Pet Activity",
   "objectType": "CONTACT",
   "headerTemplate": "# Pet activity for {{petName}}",
-  "detailTemplate": "Pet **{{petName}}** (age {{petAge}}): color: {{petColor}}",
+  "detailTemplate": "Pet **{{petName}}** (age {{petAge}}), color: {{petColor}}",
   "tokens": [
     {"name": "petName", "label": "Pet Name", "type": "string"},
     {"name": "petAge", "label": "Pet Age", "type": "number"}
@@ -616,7 +616,7 @@ Sample response:
 
 ```ballerina
 {
-  "details": "Pet **Buddy** (age 3): color: blue"
+  "details": "Pet **Buddy** (age 3), color: blue"
 }
 ```
 

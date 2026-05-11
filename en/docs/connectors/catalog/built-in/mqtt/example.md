@@ -156,7 +156,7 @@ For each field, select the helper panel icon, go to the **Configurables** tab, s
 
 #### Step 3: Set actual values for your configurations
 
-In the left panel, select **Configurations** to open the Configurations panel. You'll see the three newly created configurations-`mqttBrokerUrl`, `mqttClientId`, and `mqttTopic`-all marked **Required** with empty value fields. Supply the actual runtime values for each configuration before running the integration:
+In the left panel, select **Configurations** to open the Configurations panel. You'll see the three newly created configurations (`mqttBrokerUrl`, `mqttClientId`, and `mqttTopic`) all marked **Required** with empty value fields. Supply the actual runtime values for each configuration before running the integration:
 
 - **mqttBrokerUrl** (string) : The full URI of your MQTT broker
 - **mqttClientId** (string) : A unique client identifier for this integration
@@ -174,7 +174,7 @@ Select **Create** to register the listener and generate the service scaffold.
 
 Navigate back to the **MQTT Event Integration** service view by selecting the entry in the left panel. Under **Event Handlers**, select **+ Add Handler**.
 
-> **Note:** The `onMessage` handler uses the library-defined `mqtt:Message` type as its payload parameter. The MQTT trigger provides the message structure directly through the `ballerina/mqtt` module-no custom type schema is required.
+> **Note:** The `onMessage` handler uses the library-defined `mqtt:Message` type as its payload parameter. The MQTT trigger provides the message structure directly through the `ballerina/mqtt` module; no custom type schema is required.
 
 
 #### Step 6: Add a log statement to the handler

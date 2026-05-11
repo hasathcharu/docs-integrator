@@ -187,7 +187,7 @@ Select **Create** to generate the integration.
 
 Select **twilio:SmsStatusService** in the left project tree to open the Twilio Event Integration service view.
 
-> **Note:** Unlike Kafka or RabbitMQ, the Twilio `SmsStatusService` pre-registers all nine SMS status handlers at service creation time. There's no **+ Add Handler** side panel for this trigger-all handlers are automatically wired.
+> **Note:** Unlike Kafka or RabbitMQ, the Twilio `SmsStatusService` pre-registers all nine SMS status handlers at service creation time. There's no **+ Add Handler** side panel for this trigger — all handlers are automatically wired.
 
 The service view shows the full set of pre-registered handlers bound to the `twilioListener`:
 
@@ -207,7 +207,7 @@ The service view shows the full set of pre-registered handlers bound to the `twi
 
 Select the **onReceived** row to navigate to its flow canvas.
 
-> **Note:** The `onReceived` handler uses the library-defined `twilio:SmsStatusChangeEventWrapper` payload type. There's no **Define Value** modal for this trigger-the payload type is provided by the `ballerinax/trigger.twilio` package and can't be customised via the UI.
+> **Note:** The `onReceived` handler uses the library-defined `twilio:SmsStatusChangeEventWrapper` payload type. There's no **Define Value** modal for this trigger — the payload type is provided by the `ballerinax/trigger.twilio` package and can't be customised via the UI.
 
 The initial flow canvas shows a minimal handler skeleton: **Start → + → Error Handler → End**.
 

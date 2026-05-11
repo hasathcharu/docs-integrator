@@ -56,7 +56,7 @@ Select **Save** to persist the connection. The **Connections** section in the si
 
 ![Canvas showing the gmailClient connection node](/img/connectors/catalog/communication/googleapis.gmail/gmail_screenshot_03_connections_list.png)
 
-> **Note:** The status bar may show "Errors: 1" at this stage. This is expected-the four configurable variables (`gmailClientId`, `gmailClientSecret`, `gmailRefreshToken`, `gmailRefreshUrl`) are referenced but not yet declared. They're resolved after you add them in the next step.
+> **Note:** The status bar may show "Errors: 1" at this stage. This is expected: the four configurable variables (`gmailClientId`, `gmailClientSecret`, `gmailRefreshToken`, `gmailRefreshUrl`) are referenced but not yet declared. They're resolved after you add them in the next step.
 
 ### Step 4: Set actual values for your configurables
 

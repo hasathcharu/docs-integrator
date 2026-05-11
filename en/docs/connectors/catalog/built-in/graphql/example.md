@@ -213,7 +213,7 @@ Navigate back to **GraphQL Service - /graphql** in the left tree. The GraphQL di
 
    **Option 2: curl:** Run the following command in a terminal, replacing the port with the value you set for `graphqlPort`:
 
-   ```
+   ```bash
    curl -X POST http://<host>:<graphqlPort>/graphql \
      -H "Content-Type: application/json" \
      -d '{"query": "{ getBookInfo { title author } }"}'

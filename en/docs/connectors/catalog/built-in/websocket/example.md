@@ -35,7 +35,7 @@ In the WSO2 Integrator explorer panel, expand your project and select the **+** 
 ### Step 2: Select the WebSocket connector
 
 1. In the search box, enter `websocket`.
-2. Select the **Websocket** card (`ballerinax/websocket`)-the WebSocket client connector.
+2. Select the **Websocket** card (`ballerinax/websocket`), the WebSocket client connector.
 
 ## Configuring the WebSocket connection
 

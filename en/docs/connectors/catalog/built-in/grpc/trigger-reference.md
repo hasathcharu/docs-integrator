@@ -169,7 +169,7 @@ service "RouteGuide" on ep {
             lastPoint = p;
         });
         decimal endTime = time:monotonicNow();
-        int elapsedTime = <int>(endTime: startTime);
+        int elapsedTime = <int>(endTime - startTime);
         return {point_count: pointCount, feature_count: featureCount, distance: distance, elapsed_time: elapsedTime};
     }
 
