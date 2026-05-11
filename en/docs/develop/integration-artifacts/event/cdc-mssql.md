@@ -69,10 +69,6 @@ Enabling CDC on a table creates a change table at `cdc.<capture_instance>_CT`, w
 
    Under **Table**, enter the fully qualified table name to capture events from in the format `<database>.<schema>.<table>` (for example, `mydb.dbo.customers`).
 
-   :::tip One table per artifact
-   The connector supports capturing changes from multiple databases, schemas, and tables, but the recommended pattern is one database, schema, and table per artifact. To track multiple tables, create additional artifacts that reuse the same database connection.
-   :::
-
 4. Click **Create**.
 
 5. WSO2 Integrator opens the service in the **Service Designer**. The canvas shows the attached listener pill and the table name pill.
