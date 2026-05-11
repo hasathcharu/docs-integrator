@@ -230,6 +230,10 @@ In the **Service Designer**, click **+ Add Handler**. The **Select Handler to Ad
 
 `onError` is added directly without additional configuration.
 
+Added handlers appear in the **Event Handlers** list on the Service Designer, where you can edit or remove each one.
+
+![Service Designer for a CDC for Microsoft SQL Server service showing the Event Handlers list with onCreate, onUpdate, onDelete, and onError entries.](/img/develop/integration-artifacts/event/cdc-mssql/step-event-handlers.png)
+
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
