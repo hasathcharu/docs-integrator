@@ -1,5 +1,7 @@
 ---
 title: Setup Guide
+description: Create a Twilio account, purchase a phone number, and obtain the Account SID, Auth Token, or API Key credentials required to use the Twilio connector.
+keywords: [twilio, account setup, api key, auth token, credentials, ballerina connector]
 connector: true
 connector_name: "twilio"
 connector_version: "5.0.x"
