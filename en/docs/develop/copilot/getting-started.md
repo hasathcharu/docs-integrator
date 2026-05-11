@@ -1,37 +1,30 @@
 ---
-title: Setting up
-description: Prerequisites and Copilot sign-in steps to start building AI-powered integrations with WSO2 Integrator.
+title: Getting Started
+description: Sign in to WSO2 Integrator Copilot.
 keywords: [wso2 integrator, copilot, getting started, sign in]
-slug: /develop/copilot/setting-up
+slug: /develop/wso2-integrator-copilot/getting-started
 ---
 
-# Setting up
-
-Before building AI integrations, make sure your development environment is ready and that you have credentials for WSO2 Integrator Copilot — the AI features (agents, RAG, MCP, natural functions) all rely on it for the default model provider.
-
-## Prerequisites
-
-- **WSO2 Integrator** installed — follow the [Install WSO2 Integrator](/docs/get-started/install) guide. The Ballerina runtime and the AI/MCP modules ship with the distribution, so no extra setup is required.
-- **WSO2 Integrator Copilot access** — Sign into WSO2 Integrator Copilot using the following steps.
+# Getting Started
 
 ## Sign in to WSO2 Integrator Copilot
 
-1. In your WSO2 Integrator project view, click the **Open WSO2 Integrator Copilot** icon (the chat-bot icon) in the top-right corner of the editor toolbar.
+1. In your WSO2 Integrator project view, open Copilot by clicking the **Generate with AI** button, or the **Open WSO2 Integrator Copilot** icon (the chat-bot icon) in the top-right corner of the editor toolbar.
 
    ![Open WSO2 Integrator Copilot icon](/img/develop/copilot/open-copilot-icon.png)
 
 2. The Copilot welcome screen opens with the available sign-in options.
 
-   ![WSO2 Integrator Copilot welcome screen](/img/develop/copilot/copilot%20welcome.png)
+   ![WSO2 Integrator Copilot welcome screen](/img/develop/copilot/copilot-sign-in.png)
 
-   - **Login using WSO2 Integration Platform** — recommended. Signs you in with your WSO2 account and provisions a ready-to-use default model provider, no third-party API key required.
-   - **Enter your Anthropic API key** — use your own Anthropic key to power Copilot and the default model provider.
-   - **Enter your AWS Bedrock credentials** — use your AWS Bedrock account.
-   - **Enter your Google Vertex AI credentials** — use your Google Vertex AI account.
+   - **Login using WSO2 Integration Platform**. Recommended. Signs you in with your WSO2 account.
+   - **Enter your [Anthropic API key](https://platform.claude.com/settings/keys)**. Use your own Anthropic key to power Copilot.
+   - **Enter your [AWS Bedrock credentials](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html)**. Use your AWS Bedrock account.
+   - **Enter your [Google Vertex AI credentials](https://docs.cloud.google.com/vertex-ai/docs/authentication)**. Use your Google Vertex AI account.
 
-3. Pick one option and complete the sign-in. Once authenticated, Copilot opens its chat view and the default model provider is configured for any AI integration you build.
+3. Pick one option and complete the sign-in. Once authenticated, Copilot opens its chat view and is ready to use.
 
-   ![WSO2 Integrator Copilot signed in](/img/develop/copilot/copilot-sign-in.png)
+   ![WSO2 Integrator Copilot signed in](/img/develop/copilot/copilot-welcome.png)
 
 :::info
 By signing in, you agree to the WSO2 Integrator Copilot Terms of Use shown on the welcome screen.
@@ -39,4 +32,4 @@ By signing in, you agree to the WSO2 Integrator Copilot Terms of Use shown on th
 
 ## What's next
 
-- [Copilot overview](overview.md) — Learn about Edit Mode, Plan Mode, review, and testing.
+- [Copilot Capabilities](overview.md) — Learn about Edit Mode, Plan Mode, review, and testing.
