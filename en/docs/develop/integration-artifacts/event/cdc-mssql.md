@@ -85,39 +85,42 @@ Enabling CDC on a table creates a change table at `cdc.<schema>_<table>_CT`, whi
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
-import ballerinax/mssql.cdc;
 import ballerina/log;
+import ballerinax/cdc;
+import ballerinax/mssql;
+import ballerinax/mssql.cdc.driver as _;
 
-configurable string hostname = "localhost";
-configurable int port = 1433;
 configurable string username = ?;
 configurable string password = ?;
+configurable string dbName = "mydb";
+configurable string dbTable = "mydb.dbo.customers";
 
-listener cdc:Listener mssqlCdcListener = new ({
-    hostname: hostname,
-    port: port,
-    username: username,
-    password: password,
-    databaseNames: ["mydb"]
+listener mssql:CdcListener mssqlCdcListener = new (database = {
+    hostname: "localhost",
+    port: 1433,
+    username,
+    password,
+    databaseNames: [dbName],
+    includedSchemas: ["dbo"]
 });
 
 @cdc:ServiceConfig {
-    tables: "mydb.dbo.customers"
+    tables: dbTable
 }
-service on mssqlCdcListener {
+service cdc:Service on mssqlCdcListener {
 
-    remote function onCreate(cdc:ChangeEvent event) returns error? {
-        log:printInfo("Row inserted", data = event.after.toString());
+    remote function onCreate(record {} after) returns error? {
+        log:printInfo("Row inserted", data = after.toString());
     }
 
-    remote function onUpdate(cdc:ChangeEvent event) returns error? {
+    remote function onUpdate(record {} before, record {} after) returns error? {
         log:printInfo("Row updated",
-                      before = event.before.toString(),
-                      after = event.after.toString());
+                before = before.toString(),
+                after = after.toString());
     }
 
-    remote function onDelete(cdc:ChangeEvent event) returns error? {
-        log:printInfo("Row deleted", data = event.before.toString());
+    remote function onDelete(record {} before) returns error? {
+        log:printInfo("Row deleted", data = before.toString());
     }
 
     remote function onError(error err) returns error? {
@@ -149,7 +152,7 @@ In the **Service Designer**, click the **Configure** icon in the header to open 
 @cdc:ServiceConfig {
     tables: "mydb.dbo.customers"
 }
-service on mssqlCdcListener { }
+service cdc:Service on mssqlCdcListener { }
 ```
 
 </TabItem>
@@ -186,18 +189,28 @@ The Debezium SQL Server connector reads changes from CDC change tables on a poll
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
-listener cdc:Listener mssqlCdcListener = new ({
+listener mssql:CdcListener mssqlCdcListener = new (database = {
     hostname: "localhost",
     port: 1433,
-    username: username,
-    password: password,
+    username,
+    password,
     databaseNames: ["mydb"],
-    secureSocket: {},
-    options: {}
+    includedSchemas: ["dbo"]
 });
 ```
 
-`cdc:ListenerConfiguration` fields:
+`mssql:CdcListener` accepts the following top-level fields:
+
+| Field | Type | Default | Description |
+|---|---|---|---|
+| `database` | `mssql:DatabaseConfig` | Required | Database connection (see fields below) |
+| `engineName` | `string?` | — | Debezium engine instance name |
+| `internalSchemaStorage` | `record{}?` | — | Schema history storage configuration |
+| `offsetStorage` | `record{}?` | — | Offset storage configuration |
+| `livenessInterval` | `decimal` | `0.0` | Liveness check interval in seconds |
+| `options` | `record{}?` | — | Additional Debezium connector options |
+
+The `database` value is a record with these fields:
 
 | Field | Type | Default | Description |
 |---|---|---|---|
@@ -205,14 +218,10 @@ listener cdc:Listener mssqlCdcListener = new ({
 | `port` | `int` | `1433` | SQL Server port |
 | `username` | `string` | Required | Database username |
 | `password` | `string` | Required | Database password |
-| `databaseNames` | `string[]` | Required | List of databases to capture changes from |
+| `databaseNames` | `string[]` | Required | Databases to capture changes from |
+| `includedSchemas` | `string[]?` | — | Schemas to capture changes from |
 | `databaseInstance` | `string?` | — | SQL Server named instance |
 | `secureSocket` | `cdc:SecureSocket?` | — | SSL/TLS configuration |
-| `engineName` | `string?` | — | Debezium engine instance name |
-| `internalSchemaStorage` | `record{}?` | — | Schema history storage configuration |
-| `offsetStorage` | `record{}?` | — | Offset storage configuration |
-| `livenessInterval` | `decimal` | `0.0` | Liveness check interval in seconds |
-| `options` | `record{}?` | — | Additional connector options |
 
 </TabItem>
 </Tabs>
@@ -238,7 +247,7 @@ Added handlers appear in the **Event Handlers** list on the Service Designer, wh
 <TabItem value="code" label="Ballerina Code">
 
 ```ballerina
-type CustomerRow record {|
+type Customer record {|
     int id;
     string name;
     string email;
@@ -247,27 +256,23 @@ type CustomerRow record {|
 @cdc:ServiceConfig {
     tables: "mydb.dbo.customers"
 }
-service on mssqlCdcListener {
+service cdc:Service on mssqlCdcListener {
 
-    remote function onRead(cdc:ChangeEvent event) returns error? {
-        log:printInfo("Initial snapshot row", data = event.after.toString());
+    remote function onCreate(Customer after) returns error? {
+        log:printInfo("Row inserted", data = after.toString());
+        check syncToDownstream("INSERT", after);
     }
 
-    remote function onCreate(cdc:ChangeEvent event) returns error? {
-        log:printInfo("Row inserted", data = event.after.toString());
-        check syncToDownstream("INSERT", event.after);
-    }
-
-    remote function onUpdate(cdc:ChangeEvent event) returns error? {
+    remote function onUpdate(Customer before, Customer after) returns error? {
         log:printInfo("Row updated",
-                      before = event.before.toString(),
-                      after = event.after.toString());
-        check syncToDownstream("UPDATE", event.after);
+                before = before.toString(),
+                after = after.toString());
+        check syncToDownstream("UPDATE", after);
     }
 
-    remote function onDelete(cdc:ChangeEvent event) returns error? {
-        log:printInfo("Row deleted", data = event.before.toString());
-        check syncToDownstream("DELETE", event.before);
+    remote function onDelete(Customer before) returns error? {
+        log:printInfo("Row deleted", data = before.toString());
+        check syncToDownstream("DELETE", before);
     }
 
     remote function onError(error err) returns error? {
@@ -275,6 +280,8 @@ service on mssqlCdcListener {
     }
 }
 ```
+
+The handler parameter types are inferred at runtime from the row data. Declare a record type that matches your table columns (as shown by `Customer` above), or use `record {}` to accept any shape.
 
 </TabItem>
 </Tabs>
