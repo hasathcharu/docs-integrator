@@ -45,11 +45,11 @@ In the **Configure MySQL** form, expand **Advanced Configurations** to reveal al
 2. Select an existing configurable or click **+ New Configurable**.
 3. Supply a camelCase name and the appropriate type, then click **Save**. The configurable is injected into the field.
 
-- **host** (string) : MySQL server hostname
-- **user** (string) : database username
-- **password** (string) : database user password
-- **database** (string) : name of the database to connect to
-- **port** (int) : MySQL server port
+- **host**: MySQL server hostname, bound to a `string` configurable named `mysqlHost`
+- **user**: Database username, bound to a `string?` configurable named `mysqlUser`
+- **password**: Database user password, bound to a `string?` configurable named `mysqlPassword`
+- **database**: Database name to connect to, bound to a `string?` configurable named `mysqlDatabase`
+- **port**: MySQL server port, bound to an `int` configurable named `mysqlPort`
 
 After creating all five configurables, set **Connection Name** to `mysqlClient`.
 
@@ -57,7 +57,7 @@ After creating all five configurables, set **Connection Name** to `mysqlClient`.
 
 ### Step 3: Save the MySQL connection
 
-Click **Save Connection** to save the connector. The canvas returns to the integration overview and `mysqlClient` is now visible under **Connections** in the left-hand project tree.
+Select **Save Connection** to save the connector. The canvas returns to the integration overview and `mysqlClient` is now visible under **Connections** in the left-hand project tree.
 
 ![MySQL Connections panel showing mysqlClient entry after saving](/img/connectors/catalog/database/mysql/mysql_screenshot_03_connections_list.png)
 
@@ -66,11 +66,11 @@ Click **Save Connection** to save the connector. The canvas returns to the integ
 1. In the left panel, click **Configurations**.
 2. Set a value for each configurable listed below.
 
-- **mysqlHost** (string) : hostname or IP address of your MySQL server
-- **mysqlUser** (string) : database username
-- **mysqlPassword** (string) : database user password
-- **mysqlDatabase** (string) : name of the database to connect to
-- **mysqlPort** (int) : port number your MySQL server listens on
+- **mysqlHost**: hostname or IP address of your MySQL server (`string`)
+- **mysqlUser**: database username (`string?`)
+- **mysqlPassword**: database user password (`string?`)
+- **mysqlDatabase**: name of the database to connect to (`string?`)
+- **mysqlPort**: port number your MySQL server listens on (`int`)
 
 ## Configuring the MySQL execute operation
 
@@ -82,21 +82,22 @@ Click **Save Connection** to save the connector. The canvas returns to the integ
 
 The automation flow canvas opens, showing a **Start** node and an **Error Handler** node with an empty step slot between them.
 
-### Step 6: Select the execute operation and configure its parameters
-
-1. Click the empty step placeholder in the flow to open the step-addition panel.
-2. In the right-hand panel, expand **Connections → mysqlClient** to reveal its available operations.
+Select the empty step placeholder in the flow to open the step addition panel. In the right-hand panel, locate the **Connections** section, select **mysqlClient** to expand its available operations, and then select **Execute**.
 
 ![MySQL connection node expanded showing all available operations before selection](/img/connectors/catalog/database/mysql/mysql_screenshot_04_operations_panel.png)
 
-3. Click **Execute** to open its configuration form, then fill in the operation fields.
+### Step 6: Configure the execute operation parameters and save
 
-- **sqlQuery** — parameterized SQL INSERT statement to execute against the database (for example, `INSERT INTO users (name, email) VALUES ("John Doe", "john@example.com")`)
+Fill in the operation fields, then select **Save** to add the step to the automation flow.
+
+- **sqlQuery** — a parameterized SQL INSERT statement to execute. Use backtick-templated parameters so values are bound safely (no string concatenation). For example: `` `INSERT INTO users (name, email) VALUES (${name}, ${email})` ``, where `name` and `email` are Ballerina variables (e.g., bound to inputs of the automation).
 - **result** — variable that holds the returned `sql:ExecutionResult`; pre-filled as `sqlExecutionresult`
 
 ![MySQL Execute operation configuration filled with all values](/img/connectors/catalog/database/mysql/mysql_screenshot_05_operation_filled.png)
 
-4. Click **Save** to add the step to the automation flow.
+The automation flow now contains a single execute step between **Start** and **Error Handler**.
+
+![Completed automation flow with mysql execute step](/img/connectors/catalog/database/mysql/mysql_screenshot_06_completed_flow.png)
 
 ## Try it yourself
 

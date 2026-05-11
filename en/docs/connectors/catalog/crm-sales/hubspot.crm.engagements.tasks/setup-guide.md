@@ -39,8 +39,8 @@ The required scopes may vary depending on which CRM objects you plan to associat
 ## Get the client ID and client secret
 
 1. In your app's **Auth** tab, locate the **Client ID** and **Client Secret** fields.
-2. Copy the **Client ID** — this is your `clientId`.
-3. Copy the **Client Secret** — this is your `clientSecret`.
+2. Copy the **Client ID**; this is your `clientId`.
+3. Copy the **Client Secret**; this is your `clientSecret`.
 
 
 :::tip
@@ -84,4 +84,4 @@ Use a tool like [Postman](https://www.postman.com/) or `curl` to perform the tok
 
 ## Next steps
 
-- [Actions Reference](actions.md) - Available operations
+- [Actions Reference](actions.md): Available operations
