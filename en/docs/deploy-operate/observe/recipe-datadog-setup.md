@@ -1,417 +1,231 @@
 ---
 title: Recipe - Datadog Full-Stack Observability
-description: Quick setup guide for monitoring WSO2 Integrator with Datadog.
+description: See how Ballerina supports observability by exposing itself via metrics and tracing to Datadog.
 ---
 
 # Recipe: Datadog Full-Stack Observability
 
-Complete observability setup with Datadog for unified metrics, logs, and distributed tracing. Minimal configuration with automatic collection and built-in dashboards.
+Users can observe integrations with [Datadog](https://www.datadoghq.com/), which is a comprehensive observability and
+monitoring platform for cloud-scale applications. It provides developers, IT operations teams, and business users with
+tools to monitor, troubleshoot, and optimize performance across their entire technology stack, including applications,
+servers, databases, and services. Both metrics and tracing of an integration can be viewed with Datadog.
 
-## Architecture
 
+Create a new account in Datadog. Select a billing plan according to your needs (A free plan is also included).
+
+Then follow the steps below to set up your Datadog account to view metrics and tracing provided by Ballerina.
+
+## Step 1 - Create a Datadog account and an API key
+
+1. Add Prometheus to the Integrations for your account
+
+   You need to add Prometheus in the Integrations. Please go to the **Integrations** tab and search for Prometheus.
+
+   ![Adding Prometheus in Datadog Integrations](/img/deploy-operate/observe/datadog-add-prometheus.png "Adding Prometheus in Datadog Integrations")
+
+2. Create an API key
+
+   You need to create an API key for the Datadog agent. To create an API key,
+
+   > **Click Profile → Organization Settings → API keys**
+
+   ![Creating an API key in Datadog](/img/deploy-operate/observe/datadog-creating-api-key.png "Creating an API key in Datadog")
+
+## Step 2 - Set up the Datadog agent
+
+After setting up your Datadog account, you need to set up a Datadog Agent in your instance.
+
+You can follow this [documentation](https://docs.datadoghq.com/agent/?tab=Linux) to get started with the Datadog agent on your local machine.
+
+You need to include the API key you generated in your Datadog account to `datadog.yaml` in the `datadog-agent/etc` folder.
+
+Then follow the steps below to configure metrics and tracing data publishing to Datadog.
+
+1. Add configuration for metrics
+
+   Once you add Prometheus by following step 1, you will get a guide to configure a Datadog agent in your instance.
+
+   ![Prometheus configurations for Datadog agent](/img/deploy-operate/observe/datadog-agent-prometheus-configurations.png "Prometheus configurations for Datadog agent")
+
+   You can follow the instructions given in the above configuration to set up a Datadog agent.
+
+   A sample of the `conf.yaml` file which you should include in the `prometheus.d` folder can be found here.
+
+   ```yaml
+   init_config:
+
+   instances:
+     - prometheus_url: http://localhost:9797/metrics
+       namespace: ballerina
+       metrics:
+         - response_time_seconds_value
+         - response_time_seconds_max
+         - response_time_seconds_min
+         - response_time_seconds_mean
+         - response_time_seconds_stdDev
+         - response_time_seconds
+         - response_time_nanoseconds_total_value
+         - requests_total_value
+         - response_errors_total_value
+         - inprogress_requests_value
+         - kafka_publishers_value
+         - kafka_consumers_value
+         - kafka_errors_value
+       headers:
+       Accept: "text/plain; version=0.0.4"
+   ```
+
+2. Add configuration for tracing
+
+   You need to use the following configurations in the `datadog.yaml`.
+
+   To view traces in Datadog, we need to enable the APM (Application Performance Monitoring) in your Datadog agent.
+
+   ```yaml
+   apm_config:
+   enabled: true
+   ```
+
+   Ballerina uses OpenTelemetry to provide traces. Therefore, we need to set up OpenTelemetry configurations as follows.
+
+   ```yaml
+   otlp_config:
+       receiver:
+           protocols:
+               grpc:
+               endpoint: 0.0.0.0:4317
+   ```
+
+## Step 3 - Import Ballerina Prometheus and Jaeger extensions
+
+To include the Prometheus and Jaeger extensions into the executable, the `ballerinax/prometheus` and `ballerinax/jaeger`
+modules need to be imported into your integration. Open the the file explorer in WSO2 Integrator add the below to the `main.bal` file.
+
+```ballerina
+import ballerinax/prometheus as _;
+import ballerinax/jaeger as _;
 ```
-WSO2 Integrator
-├── Metrics (9797) ──┐
-├── Logs (stdout) ──┤──▶ Datadog Agent ──▶ Datadog Cloud
-└── Traces (6831) ──┘
+
+To support Prometheus as the metrics reporter, an HTTP endpoint starts with the context of `/metrics` in default port `9797` when starting the Ballerina service.
+
+Jaeger extension has an `Opentelemetry GRPC Span Exporter` which will push tracing data as batches to the endpoint (default - `http://localhost:4317`) in OpenTelemetry format.
+
+## Step 4 - Configure runtime configurations
+
+Add the below to `Ballerina.toml` file.
+
+```toml
+[build-options]
+remoteManagement = true
 ```
 
-## Prerequisites
+Tracing and metrics can be enabled in your integration using configurations similar to the following in your
+`Config.toml` file.
 
-- Datadog account (free or paid)
-- Datadog API key
-- Kubernetes cluster or Docker/VM
-
-## Step 1: Get Your Datadog API Key
-
-1. Log in to [Datadog](https://app.datadoghq.com)
-2. Navigate to **Organization Settings** > **API Keys**
-3. Create or copy your API key
-
-## Step 2: Install Datadog Agent
-
-### Option A: Docker Compose
-
-Create `docker-compose.yml`:
-
-```yaml
-version: "3.8"
-
-services:
-  integrator:
-    image: ballerina:latest
-    ports:
-      - "9090:9090"
-      - "9797:9797"
-    environment:
-      - BALLERINA_OBSERVE_METRICS_ENABLED=true
-      - BALLERINAX_PROMETHEUS_PORT=9797
-      - BALLERINA_OBSERVE_TRACING_ENABLED=true
-      - BALLERINAX_JAEGER_AGENT_HOSTNAME=datadog-agent
-      - BALLERINAX_JAEGER_AGENT_PORT=6831
-      - BALLERINA_LOG_LEVEL=INFO
-    depends_on:
-      - datadog-agent
-
-  datadog-agent:
-    image: datadog/agent:latest
-    environment:
-      - DD_API_KEY=${DD_API_KEY}
-      - DD_SITE="datadoghq.com"
-      - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
-      - DD_APM_ENABLED=true
-      - DD_APM_NON_LOCAL_TRAFFIC=true
-      - DD_LOGS_ENABLED=true
-      - DD_CONTAINER_EXCLUDE="image:datadog/agent"
-    ports:
-      - "8126:8126/tcp"   # APM/Traces
-      - "8125:8125/udp"   # DogStatsD
-      - "5000:5000"       # Listener
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /proc:/host/proc:ro
-      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
-```
-
-Start services:
-```bash
-export DD_API_KEY=<your-api-key>
-docker-compose up -d
-```
-
-### Option B: Kubernetes Helm
-
-```bash
-helm repo add datadog https://helm.datadoghq.com
-helm repo update
-
-helm install datadog-agent datadog/datadog \
-  --set datadog.apiKey=${DD_API_KEY} \
-  --set datadog.appKey=${DD_APP_KEY} \
-  --set datadog.site="datadoghq.com" \
-  --set datadog.apm.portEnabled=true \
-  --set datadog.logs.enabled=true \
-  -n datadog
-```
-
-### Option C: Linux/VM Installation
-
-```bash
-DD_API_KEY=${DD_API_KEY} DD_SITE="datadoghq.com" \
-  bash -c "$(curl -L https://install.datadoghq.com/scripts/install_script_agent7.sh)"
-```
-
-## Step 3: Configure Ballerina Integration
-
-Update `Config.toml`:
+You can find the above files in File explorer view.
 
 ```toml
 [ballerina.observe]
-metricsEnabled = true
-metricsReporter = "prometheus"
-tracingEnabled = true
-tracingProvider = "jaeger"
+tracingEnabled=true
+tracingProvider="jaeger"
+metricsEnabled=true
+metricsReporter="prometheus"
 
 [ballerinax.prometheus]
-port = 9797
-host = "0.0.0.0"
+port=9797
+host="0.0.0.0"
 
 [ballerinax.jaeger]
-agentHostname = "datadog-agent"  # or localhost for local install
-agentPort = 6831
-samplerType = "const"
-samplerParam = 1.0
-
-[ballerina.log]
-level = "INFO"
-format = "json"  # JSON for better Datadog parsing
+agentHostname="localhost"
+agentPort=4317
+samplerType="const"
+samplerParam=1.0
+reporterFlushInterval=2000
+reporterBufferSize=1000
 ```
 
-## Step 4: Configure Datadog Agent for Metrics
+The table below provides the descriptions of each configuration option and possible values that can be assigned.
 
-Create `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml`:
+| Configuration key | Description | Default value | Possible values |
+|---|---|---|---|
+| `ballerinax.prometheus.port` | The value of the port to which the `/metrics` service will bind. This service will be used by Prometheus to scrape the information of the Ballerina service. | `9797` | Any suitable value for port 0 - 65535. However, within that range, ports 0 - 1023 are generally reserved for specific purposes, therefore it is advisable to select a port without that range. |
+| `ballerinax.prometheus.host` | The name of the host to which the `/metrics` service will bind. This service will be used by Prometheus to scrape the information of the Ballerina service. | `0.0.0.0` | IP or Hostname or `0.0.0.0` of the node in which the Ballerina service is running. |
+| `ballerinax.jaeger.agentHostname` | Hostname of the Jaeger agent | `localhost` | IP or hostname of the Jaeger agent. If it is running on the same node as Ballerina, it can be `localhost`. |
+| `ballerinax.jaeger.agentPort` | Port of the Jaeger agent | `4317` | The port on which the Jaeger agent is listening. |
+| `ballerinax.jaeger.samplerType` | Type of the sampling methods used in the Jaeger tracer. | `const` | `const`, `probabilistic`, or `ratelimiting`. |
+| `ballerinax.jaeger.samplerParam` | It is a floating value. Based on the sampler type, the effect of the sampler param varies. | `1.0` | For `const`: `0` (no sampling) or `1` (sample all spans), for `probabilistic`: `0.0` to `1.0`, for `ratelimiting`: any positive integer (rate per second). |
+| `ballerinax.jaeger.reporterFlushInterval` | The Jaeger client will be sending the spans to the agent at this interval. | `2000` | Any positive integer value. |
+| `ballerinax.jaeger.reporterBufferSize` | Queue size of the Jaeger client. | `1000` | Any positive integer value. |
 
-```yaml
-global_custom_header: "dd-monitoring-enabled: true"
 
-instances:
-  - openmetrics_endpoint: "http://localhost:9797/metrics"
-    namespace: "ballerina"
-    metrics:
-      - http_requests_total
-      - http_request_duration_seconds
-      - http_response_status_total
-      - http_requests_in_flight
-      - orders_processed_total
-      - orders_active
-    tags:
-      - "service:wso2-integrator"
-      - "environment:production"
+## Step 5 - Send requests
+
+Run the service and send requests to `http://localhost:8090/shop/products`.
+
+Example cURL commands:
+
+```
+$ curl -X GET http://localhost:8090/shop/products
 ```
 
-Restart agent:
-```bash
-sudo systemctl restart datadog-agent
+```
+$ curl -X POST http://localhost:8090/shop/product \
+-H "Content-Type: application/json" \
+-d '{
+    "id": 4,
+    "name": "Laptop Charger",
+    "price": 50.00
+}'
 ```
 
-## Step 5: Configure Datadog Agent for Logs
-
-Create `/etc/datadog-agent/conf.d/ballerina.d/conf.yaml`:
-
-```yaml
-logs:
-  - type: file
-    path: /var/log/integrator/*.log
-    service: wso2-integrator
-    source: ballerina
-    tags:
-      - "environment:production"
-      - "version:1.0"
-
-  # For Docker
-  - type: docker
-    service: wso2-integrator
-    source: ballerina
-    tags:
-      - "environment:production"
+```
+$ curl -X POST http://localhost:8090/shop/order \
+-H "Content-Type: application/json" \
+-d '{
+    "productId": 1,
+    "quantity": 1
+}'
 ```
 
-## Step 6: Configure Datadog Agent for APM/Traces
-
-Edit `/etc/datadog-agent/datadog.yaml`:
-
-```yaml
-apm_config:
-  enabled: true
-  apm_non_local_traffic: true
-  receiver_port: 6831
-  
-logs_enabled: true
+```
+$ curl -X GET http://localhost:8090/shop/order/0
 ```
 
-## Step 7: Verify Data Collection
+## Step 6 - View metrics on Datadog
 
-### Check Metrics
+You can observe the metrics in the Datadog platform under the **Metrics** tab in the left navigation.
 
-1. Go to **Metrics** > **Summary** in Datadog
-2. Search for `ballerina.*`
-3. You should see metrics like `ballerina.http_requests_total`
+![Metrics Explorer in Datadog](/img/deploy-operate/observe/datadog-metrics-explorer.png "Metrics Explorer in Datadog")
 
-### Check Traces
+You can add filters and use functions in the Datadog to visualize what you want with the metrics provided by Ballerina.
 
-1. Go to **APM** > **Traces**
-2. You should see traces from your integrator
+Ballerina provides a [dashboard](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-prometheus/refs/heads/main/metrics-dashboards/datadog/ballerina_metrics_dashboard.json) in the Datadog to observe metrics in Ballerina applications.
 
-### Check Logs
+You can add a new dashboard in the Datadog under the **Dashboards** tab in the left navigation. After creating the new dashboard, go to the **Configure** tab in the dashboard. Import the `dashboard.json` file provided above.
 
-1. Go to **Logs** > **Live Tail**
-2. Filter by `service:wso2-integrator`
-3. You should see logs from your integration
+![Importing a dashboard json](/img/deploy-operate/observe/datadog-importing-dashboard.png "Importing a dashboard json")
 
-## Creating Datadog Dashboards
+The Ballerina Dashboard in the Datadog will be displayed as below.
 
-### Metrics Dashboard
+![Ballerina Dashboard in Datadog](/img/deploy-operate/observe/datadog-metrics-dashboard-1.png "Ballerina Dashboard in Datadog")
+![Ballerina Dashboard in Datadog](/img/deploy-operate/observe/datadog-metrics-dashboard-2.png "Ballerina Dashboard in Datadog")
 
-1. Go to **Dashboards** > **New Dashboard**
-2. Add widgets with these queries:
+## Step 8 - View tracing on Datadog
 
-**Request Rate:**
-```
-avg:ballerina.http_requests_total.count{service:wso2-integrator}.as_rate()
-```
+To view traces of the Ballerina application, go to **APM → Traces** in the Datadog.
 
-**Error Rate:**
-```
-sum:ballerina.http_response_status_total.count{service:wso2-integrator,status_code:5xx}.as_rate() /
-sum:ballerina.http_requests_total.count{service:wso2-integrator}.as_rate()
-```
+![Trace Explorer in Datadog](/img/deploy-operate/observe/datadog-trace-explorer.png "Trace Explorer in Datadog")
 
-**P95 Latency:**
-```
-p95:ballerina.http_request_duration_seconds{service:wso2-integrator}
-```
+You can filter the traces with the service name, resource, operation name, span kind, etc.
 
-**Active Requests:**
-```
-avg:ballerina.http_requests_in_flight{service:wso2-integrator}
-```
+![Filter traces in Datadog](/img/deploy-operate/observe/datadog-filter-traces.png "Filter traces in Datadog")
 
-### Log Analytics Dashboard
+Once you select a trace, you can get more information with the tags attached to the span.
 
-1. Create widget with type **Timeseries**
-2. Query:
-```
-avg:trace.http.request.count{service:wso2-integrator} by {http.status_code}
-```
+![Span tags for a given span](/img/deploy-operate/observe/datadog-span-tags.png "Span tags for a given span")
 
-3. Add facet widget:
-```
-Facets: level, module, service
-Data: level=ERROR
-```
+## What's next
 
-## Creating Monitors (Alerts)
-
-### Monitor 1: High Error Rate
-
-1. Go to **Monitors** > **New Monitor**
-2. Type: **Metric**
-3. Query:
-```
-avg(last_5m): sum:ballerina.http_response_status_total.count{service:wso2-integrator,status_code:5xx}.as_rate() / sum:ballerina.http_requests_total.count{service:wso2-integrator}.as_rate() > 0.05
-```
-4. Alert message:
-```
-High error rate on {{service.name}}. Error rate: {{value | humanize}}%
-@on-call-team
-```
-
-### Monitor 2: High Latency
-
-1. Type: **Metric**
-2. Query:
-```
-avg(last_10m): p95:ballerina.http_request_duration_seconds{service:wso2-integrator} > 2
-```
-3. Alert message:
-```
-High P95 latency on {{service.name}}: {{value}}s
-@on-call-team
-```
-
-### Monitor 3: Log Error Alert
-
-1. Type: **Logs**
-2. Query:
-```
-service:wso2-integrator level:ERROR
-```
-3. Alert condition:
-```
-The number of logs is > 10 in the last 5 minutes
-```
-
-## Using Service Maps
-
-Service Maps automatically show dependencies between your services:
-
-1. Go to **Service Map** in APM
-2. You'll see:
-   - Your integrator service
-   - Downstream services it calls
-   - Error rates and latency
-
-## Custom Dashboards Example
-
-```python
-# Python script to create dashboard via Datadog API
-from datadog import initialize, api
-
-options = {
-    'api_key': 'YOUR_API_KEY',
-    'app_key': 'YOUR_APP_KEY'
-}
-
-initialize(**options)
-
-dashboard = {
-    'title': 'WSO2 Integrator Observability',
-    'widgets': [
-        {
-            'definition': {
-                'type': 'timeseries',
-                'requests': [
-                    {
-                        'q': 'avg:ballerina.http_requests_total.count{service:wso2-integrator}.as_rate()'
-                    }
-                ],
-                'title': 'Request Rate'
-            }
-        },
-        {
-            'definition': {
-                'type': 'query_value',
-                'requests': [
-                    {
-                        'q': 'p95:ballerina.http_request_duration_seconds{service:wso2-integrator}'
-                    }
-                ],
-                'title': 'P95 Latency'
-            }
-        }
-    ]
-}
-
-api.Dashboard.create(**dashboard)
-```
-
-## Troubleshooting
-
-**Agent not connecting:**
-```bash
-# Check agent status
-sudo systemctl status datadog-agent
-
-# View agent logs
-tail -f /var/log/datadog/agent.log
-```
-
-**Metrics not appearing:**
-```bash
-# Check metrics endpoint
-curl http://localhost:9797/metrics
-
-# Verify agent config
-sudo datadog-agent configcheck
-
-# Verify agent can reach metrics
-sudo datadog-agent diagnose openmetrics
-```
-
-**Traces not appearing:**
-```bash
-# Check Jaeger is sending to Datadog
-sudo datadog-agent diagnose jaeger
-
-# View APM logs
-tail -f /var/log/datadog/trace-agent.log
-```
-
-**Logs not appearing:**
-```bash
-# Check logs are enabled
-sudo datadog-agent configcheck | grep logs_enabled
-
-# View logs agent status
-tail -f /var/log/datadog/agent.log | grep "logs"
-```
-
-## Best Practices
-
-- **Tagging:** Add environment, version, and service tags to all metrics
-- **Sampling:** Set trace sampling to 10-20% in production to reduce costs
-- **Retention:** Configure appropriate log retention based on compliance needs
-- **Dashboards:** Create per-team dashboards for ownership
-- **Monitors:** Set up alert monitors for SLA compliance
-
-## Cleanup
-
-To remove Datadog monitoring:
-
-```bash
-# Docker
-docker-compose down
-
-# Kubernetes
-helm uninstall datadog-agent
-
-# Linux
-sudo apt remove datadog-agent
-```
-
-## What's Next
-
-- **[Datadog Integration Details](datadog-integration.md)** – Advanced configuration
-- **[New Relic Setup](recipe-datadog-setup.md)** – Alternative platform
-- **[Observability Overview](observability-overview.md)** – Full observability options
-- **[Third-Party Tools](third-party-overview.md)** – Platform comparison
+- [Metrics Overview](metrics-overview.md) -- Self-managed metrics collection with Prometheus
+- [New Relic](new-relic-integration.md) -- Alternative full-stack observability platform
+- [Observability Overview](observability-overview.md) -- Full observability architecture

@@ -43,7 +43,7 @@ WSO2 provides fully managed observability solutions for integrations deployed on
 | Solution | Best For | Features | Setup Complexity |
 |----------|----------|----------|------------------|
 | **[Integration Control Plane (ICP)](integration-control-plane-icp.md)** | On-premise & hybrid deployments | Service inventory, real-time monitoring, log aggregation, deployment tracking | Low |
-| **[WSO2 Integration Platform](observability-devant.md)** | Cloud-native integrations | Built-in dashboards, alerting, live logs, distributed tracing, diagnostics | Very Low |
+| **[WSO2 Integration Platform](https://wso2.com/devant/docs/monitoring-and-insights/observability-overview/)** | Cloud-native integrations | Built-in dashboards, alerting, live logs, distributed tracing, diagnostics | Very Low |
 | **[Moesif](moesif-api-analytics.md)** | API analytics & monitoring | API usage tracking, request/response inspection, usage-based billing, alerting | Very Low |
 
 ### When to choose WSO2 solutions:
@@ -58,37 +58,21 @@ WSO2 provides fully managed observability solutions for integrations deployed on
 
 Deploy and manage your own observability stack. Ideal for organizations with existing infrastructure investments or specific compliance requirements.
 
-### Metrics (Prometheus + Grafana)
-- **[Metrics Overview](metrics-overview.md)** – Enable and configure Prometheus metrics
-- **[Prometheus Setup](prometheus-metrics.md)** – Detailed Prometheus configuration
-- **[Grafana Dashboards](grafana-dashboards.md)** – Create custom visualization dashboards
-- **[Custom Metrics](custom-metrics.md)** – Define business and application metrics
+### Metrics (Prometheus)
+- **[Metrics Overview](metrics-overview.md)** – Enable Prometheus metrics, configure scraping, and define custom metrics
 
-**When to use:** Open-source, self-hosted metrics collection with rich visualization capabilities.
+**When to use:** Open-source, self-hosted metrics collection from your Ballerina integrations.
 
-### Logging (ELK or OpenSearch)
+### Logging 
 - **[Logging Overview](logging-overview.md)** – Configure structured logging and log aggregation approaches
-- **[Elastic Stack (ELK)](elastic-stack-elk.md)** – Elasticsearch, Logstash, Kibana setup
-- **[OpenSearch Integration](opensearch-integration.md)** – Open-source Elasticsearch alternative
 
 **When to use:** Full-text log search, complex log processing, multi-service log correlation.
 
 ### Distributed Tracing (Jaeger or Zipkin)
-- **[Distributed Tracing Overview](distributed-tracing-overview.md)** – Configure trace exporters and sampling
 - **[Jaeger Setup](jaeger-distributed-tracing.md)** – Production-grade distributed tracing
 - **[Zipkin Setup](zipkin-tracing.md)** – Lightweight distributed tracing alternative
 
 **When to use:** Trace requests across service boundaries, identify latency bottlenecks, debug request failures.
-
-### Comparison Matrix
-
-| Stack | Metrics | Logging | Tracing | Complexity | Cost |
-|-------|---------|---------|---------|------------|------|
-| **Prometheus + Grafana** | ✅ Native | Via Loki | Via Tempo | Medium | Free |
-| **ELK Stack** | Via Metricbeat | ✅ Native | Via APM | High | Free |
-| **OpenSearch** | Via collector | ✅ Native | Via Data Prepper | High | Free |
-| **Jaeger Only** | -- | -- | ✅ Native | Low | Free |
-| **Zipkin Only** | -- | -- | ✅ Native | Low | Free |
 
 ---
 
@@ -98,30 +82,27 @@ Deploy your integration on managed cloud platforms with built-in observability. 
 
 | Platform | Best For | Metrics | Logging | Tracing | Setup |
 |----------|----------|---------|---------|---------|-------|
-| **[Datadog](datadog-integration.md)** | Enterprise full-stack | ✅ Via Agent | ✅ Via Agent | ✅ Via APM | Low |
 | **[New Relic](new-relic-integration.md)** | Multi-cloud environments | ✅ Via OTLP | ✅ Via forwarder | ✅ Via OTLP | Low |
-
-### Integration Approaches
-
-**1. Direct Integration** – Use Ballerina's built-in observability extensions
-- Ballerina Prometheus extension → Prometheus
-- Ballerina Jaeger extension → Jaeger / Zipkin
-
-**2. OpenTelemetry Collector** – Vendor-neutral pipeline for commercial platforms
-- Ballerina → OpenTelemetry Collector → Datadog / New Relic / Splunk
-
-**3. Agent Pattern** – Sidecar agents for automatic collection
-- Datadog Agent, New Relic Agent, Elastic APM Agent
-
-See **[Third-Party Observability Tools](third-party-overview.md)** for detailed comparison and setup guides.
-
 ---
 
 ## Recipes: End-to-End Solutions
 
 Choose a recipe based on your deployment scenario and infrastructure.
 
-### Recipe 1: Local Development Stack
+### Recipe 1: Datadog Full-Stack Observability
+**Tech Stack:** Datadog Agent + Datadog Cloud
+
+Managed cloud observability with minimal setup.
+
+- Install Datadog Agent as sidecar
+- Automatic metric, log, and trace collection
+- Datadog dashboards and monitors
+- Native APM and service maps
+
+**[View Recipe](recipe-datadog-setup.md)**
+
+<!--
+### Recipe 2: Local Development Stack
 **Tech Stack:** Docker Compose + Prometheus + Grafana + Jaeger + Loki
 
 Perfect for development, testing, and small-scale deployments.
@@ -133,7 +114,7 @@ Perfect for development, testing, and small-scale deployments.
 
 **[View Recipe](recipe-local-development.md)**
 
-### Recipe 2: Kubernetes Production Stack
+### Recipe 3: Kubernetes Production Stack
 **Tech Stack:** Kubernetes + Prometheus Operator + Grafana + Jaeger Operator
 
 Enterprise-grade Kubernetes observability with auto-discovery and scale.
@@ -145,7 +126,7 @@ Enterprise-grade Kubernetes observability with auto-discovery and scale.
 
 **[View Recipe](recipe-kubernetes-production.md)**
 
-### Recipe 3: ELK Stack (Logs + Analytics)
+### Recipe 4: ELK Stack (Logs + Analytics)
 **Tech Stack:** Elasticsearch + Logstash/Filebeat + Kibana + Jaeger
 
 Complete log aggregation, full-text search, and distributed tracing.
@@ -156,18 +137,6 @@ Complete log aggregation, full-text search, and distributed tracing.
 - Correlate logs with traces
 
 **[View Recipe](recipe-elk-stack.md)**
-
-### Recipe 4: Datadog Full-Stack Observability
-**Tech Stack:** Datadog Agent + Datadog Cloud
-
-Managed cloud observability with minimal setup.
-
-- Install Datadog Agent as sidecar
-- Automatic metric, log, and trace collection
-- Datadog dashboards and monitors
-- Native APM and service maps
-
-**[View Recipe](recipe-datadog-setup.md)**
 
 ### Recipe 5: OpenSearch Log Analytics
 **Tech Stack:** OpenSearch + Fluent Bit + OpenSearch Dashboards
@@ -180,29 +149,5 @@ Open-source alternative to ELK with modern features.
 - Trace analytics with Data Prepper
 
 **[View Recipe](recipe-opensearch-setup.md)**
+-->
 
----
-
-## Quick Reference: Choosing Your Solution
-
-**Are you using WSO2 cloud platform?**
-→ Use **[WSO2 Integration Platform](observability-devant.md)** (zero setup required)
-
-**Do you run integrations on-premise with WSO2 Integrator?**
-→ Use **[Integration Control Plane (ICP)](integration-control-plane-icp.md)** (centralized dashboard)
-
-**Do you want self-hosted, open-source solutions?**
-→ Choose based on your needs:
-- Metrics only → **[Prometheus + Grafana](metrics-overview.md)**
-- Logs + search → **[ELK Stack](elastic-stack-elk.md)** or **[OpenSearch](opensearch-integration.md)**
-- Tracing → **[Jaeger](jaeger-distributed-tracing.md)** or **[Zipkin](zipkin-tracing.md)**
-- All three → See **[Recipes](#recipes-end-to-end-solutions)**
-
-**Do you want managed commercial observability?**
-→ Choose based on platform:
-- **[Datadog](datadog-integration.md)** – Enterprise, AWS-centric
-- **[New Relic](new-relic-integration.md)** – Multi-cloud, developer-friendly
-- **[Moesif](moesif-api-analytics.md)** – API-specific analytics
-
-**Do you need detailed setup instructions?**
-→ See **[Third-Party Observability Tools](third-party-overview.md)** for all integration approaches
