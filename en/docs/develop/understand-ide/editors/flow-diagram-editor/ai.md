@@ -10,11 +10,11 @@ The **AI** section of the node panel lets you build AI-powered integrations dire
 
 | Sub-category | Use it for | Reference |
 |---|---|---|
-| **Direct LLM** | Send a prompt to an LLM and bind the response to a typed variable. | [Direct LLM calls](/docs/genai/develop/direct-llm/overview) |
-| **RAG** | Ground LLM responses in your own documents by retrieving relevant chunks at query time. | [RAG](/docs/genai/develop/rag/overview) |
-| **Agent** | Run multi-turn workflows where an LLM plans the next step, calls tools, and uses memory. | [AI agents](/docs/genai/develop/agents/overview) |
+| **Direct LLM** | Send a prompt to an LLM and bind the response to a typed variable. | [Direct LLM calls](../../../../genai/develop/direct-llm/overview.md) |
+| **RAG** | Ground LLM responses in your own documents by retrieving relevant chunks at query time. | [RAG](../../../../genai/develop/rag/overview.md) |
+| **Agent** | Run multi-turn workflows where an LLM plans the next step, calls tools, and uses memory. | [AI agents](../../../../genai/develop/agents/overview.md) |
 
-For an end-to-end orientation to the AI building blocks in WSO2 Integrator, see the [AI Integrations overview](/docs/genai/overview).
+For an end-to-end orientation to the AI building blocks in WSO2 Integrator, see the [AI Integrations overview](../../../../genai/overview.md).
 
 ## Model Provider
 
@@ -38,7 +38,7 @@ When you add a Model Provider, the picker lists the supported provider implement
 
 ![Model providers list with Default, Anthropic, Azure OpenAI, Deepseek, Google Vertex, Mistral, Ollama, OpenAI, and OpenRouter providers](/img/develop/flow-design-elements/model-providers-offered.png)
 
-For provider-specific configuration, model selection, and usage patterns, see [Model providers](/docs/genai/develop/components/model-providers).
+For provider-specific configuration, model selection, and usage patterns, see [Model providers](../../../../genai/develop/components/model-providers.md).
 
 ## Knowledge Base
 
@@ -50,12 +50,12 @@ The picker lists the supported knowledge base implementations.
 
 | Knowledge base | Description |
 |---|---|
-| **Vector Knowledge Base** | Generic vector knowledge base for managing chunk indexing and retrieval. Plug in any supported [Vector Store](/docs/genai/develop/components/vector-stores), [Embedding Provider](/docs/genai/develop/components/embedding-providers), and [Chunker](/docs/genai/develop/components/chunkers). |
+| **Vector Knowledge Base** | Generic vector knowledge base for managing chunk indexing and retrieval. Plug in any supported [Vector Store](../../../../genai/develop/components/vector-stores.md), [Embedding Provider](../../../../genai/develop/components/embedding-providers.md), and [Chunker](../../../../genai/develop/components/chunkers.md). |
 | **Azure AI Search Knowledge Base** | Implementation backed by Azure AI Search. |
 
 ![Knowledge bases list with Vector Knowledge Base and Azure AI Search Knowledge Base](/img/develop/flow-design-elements/knowledge-bases-offered.png)
 
-For the full reference, see [Knowledge bases](/docs/genai/develop/components/knowledge-bases).
+For the full reference, see [Knowledge bases](../../../../genai/develop/components/knowledge-bases.md).
 
 ## Data Loader
 
@@ -69,7 +69,7 @@ A data loader reads documents from disk into memory so the knowledge base can in
 
 ![Data loaders list with Text Data Loader](/img/develop/flow-design-elements/data-loaders-offered.png)
 
-For the ingestion flow, supported formats, and how to point the loader at a directory of documents, see the [RAG overview](/docs/genai/develop/rag/overview).
+For the ingestion flow, supported formats, and how to point the loader at a directory of documents, see the [RAG overview](../../../../genai/develop/rag/overview.md).
 
 ## Augment Query
 
@@ -86,7 +86,7 @@ For the ingestion flow, supported formats, and how to point the loader at a dire
 
 ![Augment Query form with Context, Query, Result, and Result Type fields](/img/develop/flow-design-elements/augment-query-form.png)
 
-For the full RAG query flow (retrieve, augment, generate), see [RAG](/docs/genai/develop/rag/overview).
+For the full RAG query flow (retrieve, augment, generate), see [RAG](../../../../genai/develop/rag/overview.md).
 
 ## Agent
 
@@ -104,11 +104,11 @@ An agent runs an autonomous workflow against a model and a set of tools. Given a
 
 ![Agent form with Role, Instructions, Query, Advanced Configurations, and Result fields](/img/develop/flow-design-elements/agent-form.png)
 
-For tool binding, memory, and observability, see [AI agents](/docs/genai/develop/agents/overview). For a stand-alone chat agent service, create the **AI Chat Agent** artifact from the **Artifacts** panel instead of adding the node by hand.
+For tool binding, memory, and observability, see [AI agents](../../../../genai/develop/agents/overview.md). For a stand-alone chat agent service, create the **AI Chat Agent** artifact from the **Artifacts** panel instead of adding the node by hand.
 
 ## What's next
 
-- [Direct LLM calls](/docs/genai/develop/direct-llm/overview) — Use a model provider to send a prompt and bind a typed response.
-- [RAG](/docs/genai/develop/rag/overview) — Build the ingestion and query flows around a knowledge base.
-- [AI agents](/docs/genai/develop/agents/overview) — Add tools, memory, and orchestration to an agent.
-- [AI Integrations overview](/docs/genai/overview) — All AI building blocks at a glance.
+- [Direct LLM calls](../../../../genai/develop/direct-llm/overview.md) — Use a model provider to send a prompt and bind a typed response.
+- [RAG](../../../../genai/develop/rag/overview.md) — Build the ingestion and query flows around a knowledge base.
+- [AI agents](../../../../genai/develop/agents/overview.md) — Add tools, memory, and orchestration to an agent.
+- [AI Integrations overview](../../../../genai/overview.md) — All AI building blocks at a glance.
