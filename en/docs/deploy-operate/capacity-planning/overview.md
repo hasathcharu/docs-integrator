@@ -1,12 +1,13 @@
 ---
 sidebar_position: 1
-title: Capacity Planning
-description: Capacity planning overview and sizing guidelines for WSO2 Integrator deployments.
+title: Overview and Sizing Guidelines
+description: Estimate CPU, memory, connection pools, and instance counts for WSO2 Integrator deployments.
+keywords: [wso2 integrator, capacity planning, sizing, resource estimation, throughput, scaling]
 ---
 
-# Capacity Planning
+# Overview and Sizing Guidelines
 
-Proper capacity planning ensures your Ballerina integrations have sufficient resources to handle expected workloads while maintaining performance SLAs. This page provides sizing guidelines, resource estimation methods, and scaling recommendations.
+Proper capacity planning ensures your integrations have sufficient resources to handle expected workloads while maintaining performance SLAs. This page provides sizing guidelines, resource estimation methods, and scaling recommendations.
 
 ## Key metrics for sizing
 
@@ -105,7 +106,7 @@ spec:
 | Medium | 4 vCPU, 8 GB RAM | 3-4 | Up to 2000 RPS |
 | Large | 8 vCPU, 16 GB RAM | 4-8 | Up to 10,000 RPS |
 
-### Serverless (AWS lambda)
+### Serverless (AWS Lambda)
 
 | Setting | Recommendation |
 |---------|---------------|
@@ -182,6 +183,6 @@ ab -n 10000 -c 100 http://localhost:9090/api/orders
 
 ## What's next
 
-- [Performance Reports](performance-reports.md) -- Benchmark results per scenario
-- [Scaling & High Availability](../deploy/scaling-high-availability.md) -- Configure horizontal scaling
-- [GraalVM Native Images](../deploy/graalvm-native-images.md) -- Reduce resource requirements with native compilation
+- [Performance reports](performance-reports.md) — Benchmark results per scenario
+- [Scaling and high availability](../deploy/scaling-high-availability.md) — Configure horizontal scaling
+- [GraalVM native images](../deploy/graalvm-native-images.md) — Reduce resource requirements with native compilation
