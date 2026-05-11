@@ -176,6 +176,8 @@ service / on httpDefaultListener {
 }
 ```
 
+Note that `generate` takes an expected type descriptor as an argument, but it is not explicitly passed here. Ballerina infers it from the type of the variable the result is assigned to (`SentimentResult`), so the call stays concise while still being fully type-checked.
+
 Run and test the integration from WSO2 Integrator using the **Try It** panel as shown in Step 6. The response will look similar to `{"sentiment":"POSITIVE","confidence":0.98}`, with the actual sentiment and confidence score determined by the model.
 
 </TabItem>
@@ -183,7 +185,7 @@ Run and test the integration from WSO2 Integrator using the **Try It** panel as 
 
 ## How it works
 
-The model provider's `generate` method takes a backtick template prompt and an expected return type. Behind the scenes the LLM is instructed to produce output that conforms to that type, and the response is parsed and validated before being returned to your code.
+The model provider's `generate` method takes a backtick template prompt and an expected return type. The expected type is inferred from the variable the result is assigned to when not specified explicitly. Behind the scenes the LLM is instructed to produce output that conforms to that type, and the response is parsed and validated before being returned to your code.
 
 Because the `sentiment` field is an enum, the LLM cannot return free-form text for it. It must pick one of `POSITIVE`, `NEGATIVE`, or `NEUTRAL`. If the model returns anything else, the call fails with a typed error rather than silently passing bad data downstream.
 
