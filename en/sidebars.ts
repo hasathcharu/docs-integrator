@@ -242,6 +242,15 @@ const sidebars: SidebarsConfig = {
             'develop/transform/expressions-functions',
           ],
         },
+        // Develop with Copilot
+        {
+          type: 'category',
+          label: 'WSO2 Integrator Copilot',
+          items: [
+            'develop/copilot/getting-started',
+            'develop/copilot/overview',
+          ],
+        },
         // 6.6 Try & Test
         {
           type: 'category',
