@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Troubleshooting
-description: Troubleshooting guide — common errors, strand dump tool, profiler usage, port conflicts, and dependency issues.
+description: Troubleshooting guide for common build errors, runtime issues, diagnostic tools, and deployment problems.
 keywords: [wso2 integrator, troubleshooting, errors, strand dump, profiler, debugging, diagnostics]
 ---
 
@@ -197,13 +197,13 @@ version = "8.0.33"
 
 A strand dump captures the state of all active strands in a running Ballerina application, similar to a thread dump in Java. It is useful for diagnosing deadlocks, stuck operations, and concurrency issues. The strand dump tool uses the `SIGTRAP` POSIX signal and is not available on Windows.
 
-For the full capture and analysis workflow, see [Strand Dump Analysis](/docs/develop/debugging/strand-dump-analysis).
+For the full capture and analysis workflow, see [Strand Dump Analysis](../../develop/debugging/strand-dump-analysis.md).
 
 ### Ballerina profiler
 
 The Ballerina profiler identifies performance bottlenecks by recording function call timings during execution and generating an interactive flame graph.
 
-To run the profiler against your project, see [Performance Profiling](/docs/develop/debugging/performance-profiling).
+To run the profiler against your project, see [Performance Profiling](../../develop/debugging/performance-profiling.md).
 
 ### Debug logging
 
