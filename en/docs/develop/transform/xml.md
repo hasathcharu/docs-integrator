@@ -313,7 +313,7 @@ Use the `ballerina/data.xmldata` module to convert XML data into typed Ballerina
 
    ![Flow designer showing the xmldata parseAsType variable step and mapOrder transformation in the processXml resource](/img/develop/transform/xml/flow-xml-parse-step.png)
 
-3. **Transform records visually** — Use the [Visual Data Mapper](visual-data-mapper.md) to map fields from the parsed XML record into another record structure or response type.
+3. **Transform records visually** — Use the **Visual Data Mapper** to map fields from the parsed XML record into another record structure or response type.
 
    ![Data Mapper showing PurchaseOrder input fields on the left and OrderSummary output fields on the right](/img/develop/transform/xml/data-mapper-xml-to-record.png)
 
@@ -430,7 +430,7 @@ Convert XML data to JSON and JSON data back to XML using the `ballerina/data.xml
 
    ![Flow designer showing the XML parse, mapOrder, and toJson return steps in sequence](/img/develop/transform/xml/flow-xml-parse-step.png)
 
-4. **Map fields visually** — Use the [Visual Data Mapper](visual-data-mapper.md) to map or transform fields between record structures before converting the result into JSON.
+4. **Map fields visually** — Use the **Visual Data Mapper** to map or transform fields between record structures before converting the result into JSON.
 
 </TabItem>
 
