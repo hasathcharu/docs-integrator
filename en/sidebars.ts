@@ -99,7 +99,21 @@ const sidebars: SidebarsConfig = {
               type: 'category',
               label: 'Editors',
               items: [
-                'develop/understand-ide/editors/flow-diagram-editor',
+                {
+                  type: 'category',
+                  label: 'Flow Diagram editor',
+                  link: { type: 'doc', id: 'develop/understand-ide/editors/flow-diagram-editor/flow-diagram-editor' },
+                  items: [
+                    'develop/understand-ide/editors/flow-diagram-editor/connections',
+                    'develop/understand-ide/editors/flow-diagram-editor/statement',
+                    'develop/understand-ide/editors/flow-diagram-editor/control',
+                    'develop/understand-ide/editors/flow-diagram-editor/ai',
+                    'develop/understand-ide/editors/flow-diagram-editor/error-handling',
+                    'develop/understand-ide/editors/flow-diagram-editor/concurrency',
+                    'develop/understand-ide/editors/flow-diagram-editor/logging',
+                    'develop/understand-ide/editors/flow-diagram-editor/show-more-functions',
+                  ],
+                },
                 'develop/understand-ide/editors/service-design-editor',
                 'develop/understand-ide/editors/expression-editor',
                 'develop/understand-ide/editors/type-editor',
