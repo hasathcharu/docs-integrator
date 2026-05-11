@@ -171,10 +171,10 @@ In the **CDC for Microsoft SQL Server Configuration** panel, select **mssqlCdcLi
 |---|---|---|
 | **Name** | Identifier for the listener. | `mssqlCdcListener` |
 | **Database** | Database connection configuration as a record expression with `hostname`, `port`, `username`, `password`, and `databaseNames` fields. | Required |
-| **Engine Name** | Debezium engine instance name. | — |
-| **Internal Schema Storage** | Schema history storage configuration. | `{}` |
-| **Offset Storage** | Offset storage configuration for tracking CDC progress. | `{}` |
-| **Liveness Interval** | Interval in seconds for checking CDC listener liveness. | `0.0` |
+| **Engine Name** | Debezium engine instance name. | `ballerina-cdc-connector` |
+| **Internal Schema Storage** | Schema history storage configuration. | `{fileName: "tmp/dbhistory.dat"}` |
+| **Offset Storage** | Offset storage configuration for tracking CDC progress. | `{fileName: "tmp/debezium-offsets.dat"}` |
+| **Liveness Interval** | Interval in seconds for checking CDC listener liveness. | `60.0` |
 | **Options** | Additional connector options as a record expression. | `{}` |
 
 Click **+ Attach Listener** to attach an additional listener to the same service.
@@ -199,18 +199,18 @@ listener mssql:CdcListener mssqlCdcListener = new (database = {
 });
 ```
 
-`mssql:CdcListener` accepts the following top-level fields:
+`mssql:MsSqlListenerConfiguration` accepts the following top-level fields:
 
 | Field | Type | Default | Description |
 |---|---|---|---|
-| `database` | `mssql:DatabaseConfig` | Required | Database connection (see fields below) |
-| `engineName` | `string?` | — | Debezium engine instance name |
-| `internalSchemaStorage` | `record{}?` | — | Schema history storage configuration |
-| `offsetStorage` | `record{}?` | — | Offset storage configuration |
-| `livenessInterval` | `decimal` | `0.0` | Liveness check interval in seconds |
-| `options` | `record{}?` | — | Additional Debezium connector options |
+| `database` | `mssql:MsSqlDatabaseConnection` | Required | Database connection (see fields below) |
+| `engineName` | `string` | `"ballerina-cdc-connector"` | Debezium engine instance name |
+| `internalSchemaStorage` | `cdc:InternalSchemaStorage` | `{fileName: "tmp/dbhistory.dat"}` | Schema history storage configuration |
+| `offsetStorage` | `cdc:OffsetStorage` | `{fileName: "tmp/debezium-offsets.dat"}` | Offset storage configuration |
+| `livenessInterval` | `decimal` | `60.0` | Liveness check interval in seconds |
+| `options` | `mssql:MssqlOptions` | `{}` | SQL Server-specific CDC options |
 
-The `database` value is a record with these fields:
+The `database` value (`mssql:MsSqlDatabaseConnection`) has these fields:
 
 | Field | Type | Default | Description |
 |---|---|---|---|
@@ -218,10 +218,17 @@ The `database` value is a record with these fields:
 | `port` | `int` | `1433` | SQL Server port |
 | `username` | `string` | Required | Database username |
 | `password` | `string` | Required | Database password |
-| `databaseNames` | `string[]` | Required | Databases to capture changes from |
-| `includedSchemas` | `string[]?` | — | Schemas to capture changes from |
+| `databaseNames` | `string\|string[]` | Required | Databases to capture changes from |
+| `includedSchemas` | `string\|string[]?` | — | Regex patterns for schemas to capture |
+| `excludedSchemas` | `string\|string[]?` | — | Regex patterns for schemas to exclude |
+| `includedTables` | `string\|string[]?` | — | Regex patterns for tables to capture |
+| `excludedTables` | `string\|string[]?` | — | Regex patterns for tables to exclude |
 | `databaseInstance` | `string?` | — | SQL Server named instance |
-| `secureSocket` | `cdc:SecureSocket?` | — | SSL/TLS configuration |
+| `secure` | `cdc:SecureDatabaseConnection?` | — | SSL/TLS connection configuration |
+| `tasksMax` | `int` | `1` | Maximum connector tasks (raise when capturing from multiple databases) |
+| `connectTimeout` | `decimal?` | — | Connection timeout in seconds |
+
+For the full set of fields (including `messageKeyColumns`, `includedColumns`, `excludedColumns`, and `streamingConfig`), see the [`ballerinax/mssql` package on Ballerina Central](https://central.ballerina.io/ballerinax/mssql/latest).
 
 </TabItem>
 </Tabs>
