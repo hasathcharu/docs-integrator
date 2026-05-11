@@ -228,19 +228,19 @@ Available log levels:
 | `DEBUG` | Detailed debug information | Development troubleshooting |
 | `TRACE` | Very detailed trace output | Deep debugging (high overhead) |
 
-## VS Code extension issues
+## WSO2 Integrator IDE issues
 
 ### Language server not starting
 
-**Symptom:** VS Code shows "Ballerina Language Server: Not Running" in the status bar.
+**Symptom:** The IDE shows "Ballerina Language Server: Not Running" in the status bar.
 
 | Cause | Solution |
 |-------|----------|
 | Ballerina not installed | Install Ballerina or verify `bal` is in `PATH` |
-| Wrong Ballerina path | Set `ballerina.home` in VS Code settings |
+| Wrong Ballerina path | Set `ballerina.home` in the IDE settings |
 | Java not found | Ensure JDK 17+ is installed and `JAVA_HOME` is set |
 | Extension conflict | Disable other Ballerina-related extensions |
-| Corrupted cache | Delete `~/.ballerina/` and restart VS Code |
+| Corrupted cache | Delete `~/.ballerina/` and restart the IDE |
 
 ### IntelliSense not working
 
@@ -248,7 +248,7 @@ Available log levels:
 
 ```bash
 # Restart the language server
-# VS Code: Ctrl+Shift+P > "Ballerina: Restart Language Server"
+# In the IDE: Ctrl+Shift+P > "Ballerina: Restart Language Server"
 
 # Clear the language server cache
 rm -rf ~/.ballerina/ballerina-language-server/
