@@ -27,7 +27,7 @@ flowchart LR
     F --> G[Response]
 ```
 
-The four nodes — **Retrieve**, **Augment User Query**, **Generate**, and **Return** — map directly to Steps 1–5 below.
+The four nodes — **Retrieve**, **Augment User Query**, **Generate**, and **Return** — map directly to Steps 2–6 below.
 
 ---
 
@@ -142,6 +142,7 @@ The **Generate** action calls the LLM with the augmented message and returns the
 ![Generate action form showing Prompt, Expected type, and Result variable fields.](/img/genai/develop/rag/rag-query/08-generate-form.png)
 
 ![Flow editor showing the Generate node added after the model provider node.](/img/genai/develop/rag/rag-query/09-final-flow.png)
+
 ---
 
 ## Step 6: Return the response
