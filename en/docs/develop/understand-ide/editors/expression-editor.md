@@ -20,49 +20,85 @@ The Expression editor appears in every side panel and form that takes a value, i
 - Default values for configurable variables.
 - Any field marked with the `fx` icon.
 
-{/* ![Expression editor in the Declare Variable panel](TODO-expression-editor-overview.png) */}
+![Expression editor in the Declare Variable panel](/img/develop/understand-ide/editors/expression-editor/declare-variable-panel.png)
 
-## Helper Pane
+## Helper pane
 
-Helperpane will automatically appear once you start typing in the expression editor otherwise you can click the side expand icon.
+The helper pane is a side menu that lists everything you can drop into the current expression. It opens automatically when you start typing in the Expression editor, and you can also open it manually by selecting the expand icon next to the field. The pane groups available items into four categories — **Inputs**, **Variables**, **Configurables**, and **Functions** — so you can locate the right reference without leaving the editor.
 
-### Input
+![Expression editor helper pane](/img/develop/understand-ide/editors/expression-editor/helper-pane.png)
 
+### Inputs
 
-
-### Configure
-
-Controls next to the input let you expand the editor into a larger view and toggle the helper panels for variables and functions.
+Lists the parameters and inputs available to the current scope, such as service path parameters, payload fields, and function arguments. Selecting an input inserts a reference to it at the cursor.
 
 ### Variables
 
-Insert any variable that is in scope at the cursor. The picker lists reachable variables together with their types, so you can choose the right one without leaving the editor.
+Lists every variable that is in scope at the cursor, together with its type. Use this category to insert a reference to a variable you have already declared in the flow.
+
+### Configurables
+
+Lists configurable variables defined for the integration. Use this category when an expression should read a value supplied through `Config.toml` or the runtime configuration, instead of being hardcoded.
 
 ### Functions
 
-Insert standard library functions and user-defined functions from the current package. Selecting a function inserts a call template with placeholders for each parameter.
+Lists standard library functions and user-defined functions available for the current package. Selecting a function inserts a call template with placeholders for each parameter.
 
 ## User experience
 
-### Completions
+### Suggestions
 
-Context-aware autocomplete suggests variables, functions, record fields, and keywords that are valid at the cursor. Suggestions are filtered by the expected type, so only compatible options appear first.
+The Expression editor offers context-aware suggestions as you type. Typing `.` after a variable opens a list of the methods, fields, and remote functions available on that variable's type — selecting one inserts the call at the cursor. Suggestions are filtered by the expected type at the cursor, so only compatible options appear first.
+
+![Suggestions triggered after typing a dot](/img/develop/understand-ide/editors/expression-editor/suggestions.png)
 
 ### Chips
 
-Variables and function calls render as compact chips inside the expression. Chips keep long expressions readable and let you click a reference to inspect or replace it without editing the surrounding text.
+Variables render as compact chips inside the expression, whether they are variables you declared, service inputs, configurables, or function parameters. Chips keep long expressions readable and let you click a reference to inspect or replace it without editing the surrounding text.
+
+![A variable rendered as a chip in the Score field](/img/develop/understand-ide/editors/expression-editor/chips.png)
 
 ### Function parameter type suggestions
 
-While filling a function call, the editor surfaces the expected type for the current parameter and offers values that match it. This makes it easy to chain calls without checking the function signature manually.
+While filling a function call, the editor surfaces the expected type for the current parameter and offers values that match it. The suggestion popup also shows the function name and the parameter list, so you can see which argument you are filling without leaving the editor.
+
+![Function parameter type suggestions for calculateZScore](/img/develop/understand-ide/editors/expression-editor/function-parameter-type-suggestions.png)
+
+### Diagnostics
+
+The editor validates the expression as you type and reports problems inline beneath the field. Diagnostics cover issues such as missing required arguments, incompatible types, undefined references, and syntax errors, so you can correct the value before saving the form.
+
+![Inline diagnostic for a missing required parameter](/img/develop/understand-ide/editors/expression-editor/diagnostics.png)
 
 ## Variations
 
 The Expression editor adapts its UI to the type expected at the cursor. The following variations cover the common cases.
 
+### How a variation produces its value
+
+Each variation contributes its value to the underlying integration in a slightly different way:
+
+- **Text mode** wraps the value in a Ballerina template string (`` string `...` ``) and inserts variables as `${variable}` interpolations.
+- **SQL mode** wraps the value in a SQL template (`` sql `...` ``) and likewise inserts variables as `${variable}` interpolations so they bind as parameters.
+- **Number**, **Boolean**, **Array**, **Record**, **Union**, **Nested**, **SELECT**, and **Prompt** insert the value exactly as shown in the editor — no template wrapping.
+
+:::tip
+Avoid switching the field between **Text** and **Expression** while you have a value in progress. The helper pane suggestions are tuned to the current mode, so values that were inserted in one mode (for example, an interpolated chip from Text mode) can produce unexpected output once the mode changes. Pick the mode first, then fill the value.
+:::
+
+:::note
+If you change the field's type after the expression has already been filled, the existing value can cause a validation failure because the editor still holds the previous variation's content. Update the value to match the new type, or clear the field to reset the editor and pick up the variation and helper pane suggestions for the new type.
+:::
+
+### Switching the variation
+
+Most fields support more than one variation. The current variation is shown by the toggle at the top right of the field (for example, **Record / Expression** for a record-typed field, or **Text / Expression** for a `string`-typed field). Select the toggle to switch between the form-style variation and free-form expression entry — for instance, a record field can be filled through the Record Configuration form or, after switching to **Expression**, written directly as a record literal.
+
+![Score field switched to the Expression variation](/img/develop/understand-ide/editors/expression-editor/variation-toggle.png)
+
 ### Text mode
 
-Appears when the expected type is `string`. Provides string-literal entry with support for template strings and variable interpolation.
+Appears when the expected type is `string`. Provides string-literal entry with support for template strings and variable interpolation. When you insert a variable from the helper pane, it is added as `${variable}` so the value is interpolated into the surrounding text. Inserting the same variable from the **Expression** toggle drops the bare reference instead, with no `${ }` wrapper.
 
 ### Number
 
@@ -70,7 +106,7 @@ Appears for `int`, `float`, and `decimal` fields. Accepts numeric literals or nu
 
 ### Boolean
 
-Appears for `boolean` fields. Offers a quick `true` / `false` toggle in addition to free-form expression entry.
+Appears for `boolean` fields. The editor renders a dropdown listing `true` and `false`, so you can pick the value without typing it. Switch to the **Expression** toggle if you need to supply a boolean expression instead of a literal.
 
 ### Array mode
 
@@ -78,15 +114,27 @@ Appears when the expected type is an array. You can add, reorder, and remove ele
 
 ### Record mode
 
-Appears when the expected type is a record. The editor renders each field of the record as its own input, so you can fill the record without writing braces or field names by hand. Optional fields can be added or removed from the form, and each field's input itself uses the variation that matches its type — a `string` field shows Text mode, an `int` field shows Number, an array field shows Array mode, and so on.
+Appears when the expected type is a record. The editor opens a **Record Configuration** form that lists every field of the record on the left and shows a live preview of the resulting record literal on the right, so you can fill the record without writing braces or field names by hand. Each field uses the variation that matches its type, and any field can be excluded from the literal by clearing its checkbox.
 
-The Record variation also supports nested values inline. When a field is a union, an array, or a boolean, you can supply that value directly inside the record form:
+For example, the following record type:
 
-- **Union** — choose the member type, then enter the value using that member's variation.
-- **Array** — open the field as an inline array editor and add elements one by one.
-- **Boolean** — toggle `true` / `false` on the field itself.
+```ballerina
+type genValue record {
+    int|string id;
+    decimal[] scoreValues;
+    record {| string name; |} value;
+    boolean isGenerated;
+};
+```
 
-{/* ![Record variation UI](TODO-expression-editor-record.png) */}
+Renders in the Record Configuration editor as:
+
+- `id` — a **union** of `int` and `string`. The editor shows a dropdown so you can pick which member type to supply, then accepts a value using that member's variation.
+- `scoreValues` — a `decimal[]` **array**. The editor shows an inline list with an **Add decimal** action so you can add elements one at a time, each using the Number variation.
+- `value` — a **nested record**. The editor expands the inner record's fields directly inside the parent form, so the `name` field of the inner record appears as a `string` input under `value`.
+- `isGenerated` — a **boolean**. The editor shows a checkbox you can toggle between `true` and `false`.
+
+![Record Configuration editor for the genValue record](/img/develop/understand-ide/editors/expression-editor/record-config-editor.png)
 
 ### Union mode
 
@@ -98,11 +146,11 @@ When types compose — for example, a union of arrays — the editor nests the m
 
 ### SELECT
 
-Appears for fields that accept a fixed set of values, such as enumerated configuration options. The field renders as a dropdown instead of a free-form expression.
+Appears for fields whose type is an enum or any other fixed set of values. The editor renders a dropdown listing every member of the type, so you can pick a valid value without recalling its exact spelling.
 
 ### SQL
 
-Appears when you author SQL queries — for example, in database connector parameters. The editor provides SQL-aware highlighting and lets you bind integration variables as query parameters.
+Appears when you author SQL queries — for example, in database connector parameters. The editor provides SQL-aware highlighting and lets you bind integration variables as query parameters. Variables you insert from the helper pane are added as `${variable}` interpolations inside the `` sql `...` `` template, which the database connector then binds as prepared-statement parameters; inserting the same variable from the **Expression** toggle drops a bare reference instead.
 
 ### Prompt
 
