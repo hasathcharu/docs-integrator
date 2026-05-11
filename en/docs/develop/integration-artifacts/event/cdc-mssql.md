@@ -305,6 +305,6 @@ The handler parameter types are inferred at runtime from the row data. Declare a
 
 ## What's next
 
-- [CDC - PostgreSQL](cdc-postgresql.md) — capture changes from PostgreSQL tables
+- [CDC for PostgreSQL](cdc-postgresql.md) — capture changes from PostgreSQL tables
 - [Kafka](kafka.md) — consume messages from Apache Kafka topics
 - [Connections](../supporting/connections.md) — reuse database credentials across services
