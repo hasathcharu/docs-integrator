@@ -1,3 +1,10 @@
+---
+connector: true
+connector_name: "email"
+title: "Example"
+description: "Step-by-step example of sending an email using the Email SMTP connector in WSO2 Integrator."
+---
+
 # Example
 
 ## What you'll build
