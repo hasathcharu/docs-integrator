@@ -106,8 +106,6 @@ Ballerina by Example (BBE) is a collection of over 200 runnable code examples th
 
 ## AI integrations
 
-Examples that demonstrate the building blocks for AI-powered integrations: direct LLM calls, retrieval-augmented generation (RAG), Model Context Protocol (MCP) servers, AI agents, and natural expressions.
-
 | Example | Description |
 |---------|-------------|
 | **[Direct LLM Calls](https://ballerina.io/learn/by-example/direct-llm-calls/)** | Single-shot calls to a large language model |
