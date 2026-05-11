@@ -66,7 +66,7 @@ listener email:PopListener popListener = check new ({
 service on popListener {
 
     remote function onMessage(email:Message msg) returns error? {
-        string sender = msg.'from ?: "";
+        string sender = msg.'from ?: "(unknown sender)";
         string subject = msg.subject;
         string body = msg.body ?: "";
 
@@ -136,7 +136,7 @@ listener email:ImapListener imapListener = check new ({
 service on imapListener {
 
     remote function onMessage(email:Message msg) returns error? {
-        string sender = msg.'from ?: "";
+        string sender = msg.'from ?: "(unknown sender)";
         string subject = msg.subject;
         string body = msg.body ?: "";
 
