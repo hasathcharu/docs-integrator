@@ -21,16 +21,6 @@ Event integrations are designed for reactive workflows triggered by messages fro
 - A running RabbitMQ instance (or use Docker: `docker run -d -p 5672:5672 rabbitmq:management`)
 :::
 
-<!-- # Architecture
-
-<ThemedImage
-    alt="Event-driven integration diagram"
-    sources={{
-        light: useBaseUrl('/img/get-started/build-event-driven-integration/event-diagram-light.svg'),
-        dark: useBaseUrl('/img/get-started/build-event-driven-integration/event-diagram-dark.svg'),
-    }}
-/> -->
-
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
