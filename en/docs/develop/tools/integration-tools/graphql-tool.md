@@ -187,12 +187,18 @@ enum OrderStatus {
 Client generation from GraphQL schemas is currently supported only through the Ballerina CLI (pro-code). Visual Designer support for GraphQL client generation is not yet available.
 :::
 
-```bash
-# Generate a GraphQL client
-bal graphql -i schema.graphql --mode client
+Client generation requires a `graphql.config.yaml` configuration file that specifies the schema and query documents:
 
-# Generate client with specific queries document
-bal graphql -i schema.graphql --mode client -q queries.graphql
+```yaml
+schema: schema.graphql
+documents:
+  - queries.graphql
+```
+
+Then run:
+
+```bash
+bal graphql -i graphql.config.yaml
 ```
 
 ### Defining client queries
@@ -272,12 +278,6 @@ bal graphql -i <schema-file-or-url> [options]
 | `-o`, `--output` | — | No | Current directory | Output directory for generated files |
 | `-s`, `--service` | — | No | — | Service base path for service generation |
 | `--use-records-for-objects` | — | No | `false` | Generate Ballerina records instead of service classes for object types |
-
-### Client mode additional flags
-
-| Flag | Alias | Required | Default | Description |
-|------|-------|----------|---------|-------------|
-| `-d`, `--documents` | — | Yes | — | Path to a file containing GraphQL queries and mutations |
 
 ## Implementing resolvers
 
