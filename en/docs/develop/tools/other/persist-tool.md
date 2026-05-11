@@ -125,6 +125,10 @@ type Department record {|
 |};
 ```
 
+:::tip
+When you have an active database, you could use `bal persist pull` command to introspect the specific database and generate the required model file
+:::
+
 ### Generate the client
 
 ```bash

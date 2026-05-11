@@ -99,7 +99,21 @@ const sidebars: SidebarsConfig = {
               type: 'category',
               label: 'Editors',
               items: [
-                'develop/understand-ide/editors/flow-diagram-editor',
+                {
+                  type: 'category',
+                  label: 'Flow Diagram editor',
+                  link: { type: 'doc', id: 'develop/understand-ide/editors/flow-diagram-editor/flow-diagram-editor' },
+                  items: [
+                    'develop/understand-ide/editors/flow-diagram-editor/connections',
+                    'develop/understand-ide/editors/flow-diagram-editor/statement',
+                    'develop/understand-ide/editors/flow-diagram-editor/control',
+                    'develop/understand-ide/editors/flow-diagram-editor/ai',
+                    'develop/understand-ide/editors/flow-diagram-editor/error-handling',
+                    'develop/understand-ide/editors/flow-diagram-editor/concurrency',
+                    'develop/understand-ide/editors/flow-diagram-editor/logging',
+                    'develop/understand-ide/editors/flow-diagram-editor/show-more-functions',
+                  ],
+                },
                 'develop/understand-ide/editors/service-design-editor',
                 'develop/understand-ide/editors/expression-editor',
                 'develop/understand-ide/editors/type-editor',
@@ -240,6 +254,15 @@ const sidebars: SidebarsConfig = {
             'develop/transform/type-system',
             'develop/transform/query-expressions',
             'develop/transform/expressions-functions',
+          ],
+        },
+        // Develop with Copilot
+        {
+          type: 'category',
+          label: 'WSO2 Integrator Copilot',
+          items: [
+            'develop/copilot/getting-started',
+            'develop/copilot/overview',
           ],
         },
         // 6.6 Try & Test
@@ -1713,26 +1736,10 @@ const sidebars: SidebarsConfig = {
               type: 'category',
               label: 'Building your first AI integration',
               items: [
-                'genai/getting-started/build-a-smart-calculator-assistant',
+                'genai/getting-started/build-a-sentiment-analyzer',
                 'genai/getting-started/build-a-sample-hotel-booking-agent',
               ],
             },
-          ],
-        },
-        // Key Concepts
-        {
-          type: 'category',
-          label: 'Key concepts',
-          items: [
-            'genai/key-concepts/what-is-llm',
-            'genai/key-concepts/what-is-a-natural-function',
-            'genai/key-concepts/what-is-ai-agent',
-            'genai/key-concepts/what-are-tools',
-            'genai/key-concepts/what-is-ai-agent-memory',
-            'genai/key-concepts/what-is-mcp',
-            'genai/key-concepts/what-is-rag',
-            'genai/key-concepts/writing-effective-prompts',
-            'genai/key-concepts/typed-responses',
           ],
         },
         // Develop AI Applications
@@ -1757,7 +1764,8 @@ const sidebars: SidebarsConfig = {
               link: { type: 'doc', id: 'genai/develop/rag/overview' },
               collapsed: true,
               items: [
-                'genai/develop/rag/rag-ingestion'
+                'genai/develop/rag/rag-ingestion',
+                'genai/develop/rag/rag-query'
               ]
             },
             // AI Agents
@@ -1771,7 +1779,17 @@ const sidebars: SidebarsConfig = {
                 'genai/develop/agents/tools',
                 'genai/develop/agents/memory',
                 'genai/develop/agents/observability',
-                'genai/develop/agents/evaluations',
+                {
+                  type: 'category',
+                  label: 'Evaluations',
+                  link: { type: 'doc', id: 'genai/develop/agents/evaluations/overview' },
+                  collapsed: true,
+                  items: [
+                    'genai/develop/agents/evaluations/evalsets',
+                    'genai/develop/agents/evaluations/creating-evaluations',
+                    'genai/develop/agents/evaluations/running-evaluations',
+                  ],
+                },
               ],
             },
             // MCP Integration
@@ -2007,7 +2025,6 @@ const sidebars: SidebarsConfig = {
             'deploy-operate/secure/keystore-truststore',
             'deploy-operate/secure/runtime-security',
             'deploy-operate/secure/authentication',
-            'deploy-operate/secure/sso-configuration',
             'deploy-operate/secure/api-security-rate-limiting',
             'deploy-operate/secure/secrets-encryption',
             'deploy-operate/secure/ip-whitelisting',
@@ -2019,7 +2036,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Capacity planning',
           items: [
-            'deploy-operate/capacity-planning/capacity-planning',
+            'deploy-operate/capacity-planning/overview',
             'deploy-operate/capacity-planning/performance-reports',
           ],
         },
@@ -2084,6 +2101,20 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/observability/anomaly-detection-alerts',
               ],
             },
+            {
+              type: 'category',
+              label: 'Platform services',
+              items: [
+                'manage/cloud/platform-services/managed-databases',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Billing',
+              items: [
+                'manage/cloud/billing/pricing-and-plans',
+              ],
+            },
           ],
         },
         {
@@ -2100,6 +2131,7 @@ const sidebars: SidebarsConfig = {
             'manage/icp/manage-environments',
             'manage/icp/manage-integrations',
             'manage/icp/manage-runtimes',
+            'manage/icp/sso-configuration',
             {
               type: 'category',
               label: 'MI Profile',

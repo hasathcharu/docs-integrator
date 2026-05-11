@@ -13,17 +13,17 @@ The `ballerinax/twilio` package exposes the following clients:
 
 | Client | Purpose |
 |--------|---------|
-| [`Client`](#client) | Full Twilio REST API access — messaging, voice calls, phone numbers, recordings, conferences, and account management. |
+| [`Client`](#client) | Full Twilio REST API access: messaging, voice calls, phone numbers, recordings, conferences, and account management. |
 
 ## Client
 
-Full Twilio REST API access — messaging, voice calls, phone numbers, recordings, conferences, and account management.
+Full Twilio REST API access: messaging, voice calls, phone numbers, recordings, conferences, and account management.
 
 ### Configuration
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `auth` | <code>AuthTokenConfig&#124;ApiKeyConfig</code> | Required | Authentication configuration — either Auth Token or API Key based. |
+| `auth` | <code>AuthTokenConfig&#124;ApiKeyConfig</code> | Required | Authentication configuration: either Auth Token or API Key based. |
 | `httpVersion` | `HttpVersion` | `HTTP_2_0` | HTTP protocol version. |
 | `http1Settings` | `ClientHttp1Settings` | `()` | Configurations for HTTP/1.x protocol. |
 | `http2Settings` | `ClientHttp2Settings` | `()` | Configurations for HTTP/2 protocol. |
