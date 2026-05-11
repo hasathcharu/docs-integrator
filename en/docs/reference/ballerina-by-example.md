@@ -287,6 +287,6 @@ Alternatively, use the "Run" button on each example page at [ballerina.io/learn/
 
 ## What's next
 
-- [Ballerina syntax quick reference](language/ballerina-syntax-quick-reference.md) — Language cheat sheet
-- [Ballerina API documentation](api/ballerina-documentation.md) — Full API docs
-- [Specifications](ballerina-specifications.md) — Language and platform specifications
+- [Ballerina Syntax Quick Reference](language/ballerina-syntax-quick-reference.md) — Language cheat sheet
+- [Ballerina API Documentation](api/ballerina-documentation.md) — Full API docs
+- [Ballerina Specifications](ballerina-specifications.md) — Language and platform specifications
