@@ -4,7 +4,57 @@ title: EDI
 
 # EDI
 
-Electronic Data Interchange (EDI) is a standard format for exchanging business documents such as purchase orders, invoices, and shipping notices between organizations. The `ballerina/edi` module (v1.5.3) provides schema-driven, bidirectional conversion between EDI text and JSON.
+Electronic Data Interchange (EDI) is a set of standards that enables organizations to electronically exchange business documents such as purchase orders, invoices, and shipping notices in a structured, computer-readable format. Common EDI standards include X12 and UN/EDIFACT. The `ballerina/edi` module provides schema-driven, bidirectional conversion between EDI text and JSON.
+
+## EDI data format
+
+An EDI message is a sequence of **segments**. Each segment begins with a couple of character segment identifiers (e.g., `HDR`, `ITM`) followed by one or more **data elements** separated by a data element separator. A segment ends with a segment terminator. For example:
+
+```
+HDR*ORDER_1201*ABC_Store*2008-01-01~
+ITM*A-250*12~
+```
+
+In this example, `*` is the data element separator and `~` is the segment terminator. A **composite data element** contains multiple **component elements** separated by a component element separator (e.g., `:`). Data elements can also repeat within a segment using a repetition separator.
+
+The following JSON schema defines the structure of the above EDI message for use with the `ballerina/edi` module:
+
+```json
+{
+  "name": "SimpleOrder",
+  "delimiters": {
+    "segment": "~",
+    "field": "*",
+    "component": ":",
+    "repetition": "^"
+  },
+  "segments": [
+    {
+      "code": "HDR",
+      "tag": "header",
+      "minOccurances": 1,
+      "fields": [
+        { "tag": "code" },
+        { "tag": "orderId" },
+        { "tag": "organization" },
+        { "tag": "date" }
+      ]
+    },
+    {
+      "code": "ITM",
+      "tag": "items",
+      "maxOccurances": -1,
+      "fields": [
+        { "tag": "code" },
+        { "tag": "item" },
+        { "tag": "quantity", "dataType": "int" }
+      ]
+    }
+  ]
+}
+```
+
+Each `segments` entry maps a segment code to a set of ordered field definitions. The `tag` value becomes the JSON property name in the parsed output, and `maxOccurances: -1` allows a segment to repeat any number of times.
 
 ## Module
 
@@ -19,8 +69,8 @@ import ballerina/edi;
 import ballerina/io;
 
 public function main() returns error? {
-    edi:EdiSchema schema = check edi:getSchema(check io:fileReadJson("resources/schema.json"));
-    string ediText = check io:fileReadString("resources/order.edi");
+    edi:EdiSchema schema = check edi:getSchema(check io:fileReadJson("path/to/schema.json"));
+    string ediText = check io:fileReadString("path/to/order.edi");
     json orderData = check edi:fromEdiString(ediText, schema);
     io:println(orderData.toJsonString());
 }
@@ -60,7 +110,7 @@ import ballerina/edi;
 import ballerina/io;
 
 public function main() returns error? {
-    json order = {
+    json newOrder = {
         "header": {
             "code": "HDR",
             "orderId": "ORDER_1201",
@@ -72,8 +122,8 @@ public function main() returns error? {
             {"code": "ITM", "item": "B-250", "quantity": 10}
         ]
     };
-    edi:EdiSchema schema = check edi:getSchema(check io:fileReadJson("resources/schema.json"));
-    string ediText = check edi:toEdiString(order, schema);
+    edi:EdiSchema schema = check edi:getSchema(check io:fileReadJson("schema.json"));
+    string ediText = check edi:toEdiString(newOrder, schema);
     io:println(ediText);
 }
 ```
@@ -81,7 +131,9 @@ public function main() returns error? {
 **Output:**
 
 ```
-HDR*ORDER_1201*ABC_Store*2008-01-01~ITM*A-250*12~ITM*B-250*10~
+HDR*ORDER_1201*ABC_Store*2008-01-01~
+ITM*A-250*12~
+ITM*B-250*10~
 ```
 
 ### Load a schema
@@ -92,14 +144,18 @@ import ballerina/io;
 
 public function main() returns error? {
     // Load from a JSON file
-    edi:EdiSchema schema = check edi:getSchema(check io:fileReadJson("resources/schema.json"));
+    edi:EdiSchema schema = check edi:getSchema(check io:fileReadJson("path/to/schema.json"));
+
+    io:println("Schema 01:", schema);
 
     // Or load from an inline JSON string
-    edi:EdiSchema schema2 = check edi:getSchema(string `{
+    edi:EdiSchema orderSchema = check edi:getSchema(string `{
         "name": "SimpleOrder",
         "delimiters": {"segment": "~", "field": "*", "component": ":"},
         "segments": []
     }`);
+
+    io:println("Schema 02:", orderSchema);
 }
 ```
 
@@ -132,11 +188,11 @@ EDI schemas are JSON documents that define how to parse and serialize EDI data. 
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `segment` | `string` | Required | Delimiter between segments (e.g., `~`). |
-| `field` | `string` | Required | Delimiter between fields within a segment (e.g., `*`). |
-| `component` | `string` | Required | Delimiter between components within a field (e.g., `:`). |
-| `subcomponent` | `string` | `"NOT_USED"` | Delimiter between sub-components. |
-| `repetition` | `string` | `"NOT_USED"` | Delimiter for repeating fields. |
+| `segment` | `string` | Required | Segment terminator that marks the end of a segment (e.g., `~`). |
+| `field` | `string` | Required | Data element separator between data elements within a segment (e.g., `*`). |
+| `component` | `string` | Required | Component element separator between components within a composite data element (e.g., `:`). |
+| `subcomponent` | `string` | `"NOT_USED"` | Sub-component element separator, for further subdivision within a component. |
+| `repetition` | `string` | `"NOT_USED"` | Repetition separator for data elements that repeat within a segment (e.g., `^`). |
 | `decimalSeparator` | `string` | — | Custom decimal separator for numeric fields. |
 
 ### Segment definition
