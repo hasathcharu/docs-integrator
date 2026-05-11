@@ -54,8 +54,8 @@ Each standard library module has its own specification defining the module's API
 | Module | Description |
 |--------|-------------|
 | **[`ballerina/lang.value`](https://ballerina.io/spec/lang/master/#lang.value)** | Operations on all Ballerina values |
-| **[`ballerina/lang.array`](https://ballerina.io/spec/lang/master/#lang.array)** | Array operations (push, pop, sort, filter) |
-| **[`ballerina/lang.map`](https://ballerina.io/spec/lang/master/#lang.map)** | Map operations (get, entries, keys, values) |
+| **[`ballerina/lang.array`](https://ballerina.io/spec/lang/master/#lang.array)** | Array/Tuple operations (push, pop, sort, filter) |
+| **[`ballerina/lang.map`](https://ballerina.io/spec/lang/master/#lang.map)** | Map/Record operations (get, entries, keys, values) |
 | **[`ballerina/lang.string`](https://ballerina.io/spec/lang/master/#lang.string)** | String operations (substring, trim, split) |
 | **[`ballerina/lang.int`](https://ballerina.io/spec/lang/master/#lang.int)** | Integer operations and limits |
 | **[`ballerina/lang.float`](https://ballerina.io/spec/lang/master/#lang.float)** | Floating-point operations |
@@ -134,7 +134,7 @@ Ballerina specifications follow a versioning scheme tied to Swan Lake releases.
 | Platform specification | [ballerina.io/spec/](https://ballerina.io/spec/) |
 | Swan Lake release notes | [ballerina.io/downloads/swan-lake-release-notes/](https://ballerina.io/downloads/swan-lake-release-notes/) |
 
-## What's next
+## See also
 
 - [Ballerina by Example](ballerina-by-example.md) — Runnable code examples
 - [Ballerina API Documentation](api/ballerina-documentation.md) — Module API docs
