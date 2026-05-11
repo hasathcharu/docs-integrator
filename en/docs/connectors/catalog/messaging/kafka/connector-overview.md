@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-description: Overview of the Ballerina Kafka connector: producer and consumer for Apache Kafka integration.
+description: "Overview of the Ballerina Kafka connector: producer and consumer for Apache Kafka integration."
 ---
 
 # Overview

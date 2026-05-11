@@ -1,6 +1,6 @@
 ---
 title: Actions
-description: Full reference for MessageSender, MessageReceiver, and Administrator client operations: parameters, return types, and sample code.
+description: "Full reference for MessageSender, MessageReceiver, and Administrator client operations: parameters, return types, and sample code."
 keywords: [wso2 integrator, azure service bus, asb, send, receive, admin, actions, queue, topic]
 ---
 # Actions
@@ -1034,4 +1034,3 @@ asb:RuleProperties[] rules = check admin->listRules("my-topic", "my-sub");
 - [Trigger Reference](triggers.md): event-driven integration using `asb:Listener`
 - [Setup Guide](setup-guide.md): obtain the connection string required for all clients
 - [Example](example.md): complete worked examples for sender, receiver, and trigger
-
