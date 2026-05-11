@@ -1,31 +1,31 @@
 ---
 sidebar_position: 5
 title: Third-Party Observability Tools
-description: Integrate with Datadog, New Relic, Elastic, and other observability platforms.
+description: Integrate WSO2 Integrator with Datadog, New Relic, Elastic, and other observability platforms.
 ---
 
 # Third-Party Observability Tools
 
-WSO2 Integrator integrates with all major observability platforms through Ballerina's built-in observability framework and standard protocols (OpenTelemetry, Prometheus).
+WSO2 Integrator integrates with all major observability platforms through Ballerina's built-in observability framework and standard protocols (OpenTelemetry, Prometheus). Choose a platform based on your infrastructure, compliance requirements, and team expertise.
 
-## Supported platforms
+## Supported Platforms
 
-| Platform | Metrics | Logs | Traces |
-|---|---|---|---|
-| **Prometheus + Grafana** | Native | Via Loki | Via Tempo |
-| **Jaeger** | -- | -- | Native |
-| **Zipkin** | -- | -- | Native |
-| **Elastic Stack** | Via Metricbeat | Via Filebeat | Via APM |
-| **OpenSearch** | Via collector | Via Fluentd | Via Data Prepper |
-| **Datadog** | Via DogStatsD | Via Agent | Via APM |
-| **New Relic** | Via OTLP | Via log forwarder | Via OTLP |
-| **Splunk** | Via OTEL Collector | Via HEC | Via OTEL Collector |
-| **WSO2 Devant** | Built-in | Built-in | Built-in |
-| **WSO2 ICP** | Built-in | Built-in | Built-in |
+| Platform | Metrics | Logs | Traces | Deployment |
+|---|---|---|---|---|
+| **Prometheus + Grafana** | Native | Via Loki | Via Tempo | Self-hosted |
+| **Jaeger** | -- | -- | Native | Self-hosted |
+| **Zipkin** | -- | -- | Native | Self-hosted |
+| **Elastic Stack** | Via Metricbeat | Via Filebeat | Via APM | Self-hosted |
+| **OpenSearch** | Via collector | Via Fluentd | Via Data Prepper | Self-hosted |
+| **Datadog** | Via DogStatsD | Via Agent | Via APM | Managed Cloud |
+| **New Relic** | Via OTLP | Via log forwarder | Via OTLP | Managed Cloud |
+| **Splunk** | Via OTEL Collector | Via HEC | Via OTEL Collector | Managed Cloud |
+| **WSO2 Devant** | Built-in | Built-in | Built-in | Managed Cloud |
+| **WSO2 ICP** | Built-in | Built-in | Built-in | Self-hosted |
 
-## Integration approaches
+## Integration Approaches
 
-### 1. native Ballerina extensions
+### 1. Native Ballerina Extensions
 
 Ballerina has built-in support for Jaeger and Prometheus. Enable them in `Config.toml`:
 
@@ -45,9 +45,9 @@ agentHostname = "jaeger-agent"
 agentPort = 6831
 ```
 
-This approach requires no additional infrastructure beyond the tracing and metrics backends. See [Metrics](metrics.md) and [Distributed Tracing](tracing.md) for detailed configuration.
+This approach requires no additional infrastructure beyond the tracing and metrics backends. See **[Metrics](metrics-overview.md)** and **[Distributed Tracing](distributed-tracing-overview.md)** for detailed configuration.
 
-### 2. OpenTelemetry collector
+### 2. OpenTelemetry Collector
 
 Use the OpenTelemetry Collector as a vendor-neutral pipeline to forward telemetry to any backend. This is the recommended approach when integrating with commercial observability platforms.
 
@@ -113,7 +113,7 @@ helm install otel-collector open-telemetry/opentelemetry-collector \
   -n observability
 ```
 
-### 3. sidecar / agent pattern
+### 3. Sidecar / Agent Pattern
 
 Deploy vendor-specific agents alongside your integration containers:
 
@@ -146,20 +146,24 @@ spec:
           }]
 ```
 
-## Choosing a platform
+## Choosing a Platform
 
 | Use Case | Recommended Approach |
 |---|---|
-| Open source, self-hosted | Prometheus + Grafana + Jaeger |
+| Open source, self-hosted | Prometheus + Grafana + Jaeger + ELK/OpenSearch |
 | Managed cloud, AWS-centric | CloudWatch or Datadog |
 | Managed cloud, multi-cloud | Datadog or New Relic |
 | Full-text log search | Elastic Stack or OpenSearch |
 | WSO2 managed deployment | Devant observability or ICP |
 | Unified metrics, logs, traces | Splunk Observability Cloud |
 
-## Configuration by platform
+## Vendor-Specific Guides
 
-### Datadog quick start
+### Datadog
+
+Datadog provides a full-stack observability platform with integrated metrics, logs, traces, and APM.
+
+**Quick Start:**
 
 ```toml
 # Config.toml -- route traces through Datadog Agent
@@ -171,7 +175,18 @@ tracingProvider = "jaeger"
 reporterEndpoint = "http://datadog-agent:14268/api/traces"
 ```
 
-### New relic quick start
+**Full Setup:** See **[Datadog Integration](datadog-integration.md)** for detailed configuration including:
+- Datadog Agent installation
+- Metrics collection via OpenMetrics
+- Trace forwarding via Jaeger
+- Log collection and tagging
+- Dashboard creation and alerting
+
+### New Relic
+
+New Relic is a multi-cloud observability platform with APM, infrastructure monitoring, and log management.
+
+**Quick Start:**
 
 ```toml
 # Config.toml -- route traces through OTEL Collector to New Relic
@@ -183,23 +198,28 @@ tracingProvider = "jaeger"
 reporterEndpoint = "http://otel-collector:14268/api/traces"
 ```
 
-### Elastic APM quick start
+**Full Setup:** See **[New Relic Integration](new-relic-integration.md)** for detailed configuration including:
+- Metrics via Prometheus remote write
+- Traces via OpenTelemetry Collector
+- Logs via New Relic infrastructure agent or Fluent Bit
+- NRQL dashboards and alerts
 
-```toml
-# Config.toml -- route traces through OTEL Collector to Elastic
-[ballerina.observe]
-tracingEnabled = true
-tracingProvider = "jaeger"
+### Moesif API Analytics
 
-[ballerinax.jaeger]
-reporterEndpoint = "http://otel-collector:14268/api/traces"
-```
+Moesif specializes in API analytics, monitoring, and usage-based billing. Use it alongside other observability tools for API-specific insights.
 
-For all platforms, the Ballerina configuration points to either a local agent or an OpenTelemetry Collector. The collector configuration determines the final destination.
+**Setup:** See **[Moesif API Analytics](moesif-api-analytics.md)** for:
+- HTTP interceptor configuration
+- User and company context tracking
+- API usage analytics
+- Threshold-based alerts
 
-## What's next
+## What's Next
 
-- [Metrics](metrics.md) -- Configure Prometheus metrics collection
-- [Distributed Tracing](tracing.md) -- Configure trace exporters
-- [Logging](logging.md) -- Configure structured logging
-- [Integration Control Plane](icp.md) -- WSO2-native monitoring dashboard
+- **[Datadog Integration](datadog-integration.md)** -- Full-stack observability platform setup
+- **[New Relic Integration](new-relic-integration.md)** -- Multi-cloud observability setup
+- **[Moesif API Analytics](moesif-api-analytics.md)** -- API-specific monitoring and analytics
+- **[Metrics](metrics-overview.md)** -- Configure Prometheus metrics collection
+- **[Distributed Tracing](distributed-tracing-overview.md)** -- Configure trace exporters
+- **[Logging](logging-overview.md)** -- Configure structured logging
+- **[Integration Control Plane](integration-control-plane-icp.md)** -- WSO2-native monitoring dashboard

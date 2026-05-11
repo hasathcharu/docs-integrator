@@ -1,12 +1,12 @@
 ---
 sidebar_position: 4
 title: Distributed Tracing
-description: OpenTelemetry integration with Jaeger for distributed tracing.
+description: Configure OpenTelemetry-based distributed tracing for WSO2 Integrator.
 ---
 
-# Distributed Tracing (OpenTelemetry, Jaeger)
+# Distributed Tracing (OpenTelemetry, Jaeger, Zipkin)
 
-Trace requests as they flow through your WSO2 Integrator services and downstream dependencies to identify bottlenecks and debug failures.
+Trace requests as they flow through your WSO2 Integrator services and downstream dependencies to identify bottlenecks and debug failures. Ballerina provides built-in support for distributed tracing using OpenTelemetry, with multiple backend options including Jaeger and Zipkin.
 
 ## Overview
 
@@ -19,7 +19,7 @@ Key benefits:
 - **Error correlation** -- Connect errors to the specific span where they occurred
 - **Dependency mapping** -- Understand service-to-service call patterns
 
-## OpenTelemetry integration
+## OpenTelemetry Integration
 
 Ballerina integrates with OpenTelemetry for trace collection and export. Enable tracing in `Config.toml`:
 
@@ -48,7 +48,7 @@ name = "jaeger"
 version = "1.0.0"
 ```
 
-### Automatic instrumentation
+### Automatic Instrumentation
 
 Ballerina automatically creates spans for:
 
@@ -59,7 +59,7 @@ Ballerina automatically creates spans for:
 
 No code changes are required for basic tracing. Trace context (W3C Trace Context headers) is propagated automatically across HTTP calls.
 
-### Custom spans
+## Custom Spans
 
 Add custom spans for application-specific operations:
 
@@ -90,7 +90,7 @@ service /orders on new http:Listener(9090) {
 }
 ```
 
-### Adding span tags
+## Adding Span Tags
 
 Attach metadata to spans for filtering and searching in the tracing UI:
 
@@ -111,9 +111,9 @@ public function processOrder(json order) returns error? {
 }
 ```
 
-## Configuring trace exporters
+## Configuring Trace Exporters
 
-### Jaeger exporter
+### Jaeger Exporter
 
 For Jaeger, configure the agent or collector endpoint:
 
@@ -128,7 +128,9 @@ agentPort = 6831
 reporterEndpoint = "http://jaeger-collector.observability:14268/api/traces"
 ```
 
-### Zipkin exporter
+See **[Jaeger Setup](jaeger-distributed-tracing.md)** for complete Jaeger deployment and configuration.
+
+### Zipkin Exporter
 
 To export traces to Zipkin instead:
 
@@ -142,7 +144,9 @@ tracingProvider = "zipkin"
 reporterEndpoint = "http://zipkin.observability:9411/api/v2/spans"
 ```
 
-### OpenTelemetry collector
+See **[Zipkin Setup](zipkin-tracing.md)** for Zipkin deployment and configuration.
+
+### OpenTelemetry Collector
 
 For a vendor-neutral approach, export traces to an OpenTelemetry Collector, which can then forward to any backend:
 
@@ -187,51 +191,31 @@ service:
       exporters: [jaeger, otlp]
 ```
 
-## Jaeger setup and usage
+## Jaeger Setup and Usage
 
-### Running Jaeger locally
+For production-grade distributed tracing with Jaeger:
 
-For local development, run Jaeger as an all-in-one container:
+1. **Deploy Jaeger** – Run Jaeger as all-in-one container or production deployment
+2. **Configure Ballerina** – Point to Jaeger agent or collector
+3. **View Traces** – Open Jaeger UI to search and analyze traces
+4. **Set Sampling** – Configure sampling strategy for production
 
-```bash
-docker run -d --name jaeger \
-  -p 6831:6831/udp \
-  -p 16686:16686 \
-  -p 14268:14268 \
-  jaegertracing/all-in-one:latest
-```
+See **[Jaeger Setup](jaeger-distributed-tracing.md)** for detailed instructions.
 
-Access the Jaeger UI at `http://localhost:16686`.
+## Zipkin Setup and Usage
 
-### Kubernetes deployment
+For lightweight distributed tracing with Zipkin:
 
-Deploy Jaeger in your cluster using the Jaeger Operator or a Helm chart:
+1. **Deploy Zipkin** – Run Zipkin container
+2. **Configure Ballerina** – Enable Zipkin tracing provider
+3. **View Traces** – Open Zipkin UI to search traces
+4. **Configure Sampling** – Set sampling strategy
 
-```bash
-# Install Jaeger Operator
-kubectl create namespace observability
-kubectl apply -f https://github.com/jaegertracing/jaeger-operator/releases/latest/download/jaeger-operator.yaml -n observability
+See **[Zipkin Setup](zipkin-tracing.md)** for detailed instructions.
 
-# Create a Jaeger instance
-kubectl apply -f - <<EOF
-apiVersion: jaegertracing.io/v1
-kind: Jaeger
-metadata:
-  name: integrator-tracing
-  namespace: observability
-spec:
-  strategy: production
-  storage:
-    type: elasticsearch
-    options:
-      es:
-        server-urls: http://elasticsearch:9200
-EOF
-```
+## Trace Analysis for Debugging
 
-## Trace analysis for debugging
-
-### Finding slow requests
+### Finding Slow Requests
 
 In the Jaeger UI:
 
@@ -240,7 +224,7 @@ In the Jaeger UI:
 3. Click **Find Traces** to see matching requests
 4. Click a trace to see the span waterfall, showing where time was spent
 
-### Correlating traces with logs
+### Correlating Traces with Logs
 
 Include the trace ID in your log messages by enabling trace context logging:
 
@@ -255,7 +239,7 @@ public function processOrder(string orderId) returns error? {
 }
 ```
 
-### Sampling configuration
+### Sampling Configuration
 
 In production, sampling reduces overhead. Configure the sampler:
 
@@ -276,8 +260,10 @@ samplerType = "ratelimiting"
 samplerParam = 2.0
 ```
 
-## What's next
+## What's Next
 
-- [Logging](logging.md) -- Configure structured logging
-- [Metrics](metrics.md) -- Monitor service health with Prometheus
-- [Datadog / New Relic / Splunk](third-party.md) -- Third-party observability integrations
+- **[Jaeger Setup](jaeger-distributed-tracing.md)** – Production distributed tracing with Jaeger
+- **[Zipkin Setup](zipkin-tracing.md)** – Lightweight tracing with Zipkin
+- **[Logging](logging-overview.md)** -- Configure structured logging and correlate with traces
+- **[Metrics](metrics-overview.md)** -- Monitor service health with Prometheus
+- **[Datadog / New Relic / Splunk](third-party-overview.md)** -- Third-party observability integrations

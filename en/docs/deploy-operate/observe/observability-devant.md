@@ -1,12 +1,12 @@
 ---
 sidebar_position: 6
-title: Observability with WSO2 Devant
-description: Use WSO2 Devant for integrated observability of your Ballerina integrations.
+title: Observability with WSO2 Integration Platform
+description: Use WSO2 Integration Platform for integrated observability of your Ballerina integrations.
 ---
 
-# Observability with WSO2 Devant
+# Observability with WSO2 Integration Platform
 
-WSO2 Devant provides a fully managed observability experience for integrations deployed through the Devant platform. It offers built-in dashboards, alerting, and log aggregation without requiring you to set up external observability infrastructure.
+WSO2 Integration Platform provides a fully managed observability experience for integrations deployed through the platform. It offers built-in dashboards, alerting, and log aggregation without requiring you to set up external observability infrastructure.
 
 ## Features
 
@@ -18,9 +18,9 @@ WSO2 Devant provides a fully managed observability experience for integrations d
 | Alerting | Threshold-based alerts for latency, error rate, and throughput |
 | Diagnostics | Memory, CPU, and thread diagnostics per deployment |
 
-## Enabling observability in Devant
+## Enabling observability in WSO2 Integration Platform
 
-Observability is enabled by default for all integrations deployed to WSO2 Devant. No additional configuration is required.
+Observability is enabled by default for all integrations deployed to WSO2 Integration Platform. No additional configuration is required.
 
 If you need to customize the observability settings, update your `Cloud.toml`:
 
@@ -38,9 +38,9 @@ loggingEnabled = true
 
 ### Request metrics dashboard
 
-Access the metrics dashboard from the Devant console:
+Access the metrics dashboard from the WSO2 Integration Platform console:
 
-1. Navigate to your integration in the Devant console.
+1. Navigate to your integration in the WSO2 Integration Platform console.
 2. Select the **Observability** tab.
 3. View request rate, latency percentiles (p50, p95, p99), and error rates.
 
@@ -56,7 +56,7 @@ Access the metrics dashboard from the Devant console:
 
 ## Viewing logs
 
-Stream logs in real time from the Devant console:
+Stream logs in real time from the WSO2 Integration Platform console:
 
 1. Navigate to your integration.
 2. Select the **Logs** tab.
@@ -72,11 +72,11 @@ import ballerina/log;
 log:printInfo("Order processed", orderId = orderId, amount = totalAmount);
 ```
 
-This produces searchable log entries with `orderId` and `amount` as filterable fields in the Devant console.
+This produces searchable log entries with `orderId` and `amount` as filterable fields in the WSO2 Integration Platform console.
 
 ## Distributed tracing
 
-Devant automatically instruments your integrations for distributed tracing:
+WSO2 Integration Platform automatically instruments your integrations for distributed tracing:
 
 1. Navigate to your integration.
 2. Select the **Traces** tab.
@@ -90,7 +90,7 @@ Trace spans include:
 
 ## Alerting
 
-Configure alerts from the Devant console:
+Configure alerts from the WSO2 Integration Platform console:
 
 1. Navigate to **Observability** > **Alerts**.
 2. Create a new alert rule.
