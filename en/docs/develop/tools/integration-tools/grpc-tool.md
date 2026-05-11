@@ -291,16 +291,51 @@ bal grpc --input order_service.proto --proto_path ./protos/ --proto_path ./third
 
 ## Command reference
 
-| Command | Description |
+```bash
+bal grpc --input <proto-file> [options]
+```
+
+| Flag | Alias | Required | Default | Description |
+|------|-------|----------|---------|-------------|
+| `--input` | `-i` | Yes | — | Path to the `.proto` file |
+| `--output` | `-o` | No | Current directory | Output directory for generated files |
+| `--mode` | — | No | Both | Generation mode: `client`, `service`, or omit for both |
+| `--proto-path` | — | No | — | Path to a directory containing imported `.proto` files |
+
+## Protobuf to Ballerina type mapping
+
+| Protobuf type | Ballerina type |
 |---|---|
-| `bal grpc --input <file.proto>` | Generate service and client |
-| `--mode service` | Generate service stub only |
-| `--mode client` | Generate client only |
-| `--output <dir>` | Output directory |
-| `--proto_path <dir>` | Additional proto import paths |
+| `double` | `float` |
+| `float` | `float` |
+| `int32`, `sint32`, `sfixed32` | `int` |
+| `int64`, `sint64`, `sfixed64` | `int` |
+| `uint32`, `fixed32` | `int` |
+| `uint64`, `fixed64` | `int` |
+| `bool` | `boolean` |
+| `string` | `string` |
+| `bytes` | `byte[]` |
+| `enum` | `enum` |
+| `message` | `record {}` |
+| `repeated T` | `T[]` |
+| `map<K, V>` | `map<V>` |
+| `oneof` | Union type |
+| `google.protobuf.Any` | `anydata` |
+| `google.protobuf.Timestamp` | `time:Utc` |
+| `google.protobuf.Duration` | `decimal` |
+| `google.protobuf.Struct` | `map<anydata>` |
+
+## gRPC communication patterns
+
+| Pattern | Proto definition | Ballerina signature |
+|---|---|---|
+| Unary | `rpc Method(Req) returns (Res)` | `remote function Method(Req) returns Res\|error` |
+| Server streaming | `rpc Method(Req) returns (stream Res)` | `remote function Method(Req) returns stream<Res, error?>\|error` |
+| Client streaming | `rpc Method(stream Req) returns (Res)` | `remote function Method(stream<Req, error?>) returns Res\|error` |
+| Bidirectional | `rpc Method(stream Req) returns (stream Res)` | `remote function Method(stream<Req, error?>) returns stream<Res, error?>\|error` |
 
 ## What's next
 
-- [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients
-- [WSDL Tool](wsdl-tool.md) -- Generate SOAP clients from WSDL files
-- [Error Handling](/docs/develop/design-logic/error-handling) -- Handle gRPC errors and deadlines
+- [OpenAPI Tool](openapi-tool.md) — Generate REST services and clients
+- [WSDL Tool](wsdl-tool.md) — Generate SOAP clients from WSDL files
+- [Error handling](/docs/develop/design-logic/error-handling) — Handle gRPC errors and deadlines

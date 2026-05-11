@@ -251,21 +251,33 @@ Generate a GraphQL SDL file from an existing Ballerina GraphQL service:
 
 ```bash
 # Export SDL from a Ballerina service
-bal graphql -i service.bal --mode export
+bal graphql -i service.bal --mode schema
 
-# Export to a specific file
-bal graphql -i service.bal --mode export -o schema/
+# Export to a specific directory
+bal graphql -i service.bal --mode schema -o schema/
 ```
 
 ## Command reference
 
-| Command | Description |
-|---|---|
-| `bal graphql -i <schema.graphql> --mode service` | Generate service from SDL |
-| `bal graphql -i <schema.graphql> --mode client` | Generate client from SDL |
-| `bal graphql -i <service.bal> --mode export` | Export SDL from service |
-| `-o <dir>` | Output directory |
-| `-q <queries.graphql>` | Queries document for client generation |
+```bash
+bal graphql -i <schema-file-or-url> [options]
+```
+
+### Generate flags
+
+| Flag | Alias | Required | Default | Description |
+|------|-------|----------|---------|-------------|
+| `-i`, `--input` | — | Yes | — | Path to the GraphQL SDL file (`.graphql`) or a GraphQL endpoint URL |
+| `--mode` | — | No | `service` | Generation mode: `service`, `client`, or `schema` |
+| `-o`, `--output` | — | No | Current directory | Output directory for generated files |
+| `-s`, `--service` | — | No | — | Service base path for service generation |
+| `--use-records-for-objects` | — | No | `false` | Generate Ballerina records instead of service classes for object types |
+
+### Client mode additional flags
+
+| Flag | Alias | Required | Default | Description |
+|------|-------|----------|---------|-------------|
+| `-d`, `--documents` | — | Yes | — | Path to a file containing GraphQL queries and mutations |
 
 ## Implementing resolvers
 
@@ -307,8 +319,26 @@ service /graphql on new graphql:Listener(9090) {
 }
 ```
 
+## GraphQL to Ballerina type mapping
+
+| GraphQL type | Ballerina type |
+|---|---|
+| `String` | `string` |
+| `Int` | `int` |
+| `Float` | `float` |
+| `Boolean` | `boolean` |
+| `ID` | `string` |
+| `[T]` | `T[]` |
+| `T!` | `T` (non-optional) |
+| `T` (nullable) | `T?` |
+| `enum` | `enum` |
+| `input` | `record {}` |
+| `type` | `service class` or `record {}` |
+| `union` | Union type |
+| `interface` | `distinct service class` |
+
 ## What's next
 
-- [AsyncAPI Tool](asyncapi-tool.md) -- Generate event-driven services from AsyncAPI specs
-- [OpenAPI Tool](openapi-tool.md) -- Generate REST services and clients
-- [Ballerina Pro-Code](/docs/develop/design-logic/ballerina-pro-code) -- Write advanced GraphQL resolver logic
+- [AsyncAPI Tool](asyncapi-tool.md) — Generate event-driven services from AsyncAPI specs
+- [OpenAPI Tool](openapi-tool.md) — Generate REST services and clients
+- [Ballerina pro-code](/docs/develop/design-logic/ballerina-pro-code) — Write advanced GraphQL resolver logic

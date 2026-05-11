@@ -165,13 +165,113 @@ stream<Employee, error?> employees = sClient->/employees;
 </TabItem>
 </Tabs>
 
+## Migrate the schema
+
+Create database migration scripts based on changes to the data model. This command compares the current data model with the previous state and generates incremental migration scripts.
+
+```bash
+bal persist migrate --datastore <datastore> --module <module> <migration-label>
+```
+
+| Argument / Flag | Required | Default | Description |
+|---|---|---|---|
+| `migration-label` | Yes | — | A descriptive label for the migration (for example, `add_email_column`) |
+| `--datastore` | Yes | — | Target data store: `mysql`, `mssql`, or `postgresql` |
+| `--module` | Yes | — | Name of the module containing the data model |
+
+```bash
+# Create a migration after modifying the data model
+bal persist migrate --datastore mysql --module db add_phone_column
+```
+
+The command generates a timestamped migration directory under `persist/migrations/`:
+
+```
+persist/
+  migrations/
+    20240115120000_add_phone_column/
+      script.sql     # Incremental SQL migration script
+      model.bal      # Snapshot of the data model at this point
+```
+
+## Push the schema
+
+Pushes the current data model schema directly to the target data store. Useful for development and testing environments where migration tracking is not needed.
+
+```bash
+bal persist push --datastore <datastore> --module <module>
+```
+
+| Flag | Required | Default | Description |
+|---|---|---|---|
+| `--datastore` | Yes | — | Target data store: `mysql`, `mssql`, `postgresql`, or `sqlite` |
+| `--module` | Yes | — | Name of the module containing the data model |
+
+:::warning
+`bal persist push` drops and recreates tables. Use this only in development environments. For production, use `bal persist migrate`.
+:::
+
 ## Command reference
 
-| Command | Description |
-|---|---|
-| `bal persist init` | Initialize persist directory and model file |
-| `bal persist add` | Add persist support and configure build integration |
-| `bal persist generate` | One-time client generation without build integration |
-| `bal persist pull` | Introspect an existing database to generate the model |
-| `bal persist migrate` | Generate SQL migration scripts (experimental) |
-| `--datastore <type>` | Target data store (`mysql`, `mssql`, `postgresql`, `googlesheets`, `redis`, `inmemory`) |
+### bal persist init
+
+```bash
+bal persist init --datastore <datastore> --module <module>
+```
+
+| Flag | Required | Default | Description |
+|---|---|---|---|
+| `--datastore` | No | `inmemory` | Target data store: `mysql`, `mssql`, `postgresql`, `sqlite`, `googlesheets`, `redis`, `inmemory` |
+| `--module` | No | — | Name of the submodule for persistence definitions |
+
+### bal persist generate
+
+```bash
+bal persist generate --datastore <datastore> --module <module>
+```
+
+| Flag | Required | Default | Description |
+|---|---|---|---|
+| `--datastore` | Yes | — | Target data store: `mysql`, `mssql`, `postgresql`, `sqlite`, `googlesheets`, `redis`, `inmemory` |
+| `--module` | Yes | — | Name of the module containing the data model |
+
+### bal persist migrate
+
+```bash
+bal persist migrate --datastore <datastore> --module <module> <migration-label>
+```
+
+| Flag | Required | Default | Description |
+|---|---|---|---|
+| `--datastore` | Yes | — | Target data store: `mysql`, `mssql`, or `postgresql` |
+| `--module` | Yes | — | Name of the module containing the data model |
+| `migration-label` | Yes | — | Descriptive label for the migration |
+
+### bal persist push
+
+```bash
+bal persist push --datastore <datastore> --module <module>
+```
+
+| Flag | Required | Default | Description |
+|---|---|---|---|
+| `--datastore` | Yes | — | Target data store: `mysql`, `mssql`, `postgresql`, or `sqlite` |
+| `--module` | Yes | — | Name of the module containing the data model |
+
+## Supported data stores
+
+| Data store | `--datastore` value | Migrations | Notes |
+|---|---|---|---|
+| MySQL | `mysql` | Yes | Full SQL support |
+| Microsoft SQL Server | `mssql` | Yes | Full SQL support |
+| PostgreSQL | `postgresql` | Yes | Full SQL support |
+| SQLite | `sqlite` | No | File-based, no migration support |
+| Google Sheets | `googlesheets` | No | Requires OAuth2 configuration |
+| Redis | `redis` | No | Key-value store |
+| In-memory | `inmemory` | No | For testing and prototyping |
+
+## What's next
+
+- [Scan Tool](scan-tool.md) — Analyze Ballerina code for security and quality issues
+- [Configuration management](/docs/develop/design-logic/configuration-management) — Manage data store credentials with configurable variables
+- [Databases connector guide](/docs/connectors/catalog/database) — Database connectivity options
