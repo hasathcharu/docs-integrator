@@ -1,5 +1,7 @@
 ---
 title: Setup Guide
+description: Create an Azure Service Bus namespace, queue or topic, and obtain the connection string for use with the Ballerina ballerinax/asb connector.
+keywords: [wso2 integrator, azure service bus, setup, connection string, namespace, queue, topic]
 ---
 # Setup Guide
 
@@ -24,7 +26,7 @@ This guide walks you through creating an Azure Service Bus namespace, a queue or
 5. Click **Review + Create**, then **Create**.
 6. Wait for the deployment to complete, then click **Go to resource**.
 
-:::note
+:::info
 The **Standard** tier or higher is required if you plan to use topics and subscriptions. The **Basic** tier only supports queues.
 :::
 
@@ -59,7 +61,13 @@ The connection string looks like:
 Endpoint=sb://<namespace>.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=<key>
 ```
 
-:::tip
+:::info
 Store the connection string securely. Do not commit it to source control.
 Use Ballerina's `configurable` feature and a `Config.toml` file to supply it at runtime.
 :::
+
+## What's next
+
+- [Action Reference](actions.md) — start sending and receiving messages
+- [Trigger Reference](triggers.md) — set up event-driven message consumption
+- [Example](example.md) — complete worked examples for sender, receiver, and trigger
