@@ -53,7 +53,7 @@ import ballerina/email;
 
 configurable string host = "pop.example.com";
 configurable string username = "reader@example.com";
-configurable string password = ?;
+configurable string password = ?; // app password after enaling pop3/imap4 protocol for the email address
 
 listener email:PopListener popListener = check new ({
     host: host,
@@ -66,7 +66,11 @@ listener email:PopListener popListener = check new ({
 service on popListener {
 
     remote function onMessage(email:Message msg) returns error? {
-        // Process incoming email
+        string sender = msg.'from ?: "";
+        string subject = msg.subject;
+        string body = msg.body ?: "";
+
+        log:printInfo("Email received", sender = sender, subject = subject);
     }
 
     remote function onError(email:Error err) {
@@ -119,7 +123,7 @@ import ballerina/email;
 
 configurable string host = "imap.example.com";
 configurable string username = "reader@example.com";
-configurable string password = ?;
+configurable string password = ?; // app password after enaling pop3/imap4 protocol for the email address
 
 listener email:ImapListener imapListener = check new ({
     host: host,
@@ -132,7 +136,11 @@ listener email:ImapListener imapListener = check new ({
 service on imapListener {
 
     remote function onMessage(email:Message msg) returns error? {
-        // Process incoming email
+        string sender = msg.'from ?: "";
+        string subject = msg.subject;
+        string body = msg.body ?: "";
+
+        log:printInfo("Email received", sender = sender, subject = subject);
     }
 
     remote function onError(email:Error err) {
