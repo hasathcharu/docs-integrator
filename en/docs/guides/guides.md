@@ -18,7 +18,6 @@ Complete, end-to-end examples you can follow from start to finish.
 
 Reusable integration patterns you can apply across projects:
 
-- **[Normalizer](patterns/normalizer.md)** -- Convert different message formats into a common canonical form
 - **[Message Filter](patterns/message-filter.md)** -- Route only messages that match a condition
 
 ## Migration guides

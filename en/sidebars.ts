@@ -1825,7 +1825,6 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Enterprise integration patterns',
           items: [
-            'guides/patterns/normalizer',
             'guides/patterns/message-filter',
           ],
         },
