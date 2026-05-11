@@ -6,9 +6,9 @@ description: Author Ballerina expressions with assistance, suggestions, and inli
 
 # Expression editor
 
-The Expression editor is the inline value-input surface used throughout the WSO2 Integrator IDE wherever a field accepts an expression. It provides syntax highlighting, inline validation, and a UI that adapts to the type expected at the cursor — so you can supply values without remembering the full Ballerina syntax for each context.
+The Expression editor is the inline value-input surface used throughout the WSO2 Integrator IDE wherever a field accepts an expression. It provides syntax highlighting, inline validation, and a UI that adapts to the type expected at the cursor, so you can supply values without remembering the full Ballerina syntax for each context.
 
-You can recognize the editor by the `fx` icon next to a field. Selecting it opens the inline editor; the expand control opens the same editor in a larger view for longer expressions.
+You can recognize the editor by the `fx` icon next to a field. Selecting it opens the inline editor. The expand control opens the same editor in a larger view for longer expressions.
 
 ## Where the expression editor appears
 
@@ -24,7 +24,7 @@ The Expression editor appears in every side panel and form that takes a value, i
 
 ## Helper pane
 
-The helper pane is a side menu that lists everything you can drop into the current expression. It opens automatically when you start typing in the Expression editor, and you can also open it manually by selecting the expand icon next to the field. The pane groups available items into four categories — **Inputs**, **Variables**, **Configurables**, and **Functions** — so you can locate the right reference without leaving the editor.
+The helper pane is a side menu that lists everything you can drop into the current expression. It opens automatically when you start typing in the Expression editor, and you can also open it manually by selecting the expand icon next to the field. The pane groups available items into four categories: **Inputs**, **Variables**, **Configurables**, and **Functions**. This grouping helps you locate the right reference without leaving the editor.
 
 ![Expression editor helper pane](/img/develop/understand-ide/editors/expression-editor/helper-pane.png)
 
@@ -48,7 +48,7 @@ Lists standard library functions and user-defined functions available for the cu
 
 ### Suggestions
 
-The Expression editor offers context-aware suggestions as you type. Typing `.` after a variable opens a list of the methods, fields, and remote functions available on that variable's type — selecting one inserts the call at the cursor. Suggestions are filtered by the expected type at the cursor, so only compatible options appear first.
+The Expression editor offers context-aware suggestions as you type. Typing `.` after a variable opens a list of the methods, fields, and remote functions available on that variable's type. Selecting one inserts the call at the cursor. Suggestions are filtered by the expected type at the cursor, so only compatible options appear first.
 
 ![Suggestions triggered after typing a dot](/img/develop/understand-ide/editors/expression-editor/suggestions.png)
 
@@ -80,7 +80,7 @@ Each variation contributes its value to the underlying integration in a slightly
 
 - **Text mode** wraps the value in a Ballerina template string (`` string `...` ``) and inserts variables as `${variable}` interpolations.
 - **SQL mode** wraps the value in a SQL template (`` sql `...` ``) and likewise inserts variables as `${variable}` interpolations so they bind as parameters.
-- **Number**, **Boolean**, **Array**, **Record**, **Union**, **Nested**, **SELECT**, and **Prompt** insert the value exactly as shown in the editor — no template wrapping.
+- **Number**, **Boolean**, **Array**, **Record**, **Union**, **Nested**, **Select**, and **Prompt** insert the value exactly as shown in the editor, with no template wrapping.
 
 :::tip
 Avoid switching the field between **Text** and **Expression** while you have a value in progress. The helper pane suggestions are tuned to the current mode, so values that were inserted in one mode (for example, an interpolated chip from Text mode) can produce unexpected output once the mode changes. Pick the mode first, then fill the value.
@@ -92,7 +92,7 @@ If you change the field's type after the expression has already been filled, the
 
 ### Switching the variation
 
-Most fields support more than one variation. The current variation is shown by the toggle at the top right of the field (for example, **Record / Expression** for a record-typed field, or **Text / Expression** for a `string`-typed field). Select the toggle to switch between the form-style variation and free-form expression entry — for instance, a record field can be filled through the Record Configuration form or, after switching to **Expression**, written directly as a record literal.
+Most fields support more than one variation. The current variation is shown by the toggle at the top right of the field (for example, **Record / Expression** for a record-typed field, or **Text / Expression** for a `string`-typed field). Select the toggle to switch between the form-style variation and free-form expression entry. For instance, a record field can be filled through the Record Configuration form, or, after switching to **Expression**, written directly as a record literal.
 
 ![Score field switched to the Expression variation](/img/develop/understand-ide/editors/expression-editor/variation-toggle.png)
 
@@ -129,10 +129,10 @@ type genValue record {
 
 Renders in the Record Configuration editor as:
 
-- `id` — a **union** of `int` and `string`. The editor shows a dropdown so you can pick which member type to supply, then accepts a value using that member's variation.
-- `scoreValues` — a `decimal[]` **array**. The editor shows an inline list with an **Add decimal** action so you can add elements one at a time, each using the Number variation.
-- `value` — a **nested record**. The editor expands the inner record's fields directly inside the parent form, so the `name` field of the inner record appears as a `string` input under `value`.
-- `isGenerated` — a **boolean**. The editor shows a checkbox you can toggle between `true` and `false`.
+- `id` is a **union** of `int` and `string`. The editor shows a dropdown so you can pick which member type to supply, then accepts a value using that member's variation.
+- `scoreValues` is a `decimal[]` **array**. The editor shows an inline list with an **Add decimal** action so you can add elements one at a time, each using the Number variation.
+- `value` is a **nested record**. The editor expands the inner record's fields directly inside the parent form, so the `name` field of the inner record appears as a `string` input under `value`.
+- `isGenerated` is a **boolean**. The editor shows a dropdown you can toggle between `true` and `false`.
 
 ![Record Configuration editor for the genValue record](/img/develop/understand-ide/editors/expression-editor/record-config-editor.png)
 
@@ -142,16 +142,18 @@ Appears when the expected type is a union. Prompts you to pick which member type
 
 ### Nested variations
 
-When types compose — for example, a union of arrays — the editor nests the matching variations. You first pick the union member, and the editor then opens the corresponding inner variation (such as Array mode) for the selected type.
+When types compose, for example a union of arrays, the editor nests the matching variations. You first pick the union member, and the editor then opens the corresponding inner variation (such as Array mode) for the selected type.
 
-### SELECT
+### Select
 
 Appears for fields whose type is an enum or any other fixed set of values. The editor renders a dropdown listing every member of the type, so you can pick a valid value without recalling its exact spelling.
 
 ### SQL
 
-Appears when you author SQL queries — for example, in database connector parameters. The editor provides SQL-aware highlighting and lets you bind integration variables as query parameters. Variables you insert from the helper pane are added as `${variable}` interpolations inside the `` sql `...` `` template, which the database connector then binds as prepared-statement parameters; inserting the same variable from the **Expression** toggle drops a bare reference instead.
+Appears when you author SQL queries, for example in database connector parameters. The editor provides SQL-aware highlighting and lets you bind integration variables as query parameters. Variables you insert from the helper pane are added as `${variable}` interpolations inside the `` sql `...` `` template, which the database connector then binds as prepared-statement parameters. Inserting the same variable from the **Expression** toggle drops a bare reference instead.
 
 ### Prompt
 
-Appears when you author natural-language prompts for AI nodes. The editor is optimized for multi-line text and supports inserting variables as chips so prompt templates remain readable.
+Appears when you author natural-language prompts for AI nodes. The editor is optimized for multi-line text and supports inserting variables as chips so prompt templates remain readable. It also accepts Markdown formatting (headings, bold, italics, lists, links, tables, and quotes) through a built-in toolbar, and you can switch between the rendered **Preview** and the raw **Source** view from the same toolbar.
+
+![Prompt variation with Markdown toolbar](/img/develop/understand-ide/editors/expression-editor/prompt.png)
