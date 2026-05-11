@@ -1819,28 +1819,14 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Guides',
       collapsed: true,
-      link: { type: 'doc', id: 'tutorials/tutorials' },
+      link: { type: 'doc', id: 'guides/guides' },
       items: [
-        // Tutorials
-        {
-          type: 'category',
-          label: 'Tutorials',
-          items: [
-            'tutorials/salesforce-database-sync',
-            'tutorials/kafka-event-processing-pipeline',
-            'tutorials/rest-api-aggregation-service',
-            'tutorials/pdf-generation-service',
-            'tutorials/file-batch-etl-pipeline',
-            'tutorials/healthcare-hl7fhir-integration',
-            'tutorials/multi-system-data-reconciliation',
-          ],
-        },
         {
           type: 'category',
           label: 'Enterprise integration patterns',
           items: [
-            'tutorials/patterns/normalizer',
-            'tutorials/patterns/message-filter',
+            'guides/patterns/normalizer',
+            'guides/patterns/message-filter',
           ],
         },
         // Migration Guides
@@ -1848,8 +1834,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Migration guides',
           items: [
-            'tutorials/migration/coming-from-mulesoft',
-            'tutorials/migration/coming-from-tibco',
+            'guides/migration/coming-from-mulesoft',
+            'guides/migration/coming-from-tibco',
           ],
         },
       ],
