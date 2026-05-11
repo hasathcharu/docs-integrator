@@ -44,7 +44,7 @@ The **AI Agent** block allows you to configure the following components of the a
 
 The **Chat** button opens an in-IDE chat window that allows you to interact with the agent immediately. The **Tracing** toggle enables execution tracing so you can inspect reasoning steps, tool invocations, and execution flow after each interaction.
 
-## Try-It and run
+## Try it and run
 
 The top-right controls in the agent canvas allow you to interact with and test the agent directly within WSO2 Integrator.
 
