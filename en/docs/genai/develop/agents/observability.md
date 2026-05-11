@@ -162,7 +162,7 @@ The detail pane has a **Search all sections...** field that filters within the c
 Traces are useful beyond the IDE, in bug reports, regression baselines, or evaluation runs. The trace viewer can export in two formats:
 
 - **JSON.** The full trace as structured data. Best for archiving, sharing in a bug report, or comparing two runs.
-- **Evalset.** The trace converted into an evaluation set you can run later through the testing framework. See [Evaluations](evaluations.md) for the full workflow.
+- **Evalset.** The trace converted into an evaluation set you can run later through the testing framework. See [Evaluations](evaluations/overview.md) for the full workflow.
 
 You can export a single trace or every trace in a chat session.
 

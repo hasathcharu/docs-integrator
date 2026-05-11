@@ -57,7 +57,7 @@ Click **View changes** on any row to see what changed between that run and the c
 
 ![Code changes since this run dialog showing a single file with a diff that adds tools to the math tutor model.](/img/genai/develop/agents/evaluations/code-changes-diff.png)
 
-This makes it easy to correlate a regression with a specific change. **Restore to this state** rolls the project back to the state at that run.
+This makes it easy to correlate a regression with a specific change. **Restore to this state** rolls the project back to the state at that run, replacing the current project files. The IDE prompts for confirmation before restoring; commit or stash any work you want to keep first.
 
 ## What's next
 
