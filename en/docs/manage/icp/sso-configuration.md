@@ -39,7 +39,7 @@ Locate `conf/deployment.toml` under your WSO2 Integrator installation:
 | OS | Default path |
 |----|-------------|
 | macOS | `/Applications/WSO2 Integrator.app/Contents/components/icp/conf/deployment.toml` |
-| Windows | `%USERPROFILE%\AppData\Wso2\Integrator\components\icp\conf\deployment.toml` |
+| Windows | `%USERPROFILE%\AppData\Local\Programs\WSO2\Integrator\components\icp\conf\deployment.toml` |
 | Linux | `/usr/share/wso2-integrator/components/icp/conf/deployment.toml` |
 
 Add the following SSO configuration to the file, replacing the placeholder values with your identity provider's details:
