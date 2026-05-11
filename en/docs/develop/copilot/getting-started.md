@@ -1,11 +1,11 @@
 ---
-title: Getting Started
+title: "Getting started"
 description: Sign in to WSO2 Integrator Copilot.
 keywords: [wso2 integrator, copilot, getting started, sign in]
 slug: /develop/wso2-integrator-copilot/getting-started
 ---
 
-# Getting Started
+# Getting started
 
 ## Sign in to WSO2 Integrator Copilot
 
@@ -32,4 +32,4 @@ By signing in, you agree to the WSO2 Integrator Copilot Terms of Use shown on th
 
 ## What's next
 
-- [Copilot Capabilities](overview.md) — Learn about Edit Mode, Plan Mode, review, and testing.
+- [Copilot capabilities](overview.md) — Explore planning, review, testing, and more.
