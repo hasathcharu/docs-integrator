@@ -64,7 +64,7 @@ This guide walks you through creating a HubSpot developer app or private app and
 Use a tool like [Postman](https://www.postman.com/) or `curl` to perform the token exchange.
 :::
 
-## Alternative — use a private app (API key)
+## Alternative: use a private app (API key)
 
 If you prefer API key authentication instead of OAuth:
 
@@ -76,7 +76,7 @@ If you prefer API key authentication instead of OAuth:
     - `crm.objects.orders.read`
     - `crm.objects.orders.write`
 6. Click **Create app** and confirm.
-7. Copy the generated **Access Token** — this is your bearer token.
+7. Copy the generated **Access Token**; this is your bearer token.
 
 
 :::tip
@@ -85,4 +85,4 @@ Private apps are simpler to set up and are recommended for server-to-server inte
 
 ## Next steps
 
-- [Actions Reference](actions.md) - Available operations
+- [Actions Reference](actions.md): Available operations

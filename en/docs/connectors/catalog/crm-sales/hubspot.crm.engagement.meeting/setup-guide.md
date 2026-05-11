@@ -34,8 +34,8 @@ The scopes you select determine what data the connector can access. Add addition
 ## Step 3: Get the client ID and client secret
 
 1. In the **Auth** tab of your app, locate the **Client ID** and **Client Secret** fields.
-2. Copy the **Client ID** — this is your `clientId`.
-3. Click **Show** next to Client Secret and copy it — this is your `clientSecret`.
+2. Copy the **Client ID**; this is your `clientId`.
+3. Click **Show** next to Client Secret and copy it: this is your `clientSecret`.
 
 :::tip
 Store the Client ID and Client Secret securely. Do not commit them to source control.

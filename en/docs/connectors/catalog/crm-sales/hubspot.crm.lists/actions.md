@@ -118,7 +118,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `listId` | <code>string</code> | Yes | The ILS ID of the list to fetch. |
-| `queries` | <code>GetListIdGetByIdQueries</code> | No | Query parameters. `includeFilters` (default `false`) — whether to include filter branch details. |
+| `queries` | <code>GetListIdGetByIdQueries</code> | No | Query parameters. `includeFilters` (default `false`): whether to include filter branch details. |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Custom headers. |
 
 Returns: `ListFetchResponse|error`
@@ -212,7 +212,7 @@ Parameters:
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `queries` | <code>GetGetAllQueries</code> | No | Query parameters. `listIds` — array of list IDs to fetch. `includeFilters` (default `false`). |
+| `queries` | <code>GetGetAllQueries</code> | No | Query parameters. `listIds`: array of list IDs to fetch. `includeFilters` (default `false`). |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Custom headers. |
 
 Returns: `ListsByIdResponse|error`
@@ -298,7 +298,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `listId` | <code>string</code> | Yes | The ILS ID of the list to update. |
-| `queries` | <code>PutListIdUpdateListNameUpdateNameQueries</code> | No | Query parameters. `listName` — the new name. `includeFilters` (default `false`). |
+| `queries` | <code>PutListIdUpdateListNameUpdateNameQueries</code> | No | Query parameters. `listName`: the new name. `includeFilters` (default `false`). |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Custom headers. |
 
 Returns: `ListUpdateResponse|error`
@@ -811,7 +811,7 @@ Parameters:
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `queries` | <code>GetFoldersGetAllQueries</code> | No | Query parameters. `folderId` (default `"0"` — root folder). |
+| `queries` | <code>GetFoldersGetAllQueries</code> | No | Query parameters. `folderId` (default `"0"`: root folder). |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Custom headers. |
 
 Returns: `ListFolderFetchResponse|error`
@@ -852,7 +852,7 @@ Parameters:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `folderId` | <code>string</code> | Yes | The ID of the folder to rename. |
-| `queries` | <code>PutFoldersFolderIdRenameRenameQueries</code> | No | Query parameters. `newFolderName` — the new name. |
+| `queries` | <code>PutFoldersFolderIdRenameRenameQueries</code> | No | Query parameters. `newFolderName`: the new name. |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Custom headers. |
 
 Returns: `ListFolderFetchResponse|error`
@@ -994,7 +994,7 @@ Parameters:
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `queries` | <code>GetIdmappingTranslateLegacyListIdToListIdQueries</code> | No | Query parameters. `legacyListId` — the legacy list ID to translate. |
+| `queries` | <code>GetIdmappingTranslateLegacyListIdToListIdQueries</code> | No | Query parameters. `legacyListId`: the legacy list ID to translate. |
 | `headers` | <code>map&lt;string&#124;string[]&gt;</code> | No | Custom headers. |
 
 Returns: `PublicMigrationMapping|error`

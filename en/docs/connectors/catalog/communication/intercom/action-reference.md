@@ -1,6 +1,6 @@
 ---
 title: "Action Reference"
-description: "Full reference for all operations available in the Intercom connector — parameters, return types, and sample code."
+description: "Full reference for all operations available in the Intercom connector: parameters, return types, and sample code."
 ---
 
 # Actions
@@ -697,6 +697,6 @@ HTTP errors (4xx/5xx) are returned as `http:ApplicationResponseError` and includ
 
 ## What's next
 
-- [Setup guide](setup-guide.md) — Create an Intercom app and configure authentication
-- [Intercom connector overview](connector-overview.md) — Learn about all supported features
-- [Connector error handling](../../../error-handling-per.md) — General error handling patterns for connectors
+- [Setup guide](setup-guide.md): Create an Intercom app and configure authentication
+- [Intercom connector overview](connector-overview.md): Learn about all supported features
+- [Connector error handling](../../../error-handling-per.md): General error handling patterns for connectors

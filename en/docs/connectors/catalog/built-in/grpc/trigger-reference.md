@@ -96,7 +96,7 @@ listener grpc:Listener grpcListener = new (9090,
 
 ## Service
 
-A `grpc:Service` is a Ballerina service attached to a `grpc:Listener`. Each remote function in the service corresponds to an RPC method defined in the `.proto` file. The function signature varies by communication pattern — unary methods accept and return messages directly, server streaming methods return a stream, client streaming methods accept a stream, and bidirectional streaming methods accept both a Caller and a stream.
+A `grpc:Service` is a Ballerina service attached to a `grpc:Listener`. Each remote function in the service corresponds to an RPC method defined in the `.proto` file. The function signature varies by communication pattern: unary methods accept and return messages directly, server streaming methods return a stream, client streaming methods accept a stream, and bidirectional streaming methods accept both a Caller and a stream.
 
 
 ### Callback signatures
@@ -169,7 +169,7 @@ service "RouteGuide" on ep {
             lastPoint = p;
         });
         decimal endTime = time:monotonicNow();
-        int elapsedTime = <int>(endTime - startTime);
+        int elapsedTime = <int>(endTime: startTime);
         return {point_count: pointCount, feature_count: featureCount, distance: distance, elapsed_time: elapsedTime};
     }
 
