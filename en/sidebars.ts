@@ -268,14 +268,6 @@ const sidebars: SidebarsConfig = {
         // 6.6 Try & Test
         {
           type: 'category',
-          label: 'WSO2 Integrator Copilot',
-          items: [
-            'develop/copilot/getting-started',
-            'develop/copilot/overview',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Test',
           link: { type: 'doc', id: 'develop/test/overview' },
           items: [
