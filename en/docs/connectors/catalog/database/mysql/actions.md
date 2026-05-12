@@ -14,7 +14,7 @@ Available clients:
 
 | Client | Purpose |
 |--------|---------|
-| [`Client`](#client) | Provides standard SQL operations: query, execute, batch execute, and stored procedure calls: against a MySQL database. |
+| [`Client`](#client) | Provides standard SQL operations: query, execute, batch execute, and stored procedure calls against a MySQL database. |
 
 For event-driven integration, see the [Trigger Reference](triggers.md).
 
@@ -22,7 +22,7 @@ For event-driven integration, see the [Trigger Reference](triggers.md).
 
 ## Client
 
-Provides standard SQL operations: query, execute, batch execute, and stored procedure calls: against a MySQL database.
+Provides standard SQL operations: query, execute, batch execute, and stored procedure calls against a MySQL database.
 
 ### Configuration
 

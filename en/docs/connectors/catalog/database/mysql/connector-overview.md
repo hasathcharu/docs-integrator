@@ -8,7 +8,7 @@ MySQL is one of the world's most popular open-source relational database managem
 
 ## Key features
 
-- Full SQL operations: query, insert, update, delete: using parameterized queries for safety and convenience
+- Full SQL operations: query, insert, update, delete using parameterized queries for safety and convenience
 - Single-row retrieval via `queryRow` for lookups, aggregations, and existence checks
 - Batch execution support for inserting or modifying multiple rows in a single operation
 - Stored procedure invocation with `IN`, `OUT`, and `INOUT` parameter support and multiple result sets

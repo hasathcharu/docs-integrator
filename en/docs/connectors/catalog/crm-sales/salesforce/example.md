@@ -131,7 +131,7 @@ The `salesforce` connector provides practical examples illustrating usage in var
 ## Salesforce Trigger Example
 ### What you'll build
 
-This integration listens for Salesforce platform events: record creates, updates, deletes, and restores: using the Salesforce event listener in WSO2 Integrator. When a Salesforce user triggers a change, the listener receives the `salesforce:EventData` payload and passes it to the appropriate handler. Each handler logs the event payload as a JSON string using `log:printInfo`.
+This integration listens for Salesforce platform events, including record creates, updates, deletes, and restores, using the Salesforce event listener in WSO2 Integrator. When a Salesforce user triggers a change, the listener receives the `salesforce:EventData` payload and passes it to the appropriate handler; each handler logs the event payload as a JSON string using `log:printInfo`.
 
 ### Architecture
 
