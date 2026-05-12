@@ -93,7 +93,7 @@ Output appears in the Ballerina output panel. See **View the IDE output** above.
 
 ```bash
 # Restart the language server
-# In the IDE: Ctrl+Shift+P > "Ballerina: Restart Language Server"
+# In the IDE: Ctrl+Shift+P (Cmd+Shift+P on macOS) > "Ballerina: Restart Language Server"
 
 # Clear the language server cache
 rm -rf ~/.ballerina/ballerina-language-server/
