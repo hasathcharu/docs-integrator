@@ -63,6 +63,10 @@ Sends an email using a structured `Message` record.
 
 **Returns:** `Error?`
 
+:::note
+If `contentType` is set in the `Message` record, it must be a `text/*` MIME type (e.g., `"text/plain"`, `"text/html"`). Non-text content types will return an `email:Error` at runtime.
+:::
+
 **Sample code:**
 
 ```ballerina
