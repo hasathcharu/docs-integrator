@@ -490,13 +490,18 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background: #E8590C;
+  /* WSO2 brand primary blue — keeps the badge on-brand alongside the
+     navy-to-sky-blue gradient in the brand guidelines and matches the
+     primary color used throughout the site. */
+  background: #0077B6;
   color: #FFFFFF;
   padding: 0.15rem 0.5rem;
   border-radius: 100px;
 }
 
 [data-theme='dark'] .whatsNewBadge {
-  background: #FB923C;
+  /* Brighter sky-blue in dark mode for legibility on the navy surface,
+     matching --ifm-color-primary used in dark theme. */
+  background: #38BDF8;
   color: #0B1120;
 }
