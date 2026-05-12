@@ -4,6 +4,9 @@ description: Download and install WSO2 Integrator IDE on Windows, macOS, or Linu
 keywords: [wso2 integrator, local setup, install, ide, windows, macos, linux]
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Install WSO2 Integrator
 
 Install WSO2 Integrator IDE on your machine to develop, test, and debug integrations locally. The IDE is available for Windows, macOS, and Linux.
@@ -38,6 +41,45 @@ After installation, launch the IDE:
 - **Linux**: Launch **WSO2 Integrator** from your applications menu (after a `.deb` or `.rpm` install), or run the binary from the extracted directory if you used the `.tar.gz` archive.
 
 ![WSO2 Integrator IDE](/img/get-started/setup/wso2-integrator-ide.png)
+
+### Step 4: Sign in to WSO2 Integrator
+
+Sign in with your WSO2 Cloud account to deploy to WSO2 Cloud, manage environments, access observability features, and use WSO2 Integrator Copilot.
+
+1. On the **Get Started** page, click **Sign In** in the top-right corner.
+
+   <ThemedImage
+       alt="WSO2 Integrator Get Started page with the Sign In button in the top-right corner"
+       sources={{
+           light: useBaseUrl('/img/get-started/setup/sign-in/integrator-get-started-light.png'),
+           dark: useBaseUrl('/img/get-started/setup/sign-in/integrator-get-started-dark.png'),
+       }}
+   />
+
+2. Your default browser opens to the WSO2 Integration Platform sign-in page. Sign in using your preferred method.
+
+   <ThemedImage
+       alt="WSO2 Integration Platform sign-in page"
+       sources={{
+           light: useBaseUrl('/img/get-started/setup/sign-in/sign-in-providers-light.png'),
+           dark: useBaseUrl('/img/get-started/setup/sign-in/sign-in-providers-dark.png'),
+       }}
+   />
+
+3. When the browser prompts you, click **Open WSO2 Integrator.app** to return to the IDE.
+4. The IDE shows a **Successfully signed into WSO2 Integration Platform** notification, and your account avatar appears in the top-right corner.
+
+   <ThemedImage
+       alt="WSO2 Integrator Get Started page after sign-in showing the account avatar and a success notification"
+       sources={{
+           light: useBaseUrl('/img/get-started/setup/sign-in/signed-in-light.png'),
+           dark: useBaseUrl('/img/get-started/setup/sign-in/signed-in-dark.png'),
+       }}
+   />
+
+:::info Don't have a WSO2 account?
+[Sign up for WSO2 Cloud](sign-up-sign-in.md) to create one before signing in.
+:::
 
 ## Next steps
 
