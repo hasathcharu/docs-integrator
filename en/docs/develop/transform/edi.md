@@ -24,7 +24,7 @@ bal tool pull edi
 For standard EDI formats like EDIFACT, you don't need to write a schema by hand. The `bal edi` tool has built-in knowledge of EDIFACT message types. Run the following command to generate a JSON schema for the EDIFACT ORDERS message (version D96A):
 
 ```bash
-bal edi convertEdifactSchema -v d03a -t ORDERS -o schema
+bal edi convertEdifactSchema -v d96a -t ORDERS -o schema
 ```
 
 This writes a ready-to-use JSON schema to `schema/ORDERS.json`. Then generate Ballerina record types and parser/serializer functions from it. Let's add the generated code into a separate library.
