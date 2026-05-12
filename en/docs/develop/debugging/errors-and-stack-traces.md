@@ -233,7 +233,7 @@ Multiple compiler errors often cascade from one root cause. **Fix the first erro
 | Error message pattern | Likely cause | Fix |
 |-----------------------|--------------|-----|
 | `incompatible types: expected 'X', found 'Y'` | Type mismatch in assignment or return | Check the variable declaration or function return type |
-| `expected 'T', found 'T?'` | Unhandled optional value | Use `check`, an `is` type guard, or the Elvis operator (`?:`) |
+| `expected 'T', found 'T?'` | Unhandled optional value | Use an `is` type guard (`if val is T`) or the Elvis operator (`val ?: defaultValue`) to handle the nil case |
 | `expected 'T', found 'T\|error'` | Unhandled error return | Use `check`, or handle the `error` branch with `if result is error` |
 | `undefined symbol 'X'` | Missing import or typo in identifier | Add the import: `import ballerina/X;` or fix the typo |
 | `missing semicolon token` | Syntax error | Check the preceding lines for unclosed brackets or parentheses |

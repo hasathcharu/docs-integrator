@@ -157,7 +157,7 @@ For compiler error messages (`incompatible types`, `undefined symbol`, syntax er
 
 **Symptom:** Build fails with "cannot resolve module" or "package not found".
 
-```
+```bash
 ERROR: cannot resolve module 'ballerinax/mysql:1.11.0'
 ```
 
@@ -223,7 +223,7 @@ If multiple Ballerina distributions are installed, repeat this for each distribu
 
 **Symptom:** Build fails due to incompatible transitive dependency versions.
 
-```
+```bash
 ERROR: version conflict for 'ballerina/io': required '1.6.0' by 'ballerinax/kafka' but '1.5.0' by 'ballerinax/rabbitmq'
 ```
 
@@ -270,7 +270,7 @@ For runtime error messages and stack traces, see [Errors and Stack Traces](error
 
 **Symptom:** Service fails to start with "address already in use".
 
-```
+```bash
 ERROR: failed to start the listener on port 8080: Address already in use
 ```
 
@@ -305,7 +305,7 @@ port = 9090
 
 **Symptom:** Runtime error about missing Java classes or native libraries.
 
-```
+```bash
 ERROR: java.lang.ClassNotFoundException: com.mysql.cj.jdbc.Driver
 ```
 

@@ -32,7 +32,7 @@ bal run -- -Cballerina.http.traceLogConsole=true
 
 Sample output:
 
-```
+```bash
 [2024-03-15 10:30:01,234] TRACE {http.tracelog.downstream} - [id: 0x04eed4c9] REGISTERED
 [2024-03-15 10:30:01,240] TRACE {http.tracelog.downstream} - [id: 0x04eed4c9, host:/127.0.0.1:9090 - remote:/127.0.0.1:54362] INBOUND: DefaultHttpRequest
   GET /api/users HTTP/1.1
@@ -67,7 +67,7 @@ path = "access.log"     # also write to a file (optional)
 
 Sample output:
 
-```
+```bash
 192.168.1.10 - - [15/Mar/2024:10:30:01 +0000] "GET /api/users HTTP/1.1" 200 1234
 10.0.0.5 - - [15/Mar/2024:10:30:05 +0000] "GET /api/users/999 HTTP/1.1" 404 89
 ```
@@ -83,7 +83,7 @@ HTTP client errors occur when your code makes an outbound HTTP request.
 
 **Error hierarchy:**
 
-```
+```bash
 http:ClientError
 ├── http:ApplicationResponseError       (any 4xx or 5xx HTTP response)
 │   ├── http:ClientRequestError         (4xx responses)
@@ -186,7 +186,7 @@ These occur when your code is running an HTTP service.
 
 **Listener error hierarchy:**
 
-```
+```bash
 http:ListenerError
 ├── http:GenericListenerError
 ├── http:InterceptorReturnError
@@ -264,7 +264,7 @@ http:Client cl = check new ("http://api.example.com", {
 
 **Error example:**
 
-```
+```bash
 error: {ballerina/sql}DatabaseError Communications link failure: ...
 ```
 
@@ -287,7 +287,7 @@ Checklist:
 
 **Error hierarchy:**
 
-```
+```bash
 sql:Error
 ├── sql:DatabaseError       (DB operation failed; has errorCode and sqlState)
 ├── sql:NoRowsError         (queryRow() matched no rows)
@@ -352,7 +352,7 @@ GraphQL in Ballerina runs on top of `ballerina/http`. Both HTTP trace logs and G
 
 **Server-side (`graphql:Error`, listener lifecycle):**
 
-```
+```bash
 graphql:Error
 ├── graphql:AuthnError    (authentication failed)
 └── graphql:AuthzError    (authorization failed)
@@ -360,7 +360,7 @@ graphql:Error
 
 **Client-side (`graphql:ClientError`):**
 
-```
+```bash
 graphql:ClientError
 ├── graphql:RequestError
 │   ├── graphql:HttpError              (network error)
@@ -517,13 +517,13 @@ bal grpc --input service.proto --output ./generated --mode service
 
 For any `ballerinax/*` connector (Salesforce, GitHub, ServiceNow, Twilio, etc.), errors typically follow this pattern:
 
-```
+```bash
 error: {ballerinax/<connector>}Error <message from upstream API>
 ```
 
 Or the error wraps an HTTP error:
 
-```
+```bash
 error: Error occurred while getting the HTTP response. status: 401, reason: Unauthorized
 ```
 
