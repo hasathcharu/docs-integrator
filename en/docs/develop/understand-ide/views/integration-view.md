@@ -10,7 +10,7 @@ The Integrator view is the primary development interface in WSO2 Integrator. Use
 
 ![Integrator view overview](/img/develop/understand-ide/views/integration-view/overview.png)
 
-The activity bar, project explorer, editor toolbar, and deployment options panel work the same as in the [Project view](project-view.md). See that page for details. This page covers what's specific to a single integration: the design canvas and toolbar.
+The top menu bar, activity bar, editor tab area, and editor toolbar are shared across views and are described in [Integrator app](../integrator-app.md). The project explorer and deployment options panel work the same as in the [Project view](project-view.md). This page covers what is specific to a single integration: the design canvas and toolbar.
 
 ## Design canvas
 

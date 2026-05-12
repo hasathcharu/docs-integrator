@@ -10,23 +10,7 @@ The Project view is the top-level view in WSO2 Integrator. It appears when you o
 
 ![Project view overview](/img/develop/understand-ide/views/project-view/overview.png)
 
-The Project view, [Integrator view](integration-view.md), and [Library view](library-view.md) share the same UI chrome: activity bar, project explorer, editor toolbar, and deployment options panel. These elements are described once here and behave the same across all three views.
-
-## Activity bar
-
-The activity bar is the narrow vertical strip on the far-left edge of the WSO2 Integrator IDE. Each icon opens a different panel or tool.
-
-| Name | Description |
-|---|---|
-| **Explorer** | Opens the file explorer for browsing project files. |
-| **WSO2 Integrator** | Opens the project explorer for the current view. |
-| **Source Control** | Opens the Git source control panel. |
-| **Run and Debug** | Opens the debug panel for setting breakpoints and inspecting variables. |
-| **Testing** | Opens the test explorer to view, run, and debug the test cases defined for your integration. |
-
-Click the **WSO2 Integrator** icon to return to the Project view at any time.
-
-![Activity bar](/img/develop/understand-ide/views/project-view/activity-bar.png)
+The Project view shares the surrounding IDE shell, including the top menu bar, activity bar, editor tab area, and editor toolbar, with the [Integrator view](integration-view.md) and [Library view](library-view.md). Those shared elements are described once in [Integrator app](../integrator-app.md). This page covers what is specific to the project level: the project explorer, the project overview canvas, deployment options, and the README section.
 
 ## Project explorer
 
@@ -71,19 +55,6 @@ Click the **Generate with AI** button at the top of the canvas to create a new i
 ### Add integration or library
 
 Click the **+ Add** button at the top of the canvas to add a new integration or library to the project. Select the type, provide a name and configuration, and the new entry appears in the card grid and project explorer.
-
-## Editor toolbar
-
-The editor toolbar appears on the right side of the editor tab bar. It provides quick actions for the active integration.
-
-![Editor toolbar](/img/develop/understand-ide/views/project-view/editor-toolbar.png)
-
-| Action | Description |
-|---|---|
-| **WSO2 Integrator Copilot** | Opens the WSO2 Integrator Copilot chat panel to get AI-powered assistance for building and troubleshooting your integration. |
-| **Run** | Builds and runs the integration locally, starting all services and displaying output in the terminal. |
-| **Debug** | Launches the integration with the debugger attached so you can set breakpoints and inspect variables. |
-| **Show Source** | Switches to the Ballerina source code view for direct code editing. |
 
 ## Deployment options panel
 
