@@ -1,12 +1,12 @@
 ---
-title: File Dependency and Trigger Conditions
+title: File dependency and trigger conditions
 description: Control when files are processed using file name patterns, age filters, and dependency conditions that wait for related files before triggering.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# File Dependency and Trigger Conditions
+# File dependency and trigger conditions
 
 By default, an FTP/SFTP listener triggers as soon as it detects a new file. In production, you often need more control: process only `.csv` files, skip files that are still being uploaded, or wait for a companion file (like a `.done` marker) before processing.
 
@@ -17,7 +17,9 @@ The `fileNamePattern` field accepts a regex that filters which files trigger the
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-On the **FTP Integration Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileNamePattern**, and enter a regex (for example, `.*\.csv`).
+On the **FTP Integration Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileNamePattern**, and enter a regex (for example, `.*\\.csv`).
+
+![Record Configuration builder with fileNamePattern ticked and a regex entered](/img/develop/integration-artifacts/file/dependency-and-trigger-conditions/step-file-name-pattern.png)
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -53,6 +55,8 @@ The `fileAgeFilter` field prevents processing files that are too new (still bein
 
 On the **FTP Integration Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileAgeFilter**, and set **minAge** and/or **maxAge** in seconds.
 
+![Record Configuration builder with fileAgeFilter ticked and minAge and maxAge set](/img/develop/integration-artifacts/file/dependency-and-trigger-conditions/step-file-age-filter.png)
+
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
@@ -61,8 +65,8 @@ On the **FTP Integration Configuration** panel, open the **Record Configuration*
     path: "/incoming",
     fileNamePattern: "orders_.*\\.csv",
     fileAgeFilter: {
-        minAge: 30,     // skip files newer than 30 seconds
-        maxAge: 3600    // skip files older than 1 hour
+        minAge: 30.0,     // skip files newer than 30 seconds
+        maxAge: 3600.0    // skip files older than 1 hour
     }
 }
 service on ftpListener {
@@ -78,7 +82,7 @@ service on ftpListener {
 | `minAge` | `decimal` | Minimum age in seconds. Files newer than this are skipped (still uploading). |
 | `maxAge` | `decimal` | Maximum age in seconds. Files older than this are skipped (stale). |
 
-**How it works:** On each polling cycle, the listener compares each file's last-modified timestamp against the current time. Files outside the age window are silently skipped and re-evaluated on the next cycle.
+**How it works:** On each polling cycle (configured by `pollingInterval` on the listener), the listener compares each file's last-modified timestamp against the current time. Files outside the age window are silently skipped and re-evaluated on the next cycle.
 
 ## File dependency conditions
 
@@ -88,6 +92,8 @@ The `fileDependencyConditions` field blocks processing until one or more related
 <TabItem value="ui" label="Visual Designer" default>
 
 On the **FTP Integration Configuration** panel, open the **Record Configuration** builder for the **Service Configuration** field, tick **fileDependencyConditions**, and add an entry. Set the target pattern to match the data file, and list the required files that must be present before processing triggers.
+
+![Record Configuration builder with fileDependencyConditions ticked and a target pattern and required files entered](/img/develop/integration-artifacts/file/dependency-and-trigger-conditions/step-file-dependency-conditions.png)
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -156,7 +162,7 @@ All three conditions compose: `fileNamePattern` narrows which files are candidat
     path: "/uploads",
     fileNamePattern: "batch_.*\\.csv",
     fileAgeFilter: {
-        minAge: 60
+        minAge: 60.0
     },
     fileDependencyConditions: [
         {

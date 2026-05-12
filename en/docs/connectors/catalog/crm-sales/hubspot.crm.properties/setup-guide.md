@@ -40,8 +40,8 @@ The required scopes depend on which CRM object types you intend to manage proper
 ## Get the client ID and client secret
 
 1. In the **Auth** tab of your app, locate the **Client ID** and **Client Secret**.
-2. Copy the **Client ID** — this is your `clientId`.
-3. Copy the **Client Secret** — this is your `clientSecret`.
+2. Copy the **Client ID**; this is your `clientId`.
+3. Copy the **Client Secret**; this is your `clientSecret`.
 
 
 :::tip

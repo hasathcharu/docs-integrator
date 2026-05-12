@@ -1,88 +1,83 @@
 ---
 sidebar_position: 8
 title: "Build an Event-Driven Integration"
-description: Build an event-driven integration that reacts to messages from a message broker.
+description: Build an event-driven integration in WSO2 Integrator that consumes messages from a message broker.
+keywords: [wso2 integrator, rabbitmq service, event integration, quick start, ballerina, amqp]
 ---
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-# Build an Event-Driven Integration
+# Build an Event-Driven integration
 
-**Time:** Under 10 minutes | **What you'll build:** An event-driven integration that consumes messages from RabbitMQ and processes them.
+**Time:** Under 10 minutes | **What you'll build:** An event-driven integration that consumes messages from `Orders` queue in RabbitMQ broker and processes them.
 
-Event integrations are ideal for reactive workflows triggered by messages from Kafka, RabbitMQ, MQTT, or other message brokers.
+Event integrations are designed for reactive workflows triggered by messages from a broker. This quick start demonstrates the complete flow: creating a RabbitMQ message listener, adding an event handler to process messages, and implementing the integration logic executed when a message is received.
 
-<ThemedImage
-    alt="Event-driven integration diagram"
-    sources={{
-        light: useBaseUrl('/img/get-started/build-event-driven-integration/event-diagram-light.svg'),
-        dark: useBaseUrl('/img/get-started/build-event-driven-integration/event-diagram-dark.svg'),
-    }}
-/>
+:::info Prerequisites
 
+- [WSO2 Integrator installed](install.md)
+- A running RabbitMQ instance (or use Docker: `docker run -d -p 5672:5672 rabbitmq:management`)
+:::
 
-## Prerequisites
-
-- [WSO2 Integrator extension installed](install.md)
-- A running RabbitMQ instance (or use Docker: `docker run -d -p 5672:5672 -p 15672:15672 rabbitmq:management`)
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
 
 ## Step 1: Create a new integration project
 
 1. Open WSO2 Integrator.
 2. Select **Create**.
 3. Set **Integration Name** to `OrderProcessor`.
-4. Set **Project Name** to `QuickStart`.
-5. Select **Browse**.
-6. Select the project location and select **Open**.
-7. Select **Create Integration**.
+4. Set **Project Name** to `event-integration`.
+5. Select **Create Integration**.
 
 <ThemedImage
     alt="Create a New Integration Project"
     sources={{
-        light: useBaseUrl('/img/get-started/build-event-driven-integration/create-a-new-integration-project-light.gif'),
-        dark: useBaseUrl('/img/get-started/build-event-driven-integration/create-a-new-integration-project-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-event-driven-integration/create-project.png'),
+        dark: useBaseUrl('/img/get-started/build-event-driven-integration/create-project.png'),
     }}
 />
 
-## Step 2: Add a RabbitMQ event integration artifact
+## Step 2: Add a RabbitMQ event listener
 
-1. Select **OrderProcessor**.
+1. Select your integration from the project panel.
 2. In the design view, select **Add Artifact**.
-3. Select **RabbitMQ** under Event Integration.
+3. Select **RabbitMQ** under **Event Integration**.
+4. Update **Host** and **Port** configuration to point to the RabbitMQ instance you are running locally.
+5. Set **Queue Name** to `Orders`.
+6. Select **Create**.
 
 <ThemedImage
     alt="Add a RabbitMQ Event Integration Artifact"
     sources={{
-        light: useBaseUrl('/img/get-started/build-event-driven-integration/add-a-rabbitmq-event-integration-artifact-light.gif'),
-        dark: useBaseUrl('/img/get-started/build-event-driven-integration/add-a-rabbitmq-event-integration-artifact-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-event-driven-integration/add-a-rabbitmq-listener.png'),
+        dark: useBaseUrl('/img/get-started/build-event-driven-integration/add-a-rabbitmq-listener.png'),
     }}
 />
 
-## Step 3: Configure the RabbitMQ connection
+## Step 3: Add `onMessage` event handler
 
-1. Set **Queue Name** to `Orders`.
-2. Set **Host** to `localhost`.
-3. Set **Port** to `5672`.
-4. Select **Create**.
+1. In the RabbitMQ service design view, select **+ Add Handler**.
+2. Select **onMessage**.
+3. Select **Save**.
 
 <ThemedImage
-    alt="Configure the RabbitMQ Connection"
+    alt="Add Message Processing Logic"
     sources={{
-        light: useBaseUrl('/img/get-started/build-event-driven-integration/configure-the-rabbitmq-connection-light.gif'),
-        dark: useBaseUrl('/img/get-started/build-event-driven-integration/configure-the-rabbitmq-connection-dark.gif'),
+        light: useBaseUrl('/img/get-started/build-event-driven-integration/add-event-handler.png'),
+        dark: useBaseUrl('/img/get-started/build-event-driven-integration/add-event-handler.png'),
     }}
 />
 
 ## Step 4: Add message processing logic
 
-1. Select **+ Add Handler**.
-2. Select **onMessage**.
-3. Select **Save**.
-4. Select **+** inside the resource flow.
-5. Select **Call Function**.
-6. Select **printInfo**.
-7. Set **Msg** to `Received order`.
-8. Select **Save**.
+1. Select **+** inside the resource flow.
+2. Select **Call Function**.
+3. Select **printInfo**.
+4. Set **Msg** to `Received order`.
+5. Select **Save**.
 
 <ThemedImage
     alt="Add Message Processing Logic"
@@ -105,6 +100,36 @@ Event integrations are ideal for reactive workflows triggered by messages from K
         dark: useBaseUrl('/img/get-started/build-event-driven-integration/run-and-test-the-integration-dark.gif'),
     }}
 />
+
+</TabItem>
+
+<TabItem value="code" label="Ballerina Code">
+
+The following complete, runnable Ballerina program produces the same integration shown in the visual designer steps.
+
+```ballerina
+import ballerina/log;
+import ballerinax/rabbitmq;
+
+listener rabbitmq:Listener rabbitmqListener = new ("localhost", 5672);
+
+service "Orders" on rabbitmqListener {
+    remote function onMessage(rabbitmq:AnydataMessage message, rabbitmq:Caller caller) returns error? {
+        do {
+            log:printInfo("Received order");
+        } on fail error err {
+            // handle error
+            return error("unhandled error", err);
+        }
+    }
+
+}
+```
+
+Save this as `main.bal`, then run `bal run` from the project directory.
+
+</TabItem>
+</Tabs>
 
 ## Supported event sources
 

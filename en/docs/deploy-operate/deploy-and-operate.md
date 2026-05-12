@@ -49,9 +49,8 @@ Monitor, trace, and debug in production:
 | **[Observability Overview](observe/observability-overview.md)** | Logging, metrics, and tracing concepts |
 | **[Integration Control Plane](observe/integration-control-plane-icp.md)** | Centralized management dashboard |
 | **[WSO2 Integration Platform](observe/observability-devant.md)** | Cloud-native observability |
-| **[Prometheus and Grafana](observe/prometheus-metrics.md)** | Metrics collection and dashboards |
+| **[Metrics (Prometheus)](observe/metrics-overview.md)** | Metrics collection and custom metrics |
 | **[Jaeger and Zipkin](observe/jaeger-distributed-tracing.md)** | Distributed tracing |
-| **[Custom Metrics](observe/custom-metrics.md)** | Application-specific counters and gauges |
 
 **Third-party integrations:** [Datadog](observe/datadog-integration.md) | [New Relic](observe/new-relic-integration.md) | [Elastic Stack](observe/elastic-stack-elk.md) | [OpenSearch](observe/opensearch-integration.md)
 
@@ -68,5 +67,5 @@ Harden your integrations for production:
 
 ## Capacity planning
 
-- **[Overview and sizing guidelines](capacity-planning/capacity-planning.md)** — Right-size your deployment
-- **[Performance Reports](capacity-planning/performance-reports.md)** — Benchmarks per scenario
+- **[Overview and sizing guidelines](capacity-planning/overview.md)** — Right-size your deployment
+- **[Performance reports](capacity-planning/performance-reports.md)** — Benchmarks per scenario

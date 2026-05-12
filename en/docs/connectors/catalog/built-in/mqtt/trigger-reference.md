@@ -5,7 +5,7 @@ connector_name: "mqtt"
 
 # Triggers
 
-The `ballerina/mqtt` connector supports event-driven message consumption through the `mqtt:Listener`. When messages arrive on subscribed topics, the listener invokes your service callbacks automatically — ideal for building reactive IoT pipelines and message-driven integrations.
+The `ballerina/mqtt` connector supports event-driven message consumption through the `mqtt:Listener`. When messages arrive on subscribed topics, the listener invokes your service callbacks automatically: ideal for building reactive IoT pipelines and message-driven integrations.
 
 
 Three components work together:
@@ -97,7 +97,7 @@ An `mqtt:Service` is a Ballerina service attached to an `mqtt:Listener`. It impl
 | `onComplete` | <code>remote function onComplete(mqtt:DeliveryToken token) returns error?</code> | Invoked when a message delivery is completed (broker acknowledgement received). This callback is optional. |
 
 :::note
-The `onMessage` callback is required. The `onError` and `onComplete` callbacks are optional — implement only the ones you need.
+The `onMessage` callback is required. The `onError` and `onComplete` callbacks are optional: implement only the ones you need.
 :::
 
 ### Full usage example

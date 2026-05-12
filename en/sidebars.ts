@@ -36,7 +36,6 @@ const sidebars: SidebarsConfig = {
           label: 'Set up',
           link: { type: 'doc', id: 'get-started/setup/overview' },
           items: [
-            'get-started/setup/system-requirements',
             'get-started/setup/local-setup',
             'get-started/setup/sign-up-sign-in',
             'get-started/setup/cloud-setup',
@@ -100,7 +99,21 @@ const sidebars: SidebarsConfig = {
               type: 'category',
               label: 'Editors',
               items: [
-                'develop/understand-ide/editors/flow-diagram-editor',
+                {
+                  type: 'category',
+                  label: 'Flow Diagram editor',
+                  link: { type: 'doc', id: 'develop/understand-ide/editors/flow-diagram-editor/flow-diagram-editor' },
+                  items: [
+                    'develop/understand-ide/editors/flow-diagram-editor/connections',
+                    'develop/understand-ide/editors/flow-diagram-editor/statement',
+                    'develop/understand-ide/editors/flow-diagram-editor/control',
+                    'develop/understand-ide/editors/flow-diagram-editor/ai',
+                    'develop/understand-ide/editors/flow-diagram-editor/error-handling',
+                    'develop/understand-ide/editors/flow-diagram-editor/concurrency',
+                    'develop/understand-ide/editors/flow-diagram-editor/logging',
+                    'develop/understand-ide/editors/flow-diagram-editor/show-more-functions',
+                  ],
+                },
                 'develop/understand-ide/editors/service-design-editor',
                 'develop/understand-ide/editors/expression-editor',
                 'develop/understand-ide/editors/type-editor',
@@ -243,19 +256,56 @@ const sidebars: SidebarsConfig = {
             'develop/transform/expressions-functions',
           ],
         },
+        // Develop with Copilot
+        {
+          type: 'category',
+          label: 'WSO2 Integrator Copilot',
+          items: [
+            'develop/copilot/getting-started',
+            'develop/copilot/overview',
+          ],
+        },
         // 6.6 Try & Test
         {
           type: 'category',
-          label: 'Try and test',
+          label: 'WSO2 Integrator Copilot',
           items: [
-            'develop/test/built-in-try-it-tool',
-            'develop/test/unit-testing',
-            'develop/test/services-clients',
-            'develop/test/data-driven-tests',
-            'develop/test/groups',
-            'develop/test/mocking',
-            'develop/test/execute-tests',
-            'develop/test/code-coverage-and-reports',
+            'develop/copilot/getting-started',
+            'develop/copilot/overview',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Test',
+          link: { type: 'doc', id: 'develop/test/overview' },
+          items: [
+            {
+              type: 'category',
+              label: 'Try-It tool',
+              link: { type: 'doc', id: 'develop/test/built-in-try-it-tool' },
+              items: [
+                'develop/test/try-it-http',
+                'develop/test/try-it-graphql',
+                'develop/test/try-it-chat',
+                'develop/test/try-it-mcp',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Test Explorer',
+              link: { type: 'doc', id: 'develop/test/test-explorer' },
+              items: [
+                'develop/test/unit-testing',
+                'develop/test/configure-tests',
+                'develop/test/services-clients',
+                'develop/test/data-driven-tests',
+                'develop/test/groups',
+                'develop/test/mocking',
+                'develop/test/execute-tests',
+                'develop/test/code-coverage-and-reports',
+              ],
+            },
+            'develop/test/ai-generated-cases',
           ],
         },
         // 6.7 Debugging & Troubleshooting
@@ -290,6 +340,7 @@ const sidebars: SidebarsConfig = {
                 'develop/tools/integration-tools/edi-tool',
                 'develop/tools/integration-tools/wsdl-tool',
                 'develop/tools/integration-tools/xsd-tool',
+                'develop/tools/integration-tools/persist-tool',
               ],
             },
             {
@@ -309,7 +360,6 @@ const sidebars: SidebarsConfig = {
               collapsed: true,
               items: [
                 'develop/tools/other/scan-tool',
-                'develop/tools/other/persist-tool',
               ],
             },
           ],
@@ -602,6 +652,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/developer-tools/github/setup-guide',
             'connectors/catalog/developer-tools/github/actions',
+            'connectors/catalog/developer-tools/github/triggers',
             'connectors/catalog/developer-tools/github/example',
           ],
         },
@@ -1519,6 +1570,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/ecommerce/shopify.admin/setup-guide',
             'connectors/catalog/ecommerce/shopify.admin/actions',
+            'connectors/catalog/ecommerce/shopify.admin/triggers',
             'connectors/catalog/ecommerce/shopify.admin/example',
           ],
         },
@@ -1600,6 +1652,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'connectors/catalog/communication/twilio/setup-guide',
             'connectors/catalog/communication/twilio/actions',
+            'connectors/catalog/communication/twilio/triggers',
             ...connectorVersionedDocs('connectors/catalog/communication/twilio'),
             'connectors/catalog/communication/twilio/example',
           ],
@@ -1706,31 +1759,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Getting started',
           items: [
-            'genai/getting-started/setting-up-ai',
-            {
-              type: 'category',
-              label: 'Building your first AI integration',
-              items: [
-                'genai/getting-started/build-a-smart-calculator-assistant',
-                'genai/getting-started/build-a-sample-hotel-booking-agent',
-              ],
-            },
-          ],
-        },
-        // Key Concepts
-        {
-          type: 'category',
-          label: 'Key concepts',
-          items: [
-            'genai/key-concepts/what-is-llm',
-            'genai/key-concepts/what-is-a-natural-function',
-            'genai/key-concepts/what-is-ai-agent',
-            'genai/key-concepts/what-are-tools',
-            'genai/key-concepts/what-is-ai-agent-memory',
-            'genai/key-concepts/what-is-mcp',
-            'genai/key-concepts/what-is-rag',
-            'genai/key-concepts/writing-effective-prompts',
-            'genai/key-concepts/typed-responses',
+            'genai/getting-started/build-a-sentiment-analyzer',
+            'genai/getting-started/build-a-sample-hotel-booking-agent',
           ],
         },
         // Develop AI Applications
@@ -1738,16 +1768,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Develop AI applications',
           items: [
-            'genai/develop/overview',
-            'genai/develop/components/model-providers',
-            'genai/develop/components/embedding-providers',
-            'genai/develop/components/vector-stores',
-            'genai/develop/components/knowledge-bases',
-            'genai/develop/components/chunkers',
             // Direct LLM Calls (single page)
             'genai/develop/direct-llm/overview',
-            // Natural Functions (single page)
-            'genai/develop/natural-functions/overview',
             // RAG
             {
               type: 'category',
@@ -1755,7 +1777,8 @@ const sidebars: SidebarsConfig = {
               link: { type: 'doc', id: 'genai/develop/rag/overview' },
               collapsed: true,
               items: [
-                'genai/develop/rag/rag-ingestion'
+                'genai/develop/rag/rag-ingestion',
+                'genai/develop/rag/rag-query'
               ]
             },
             // AI Agents
@@ -1769,7 +1792,17 @@ const sidebars: SidebarsConfig = {
                 'genai/develop/agents/tools',
                 'genai/develop/agents/memory',
                 'genai/develop/agents/observability',
-                'genai/develop/agents/evaluations',
+                {
+                  type: 'category',
+                  label: 'Evaluations',
+                  link: { type: 'doc', id: 'genai/develop/agents/evaluations/overview' },
+                  collapsed: true,
+                  items: [
+                    'genai/develop/agents/evaluations/evalsets',
+                    'genai/develop/agents/evaluations/creating-evaluations',
+                    'genai/develop/agents/evaluations/running-evaluations',
+                  ],
+                },
               ],
             },
             // MCP Integration
@@ -1783,31 +1816,29 @@ const sidebars: SidebarsConfig = {
                 'genai/develop/mcp/consuming-mcp-from-agent',
               ],
             },
-            // Tutorials
-            {
-              type: 'category',
-              label: 'Tutorials',
-              items: [
-                'genai/tutorials/email-generator-direct-llm',
-                'genai/tutorials/review-summarizer-natural-function',
-                'genai/tutorials/building-hr-knowledge-base-rag',
-                'genai/tutorials/building-a-customer-care-agent-mcp',
-                'genai/tutorials/it-helpdesk-chatbot',
-                'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
-              ],
-            },
+            // Natural Functions (single page)
+            'genai/develop/natural-functions/overview',
+            // Components
+            'genai/develop/components/model-providers',
+            'genai/develop/components/embedding-providers',
+            'genai/develop/components/vector-stores',
+            'genai/develop/components/knowledge-bases',
+            'genai/develop/components/chunkers',
           ],
         },
-        // Reference
+        // Tutorials
         {
           type: 'category',
-          label: 'Reference',
+          label: 'Tutorials',
           items: [
-            'genai/reference/ballerina-copilot-setup-and-usage-guide',
-            'genai/reference/ai-governance-and-security',
-            'genai/reference/troubleshooting-and-common-issues',
+            'genai/tutorials/email-generator-direct-llm',
+            'genai/tutorials/review-summarizer-natural-function',
+            'genai/tutorials/building-hr-knowledge-base-rag',
+            'genai/tutorials/building-a-customer-care-agent-mcp',
+            'genai/tutorials/it-helpdesk-chatbot',
+            'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
           ],
-        },
+        }
       ],
     },
 
@@ -1916,22 +1947,22 @@ const sidebars: SidebarsConfig = {
           label: 'Observe',
           items: [
             'deploy-operate/observe/observability-overview',
-            'deploy-operate/observe/logging-structured-logs',
-            'deploy-operate/observe/metrics-prometheus-grafana',
-            'deploy-operate/observe/distributed-tracing',
+            'deploy-operate/observe/metrics-overview',
+            'deploy-operate/observe/logging-overview',
             'deploy-operate/observe/integration-control-plane-icp',
-            'deploy-operate/observe/observability-devant',
-            'deploy-operate/observe/prometheus-metrics',
-            'deploy-operate/observe/grafana-dashboards',
+            // 'deploy-operate/observe/metrics-prometheus-grafana',
             'deploy-operate/observe/jaeger-distributed-tracing',
             'deploy-operate/observe/zipkin-tracing',
-            'deploy-operate/observe/datadog-integration',
+            // 'deploy-operate/observe/datadog-integration',
             'deploy-operate/observe/new-relic-integration',
-            'deploy-operate/observe/elastic-stack-elk',
-            'deploy-operate/observe/opensearch-integration',
+            // 'deploy-operate/observe/elastic-stack-elk',
+            // 'deploy-operate/observe/opensearch-integration',
             'deploy-operate/observe/moesif-api-analytics',
-            'deploy-operate/observe/custom-metrics',
-            'deploy-operate/observe/third-party-observability-tools',
+            'deploy-operate/observe/recipe-datadog-setup',
+            // 'deploy-operate/observe/recipe-local-development',
+            // 'deploy-operate/observe/recipe-kubernetes-production',
+            // 'deploy-operate/observe/recipe-elk-stack',
+            // 'deploy-operate/observe/recipe-opensearch-setup',
           ],
         },
         // Secure
@@ -1942,8 +1973,6 @@ const sidebars: SidebarsConfig = {
             'deploy-operate/secure/keystore-truststore',
             'deploy-operate/secure/runtime-security',
             'deploy-operate/secure/authentication',
-            'deploy-operate/secure/sso-configuration',
-            'deploy-operate/secure/api-security',
             'deploy-operate/secure/api-security-rate-limiting',
             'deploy-operate/secure/secrets-encryption',
             'deploy-operate/secure/ip-whitelisting',
@@ -1955,7 +1984,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Capacity planning',
           items: [
-            'deploy-operate/capacity-planning/capacity-planning',
+            'deploy-operate/capacity-planning/overview',
             'deploy-operate/capacity-planning/performance-reports',
           ],
         },
@@ -2020,6 +2049,29 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/observability/anomaly-detection-alerts',
               ],
             },
+            {
+              type: 'category',
+              label: 'Platform services',
+              items: [
+                'manage/cloud/platform-services/managed-databases',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Billing',
+              items: [
+                'manage/cloud/billing/pricing-and-plans',
+                'manage/cloud/billing/usage-dashboards',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Audit',
+              items: [
+                'manage/cloud/audit/audit-logs',
+                'manage/cloud/audit/compliance-data-residency',
+              ],
+            },
           ],
         },
         {
@@ -2031,11 +2083,21 @@ const sidebars: SidebarsConfig = {
             'manage/icp/icp-console-overview',
             'manage/icp/connect-runtime',
             'manage/icp/observability-setup',
-            'manage/icp/access-control',
             'manage/icp/manage-projects',
             'manage/icp/manage-environments',
             'manage/icp/manage-integrations',
             'manage/icp/manage-runtimes',
+            'manage/icp/access-control',
+            {
+              type: 'category',
+              label: 'User Stores',
+              link: { type: 'doc', id: 'manage/icp/user-stores/configure-user-stores' },
+              items: [
+                'manage/icp/user-stores/default-user-store',
+                'manage/icp/user-stores/ldap-user-store',
+                'manage/icp/user-stores/sso-configuration',
+              ],
+            },
             {
               type: 'category',
               label: 'MI Profile',
@@ -2066,11 +2128,9 @@ const sidebars: SidebarsConfig = {
           items: [
             'reference/language/ballerina-syntax-quick-reference',
             'reference/language/type-system',
-            'reference/language/standard-library-overview',
             'reference/language/query-expressions',
             'reference/language/concurrency',
             'reference/language/error-handling',
-            'reference/language/integration-specific-features',
           ],
         },
         // Configuration
@@ -2091,12 +2151,6 @@ const sidebars: SidebarsConfig = {
           label: 'CLI',
           items: [
             'reference/cli/bal-command-reference',
-            'reference/cli/bal-persist',
-            'reference/cli/bal-openapi',
-            'reference/cli/bal-graphql',
-            'reference/cli/bal-grpc',
-            'reference/cli/bal-edi',
-            'reference/cli/bal-health',
             'reference/cli/bal-scan',
           ],
         },

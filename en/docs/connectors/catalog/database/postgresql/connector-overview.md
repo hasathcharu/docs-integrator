@@ -1,4 +1,8 @@
-# PostgreSQL Connector Overview
+---
+title: "Overview"
+---
+
+# Overview
 
 PostgreSQL is a powerful, open-source object-relational database system known for reliability, feature robustness, and performance. The Ballerina `ballerinax/postgresql` connector (v1.16.3) provides programmatic access to PostgreSQL databases through SQL queries, stored procedures, and batch operations, with native support for PostgreSQL-specific data types such as geometric, network, range, JSON, and UUID types. It also includes a CDC (Change Data Capture) listener powered by Debezium for real-time event-driven integration.
 
@@ -15,7 +19,7 @@ PostgreSQL is a powerful, open-source object-relational database system known fo
 
 ## Actions
 
-Actions are operations you invoke on PostgreSQL from your integration — querying tables, inserting records, calling stored procedures, and more. The PostgreSQL connector exposes actions through a single client:
+Actions are operations you invoke on PostgreSQL from your integration, including querying tables, inserting records, calling stored procedures, and more. The PostgreSQL connector exposes actions through a single client:
 
 
 | Client | Actions |
@@ -26,7 +30,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 
 ## Triggers
 
-Triggers allow your integration to react to data changes happening in PostgreSQL in real time. The connector uses Debezium-based Change Data Capture (CDC) to stream row-level change events to a `postgresql:CdcListener`, which invokes your service callbacks automatically — no polling required.
+Triggers allow your integration to react to data changes happening in PostgreSQL in real time. The connector uses Debezium-based Change Data Capture (CDC) to stream row-level change events to a `postgresql:CdcListener`, which invokes your service callbacks automatically, with no polling required.
 
 
 Supported trigger events:
@@ -45,7 +49,7 @@ See the **[Trigger Reference](triggers.md)** for listener configuration, service
 * **[Setup Guide](setup-guide.md)**: This guide walks you through setting up a PostgreSQL server and configuring it for use with the Ballerina PostgreSQL connector, including optional CDC configuration.
 
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Trigger Reference](triggers.md)**: Reference for event-driven integration using the listener and service model.
 

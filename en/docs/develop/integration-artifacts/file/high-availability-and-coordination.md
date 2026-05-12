@@ -1,12 +1,12 @@
 ---
-title: High Availability and Coordination
+title: High availability and coordination
 description: Coordinate multiple FTP/SFTP listener instances so that only one actively polls while others act as warm standby nodes, preventing duplicate file processing.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# High Availability and Coordination
+# High availability and coordination
 
 When you deploy several instances of the same FTP/SFTP integration, for example, one per pod in a Kubernetes cluster, every instance would normally connect to the same remote directory and pick up every file. That causes duplicate processing, race conditions, and inconsistent downstream state.
 

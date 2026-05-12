@@ -1,46 +1,29 @@
 ---
 sidebar_position: 2
 title: Creating an Agent
-description: Reference for the AI Chat Agent Wizard in WSO2 Integrator — agent services, listeners, roles, instructions, query binding, and response handling.
+description: Reference for the AI Chat Agent Wizard in WSO2 Integrator, including agent services, listeners, roles, instructions, query bindings, and response handling.
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Creating an Agent
 
 WSO2 Integrator provides a streamlined way to create AI-powered agents using the **AI Chat Agent Wizard**. The wizard scaffolds the required integration artifacts in a single step and opens the visual flow editor, allowing you to configure and customize agent behavior directly from the canvas.
 
-When the wizard completes, WSO2 Integrator automatically generates:
-
-- An AI agent service
-- A listener endpoint
-- An AI Agent node
-- The integration flow required to process requests and responses
-
-After generation, you are directed to the integration canvas where you can configure the agent’s behavior, including:
-
-- Agent role and instructions
-- LLM provider and model selection
-- Query and input binding
-- Tool integration
-- Memory configuration
-- Response handling and orchestration settings
-- Observability and tracing configuration
-- Agent evaluation and testing settings
-
-The **AI Agent** node acts as the core execution component of the integration. It enables the agent to interact with external systems, invoke tools, maintain conversational context, and coordinate multi-step reasoning workflows using Ballerina AI capabilities.
-
-The generated integration is fully editable, allowing developers to extend the flow with additional mediators, connectors, APIs, or custom business logic as needed.
+The AI Agent node acts as the core execution component. It enables the agent to interact with external systems, invoke tools, maintain conversational context, and coordinate multi-step reasoning workflows.
 
 ## Launching the wizard
 
-1. Open your integration project in BI.
+1. Open your integration project in WSO2 Integrator.
 2. Click **+ Add Artifact** from the project view, or right-click the project tree.
 3. The **Artifacts** page opens.
 
-![Artifacts page in BI showing all artifact categories — Automation, AI Integration (AI Chat Agent, MCP Service), Integration as API (HTTP Service, GraphQL Service Beta, TCP Service Beta), Event Integration (Kafka, RabbitMQ, MQTT, Azure Service Bus, Salesforce, Twilio, GitHub, Solace, CDC for Microsoft SQL Server, CDC for PostgreSQL).](/img/genai/develop/shared/07-artifacts-page-full.png)
+![Artifacts page in WSO2 Integrator showing all artifact categories — Automation, AI Integration (AI Chat Agent, MCP Service), Integration as API (HTTP Service, GraphQL Service Beta, TCP Service Beta), Event Integration (Kafka, RabbitMQ, MQTT, Azure Service Bus, Salesforce, Twilio, GitHub, Solace, CDC for Microsoft SQL Server, CDC for PostgreSQL).](/img/genai/develop/shared/07-artifacts-page-full.png)
 
 4. Under **AI Integration**, select **AI Chat Agent**.
 
-## The wizard form
+## Create an agent
 
 The wizard initially displays a single input field. The **Create** button remains disabled until a valid agent name is provided.
 
@@ -50,17 +33,27 @@ The wizard initially displays a single input field. The **Create** button remain
 |---|---|---|
 | **Name** | Yes | Identifier for the agent, such as `BlogReviewer`, `SupportAssistant`, or `SalesAdvisor`. The name must start with a letter and contain only letters, numbers, and underscores. |
 
-Enter a name (for example, `BlogReviewer`) to enable the **Create** button. After clicking **Create**, BI generates the required integration artifacts and displays a progress indicator while configuring the service listener and related components.
+Enter a name (for example, `blogReviewer`) to enable the **Create** button.
 
-The wizard generates the following artifacts automatically:
+After clicking **Create**, WSO2 Integrator generates the required integration artifacts and displays a progress indicator while configuring the service listener and related components.
 
-- A listener (`chatAgentListener`) configured for AI chat communication
-- A service endpoint at `/<agent-name>` (for example, `/blogReviewer`)
-- A `post chat` resource function that accepts an `ai:ChatReqMessage` and returns an `ai:ChatRespMessage`
-- An AI agent declaration with placeholders for system prompts, tools, memory, and model configuration
-- A default model provider connection if one does not already exist in the project
+When the wizard completes, WSO2 Integrator automatically generates the following:
 
-The generated Ballerina source for an agent named `BlogReviewer` is similar to the following:
+- An AI agent service
+- A listener endpoint
+- An AI Agent node
+- An integration flow that handles incoming requests and generates responses
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+![The AI Agent canvas showing Start, an AI Agent node with the agent name and an Add Memory button, and a Return node.](/img/genai/develop/agents/02-agent-flow-canvas.png)
+
+</TabItem>
+
+<TabItem value="code" label="Ballerina Code">
+
+The generated Ballerina source for an agent named `blogReviewer` is similar to the following:
 
 ```ballerina
 import ballerina/ai;
@@ -101,12 +94,44 @@ service /blogReviewer on chatAgentListener {
     }
 }
 ```
+</TabItem>
+</Tabs>
 
-After creation, BI automatically opens the generated agent canvas.
+After generation, you are directed to the integration canvas where you can configure the following aspects of the agent:
 
-## What's Next
+- Agent behavior, including role, instructions, query, and input/output bindings
+- Model provider
+- Tool integration
+- Memory configuration
+- Observability and tracing
 
-- **[Tools](tools.md)** — Add tools and integrations to the agent.
-- **[Memory](memory.md)** — Configure conversational and persistent memory.
-- **[Observability](observability.md)** — Monitor traces, logs, and execution details.
-- **[Evaluations](evaluations.md)** — Test and evaluate agent behavior and response quality.
+## Configure agent behavior
+
+Use the AI Agent node configuration panel to customize how the agent behaves and responds to requests.
+
+Click the `AI Agent` node to open the configuration panel and update the following configurations.
+
+| Section | Description |
+|---|---|
+| **Role** | Defines the primary responsibility or persona of the agent. |
+| **Instructions** | Specifies the behavior guidelines and operational instructions that the agent should follow while responding. |
+| **Advanced Configuration** | Provides additional runtime and execution settings for the agent. |
+| **Result** | Defines the output or response generated by the agent after execution. |
+
+### Advanced configuration
+
+| Section | Description |
+|---|---|
+| **Maximum Iterations** | Defines the maximum number of reasoning or execution cycles the agent can perform before returning a response. |
+| **Verbose** | Enables detailed execution logs and intermediate reasoning information for debugging and observability purposes. |
+| **Tool Loading Strategy** | Determines how tools are discovered and loaded by the agent during execution. |
+| **Agent Credential** | Configures the credentials or authentication details used by the agent when accessing external systems or tools. |
+| **Context** | Defines contextual information that is passed to the agent during execution. |
+| **Type Descriptor** | Specifies the expected structure or type information for agent inputs and outputs. |
+
+## What's next
+
+- **[Tools](tools.md)** - Add tools and integrations to the agent.
+- **[Memory](memory.md)** - Configure conversational and persistent memory.
+- **[Observability](observability.md)** - Monitor traces, logs, and execution details.
+- **[Evaluations](evaluations/overview.md)** - Test and evaluate agent behavior and response quality.
