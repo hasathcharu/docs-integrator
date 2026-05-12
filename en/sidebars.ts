@@ -1826,6 +1826,8 @@ const sidebars: SidebarsConfig = {
           label: 'Enterprise integration patterns',
           items: [
             'guides/patterns/message-filter',
+            'guides/patterns/content-based-routing',
+            'guides/patterns/channel-adapter',
           ],
         },
         // Migration Guides
