@@ -10,34 +10,11 @@ The Project view is the top-level view in WSO2 Integrator. It appears when you o
 
 ![Project view overview](/img/develop/understand-ide/views/project-view/overview.png)
 
-The Project view shares the surrounding IDE shell, including the top menu bar, activity bar, editor tab area, and editor toolbar, with the [Integrator view](integration-view.md) and [Library view](library-view.md). Those shared elements are described once in [Integrator app](../integrator-app.md). This page covers what is specific to the project level: the project explorer, the project overview canvas, deployment options, and the README section.
-
-## Project explorer
-
-The project explorer is the left sidebar that organizes the contents of your project into a structured tree.
-
-- At the **project level**, the project explorer lists all integrations and libraries in the project, grouped by name. Each entry is expandable to reveal its own artifact tree.
-- Inside an **integration or library**, the project explorer organizes its components into sections by artifact type, making it easy to locate and manage the building blocks of your integration.
-
-![Project explorer](/img/develop/understand-ide/views/project-view/project-explorer.png)
-
-When an integration or library is open, the project explorer groups its artifacts into the following sections. Click an artifact name to open it in its dedicated view, or click the **+** icon next to a section to add a new one.
-
-| Section | What it shows |
-|---|---|
-| **Entry points** | HTTP services, GraphQL services, automations, and event listeners that trigger your integration. |
-| **Listeners** | Protocol-specific configurations (host, port) that entry points bind to. |
-| **Connections** | Configured links to external systems such as databases, HTTP APIs, and message brokers. |
-| **Types** | Custom records, enums, arrays, service classes and unions used in your integration. |
-| **Functions** | Reusable logic blocks callable from entry points or other functions. |
-| **Data mappers** | Visual transformations between source and target types. |
-| **Configurations** | Variables sourced from `Config.toml` at runtime. |
-
-For details on each artifact type, see [Integration artifacts](/docs/develop/integration-artifacts).
-
 ## Project overview canvas
 
 The project overview canvas is the central area of the Project view. It displays the project name as a heading and provides a unified dashboard for managing all integrations and libraries in the project.
+
+![Project overview canvas](/img/develop/understand-ide/views/project-view/project-overview-canvas.png)
 
 ### Integrations and libraries
 
