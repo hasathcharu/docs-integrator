@@ -2131,6 +2131,7 @@ const sidebars: SidebarsConfig = {
               label: 'Audit',
               items: [
                 'manage/cloud/audit/audit-logs',
+                'manage/cloud/audit/compliance-data-residency',
               ],
             },
           ],
