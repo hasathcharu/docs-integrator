@@ -36,7 +36,7 @@ To use a Ballerina distribution other than the one bundled with the IDE, for exa
 
 ### Enable IDE debug logs
 
-When you need detailed diagnostic output from the IDE or the language server, enable one or more of the following settings (`Ctrl+,` / `Cmd+,`, then search for the setting name):
+When you need detailed diagnostic output from the IDE or the language server, open the IDE settings (`Ctrl+,` on Windows/Linux, `Cmd+,` on macOS), then search for and enable one or more of the following settings:
 
 | Setting | What it enables |
 |---|---|
