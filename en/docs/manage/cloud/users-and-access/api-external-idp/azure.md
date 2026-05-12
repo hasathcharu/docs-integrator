@@ -40,9 +40,9 @@ Before you proceed, make sure you have the following:
     To restrict token use to specific environments, clear the **Apply to all environments** checkbox and select the required environments from the **Environments** list.
     :::
 
-10. Click **Next**. The server endpoints are displayed. You can use these to implement and configure authentication for your application.
+9. Click **Next**. The server endpoints are displayed. You can use these to implement and configure authentication for your application.
 
-11. Click **Add**.
+10. Click **Add**.
 
 You have successfully configured Azure Active Directory as an external IdP in WSO2 Cloud.
 
