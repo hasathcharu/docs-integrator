@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-description: Sign in to WSO2 Integrator Copilot.
+description: Sign in to WSO2 Integrator Copilot using your WSO2 account, or bring your own Anthropic, AWS Bedrock, or Google Vertex AI credentials.
 keywords: [wso2 integrator, copilot, getting started, sign in]
 slug: /develop/wso2-integrator-copilot/getting-started
 ---
@@ -24,11 +24,11 @@ If you have already [signed in to WSO2 Integrator](../../get-started/setup/local
    - **Enter your [AWS Bedrock credentials](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html)**: Use your AWS Bedrock account.
    - **Enter your [Google Vertex AI credentials](https://docs.cloud.google.com/vertex-ai/docs/authentication)**: Use your Google Vertex AI account.
 
-3. Pick one option and complete the sign-in. Once authenticated, Copilot opens its chat view and is ready to use.
+3. Select one option and complete the sign-in. After authentication, Copilot opens its chat view and is ready to use.
 
    ![WSO2 Integrator Copilot signed in](/img/develop/copilot/copilot-welcome.png)
 
-:::info
+:::info Terms of use
 By signing in, you agree to the WSO2 Integrator Copilot Terms of Use shown on the welcome screen.
 :::
 
