@@ -26,7 +26,7 @@ This guide walks you through creating a HubSpot app and obtaining the OAuth 2.0 
 
 1. Navigate to the **Auth** tab of your app.
 2. Under **Scopes**, add the following scope:
-    - **crm.objects.import** — required for import operations.
+    - **crm.objects.import**: required for import operations.
 3. Set the **Redirect URL** to `https://localhost` (or your own callback URL).
 4. Note down the **Client ID** and **Client Secret** displayed on this page.
 
@@ -64,7 +64,7 @@ grant_type=authorization_code
 &redirect_uri=<YOUR_REDIRECT_URI>
 ```
 
-The response contains `access_token` and `refresh_token`. Copy the `refresh_token` — you will need it to configure the connector.
+The response contains `access_token` and `refresh_token`. Copy the `refresh_token`: you will need it to configure the connector.
 
 
 :::tip
@@ -77,4 +77,4 @@ HubSpot access tokens expire after 6 hours. The connector automatically refreshe
 
 ## Next steps
 
-- [Actions Reference](actions.md) - Available operations
+- [Actions Reference](actions.md): Available operations

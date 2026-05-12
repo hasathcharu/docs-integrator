@@ -1,6 +1,6 @@
 ---
 title: Create from OpenAPI spec
-description: Generate a custom connector from an OpenAPI specification directly in the WSO2 Integrator IDE — no coding required.
+description: Generate a custom connector from an OpenAPI specification directly in the WSO2 Integrator IDE without coding.
 ---
 
 # Create from OpenAPI spec
@@ -57,10 +57,10 @@ Click **Save Connection** to complete the setup. Your custom connector is now re
 Make sure your OpenAPI specification is valid and well-structured before importing. You can validate your spec using tools like [Swagger Editor](https://editor.swagger.io/).
 :::
 
-Once your connector is generated, you can use it just like any pre-built connector — drag it into your integration flow, configure its operations, and map data between services.
+Once your connector is generated, you can use it just like any pre-built connector: drag it into your integration flow, configure its operations, and map data between services.
 
 ## What's next
 
-- [Custom development](custom-development.md) — Build a connector from scratch using Ballerina for full control over implementation
-- [Build your own connector](build-own.md) — Compare approaches for creating custom connectors
-- [Connector catalog](../catalog/index.mdx) — Browse all available pre-built connectors
+- [Custom development](custom-development.md): Build a connector from scratch using Ballerina for full control over implementation
+- [Build your own connector](build-own.md): Compare approaches for creating custom connectors
+- [Connector catalog](../catalog/index.mdx): Browse all available pre-built connectors

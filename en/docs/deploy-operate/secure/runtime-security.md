@@ -1,13 +1,18 @@
 ---
 sidebar_position: 2
 title: Runtime Security
-description: Best practices for securing integrations in WSO2 Integrator at runtime, including JVM hardening, non-root execution, and network policies.
-keywords: [wso2 integrator, runtime security, jvm hardening, non-root, network policy, security]
+description: Best practices for securing integrations in WSO2 Integrator at runtime, including JVM hardening, keystores, non-root execution, and network policies.
+keywords: [wso2 integrator, runtime security, jvm hardening, non-root, container security, network policy]
 ---
 
 # Runtime Security
 
 Securing integrations in WSO2 Integrator at runtime involves hardening the JVM, managing keystores and certificates, running as non-root, and applying network-level controls. This page covers production security best practices.
+
+:::info Prerequisites
+- WSO2 Integrator installed and a working integration ([Install guide](../../get-started/install.md))
+- A target environment: Linux VM, Docker, or Kubernetes cluster
+:::
 
 ## JVM hardening
 
@@ -41,9 +46,9 @@ java -version
 # Ensure JDK 17.0.x or later with latest patch
 ```
 
-## Keystores and truststores
+## Keystores and Truststores
 
-Creating keystores, truststores is covered in detail in [Keystores and Truststores](keystore-truststore.md). That page covers:
+Creating keystores and truststores is covered in detail in [Keystores and Truststores](keystore-truststore.md). That page covers:
 
 - Generating keystores and truststores using `keytool`
 - Configuring TLS and mutual TLS for HTTP and gRPC services
@@ -183,9 +188,9 @@ spec:
 | Rotate certificates before expiry | Required |
 | Encrypt secrets in Config.toml | Required |
 
-## What's next
+## See also
 
-- [Keystores and truststores](keystore-truststore.md) — Create and configure TLS certificates, keystores, and truststores
+- [Keystores and Truststores](keystore-truststore.md) — Create and configure TLS certificates, keystores, and truststores
 - [Authentication](authentication.md) — Configure authentication for services
-- [API security and rate limiting](api-security-rate-limiting.md) — Secure your API endpoints
-- [Secrets and encryption](secrets-encryption.md) — Manage secrets and encryption
+- [API Security and Rate Limiting](api-security-rate-limiting.md) — Secure your API endpoints
+- [Secrets and Encryption](secrets-encryption.md) — Manage secrets and encryption
