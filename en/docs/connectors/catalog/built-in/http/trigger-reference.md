@@ -6,7 +6,7 @@ toc_max_heading_level: 4
 
 # Triggers
 
-The `ballerina/http` module supports inbound HTTP request handling through its listener and service model. When HTTP requests arrive, the `http:Listener` dispatches them to matching service resource methods automatically — your service reacts to each request by HTTP method and path.
+The `ballerina/http` module supports inbound HTTP request handling through its listener and service model. When HTTP requests arrive, the `http:Listener` dispatches them to matching service resource methods automatically: your service reacts to each request by HTTP method and path.
 
 Three components work together:
 
@@ -109,12 +109,12 @@ Resource methods can accept the following parameter types:
 | Annotation | Type | Description |
 |------------|------|-------------|
 | (path segment) | `string`, `int`, `float`, `boolean`, `decimal` | Path parameters extracted from the URL. |
-| `@http:Payload` | `json`, `xml`, `string`, `byte[]`, `record` | Request body payload. |
+| `@http:Payload` | `json`, `xml`, `string`, `byte[]`, `record` | Request body payload. If request body is a structural type then the annotation is optional. |
 | `@http:Header` | `string`, `string[]` | Specific request header values. |
 | `@http:Query` | `string`, `int`, `float`, `boolean` | Query parameter values. |
-| — | `http:Caller` | Client connection for sending responses manually. |
-| — | `http:Request` | Full request object for advanced access. |
-| — | `http:Headers` | Request header accessor. |
+| N/A | `http:Caller` | Client connection for sending responses manually. |
+| N/A | `http:Request` | Full request object for advanced access. |
+| N/A | `http:Headers` | Request header accessor. |
 
 ### Return types
 
@@ -122,8 +122,8 @@ Resource methods can return any of the following types to send a response:
 
 | Return Type | Description |
 |-------------|-------------|
-| `string`, `json`, `xml`, `byte[]` | Payload sent with `200 OK` and appropriate content type. |
-| `record` | Serialized as JSON with `200 OK`. |
+| `string`, `json`, `xml`, `byte[]` | Payload sent with the default status code (`201 CREATED` for POST resources and `200 OK` for others) and appropriate content type. |
+| `record` | Serialized as JSON with the default status code (`201 CREATED` for POST resources and `200 OK` for others). |
 | `http:Ok`, `http:Created`, `http:Accepted`, ... | Status-code-specific response records with optional body and headers. |
 | `http:Response` | Full control over status code, headers, and body. |
 | `error` | Returns `500 Internal Server Error`. |
@@ -158,9 +158,9 @@ service /api on httpListener {
     }
 
     // POST /api/users
-    resource function post users(@http:Payload User user) returns http:Created|error {
+    resource function post users(User user) returns http:Created|error {
         // Create the user
-        return <http:Created>{body: {message: "User created", name: user.name}};
+        return {body: {message: "User created", name: user.name}};
     }
 
     // DELETE /api/users/123

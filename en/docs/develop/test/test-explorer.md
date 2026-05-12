@@ -5,8 +5,6 @@ description: Create, run, and manage automated test cases for your integrations 
 keywords: [wso2 integrator, test explorer, create test, run tests, test report, unit testing]
 ---
 
-import ThemedImage from '@theme/ThemedImage';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -31,17 +29,14 @@ When a test belongs to one or more groups, it is nested under the group name rat
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. Select **+** at the top of the TEST EXPLORER panel.
-2. The **Create New Test Case** form opens. Fill in the fields described in the table below.
-3. Expand **Advanced Configurations** for additional settings, then select **Save**.
+1. Select the **Testing** icon (beaker) in the activity bar to open the TEST EXPLORER panel.
+2. Select **+** at the top of the panel and choose **Add New Test**.
+3. If the project contains multiple integrations, a quick pick appears. Select the integration you want to add the test to.
+4. The **Create New Test Case** form opens. Enter a name for the test function and fill in the fields described in the table below.
+5. Expand **Advanced Configurations** for additional settings, then select **Save**.
+6. Write the test logic in the flow diagram that opens.
 
-<ThemedImage
-    alt="Create New Test Case form showing Name, Groups, Enabled, and Advanced Configurations fields"
-    sources={{
-        light: useBaseUrl('/img/develop/test/test-explorer/create-test-case.png'),
-        dark: useBaseUrl('/img/develop/test/test-explorer/create-test-case.png'),
-    }}
-/>
+![Create a test function in Test Explorer](/img/develop/test/test-explorer/create-test.gif)
 
 | Field | Required | Description |
 |---|---|---|

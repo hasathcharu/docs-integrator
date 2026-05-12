@@ -62,7 +62,7 @@ grpc:Client grpcClient = check new ("http://localhost:9090");
 
 <div>
 
-Executes a unary (simple) gRPC call — sends a single request and receives a single response.
+Executes a unary (simple) gRPC call: sends a single request and receives a single response.
 
 **Parameters:**
 
@@ -100,7 +100,7 @@ Executes a unary (simple) gRPC call — sends a single request and receives a si
 
 <div>
 
-Executes a server streaming gRPC call — sends a single request and receives a stream of responses.
+Executes a server streaming gRPC call: sends a single request and receives a stream of responses.
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ Executes a server streaming gRPC call — sends a single request and receives a 
 
 <div>
 
-Initiates a client streaming gRPC call — returns a `StreamingClient` for sending a stream of messages to the server.
+Initiates a client streaming gRPC call: returns a `StreamingClient` for sending a stream of messages to the server.
 
 **Parameters:**
 
@@ -168,7 +168,7 @@ grpc:StreamingClient streamingClient = check grpcClient->executeClientStreaming(
 
 <div>
 
-Initiates a bidirectional streaming gRPC call — returns a `StreamingClient` for sending and receiving concurrent streams of messages.
+Initiates a bidirectional streaming gRPC call: returns a `StreamingClient` for sending and receiving concurrent streams of messages.
 
 **Parameters:**
 
