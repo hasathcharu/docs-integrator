@@ -2159,11 +2159,10 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Language',
           items: [
-            'reference/language/ballerina-syntax-quick-reference',
             'reference/language/type-system',
-            'reference/language/query-expressions',
-            'reference/language/concurrency',
             'reference/language/error-handling',
+            'reference/language/query-expressions',
+            'reference/language/concurrency'
           ],
         },
         // Configuration
