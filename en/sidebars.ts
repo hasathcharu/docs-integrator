@@ -2110,6 +2110,13 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/platform-services/managed-databases',
               ],
             },
+            {
+              type: 'category',
+              label: 'Audit',
+              items: [
+                'manage/cloud/audit/compliance-data-residency',
+              ],
+            },
           ],
         },
         {
