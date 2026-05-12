@@ -18,7 +18,6 @@ Ballerina language reference for integration developers:
 - **[Error Handling](language/error-handling.md)** — Error types and handling patterns
 - **[Query Expressions](language/query-expressions.md)** — SQL-like data processing
 - **[Concurrency](language/concurrency.md)** — Workers, strands, locks, transactions
-- **[Calling Java Code](language/calling-java-code.md)** — Interoperability with Java libraries
 
 
 ## Configuration
@@ -30,7 +29,6 @@ Project and deployment configuration files:
 | **[Ballerina.toml](config/ballerinatoml-reference.md)**               | Project metadata and dependencies |
 | **[Config.toml](config/configtoml-reference.md)**                     | Runtime configuration values      |
 | **[Cloud.toml](config/cloudtoml-reference.md)**                       | Cloud deployment settings         |
-| **[Dependencies.toml](config/dependenciestoml-reference.md)** | Dependency lock file configuration |
 | **[Environment Variables](config/environment-variables.md)** | Runtime environment configuration |
 
 ## CLI

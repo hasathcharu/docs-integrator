@@ -2191,9 +2191,7 @@ const sidebars: SidebarsConfig = {
             'reference/language/type-system',
             'reference/language/error-handling',
             'reference/language/query-expressions',
-            'reference/language/concurrency',
-            'reference/language/calling-java-code',
-
+            'reference/language/concurrency'
           ],
         },
         // Configuration
