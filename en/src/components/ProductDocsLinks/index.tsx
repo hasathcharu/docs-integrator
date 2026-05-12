@@ -9,8 +9,8 @@ type ProductLink = {
 };
 
 const PRODUCT_LINKS: ProductLink[] = [
-  { href: 'https://mi.docs.wso2.com', title: 'WSO2 MI Documentation' },
-  { href: 'https://si.docs.wso2.com/latest/', title: 'WSO2 SI Documentation' },
+  { href: 'https://mi.docs.wso2.com', title: 'WSO2 Integrator: MI' },
+  { href: 'https://si.docs.wso2.com/latest/', title: 'WSO2 Integrator: SI' },
 ];
 
 /**
