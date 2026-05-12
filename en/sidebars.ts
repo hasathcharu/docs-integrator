@@ -2097,6 +2097,13 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/billing/pricing-and-plans',
               ],
             },
+            {
+              type: 'category',
+              label: 'Audit',
+              items: [
+                'manage/cloud/audit/audit-logs',
+              ],
+            },
           ],
         },
         {
