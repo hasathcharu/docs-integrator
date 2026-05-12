@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 7
 title: Strand Dump Analysis
 description: Capture and analyze strand dumps to diagnose concurrency, deadlock, and blocking issues in Ballerina services.
 ---

@@ -872,7 +872,7 @@ Sample code:
 
 ```ballerina
 mc:Campaign updated = check mcClient->updateCampaign("c003", {
-    name: "Holiday Campaign 2025 — Updated",
+    name: "Holiday Campaign 2025 (Updated)",
     description: "Revised holiday promotions"
 });
 ```
@@ -880,7 +880,7 @@ mc:Campaign updated = check mcClient->updateCampaign("c003", {
 Sample response:
 
 ```ballerina
-{"id": "c003", "name": "Holiday Campaign 2025 — Updated", "description": "Revised holiday promotions", "createdDate": "2025-11-01T10:00:00Z"}
+{"id": "c003", "name": "Holiday Campaign 2025 (Updated)", "description": "Revised holiday promotions", "createdDate": "2025-11-01T10:00:00Z"}
 ```
 
 </div>

@@ -25,7 +25,7 @@ This guide walks you through creating an AWS account and obtaining the access cr
 7. Click **Next**, review the details, and click **Create user**.
 
 :::tip
-For production use, follow the principle of least privilege — create a custom IAM policy that grants only the specific S3 actions and resources your integration needs.
+For production use, follow the principle of least privilege; create a custom IAM policy that grants only the specific S3 actions and resources your integration needs.
 :::
 
 ## Step 3: Generate access keys
@@ -35,7 +35,7 @@ For production use, follow the principle of least privilege — create a custom 
 3. Under **Access keys**, click **Create access key**.
 4. Select the **Application running outside AWS** use case, then click **Next**.
 5. Optionally add a description tag, then click **Create access key**.
-6. Copy the **Access key ID** and **Secret access key** — these are your `accessKeyId` and `secretAccessKey`.
+6. Copy the **Access key ID** and **Secret access key**; these are your `accessKeyId` and `secretAccessKey`.
 
 :::warning
 The secret access key is shown only once at creation time. Store both keys securely and do not commit them to source control. Use Ballerina's `configurable` feature and a `Config.toml` file to supply them at runtime.

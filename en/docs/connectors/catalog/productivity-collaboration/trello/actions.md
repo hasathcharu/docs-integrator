@@ -9,13 +9,13 @@ The `ballerinax/trello` package exposes the following clients:
 
 | Client | Purpose |
 |--------|---------|
-| [`Client`](#client) | Trello REST API — boards, lists, cards, members, labels, checklists, search, webhooks. |
+| [`Client`](#client) | Trello REST API: boards, lists, cards, members, labels, checklists, search, webhooks. |
 
 ---
 
 ## Client
 
-Trello REST API — boards, lists, cards, members, labels, checklists, search, webhooks.
+Trello REST API: boards, lists, cards, members, labels, checklists, search, webhooks.
 
 ### Configuration
 

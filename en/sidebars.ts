@@ -12,7 +12,7 @@ import { connectorVersionedDocs } from './src/utils/sidebarUtils';
  *   Connectors        — "Can I connect to Y?"
  *   GenAI             — "How do I build AI agents, RAG, or MCP?"
  *   Tutorials         — "Show me a complete, real example"
- *   Deploy & Operate  — "How do I ship, run, and secure this?"
+ *   Deploy            — "How do I ship, run, and secure this?"
  *   Manage            — "How do I set up and manage ICP?"
  *   Reference         — "What's the exact syntax / config / API for Z?"
  */
@@ -268,16 +268,36 @@ const sidebars: SidebarsConfig = {
         // 6.6 Try & Test
         {
           type: 'category',
-          label: 'Try and test',
+          label: 'Test',
+          link: { type: 'doc', id: 'develop/test/overview' },
           items: [
-            'develop/test/built-in-try-it-tool',
-            'develop/test/unit-testing',
-            'develop/test/services-clients',
-            'develop/test/data-driven-tests',
-            'develop/test/groups',
-            'develop/test/mocking',
-            'develop/test/execute-tests',
-            'develop/test/code-coverage-and-reports',
+            {
+              type: 'category',
+              label: 'Try-It tool',
+              link: { type: 'doc', id: 'develop/test/built-in-try-it-tool' },
+              items: [
+                'develop/test/try-it-http',
+                'develop/test/try-it-graphql',
+                'develop/test/try-it-chat',
+                'develop/test/try-it-mcp',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Test Explorer',
+              link: { type: 'doc', id: 'develop/test/test-explorer' },
+              items: [
+                'develop/test/unit-testing',
+                'develop/test/configure-tests',
+                'develop/test/services-clients',
+                'develop/test/data-driven-tests',
+                'develop/test/groups',
+                'develop/test/mocking',
+                'develop/test/execute-tests',
+                'develop/test/code-coverage-and-reports',
+              ],
+            },
+            'develop/test/ai-generated-cases',
           ],
         },
         // 6.7 Debugging & Troubleshooting
@@ -287,10 +307,13 @@ const sidebars: SidebarsConfig = {
           items: [
             'develop/debugging/troubleshooting',
             'develop/debugging/errors-and-stack-traces',
+            'develop/debugging/library-troubleshooting',
+            'develop/debugging/deployment-troubleshooting',
             'develop/debugging/editor',
             'develop/debugging/remote',
             'develop/debugging/strand-dump-analysis',
             'develop/debugging/performance-profiling',
+            'develop/debugging/logging',
           ],
         },
         // 6.8 Tools
@@ -312,6 +335,7 @@ const sidebars: SidebarsConfig = {
                 'develop/tools/integration-tools/edi-tool',
                 'develop/tools/integration-tools/wsdl-tool',
                 'develop/tools/integration-tools/xsd-tool',
+                'develop/tools/integration-tools/persist-tool',
               ],
             },
             {
@@ -331,7 +355,6 @@ const sidebars: SidebarsConfig = {
               collapsed: true,
               items: [
                 'develop/tools/other/scan-tool',
-                'develop/tools/other/persist-tool',
               ],
             },
           ],
@@ -1731,31 +1754,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Getting started',
           items: [
-            'genai/getting-started/setting-up-ai',
-            {
-              type: 'category',
-              label: 'Building your first AI integration',
-              items: [
-                'genai/getting-started/build-a-sentiment-analyzer',
-                'genai/getting-started/build-a-sample-hotel-booking-agent',
-              ],
-            },
-          ],
-        },
-        // Key Concepts
-        {
-          type: 'category',
-          label: 'Key concepts',
-          items: [
-            'genai/key-concepts/what-is-llm',
-            'genai/key-concepts/what-is-a-natural-function',
-            'genai/key-concepts/what-is-ai-agent',
-            'genai/key-concepts/what-are-tools',
-            'genai/key-concepts/what-is-ai-agent-memory',
-            'genai/key-concepts/what-is-mcp',
-            'genai/key-concepts/what-is-rag',
-            'genai/key-concepts/writing-effective-prompts',
-            'genai/key-concepts/typed-responses',
+            'genai/getting-started/build-a-sentiment-analyzer',
+            'genai/getting-started/build-a-hotel-finder-agent',
           ],
         },
         // Develop AI Applications
@@ -1763,16 +1763,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Develop AI applications',
           items: [
-            'genai/develop/overview',
-            'genai/develop/components/model-providers',
-            'genai/develop/components/embedding-providers',
-            'genai/develop/components/vector-stores',
-            'genai/develop/components/knowledge-bases',
-            'genai/develop/components/chunkers',
             // Direct LLM Calls (single page)
             'genai/develop/direct-llm/overview',
-            // Natural Functions (single page)
-            'genai/develop/natural-functions/overview',
             // RAG
             {
               type: 'category',
@@ -1819,6 +1811,14 @@ const sidebars: SidebarsConfig = {
                 'genai/develop/mcp/consuming-mcp-from-agent',
               ],
             },
+            // Natural Functions (single page)
+            'genai/develop/natural-functions/overview',
+            // Components
+            'genai/develop/components/model-providers',
+            'genai/develop/components/embedding-providers',
+            'genai/develop/components/vector-stores',
+            'genai/develop/components/knowledge-bases',
+            'genai/develop/components/chunkers',
           ],
         },
         // Tutorials
@@ -1831,19 +1831,8 @@ const sidebars: SidebarsConfig = {
             'genai/tutorials/building-hr-knowledge-base-rag',
             'genai/tutorials/building-a-customer-care-agent-mcp',
             'genai/tutorials/it-helpdesk-chatbot',
-            'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
           ],
-        },
-        // Reference
-        {
-          type: 'category',
-          label: 'Reference',
-          items: [
-            'genai/reference/ballerina-copilot-setup-and-usage-guide',
-            'genai/reference/ai-governance-and-security',
-            'genai/reference/troubleshooting-and-common-issues',
-          ],
-        },
+        }
       ],
     },
 
@@ -1853,83 +1842,23 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Guides',
       collapsed: true,
-      link: { type: 'doc', id: 'tutorials/tutorials' },
+      link: { type: 'doc', id: 'guides/guides' },
       items: [
-        // Walkthroughs
-        {
-          type: 'category',
-          label: 'Walkthroughs',
-          items: [
-            'tutorials/salesforce-database-sync',
-            'tutorials/kafka-event-processing-pipeline',
-            'tutorials/rest-api-aggregation-service',
-            'tutorials/pdf-generation-service',
-            'tutorials/walkthroughs/route-messages-based-content',
-            'tutorials/walkthroughs/build-a-data-transformation-pipeline',
-            'tutorials/file-batch-etl-pipeline',
-            'tutorials/walkthroughs/build-email-notification-service',
-            'tutorials/walkthroughs/build-a-change-data-capture-service',
-            'tutorials/healthcare-hl7fhir-integration',
-            'tutorials/walkthroughs/process-edi-documents-from-ftp',
-            'tutorials/walkthroughs/process-csv-files-from-ftp-fail-safe-error-handling',
-            'tutorials/walkthroughs/process-ftp-order-batches-age-filter-and-file-dependency',
-            'tutorials/walkthroughs/watch-a-local-directory-csv-files',
-            'tutorials/walkthroughs/stream-large-csv-files-from-sftp',
-            'tutorials/multi-system-data-reconciliation',
-          ],
-        },
-        // Enterprise Integration Patterns (EIP)
         {
           type: 'category',
           label: 'Enterprise integration patterns',
           items: [
-            'tutorials/patterns/content-based-router',
-            'tutorials/patterns/message-filter',
-            'tutorials/patterns/scatter-gather',
-            'tutorials/patterns/recipient-list',
-            'tutorials/patterns/message-translator',
-            'tutorials/patterns/circuit-breaker-retry',
-            'tutorials/patterns/saga-compensation',
-            'tutorials/patterns/publish-subscribe',
-            'tutorials/patterns/guaranteed-delivery',
-            'tutorials/patterns/idempotent-receiver',
-            'tutorials/patterns/api-gateway-orchestration',
-            'tutorials/patterns/agent-tool-orchestration',
-            'tutorials/patterns/rag-pipeline',
-          ],
-        },
-        // Pre-Built Integration Samples
-        {
-          type: 'category',
-          label: 'Pre-built integration samples',
-          items: [
-            'tutorials/pre-built/integration-samples',
-            'tutorials/pre-built/google-sheets-salesforce-contacts',
-            'tutorials/pre-built/github-email-summary',
-            'tutorials/pre-built/google-drive-onedrive-sync',
-            'tutorials/pre-built/mysql-salesforce-products',
-            'tutorials/pre-built/gmail-salesforce-leads-openai',
-            'tutorials/pre-built/kafka-salesforce-price-book',
-            'tutorials/pre-built/salesforce-twilio-sms',
-            'tutorials/pre-built/hubspot-google-contacts',
-            'tutorials/pre-built/ftp-edi-salesforce-opportunity',
-            'tutorials/pre-built/shopify-outlook-welcome-email',
-          ],
-        },
-        // Sample Projects
-        {
-          type: 'category',
-          label: 'Sample projects',
-          items: [
-            'tutorials/samples/projects',
-            'tutorials/samples/hospital-service',
-            'tutorials/samples/e-commerce-order-service',
-            'tutorials/samples/event-driven-microservices-kafka',
-            'tutorials/samples/data-service-bal-persist',
-            'tutorials/samples/restful-api-visual-data-mapper',
-            'tutorials/samples/ai-personal-assistant',
+            'guides/patterns/message',
+            'guides/patterns/message-filter',
+            'guides/patterns/content-based-routing',
+            'guides/patterns/selective-consumer',
+            'guides/patterns/polling-consumer',
+            'guides/patterns/channel-adapter',
+            'guides/patterns/message-dispatcher',
+            'guides/patterns/service-activator',
+            'guides/patterns/message-mapper',
           ],
         },
         // Migration Guides
@@ -1937,15 +1866,12 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Migration guides',
           items: [
-            'tutorials/migration/coming-from-mi',
-            'tutorials/migration/coming-from-mulesoft',
-            'tutorials/migration/coming-from-tibco',
-            'tutorials/migration/coming-from-boomi',
+            'guides/migration/coming-from-mulesoft',
+            'guides/migration/coming-from-tibco',
           ],
         },
       ],
     },
-    // ─────────────────────────────────────────────
     // DEPLOY
     // "How do I ship, run, and secure this?"
     // ─────────────────────────────────────────────
@@ -1955,7 +1881,7 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       link: { type: 'doc', id: 'deploy/overview' },
       items: [
-        // Deploy
+        // WSO2 Cloud
         {
           type: 'category',
           label: 'Deploy to WSO2 Cloud',
@@ -1967,28 +1893,20 @@ const sidebars: SidebarsConfig = {
             'deploy/cloud/import-integration',
           ],
         },
-      ],
-    },
-
-    // ─────────────────────────────────────────────
-    // DEPLOY & OPERATE
-    // "How do I ship, run, and secure this?"
-    // ─────────────────────────────────────────────
-    {
-      type: 'category',
-      label: 'Deploy and operate',
-      collapsed: true,
-      link: { type: 'doc', id: 'deploy-operate/deploy-and-operate' },
-      items: [
-        // Deploy
+        // Self-hosted: upstream has migrated run-locally / docker /
+        // kubernetes / openshift to deploy/self-hosted/*. The remaining
+        // legacy deploy-operate/deploy/* docs that don't have a new
+        // home yet are listed alongside so they stay reachable until
+        // they're migrated too.
         {
           type: 'category',
-          label: 'Deploy',
+          label: 'Self-hosted',
           items: [
-            'deploy-operate/deploy/run-locally',
+            'deploy/self-hosted/run-locally',
+            'deploy/self-hosted/docker',
+            'deploy/self-hosted/kubernetes',
+            'deploy/self-hosted/openshift',
             'deploy-operate/deploy/vm-based-deployment',
-            'deploy-operate/deploy/docker-kubernetes',
-            'deploy-operate/deploy/red-hat-openshift',
             'deploy-operate/deploy/serverless-deployment',
             'deploy-operate/deploy/devant-ipaas',
             'deploy-operate/deploy/aws-azure-gcp',
@@ -2015,22 +1933,22 @@ const sidebars: SidebarsConfig = {
           label: 'Observe',
           items: [
             'deploy-operate/observe/observability-overview',
-            'deploy-operate/observe/logging-structured-logs',
-            'deploy-operate/observe/metrics-prometheus-grafana',
-            'deploy-operate/observe/distributed-tracing',
+            'deploy-operate/observe/metrics-overview',
+            'deploy-operate/observe/logging-overview',
             'deploy-operate/observe/integration-control-plane-icp',
-            'deploy-operate/observe/observability-devant',
-            'deploy-operate/observe/prometheus-metrics',
-            'deploy-operate/observe/grafana-dashboards',
+            // 'deploy-operate/observe/metrics-prometheus-grafana',
             'deploy-operate/observe/jaeger-distributed-tracing',
             'deploy-operate/observe/zipkin-tracing',
-            'deploy-operate/observe/datadog-integration',
+            // 'deploy-operate/observe/datadog-integration',
             'deploy-operate/observe/new-relic-integration',
-            'deploy-operate/observe/elastic-stack-elk',
-            'deploy-operate/observe/opensearch-integration',
+            // 'deploy-operate/observe/elastic-stack-elk',
+            // 'deploy-operate/observe/opensearch-integration',
             'deploy-operate/observe/moesif-api-analytics',
-            'deploy-operate/observe/custom-metrics',
-            'deploy-operate/observe/third-party-observability-tools',
+            'deploy-operate/observe/recipe-datadog-setup',
+            // 'deploy-operate/observe/recipe-local-development',
+            // 'deploy-operate/observe/recipe-kubernetes-production',
+            // 'deploy-operate/observe/recipe-elk-stack',
+            // 'deploy-operate/observe/recipe-opensearch-setup',
           ],
         },
         // Secure
@@ -2066,6 +1984,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Manage',
       collapsed: true,
+      link: { type: 'doc', id: 'manage/overview' },
       items: [
         'manage/choosing-a-control-plane',
         // Cloud
@@ -2094,6 +2013,7 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/configurations/security-configurations',
                 'manage/cloud/configurations/build-configurations',
                 'manage/cloud/configurations/scaling-resource-limits',
+                'manage/cloud/configurations/custom-domain',
               ],
             },
             // Environments
@@ -2104,6 +2024,7 @@ const sidebars: SidebarsConfig = {
               items: [
                 'manage/cloud/environments/promotion',
                 'manage/cloud/environments/promotion-approval',
+                'manage/cloud/environments/create',
               ],
             },
             // Observability
@@ -2117,6 +2038,35 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/observability/anomaly-detection-alerts',
               ],
             },
+            // CI/CD
+            {
+              type: 'category',
+              label: 'CI/CD',
+              link: { type: 'doc', id: 'manage/cloud/cicd/overview' },
+              items: [
+                'manage/cloud/cicd/connect-git-repository',
+                'manage/cloud/cicd/deployment-pipelines',
+              ],
+            },
+            // Users and Access
+            {
+              type: 'category',
+              label: 'Users and access',
+              link: { type: 'doc', id: 'manage/cloud/users-and-access/overview' },
+              items: [
+                    'manage/cloud/users-and-access/access-control',
+                    'manage/cloud/users-and-access/configure-enterprise-login',
+                    {
+                        type: 'category',
+                        label: 'Access APIs with an External IdP',
+                        link: { type: 'doc', id: 'manage/cloud/users-and-access/api-external-idp/overview' },
+                        items: [
+                            'manage/cloud/users-and-access/api-external-idp/asgardeo',
+                            'manage/cloud/users-and-access/api-external-idp/azure',
+                        ],
+                    },
+                ],
+            },
             {
               type: 'category',
               label: 'Platform services',
@@ -2124,7 +2074,7 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/platform-services/managed-databases',
               ],
             },
-            {
+             {
               type: 'category',
               label: 'RAG (Retrieval-Augmented Generation)',
               items: [
@@ -2133,6 +2083,32 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/rag-ingestion/service',
                 'manage/cloud/rag-ingestion/vector-databases',
                 'manage/cloud/rag-ingestion/querying',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Billing',
+              items: [
+                'manage/cloud/billing/pricing-and-plans',
+                'manage/cloud/billing/usage-dashboards',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Audit',
+              items: [
+                'manage/cloud/audit/audit-logs',
+                'manage/cloud/audit/compliance-data-residency',
+              ],
+            },
+            // Private data plane
+            {
+              type: 'category',
+              label: 'Private data plane',
+              link: { type: 'doc', id: 'manage/cloud/private-date-plane/overview' },
+              items: [
+                'manage/cloud/private-date-plane/management-models',
+                'manage/cloud/private-date-plane/security-levels',
               ],
             },
           ],
@@ -2146,12 +2122,21 @@ const sidebars: SidebarsConfig = {
             'manage/icp/icp-console-overview',
             'manage/icp/connect-runtime',
             'manage/icp/observability-setup',
-            'manage/icp/access-control',
             'manage/icp/manage-projects',
             'manage/icp/manage-environments',
             'manage/icp/manage-integrations',
             'manage/icp/manage-runtimes',
-            'manage/icp/sso-configuration',
+            'manage/icp/access-control',
+            {
+              type: 'category',
+              label: 'User Stores',
+              link: { type: 'doc', id: 'manage/icp/user-stores/configure-user-stores' },
+              items: [
+                'manage/icp/user-stores/default-user-store',
+                'manage/icp/user-stores/ldap-user-store',
+                'manage/icp/user-stores/sso-configuration',
+              ],
+            },
             {
               type: 'category',
               label: 'MI Profile',
@@ -2180,13 +2165,10 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Language',
           items: [
-            'reference/language/ballerina-syntax-quick-reference',
             'reference/language/type-system',
-            'reference/language/standard-library-overview',
-            'reference/language/query-expressions',
-            'reference/language/concurrency',
             'reference/language/error-handling',
-            'reference/language/integration-specific-features',
+            'reference/language/query-expressions',
+            'reference/language/concurrency'
           ],
         },
         // Configuration
@@ -2197,23 +2179,7 @@ const sidebars: SidebarsConfig = {
             'reference/config/ballerinatoml-reference',
             'reference/config/configtoml-reference',
             'reference/config/cloudtoml-reference',
-            'reference/config/dependenciestoml-reference',
             'reference/config/environment-variables',
-          ],
-        },
-        // CLI
-        {
-          type: 'category',
-          label: 'CLI',
-          items: [
-            'reference/cli/bal-command-reference',
-            'reference/cli/bal-persist',
-            'reference/cli/bal-openapi',
-            'reference/cli/bal-graphql',
-            'reference/cli/bal-grpc',
-            'reference/cli/bal-edi',
-            'reference/cli/bal-health',
-            'reference/cli/bal-scan',
           ],
         },
         // ICP Configuration
@@ -2276,7 +2242,6 @@ const sidebars: SidebarsConfig = {
             'reference/error-code',
             'reference/glossary',
             'reference/faq',
-            'reference/appendix/troubleshooting',
             'reference/release-notes',
           ],
         },

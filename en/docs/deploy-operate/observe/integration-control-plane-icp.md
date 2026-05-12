@@ -26,7 +26,7 @@ Key capabilities:
 
 ### Configuring the integration node with ICP
 
-ICP allows you to connect BI and MI runtimes to the ICP server for centralized management and monitoring.
+ICP allows you to connect default profile and MI runtimes to the ICP server for centralized management and monitoring.
 This guide will walk you through the steps to connect your integration runtime to the ICP server.
 
 1. Navigate to the home view of WSO2 Integrator.
@@ -100,3 +100,4 @@ import wso2/icp.runtime.bridge as _;
 - [Logging](logging.md) -- Configure structured logging
 - [Metrics](metrics.md) -- Prometheus metrics and Grafana dashboards
 - [Distributed Tracing](tracing.md) -- Trace requests across services
+- [Observability Setup](../../manage/icp/observability-setup.md) -- Set up centralized logs and metrics monitoring

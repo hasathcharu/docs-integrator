@@ -3,7 +3,7 @@ title: Triggers
 ---
 # Triggers
 
-The `ballerinax/java.jms` connector supports event-driven message consumption through a `jms:Listener`. When messages arrive on a configured queue or topic, the listener dispatches them to your service's `onMessage` callback automatically — no polling loop required.
+The `ballerinax/java.jms` connector supports event-driven message consumption through a `jms:Listener`. When messages arrive on a configured queue or topic, the listener dispatches them to your service's `onMessage` callback automatically; no polling loop required.
 
 
 Three components work together:
@@ -154,7 +154,7 @@ Use `@jms:ServiceConfig` with `queueName` for queue consumption or `topicName` f
 | `deliveredTime` | `int?` | The earliest time the message can be delivered. |
 | `priority` | `int?` | Message priority (0-9, default 4). |
 | `properties` | `map<Property>?` | Application-defined message properties. |
-| `content` | `string\|map<Value>\|byte[]` | The message body — text, map, or binary content. |
+| `content` | `string\|map<Value>\|byte[]` | The message body: text, map, or binary content. |
 
 ### `Destination`
 

@@ -41,8 +41,8 @@ The required scopes may vary depending on which operations you plan to use. Add 
 ## Get the client ID and client secret
 
 1. In your app's **Auth** tab, locate the **Client ID** and **Client Secret** fields.
-2. Copy the **Client ID** — this is your `clientId`.
-3. Copy the **Client Secret** — this is your `clientSecret`.
+2. Copy the **Client ID**; this is your `clientId`.
+3. Copy the **Client Secret**; this is your `clientSecret`.
 
 
 :::tip
@@ -100,4 +100,4 @@ Private app tokens do not expire automatically but should still be stored secure
 
 ## Next steps
 
-- [Actions Reference](actions.md) - Available operations
+- [Actions Reference](actions.md): Available operations
