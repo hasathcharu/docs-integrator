@@ -1836,7 +1836,6 @@ const sidebars: SidebarsConfig = {
             'genai/tutorials/building-hr-knowledge-base-rag',
             'genai/tutorials/building-a-customer-care-agent-mcp',
             'genai/tutorials/it-helpdesk-chatbot',
-            'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
           ],
         }
       ],
