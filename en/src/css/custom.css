@@ -91,9 +91,8 @@
   --ifm-code-font-size: 93%;
 
   /* === Navbar & Navigation === */
-  --ifm-navbar-background-color: rgba(240, 247, 255, 0.85);
-  /* Subtle Light Blue Background */
-  --wso2-sidebar-bg: #F0F7FF;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
+  --wso2-sidebar-bg: #F8FAFC;
   --ifm-navbar-shadow: 0 1px 0 #E2E8F0;
   --ifm-navbar-height: 4rem;
   --ifm-navbar-padding-vertical: 0;
