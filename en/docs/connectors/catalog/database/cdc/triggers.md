@@ -74,7 +74,7 @@ The listener supports the following connection strategies:
 
 ### Initializing the listener
 
-**MySQL — no initial snapshot, insert-only tracking:**
+**MySQL, with no initial snapshot, insert-only tracking:**
 
 ```ballerina
 import ballerinax/cdc;
@@ -98,7 +98,7 @@ listener mysql:CdcListener financeDBListener = new (
 );
 ```
 
-**MySQL — multiple tables with Kafka-based offset storage:**
+**MySQL: multiple tables with Kafka-based offset storage:**
 
 ```ballerina
 import ballerinax/cdc;
@@ -154,7 +154,7 @@ A `cdc:Service` is attached to a CDC listener and implements remote function cal
 | `onError` | `remote function onError(cdc:Error e) returns error?` | Invoked when an event processing error occurs; receives the `cdc:Error` (including `PayloadBindingError` for type-binding failures). |
 
 :::note
-You do not need to implement all callbacks — only implement the event types relevant to your use case. Unimplemented callback types are silently ignored by the listener.
+You do not need to implement all callbacks: only implement the event types relevant to your use case. Unimplemented callback types are silently ignored by the listener.
 
 :::
 

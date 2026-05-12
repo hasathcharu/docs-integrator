@@ -1,6 +1,6 @@
 ---
 title: "Twilio Connector Overview"
-description: Overview of the Ballerina Twilio connector — send SMS, make voice calls, manage phone numbers, and handle Twilio webhook events from your integration flows.
+description: "Overview of the Ballerina Twilio connector: send SMS, make voice calls, manage phone numbers, and handle Twilio webhook events from your integration flows."
 keywords: [twilio, sms, voice call, webhook, ballerina connector, phone number]
 connector: true
 connector_name: "twilio"

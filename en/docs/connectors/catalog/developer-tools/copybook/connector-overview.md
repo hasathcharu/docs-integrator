@@ -33,7 +33,7 @@ See the **[Action Reference](actions.md)** for the full list of operations, para
 * **[Setup Guide](setup-guide.md)**: This guide describes how to obtain and prepare a COBOL copybook schema file required by the Copybook connector.
 
 
-* **[Action Reference](actions.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](actions.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 ## How to contribute
 
