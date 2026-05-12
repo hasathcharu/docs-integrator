@@ -29,7 +29,7 @@ To run the project on your local machine:
     bal run
     ```
 
-The Ballerina CLI compiles the project and starts the integration runtime. You will see the program output in the terminal. Integrations with listeners keep runnnig until you terminate it by **`CTRL + C`**
+The Ballerina CLI compiles the project and starts the integration runtime. You will see the program output in the terminal. Integrations with listeners keep running until you terminate it by **`CTRL + C`**
 
 ## Run on a VM
 
