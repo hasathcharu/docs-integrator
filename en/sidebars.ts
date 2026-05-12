@@ -12,7 +12,7 @@ import { connectorVersionedDocs } from './src/utils/sidebarUtils';
  *   Connectors        — "Can I connect to Y?"
  *   GenAI             — "How do I build AI agents, RAG, or MCP?"
  *   Tutorials         — "Show me a complete, real example"
- *   Deploy & Operate  — "How do I ship, run, and secure this?"
+ *   Deploy            — "How do I ship, run, and secure this?"
  *   Manage            — "How do I set up and manage ICP?"
  *   Reference         — "What's the exact syntax / config / API for Z?"
  */
@@ -1881,7 +1881,7 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       link: { type: 'doc', id: 'deploy/overview' },
       items: [
-        // Deploy
+        // WSO2 Cloud
         {
           type: 'category',
           label: 'Deploy to WSO2 Cloud',
@@ -1893,6 +1893,11 @@ const sidebars: SidebarsConfig = {
             'deploy/cloud/import-integration',
           ],
         },
+        // Self-hosted: upstream has migrated run-locally / docker /
+        // kubernetes / openshift to deploy/self-hosted/*. The remaining
+        // legacy deploy-operate/deploy/* docs that don't have a new
+        // home yet are listed alongside so they stay reachable until
+        // they're migrated too.
         {
           type: 'category',
           label: 'Self-hosted',
@@ -1901,30 +1906,7 @@ const sidebars: SidebarsConfig = {
             'deploy/self-hosted/docker',
             'deploy/self-hosted/kubernetes',
             'deploy/self-hosted/openshift',
-          ],
-        },
-      ],
-    },
-
-    // ─────────────────────────────────────────────
-    // DEPLOY & OPERATE
-    // "How do I ship, run, and secure this?"
-    // ─────────────────────────────────────────────
-    {
-      type: 'category',
-      label: 'Deploy and operate',
-      collapsed: true,
-      link: { type: 'doc', id: 'deploy-operate/deploy-and-operate' },
-      items: [
-        // Deploy
-        {
-          type: 'category',
-          label: 'Deploy',
-          items: [
-            'deploy-operate/deploy/run-locally',
             'deploy-operate/deploy/vm-based-deployment',
-            'deploy-operate/deploy/docker-kubernetes',
-            'deploy-operate/deploy/red-hat-openshift',
             'deploy-operate/deploy/serverless-deployment',
             'deploy-operate/deploy/devant-ipaas',
             'deploy-operate/deploy/aws-azure-gcp',
