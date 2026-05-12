@@ -33,8 +33,8 @@ A default sandbox Business and Personal account are usually created automaticall
 ## Step 3: Get the client ID and client secret
 
 1. After creating the app, you are taken to the app details page.
-2. Copy the **Client ID** — this is your `clientId`.
-3. Click **Show** under **Secret** and copy the **Client Secret** — this is your `clientSecret`.
+2. Copy the **Client ID**; this is your `clientId`.
+3. Click **Show** under **Secret** and copy the **Client Secret**; this is your `clientSecret`.
 
 :::tip
 Store the Client ID and Client Secret securely. Do not commit them to source control.
