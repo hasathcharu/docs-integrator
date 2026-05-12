@@ -219,19 +219,39 @@ const sidebars: SidebarsConfig = {
             'develop/transform/expressions-functions',
           ],
         },
-        // 6.6 Try & Test
+        // 6.6 Test
         {
           type: 'category',
-          label: 'Try and test',
+          label: 'Test',
+          link: { type: 'doc', id: 'develop/test/overview' },
           items: [
-            'develop/test/built-in-try-it-tool',
-            'develop/test/unit-testing',
-            'develop/test/services-clients',
-            'develop/test/data-driven-tests',
-            'develop/test/groups',
-            'develop/test/mocking',
-            'develop/test/execute-tests',
-            'develop/test/code-coverage-and-reports',
+            {
+              type: 'category',
+              label: 'Try-It tool',
+              link: { type: 'doc', id: 'develop/test/built-in-try-it-tool' },
+              items: [
+                'develop/test/try-it-http',
+                'develop/test/try-it-graphql',
+                'develop/test/try-it-chat',
+                'develop/test/try-it-mcp',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Test Explorer',
+              link: { type: 'doc', id: 'develop/test/test-explorer' },
+              items: [
+                'develop/test/unit-testing',
+                'develop/test/configure-tests',
+                'develop/test/services-clients',
+                'develop/test/data-driven-tests',
+                'develop/test/groups',
+                'develop/test/mocking',
+                'develop/test/execute-tests',
+                'develop/test/code-coverage-and-reports',
+              ],
+            },
+            'develop/test/ai-generated-cases',
           ],
         },
         // 6.7 Debugging & Troubleshooting
