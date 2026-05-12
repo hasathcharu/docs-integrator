@@ -18,6 +18,7 @@ Complete, end-to-end examples you can follow from start to finish.
 
 Reusable integration patterns you can apply across projects:
 
+- **[Message](patterns/message.md)** -- Package business data and metadata for transmission through a message channel
 - **[Message Filter](patterns/message-filter.md)** -- Route only messages that match a condition
 - **[Content Based Routing](patterns/content-based-routing.md)** -- Route messages by inspecting their content
 - **[Channel Adapter](patterns/channel-adapter.md)** -- Connect applications, services, or broker channels to an integration flow
