@@ -1,9 +1,3 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 import React from 'react';
 import clsx from 'clsx';
 import {useCodeBlockContext} from '@docusaurus/theme-common/internal';
@@ -15,7 +9,6 @@ import styles from './styles.module.css';
 const foldStartPattern = /^\s*\/\/\s*docs-fold-start(?::\s*(.+))?\s*$/;
 const foldEndPattern = /^\s*\/\/\s*docs-fold-end\s*$/;
 
-// TODO Docusaurus v4: remove useless forwardRef
 const Pre = React.forwardRef((props, ref) => {
   return (
     <pre
