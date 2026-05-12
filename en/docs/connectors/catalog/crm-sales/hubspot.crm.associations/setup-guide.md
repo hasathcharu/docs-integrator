@@ -28,8 +28,8 @@ This guide walks you through creating a HubSpot app and obtaining the OAuth 2.0 
 
 1. Open your newly created app and navigate to the **Auth** tab.
 2. Under **Scopes**, click **Add new scope** and add the following scopes:
-    - `crm.associations.read` — required to read associations between CRM objects.
-    - `crm.associations.write` — required to create, update, and delete associations.
+    - `crm.associations.read`: required to read associations between CRM objects.
+    - `crm.associations.write`: required to create, update, and delete associations.
 3. Set the **Redirect URL** to your application's callback URL (e.g., `https://your-app.com/oauth/callback`).
 4. Click **Save**.
 
@@ -41,8 +41,8 @@ Depending on the CRM object types you intend to link, you may also need object-s
 ## Obtain the client ID and client secret
 
 1. In your app's **Auth** tab, locate the **App credentials** section.
-2. Copy the **Client ID** — this is your `clientId`.
-3. Click **Show** next to **Client secret** and copy the value — this is your `clientSecret`.
+2. Copy the **Client ID**; this is your `clientId`.
+3. Click **Show** next to **Client secret** and copy the value: this is your `clientSecret`.
 
 
 :::tip
@@ -80,7 +80,7 @@ grant_type=authorization_code
 ```
 
 The response contains `access_token`, `refresh_token`, and `expires_in`. Copy the
-`refresh_token` — you will use this in your connector configuration.
+`refresh_token`: you will use this in your connector configuration.
 
 
 :::tip
@@ -116,4 +116,4 @@ version = "2.0.0"
 
 ## Next steps
 
-- [Actions Reference](actions.md) - Available operations
+- [Actions Reference](actions.md): Available operations

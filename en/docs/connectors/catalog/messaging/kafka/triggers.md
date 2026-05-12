@@ -1,9 +1,10 @@
 ---
 title: Triggers
+description: Reference for event-driven Kafka integration using the kafka:Listener and kafka:Service model.
 ---
 # Triggers
 
-The `ballerinax/kafka` connector supports event-driven message consumption through a `kafka:Listener` that continuously polls Kafka topics and dispatches batches of records to your `kafka:Service` callback — eliminating the need for manual poll loops.
+The `ballerinax/kafka` connector supports event-driven message consumption through a `kafka:Listener` that continuously polls Kafka topics and dispatches batches of records to your `kafka:Service` callback, eliminating the need for manual poll loops.
 
 
 Three components work together:
@@ -95,7 +96,20 @@ A `kafka:Service` is a Ballerina service attached to a `kafka:Listener`. It impl
 
 | Function | Signature | Description |
 |----------|-----------|-------------|
-| `onConsumerRecord` | `remote function onConsumerRecord(kafka:Caller caller, kafka:BytesConsumerRecord[] records) returns error?` | Invoked when one or more records are consumed from the subscribed topic(s). Receives a batch of records and a caller for manual offset management. |
+| `onConsumerRecord` | `remote function onConsumerRecord(kafka:Caller caller, kafka:BytesConsumerRecord[] records) returns error?` | Standard form: caller first, records second. |
+| `onConsumerRecord` | `remote function onConsumerRecord(kafka:BytesConsumerRecord[] records, kafka:Caller caller) returns error?` | Parameter order can be reversed: records first, caller second. |
+| `onConsumerRecord` | `remote function onConsumerRecord(kafka:BytesConsumerRecord[] records) returns error?` | `kafka:Caller` is optional. Omit it when manual offset management is not needed. |
+
+:::note
+The records array type can be replaced with any typed Ballerina record (`T[]`) for automatic payload deserialization. The `readonly` modifier can also be applied to the records parameter (e.g., `readonly & T[] records`).
+:::
+
+:::note
+Use the `@kafka:Payload` annotation on the records parameter to explicitly mark it as the payload for data binding, particularly when the service method includes both a `kafka:Caller` and a typed record parameter:
+```ballerina
+remote function onConsumerRecord(kafka:Caller caller, @kafka:Payload MyRecord[] records) returns error?
+```
+:::
 
 :::note
 The `kafka:Caller` provides `commit()`, `commitOffset()`, and `seek()` remote functions for manual offset management within the service callback.

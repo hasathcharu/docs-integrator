@@ -54,7 +54,7 @@ hsmsubscriptions:Client subscriptionsClient = check new ({
 
 ### Operations
 
-#### Subscription status — single contact
+#### Subscription status: single contact
 
 <details>
 <summary>getCommunicationPreferencesV4StatusesSubscriberIdString</summary>
@@ -171,7 +171,7 @@ Sample response:
 
 </details>
 
-#### Unsubscribe all — single contact
+#### Unsubscribe all: single contact
 
 <details>
 <summary>getCommunicationPreferencesV4StatusesSubscriberIdStringUnsubscribeAll</summary>

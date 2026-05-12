@@ -5,7 +5,7 @@ title: "WebSub"
 description: "Overview of the ballerina/websub connector for WSO2 Integrator."
 ---
 
-WebSub is a W3C recommended publish-subscribe protocol built on HTTP that enables real-time content delivery through webhooks. The Ballerina `ballerina/websub` connector (v2.15.0) provides both subscriber-side functionality — discovering hubs, managing subscriptions, and receiving content distribution events — enabling you to build event-driven integrations that react to content updates in real time.
+WebSub is a W3C-recommended publish-subscribe protocol built on HTTP that enables real-time content delivery through webhooks. The Ballerina `ballerina/websub` connector (v2.15.0) provides subscriber-side functionality for discovering hubs, managing subscriptions, and receiving content distribution events, enabling you to build event-driven integrations that react to content updates in real time.
 
 
 ## Key features
@@ -20,7 +20,7 @@ WebSub is a W3C recommended publish-subscribe protocol built on HTTP that enable
 
 ## Actions
 
-Actions are operations you invoke from your integration to interact with WebSub hubs — discovering hub and topic URLs, subscribing to topics, and unsubscribing from topics. The WebSub connector exposes actions through two clients:
+Actions are operations you invoke from your integration to interact with WebSub hubs: discovering hub and topic URLs, subscribing to topics, and unsubscribing from topics. The WebSub connector exposes actions through two clients:
 
 
 | Client | Actions |
@@ -51,7 +51,7 @@ See the **[Trigger Reference](trigger-reference.md)** for listener configuration
 * **[Setup Guide](setup-guide.md)**: This guide walks you through setting up a WebSub hub subscription so that the Ballerina WebSub connector can receive content distribution events.
 
 
-* **[Action Reference](action-reference.md)**: Full reference for all clients — operations, parameters, return types, and sample code.
+* **[Action Reference](action-reference.md)**: Full reference for all clients: operations, parameters, return types, and sample code.
 
 * **[Trigger Reference](trigger-reference.md)**: Reference for event-driven integration using the listener and service model.
 

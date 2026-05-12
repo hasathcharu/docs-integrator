@@ -10,7 +10,7 @@ This page introduces every major product component in 2–3 sentences. Think of 
 
 ## Project
 
-A workspace that contains your integration code, dependencies, configuration, and deployment artifacts. Each project is self-contained with its own `Ballerina.toml` file. For more information, see [Project structure](/docs/develop/project-views/overview).
+A workspace that contains your integration code, dependencies, configuration, and deployment artifacts. Each project is self-contained with its own `Ballerina.toml` file. For more information, see [Project structure](/docs/develop/understand-ide/views/project-view).
 
 ## Integration
 
@@ -18,7 +18,7 @@ A reusable piece of business logic that connects systems, transforms data, or or
 
 ## Library
 
-A shareable collection of reusable components, functions, and connectors packaged for distribution. Libraries let you build once and use across multiple projects or share with your team. For more information, see [Organize code](/docs/develop/organize-code/).
+A shareable collection of reusable components, functions, and connectors packaged for distribution. Libraries let you build once and use across multiple projects or share with your team.
 
 
 ## Services and listeners
@@ -29,7 +29,7 @@ A **service** is a Ballerina construct that defines the application logic for ha
 
 Multiple services can attach to the same listener. For example, two services can share one FTP listener to monitor different directories on the same server, or share one HTTP listener to serve different API paths on the same port.
 
-This listener/service pattern is the foundation for all inbound integration types: [API services](#integration-as-api), [event integrations](#event-integrations), and [file integrations](#file-integrations). For the language-level details, see [Integration-specific features](/docs/reference/language/integration-features).
+This listener/service pattern is the foundation for all inbound integration types: [API services](#integration-as-api), [event integrations](#event-integrations), and [file integrations](#file-integrations).
 
 ## Integration as API
 
