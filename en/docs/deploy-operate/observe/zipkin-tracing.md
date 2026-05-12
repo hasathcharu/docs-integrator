@@ -76,11 +76,11 @@ reporterBufferSize = 10000
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | `agentHostname` | string | `"localhost"` | Hostname of the Zipkin agent. Use `localhost` if running on the same node as Ballerina. |
-| `agentPort` | int | `4317` | Port on which the Zipkin agent is listening. |
+| `agentPort` | int | `9411` | Port on which the Zipkin agent is listening. |
 | `samplerType` | string | `"const"` | Sampling strategy: `const`, `probabilistic`, or `ratelimiting`. |
 | `samplerParam` | float | `1.0` | For `const`: `0` (no sampling) or `1` (sample all). For `probabilistic`: `0.0`–`1.0`. For `ratelimiting`: positive integer (rate per second). |
-| `reporterFlushInterval` | int | `2000` | Interval (ms) at which the client sends spans to the agent. |
-| `reporterBufferSize` | int | `2000` | Queue size of the Zipkin client. |
+| `reporterFlushInterval` | int | `1000` | Interval (ms) at which the client sends spans to the agent. |
+| `reporterBufferSize` | int | `10000` | Queue size of the Zipkin client. |
 
 
 ## Step 4 -- send requests

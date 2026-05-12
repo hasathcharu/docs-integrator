@@ -83,6 +83,7 @@ Deploy your integration on managed cloud platforms with built-in observability. 
 | Platform | Best For | Metrics | Logging | Tracing | Setup |
 |----------|----------|---------|---------|---------|-------|
 | **[New Relic](new-relic-integration.md)** | Multi-cloud environments | ✅ Via OTLP | ✅ Via forwarder | ✅ Via OTLP | Low |
+
 ---
 
 ## Recipes: End-to-End Solutions

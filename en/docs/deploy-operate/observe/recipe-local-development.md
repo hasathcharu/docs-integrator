@@ -9,7 +9,7 @@ A complete observability setup for development using Docker Compose. Includes me
 
 ## Architecture
 
-```
+```bash
 WSO2 Integrator
 ├── Metrics (9797) ──▶ Prometheus
 │                          ▲
@@ -36,7 +36,7 @@ services:
   integrator:
     image: ballerina:latest
     ports:
-      - "9090:9090"  # API
+      - "8090:9090"  # API
       - "9797:9797"  # Metrics
     environment:
       - BALLERINA_OBSERVE_METRICS_ENABLED=true
@@ -223,7 +223,7 @@ scrape_configs:
       - targets:
           - localhost
         labels:
-          job: varlogs
+          job: integrator
           __path__: /var/log/*log
 ```
 

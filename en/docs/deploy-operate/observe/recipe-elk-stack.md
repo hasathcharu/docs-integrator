@@ -9,7 +9,7 @@ Complete log aggregation, full-text search, and visualization using the Elastic 
 
 ## Architecture
 
-```
+```bash
 WSO2 Integrator
 ├── Logs (stdout) ──▶ Filebeat ──▶ Logstash ──▶ Elasticsearch ──▶ Kibana
 │                                   (optional)      (indexing)       (UI)
@@ -89,7 +89,7 @@ services:
   integrator:
     image: ballerina:latest
     ports:
-      - "9090:9090"
+      - "8090:9090"
       - "9797:9797"
     environment:
       - BALLERINA_OBSERVE_METRICS_ENABLED=true

@@ -39,7 +39,7 @@ Add the below to `Ballerina.toml` file.
 
 ```toml
 [build-options]
-remoteManagement = true
+observabilityIncluded = true
 ```
 
 Tracing and metrics can be enabled in your Ballerina project using configurations similar to the following in your `Config.toml` file.
@@ -114,11 +114,11 @@ Run the service and send requests.
 Example cURL commands:
 
 ```bash
-$ curl -X GET http://localhost:8090/shop/products
+curl -X GET http://localhost:8090/shop/products
 ```
 
 ```bash
-$ curl -X POST http://localhost:8090/shop/product \
+curl -X POST http://localhost:8090/shop/product \
 -H "Content-Type: application/json" \
 -d '{
     "id": 4, 
@@ -128,7 +128,7 @@ $ curl -X POST http://localhost:8090/shop/product \
 ```
 
 ```bash
-$ curl -X POST http://localhost:8090/shop/order \
+curl -X POST http://localhost:8090/shop/order \
 -H "Content-Type: application/json" \
 -d '{
     "productId": 1, 
@@ -137,7 +137,7 @@ $ curl -X POST http://localhost:8090/shop/order \
 ```
 
 ```bash
-$ curl -X GET http://localhost:8090/shop/order/0
+curl -X GET http://localhost:8090/shop/order/0
 ```
 
 ## Step 5 - View metrics on the New Relic platform

@@ -32,7 +32,7 @@ Prometheus collects metrics using a **pull model** – your application exposes 
 
 Navigate to the file explorer of the WSO2 Integrator and add the following to the `main.bal` file.
 
-```
+```ballerina
 import ballerinax/prometheus as _;
 ```
 
@@ -184,7 +184,7 @@ activeConnections.decrement(amount = 1);
 
 ## What's Next
 
-- **[Distributed Tracing](distributed-tracing-overview.md)** – Trace requests across services
+- **[Distributed Tracing](jaeger-distributed-tracing.md)** – Trace requests across services
 - **[Logging](logging-overview.md)** – Configure structured logging
 - **[Integration Control Plane](integration-control-plane-icp.md)** – Centralized monitoring dashboard
 - **[Datadog Integration](datadog-integration.md)** – Forward Prometheus metrics to Datadog

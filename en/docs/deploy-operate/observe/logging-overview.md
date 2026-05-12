@@ -165,5 +165,5 @@ JSON output:
 - **[Elastic Stack (ELK)](elastic-stack-elk.md)** – Complete log aggregation with Elasticsearch and Kibana
 - **[OpenSearch Integration](opensearch-integration.md)** – Open-source alternative to ELK
 - **[Metrics](metrics-overview.md)** – Monitor service health with Prometheus and Grafana
-- **[Distributed Tracing](distributed-tracing-overview.md)** – Trace requests across services
+- **[Distributed Tracing](jaeger-distributed-tracing.md)** – Trace requests across services
 - **[Integration Control Plane](integration-control-plane-icp.md)** – Centralized monitoring dashboard

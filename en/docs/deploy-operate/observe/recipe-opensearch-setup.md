@@ -9,7 +9,7 @@ Complete log aggregation and analytics using OpenSearch (open-source Elasticsear
 
 ## Architecture
 
-```
+```bash
 WSO2 Integrator
 ├── Logs (stdout) ──▶ Fluent Bit ──▶ OpenSearch ──▶ OpenSearch Dashboards
 │                                       (indexing)        (UI)
@@ -78,7 +78,7 @@ services:
   integrator:
     image: ballerina:latest
     ports:
-      - "9090:9090"
+      - "8090:9090"
       - "9797:9797"
     environment:
       - BALLERINA_OBSERVE_METRICS_ENABLED=true

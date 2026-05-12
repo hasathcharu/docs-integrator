@@ -9,7 +9,7 @@ Enterprise-grade observability setup for Kubernetes deployments using Prometheus
 
 ## Architecture
 
-```
+```bash
 WSO2 Integrator Pods
 ├── Metrics (9797) ──▶ Prometheus Operator (auto-discovers ServiceMonitor)
 │                          ▼

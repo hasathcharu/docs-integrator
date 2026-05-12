@@ -95,7 +95,7 @@ This setup leverages `Fluent Bit` to forward logs to an `OTEL Collector`, which 
 
 1. Copy the following configs into a local directory to set up containerized log publishing.
 
-   ```
+   ```bash
    .
    ├── docker-compose.yaml
    ├── fluent-bit.conf
@@ -148,7 +148,7 @@ This setup leverages `Fluent Bit` to forward logs to an `OTEL Collector`, which 
    
    **fluent-bit.conf**
    
-   ```conf
+   ```ini
    [SERVICE]
        Flush         1
        Log_Level     debug
@@ -301,11 +301,12 @@ Send requests as below to the service.
 
 Example cURL commands:
 
+```bash
+curl -X GET http://localhost:8090/shop/products
 ```
-$ curl -X GET http://localhost:8090/shop/products
-```
-```
-$ curl -X POST http://localhost:8090/shop/product \
+
+```bash
+curl -X POST http://localhost:8090/shop/product \
 -H "Content-Type: application/json" \
 -d '{
     "id": 4, 
@@ -313,16 +314,18 @@ $ curl -X POST http://localhost:8090/shop/product \
     "price": 50.00
 }'
 ```
-```
-$ curl -X POST http://localhost:8090/shop/order \
+
+```bash
+curl -X POST http://localhost:8090/shop/order \
 -H "Content-Type: application/json" \
 -d '{
     "productId": 1, 
     "quantity": 1
 }'
 ```
-```
-$ curl -X GET http://localhost:8090/shop/order/0
+
+```bash
+curl -X GET http://localhost:8090/shop/order/0
 ```
 
 ## Step 6 - Visualize the observability data in Moesif dashboards

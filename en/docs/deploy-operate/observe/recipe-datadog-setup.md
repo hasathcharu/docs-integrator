@@ -164,12 +164,12 @@ Run the service and send requests to `http://localhost:8090/shop/products`.
 
 Example cURL commands:
 
-```
-$ curl -X GET http://localhost:8090/shop/products
+```bash
+curl -X GET http://localhost:8090/shop/products
 ```
 
-```
-$ curl -X POST http://localhost:8090/shop/product \
+```bash
+curl -X POST http://localhost:8090/shop/product \
 -H "Content-Type: application/json" \
 -d '{
     "id": 4,
@@ -178,8 +178,8 @@ $ curl -X POST http://localhost:8090/shop/product \
 }'
 ```
 
-```
-$ curl -X POST http://localhost:8090/shop/order \
+```bash
+curl -X POST http://localhost:8090/shop/order \
 -H "Content-Type: application/json" \
 -d '{
     "productId": 1,
@@ -187,8 +187,8 @@ $ curl -X POST http://localhost:8090/shop/order \
 }'
 ```
 
-```
-$ curl -X GET http://localhost:8090/shop/order/0
+```bash
+curl -X GET http://localhost:8090/shop/order/0
 ```
 
 ## Step 6 - View metrics on Datadog
@@ -210,7 +210,7 @@ The Ballerina Dashboard in the Datadog will be displayed as below.
 ![Ballerina Dashboard in Datadog](/img/deploy-operate/observe/datadog-metrics-dashboard-1.png "Ballerina Dashboard in Datadog")
 ![Ballerina Dashboard in Datadog](/img/deploy-operate/observe/datadog-metrics-dashboard-2.png "Ballerina Dashboard in Datadog")
 
-## Step 8 - View tracing on Datadog
+## Step 7 - View tracing on Datadog
 
 To view traces of the Ballerina application, go to **APM → Traces** in the Datadog.
 
