@@ -87,6 +87,9 @@ Select **Delete** from the three-dot menu on a type card. The editor opens a con
 
 Select **Add Type** at the top right of the editor to add a new type to the integration. The editor opens the new type form where you choose the kind of type (record, enum, union, and so on), give it a name, and define its fields or members. The new type appears as a card on the canvas as soon as you save it, ready to be referenced from other types.
 
+![Add type](/img/develop/understand-ide/editors/type-diagram-editor/add-type-button.png)
+
+
 To add a field that references an existing type, set the field type to the name of that type. The editor draws the connecting line for you when you save.
 
 ## Canvas controls
