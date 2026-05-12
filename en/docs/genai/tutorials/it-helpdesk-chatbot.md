@@ -249,8 +249,6 @@ curl -X POST http://localhost:9090/hthr/chat \
 </TabItem>
 </Tabs>
 
-Example response:
-
 <Tabs>
 <TabItem value="bash" label="Response" default>
 ```json
@@ -275,8 +273,6 @@ curl -X POST http://localhost:9090/hthr/chat \
 ```
 </TabItem>
 </Tabs>
-
-Example response:
 
 <Tabs>
 <TabItem value="bash" label="Response" default>
@@ -311,7 +307,6 @@ curl -X POST http://localhost:9090/hthr/chat \
 </TabItem>
 </Tabs>
 
-Example response:
 <Tabs>
 <TabItem value="bash" label="Response" default>
 
@@ -345,8 +340,6 @@ curl -X POST http://localhost:9090/hthr/chat \
 ```
 </TabItem>
 </Tabs>
-
-Example response:
 
 <Tabs>
 <TabItem value="bash" label="Response" default>
