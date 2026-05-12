@@ -1831,6 +1831,7 @@ const sidebars: SidebarsConfig = {
             'guides/patterns/selective-consumer',
             'guides/patterns/polling-consumer',
             'guides/patterns/channel-adapter',
+            'guides/patterns/message-dispatcher',
             'guides/patterns/service-activator',
             'guides/patterns/message-mapper',
           ],
