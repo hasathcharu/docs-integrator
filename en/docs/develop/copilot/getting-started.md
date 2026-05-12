@@ -7,7 +7,9 @@ slug: /develop/wso2-integrator-copilot/getting-started
 
 # Getting Started
 
-## Sign in to WSO2 Integrator Copilot
+If you have already [signed in to WSO2 Integrator](../../get-started/setup/local-setup.md#step-4-sign-in-to-wso2-integrator) with your WSO2 Cloud account, Copilot uses the same authentication and is ready to use. Otherwise, sign in from the Copilot welcome screen.
+
+## Sign in from the Copilot welcome screen
 
 1. In your WSO2 Integrator project view, open Copilot by clicking the **Generate with AI** button, or the **Open WSO2 Integrator Copilot** icon (the chat-bot icon) in the top-right corner of the editor toolbar.
 
