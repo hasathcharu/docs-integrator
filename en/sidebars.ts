@@ -2176,14 +2176,6 @@ const sidebars: SidebarsConfig = {
             'reference/config/environment-variables',
           ],
         },
-        // CLI
-        {
-          type: 'category',
-          label: 'CLI',
-          items: [
-            'reference/cli/bal-command-reference'
-          ],
-        },
         // ICP Configuration
         {
           type: 'category',
