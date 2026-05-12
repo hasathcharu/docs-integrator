@@ -312,6 +312,7 @@ const sidebars: SidebarsConfig = {
                 'develop/tools/integration-tools/edi-tool',
                 'develop/tools/integration-tools/wsdl-tool',
                 'develop/tools/integration-tools/xsd-tool',
+                'develop/tools/integration-tools/persist-tool',
               ],
             },
             {
@@ -331,7 +332,6 @@ const sidebars: SidebarsConfig = {
               collapsed: true,
               items: [
                 'develop/tools/other/scan-tool',
-                'develop/tools/other/persist-tool',
               ],
             },
           ],
@@ -1731,15 +1731,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Getting started',
           items: [
-            'genai/getting-started/setting-up-ai',
-            {
-              type: 'category',
-              label: 'Building your first AI integration',
-              items: [
-                'genai/getting-started/build-a-sentiment-analyzer',
-                'genai/getting-started/build-a-sample-hotel-booking-agent',
-              ],
-            },
+            'genai/getting-started/build-a-sentiment-analyzer',
+            'genai/getting-started/build-a-sample-hotel-booking-agent',
           ],
         },
         // Develop AI Applications
@@ -1747,16 +1740,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Develop AI applications',
           items: [
-            'genai/develop/overview',
-            'genai/develop/components/model-providers',
-            'genai/develop/components/embedding-providers',
-            'genai/develop/components/vector-stores',
-            'genai/develop/components/knowledge-bases',
-            'genai/develop/components/chunkers',
             // Direct LLM Calls (single page)
             'genai/develop/direct-llm/overview',
-            // Natural Functions (single page)
-            'genai/develop/natural-functions/overview',
             // RAG
             {
               type: 'category',
@@ -1803,6 +1788,14 @@ const sidebars: SidebarsConfig = {
                 'genai/develop/mcp/consuming-mcp-from-agent',
               ],
             },
+            // Natural Functions (single page)
+            'genai/develop/natural-functions/overview',
+            // Components
+            'genai/develop/components/model-providers',
+            'genai/develop/components/embedding-providers',
+            'genai/develop/components/vector-stores',
+            'genai/develop/components/knowledge-bases',
+            'genai/develop/components/chunkers',
           ],
         },
         // Tutorials
@@ -1815,19 +1808,8 @@ const sidebars: SidebarsConfig = {
             'genai/tutorials/building-hr-knowledge-base-rag',
             'genai/tutorials/building-a-customer-care-agent-mcp',
             'genai/tutorials/it-helpdesk-chatbot',
-            'genai/tutorials/building-a-legal-document-qa-system-mcp-and-rag',
           ],
-        },
-        // Reference
-        {
-          type: 'category',
-          label: 'Reference',
-          items: [
-            'genai/reference/ballerina-copilot-setup-and-usage-guide',
-            'genai/reference/ai-governance-and-security',
-            'genai/reference/troubleshooting-and-common-issues',
-          ],
-        },
+        }
       ],
     },
 
@@ -2108,6 +2090,20 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/platform-services/managed-databases',
               ],
             },
+            {
+              type: 'category',
+              label: 'Billing',
+              items: [
+                'manage/cloud/billing/pricing-and-plans',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Audit',
+              items: [
+                'manage/cloud/audit/audit-logs',
+              ],
+            },
           ],
         },
         {
@@ -2155,11 +2151,9 @@ const sidebars: SidebarsConfig = {
           items: [
             'reference/language/ballerina-syntax-quick-reference',
             'reference/language/type-system',
-            'reference/language/standard-library-overview',
             'reference/language/query-expressions',
             'reference/language/concurrency',
             'reference/language/error-handling',
-            'reference/language/integration-specific-features',
           ],
         },
         // Configuration
@@ -2180,12 +2174,6 @@ const sidebars: SidebarsConfig = {
           label: 'CLI',
           items: [
             'reference/cli/bal-command-reference',
-            'reference/cli/bal-persist',
-            'reference/cli/bal-openapi',
-            'reference/cli/bal-graphql',
-            'reference/cli/bal-grpc',
-            'reference/cli/bal-edi',
-            'reference/cli/bal-health',
             'reference/cli/bal-scan',
           ],
         },
