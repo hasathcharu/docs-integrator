@@ -1890,6 +1890,16 @@ const sidebars: SidebarsConfig = {
             'deploy/cloud/import-integration',
           ],
         },
+        {
+          type: 'category',
+          label: 'Self-hosted',
+          items: [
+            'deploy/self-hosted/run-locally',
+            'deploy/self-hosted/docker',
+            'deploy/self-hosted/kubernetes',
+            'deploy/self-hosted/openshift',
+          ],
+        },
       ],
     },
 
