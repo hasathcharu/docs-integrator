@@ -126,10 +126,14 @@ const config: Config = {
           activeBaseRegex: '/docs/guides(/|$)',
         },
         {
-          to: '/docs/deploy-operate/overview',
-          label: 'Deploy & Operate',
+          to: '/docs/deploy/overview',
+          label: 'Deploy',
           position: 'left',
-          activeBaseRegex: '/docs/deploy-operate(/|$)',
+          // Match both the new /docs/deploy/* tree and the legacy
+          // /docs/deploy-operate/* tree until the content migration is
+          // complete (those pages still live under deploy-operate/ in
+          // sidebars.ts).
+          activeBaseRegex: '/docs/(deploy|deploy-operate)(/|$)',
         },
         {
           to: '/docs/manage/icp/integration-control-plane',
@@ -172,11 +176,11 @@ const config: Config = {
           ],
         },
         {
-          title: 'Deploy and operate',
+          title: 'Deploy',
           items: [
             { label: 'Docker and Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
             { label: 'CI/CD', to: '/docs/deploy-operate/cicd/github-actions' },
-            { label: 'Observe', to: '/docs/deploy-operate/observe/icp' },
+            { label: 'Observe', to: '/docs/deploy-operate/observe/observability-overview' },
             { label: 'Secure', to: '/docs/deploy-operate/secure/authentication' },
           ],
         },
