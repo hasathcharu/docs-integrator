@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 title: Remote Debugging
 description: Attach the debugger to integrations running on remote environments.
 ---

@@ -359,18 +359,6 @@ The ICP reference is split across the following pages under `en/docs/manage/icp/
 - Organized by category: General, Development, Deployment, AI, Connectors
 - Each: question, concise answer, link to detailed page
 
-### Page: Troubleshooting
-
-**File:** `en/docs/reference/appendix/troubleshooting.md`
-
-**What to cover:**
-
-- Common issues and solutions, organized by symptom
-- Build errors, runtime errors, deployment errors
-- Strand dump analysis
-- Profiler usage for performance issues
-- When to file a GitHub issue
-
 ### Page: Release Notes
 
 **File:** `en/docs/reference/release-notes.md`
