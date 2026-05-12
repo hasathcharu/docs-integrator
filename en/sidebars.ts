@@ -2254,8 +2254,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'CLI',
           items: [
-            'reference/cli/bal-command-reference',
-            'reference/cli/bal-scan',
+            'reference/cli/bal-command-reference'
           ],
         },
         // ICP Configuration
