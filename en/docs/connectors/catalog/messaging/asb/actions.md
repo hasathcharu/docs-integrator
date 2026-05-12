@@ -198,7 +198,7 @@ Receive messages from queues and subscriptions, settle messages, and manage lock
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `connectionString` | `string` | Required | The Azure Service Bus connection string. |
-| `entityConfig` | `QueueConfig|TopicSubsConfig` | Required | Entity configuration: either `{queueName: "..."}` for queues or `{topicName: "...", subscriptionName: "..."}` for topic subscriptions. |
+| `entityConfig` | `QueueConfig\|TopicSubsConfig` | Required | Entity configuration: either `{queueName: "..."}` for queues or `{topicName: "...", subscriptionName: "..."}` for topic subscriptions. |
 | `receiveMode` | `PEEK_LOCK|RECEIVE_AND_DELETE` | `PEEK_LOCK` | The receive mode. `PEEK_LOCK` requires explicit settlement; `RECEIVE_AND_DELETE` auto-removes on receive. |
 | `maxAutoLockRenewDuration` | `int` | `300` | Maximum duration (in seconds) to automatically renew the message lock. |
 | `amqpRetryOptions` | `AmqpRetryOptions` | `()` | Retry options for AMQP operations. |
