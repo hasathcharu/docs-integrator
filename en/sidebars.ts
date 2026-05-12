@@ -312,6 +312,7 @@ const sidebars: SidebarsConfig = {
                 'develop/tools/integration-tools/edi-tool',
                 'develop/tools/integration-tools/wsdl-tool',
                 'develop/tools/integration-tools/xsd-tool',
+                'develop/tools/integration-tools/persist-tool',
               ],
             },
             {
@@ -331,7 +332,6 @@ const sidebars: SidebarsConfig = {
               collapsed: true,
               items: [
                 'develop/tools/other/scan-tool',
-                'develop/tools/other/persist-tool',
               ],
             },
           ],
@@ -2151,11 +2151,9 @@ const sidebars: SidebarsConfig = {
           items: [
             'reference/language/ballerina-syntax-quick-reference',
             'reference/language/type-system',
-            'reference/language/standard-library-overview',
             'reference/language/query-expressions',
             'reference/language/concurrency',
             'reference/language/error-handling',
-            'reference/language/integration-specific-features',
           ],
         },
         // Configuration
@@ -2176,12 +2174,6 @@ const sidebars: SidebarsConfig = {
           label: 'CLI',
           items: [
             'reference/cli/bal-command-reference',
-            'reference/cli/bal-persist',
-            'reference/cli/bal-openapi',
-            'reference/cli/bal-graphql',
-            'reference/cli/bal-grpc',
-            'reference/cli/bal-edi',
-            'reference/cli/bal-health',
             'reference/cli/bal-scan',
           ],
         },
