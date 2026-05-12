@@ -1732,7 +1732,7 @@ const sidebars: SidebarsConfig = {
           label: 'Getting started',
           items: [
             'genai/getting-started/build-a-sentiment-analyzer',
-            'genai/getting-started/build-a-sample-hotel-booking-agent',
+            'genai/getting-started/build-a-hotel-finder-agent',
           ],
         },
         // Develop AI Applications
