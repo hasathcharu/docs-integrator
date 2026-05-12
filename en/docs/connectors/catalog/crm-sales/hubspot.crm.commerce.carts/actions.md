@@ -9,19 +9,19 @@ The `ballerinax/hubspot.crm.commerce.carts` package exposes the following client
 
 | Client | Purpose |
 |--------|---------|
-| [`Client`](#client) | Manages HubSpot cart objects — CRUD, search, and batch operations via the HubSpot CRM v3 API. |
+| [`Client`](#client) | Manages HubSpot cart objects: CRUD, search, and batch operations via the HubSpot CRM v3 API. |
 
 ---
 
 ## Client
 
-Manages HubSpot cart objects — CRUD, search, and batch operations via the HubSpot CRM v3 API.
+Manages HubSpot cart objects: CRUD, search, and batch operations via the HubSpot CRM v3 API.
 
 ### Configuration
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `auth` | `http:BearerTokenConfig&#124;OAuth2RefreshTokenGrantConfig&#124;ApiKeysConfig` | Required | Authentication configuration — OAuth 2.0 refresh token, bearer token, or HubSpot private app API keys. |
+| `auth` | `http:BearerTokenConfig&#124;OAuth2RefreshTokenGrantConfig&#124;ApiKeysConfig` | Required | Authentication configuration: OAuth 2.0 refresh token, bearer token, or HubSpot private app API keys. |
 | `httpVersion` | `HttpVersion` | `HTTP_2_0` | HTTP protocol version. |
 | `timeout` | `decimal` | `30` | Request timeout in seconds. |
 | `retryConfig` | `RetryConfig` | `()` | Retry configuration for failed requests. |
@@ -94,7 +94,7 @@ Sample response:
     {
       "id": "12345678",
       "properties": {
-        "hs_source_store": "Dog Cafe - Italy",
+        "hs_source_store": "Dog Cafe: Italy",
         "hs_total_price": "500",
         "hs_createdate": "2025-01-15T10:30:00.000Z",
         "hs_lastmodifieddate": "2025-01-15T10:30:00.000Z"
@@ -141,7 +141,7 @@ Sample code:
 hscarts:SimplePublicObject response = check hubspotCarts->/carts.post(
     payload = {
         properties: {
-            "hs_source_store": "Dog Cafe - Italy",
+            "hs_source_store": "Dog Cafe: Italy",
             "hs_total_price": "500",
             "hs_currency_code": "USD",
             "hs_tax": "36.25",
@@ -157,7 +157,7 @@ Sample response:
 {
   "id": "12345678",
   "properties": {
-    "hs_source_store": "Dog Cafe - Italy",
+    "hs_source_store": "Dog Cafe: Italy",
     "hs_total_price": "500",
     "hs_currency_code": "USD",
     "hs_tax": "36.25",
@@ -211,7 +211,7 @@ Sample response:
 {
   "id": "12345678",
   "properties": {
-    "hs_source_store": "Dog Cafe - Italy",
+    "hs_source_store": "Dog Cafe: Italy",
     "hs_total_price": "500",
     "hs_currency_code": "USD",
     "hs_tax": "36.25",
@@ -267,7 +267,7 @@ Sample response:
 {
   "id": "12345678",
   "properties": {
-    "hs_source_store": "Dog Cafe - Italy",
+    "hs_source_store": "Dog Cafe: Italy",
     "hs_total_price": "500",
     "hs_currency_code": "USD",
     "hs_tax": "48.75",
@@ -362,7 +362,7 @@ Sample response:
     {
       "id": "12345678",
       "properties": {
-        "hs_source_store": "Dog Cafe - Italy",
+        "hs_source_store": "Dog Cafe: Italy",
         "hs_total_price": "500",
         "hs_createdate": "2025-01-15T10:30:00.000Z",
         "hs_lastmodifieddate": "2025-01-15T10:30:00.000Z"

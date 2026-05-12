@@ -5,7 +5,7 @@ description: Create and manage connections to external systems.
 
 # Connection Configuration
 
-Connections define how your integration communicates with external systems — the endpoint URL, credentials, timeouts, and pool settings.
+Connections define how your integration communicates with external systems: the endpoint URL, credentials, timeouts, and pool settings.
 
 ## How connections work
 
@@ -29,4 +29,4 @@ Connections define how your integration communicates with external systems — t
 
 ## What's next
 
-- [Build Your Own Connector](build-your-own/) — Create custom connectors
+- [Build Your Own Connector](build-your-own/): Create custom connectors

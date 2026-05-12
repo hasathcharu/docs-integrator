@@ -1,15 +1,17 @@
 ---
 title: POP3/IMAP4
 description: Poll email inboxes for incoming messages and process them as integration events using POP3 or IMAP4 listeners.
+keywords: [wso2 integrator, pop3, imap4, email listener, event-driven integration, polling]
 ---
+
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # POP3/IMAP4
 
 Poll email inboxes for incoming messages and trigger integration logic when new emails arrive. WSO2 Integrator supports both the POP3 and IMAP4 protocols through polling-based listeners that check for new messages at a configurable interval.
-
-:::note
-Creating a POP3 or IMAP4 listener requires Ballerina code. Once the listener exists, you can use the visual designer to implement logic for the `onMessage` handler.
-:::
 
 | Protocol | Description | Default port |
 |---|---|---|
@@ -18,12 +20,40 @@ Creating a POP3 or IMAP4 listener requires Ballerina code. Once the listener exi
 
 ## Creating a POP3 listener
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+:::note
+Creating a POP3 listener requires Ballerina code. Once the listener exists, it appears in the **Entry Points** sidebar and on the design canvas.
+:::
+
+<ThemedImage
+    alt="Design canvas showing the POP3 listener node connected to its service"
+    sources={{
+        light: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-canvas.png'),
+        dark: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-canvas.png'),
+    }}
+/>
+
+Click the service node (or the service name in the sidebar) to open the **Email Listener Designer**, which lists the event handlers.
+
+<ThemedImage
+    alt="Email Listener Designer showing onMessage, onError, and onClose handlers"
+    sources={{
+        light: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-service.png'),
+        dark: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-service.png'),
+    }}
+/>
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
 ```ballerina
 import ballerina/email;
 
 configurable string host = "pop.example.com";
 configurable string username = "reader@example.com";
-configurable string password = ?;
+configurable string password = ?; // app password after enaling pop3/imap4 protocol for the email address
 
 listener email:PopListener popListener = check new ({
     host: host,
@@ -36,68 +66,109 @@ listener email:PopListener popListener = check new ({
 service on popListener {
 
     remote function onMessage(email:Message msg) returns error? {
-        // Process incoming email
+        string sender = msg.'from ?: "(unknown sender)";
+        string subject = msg.subject;
+        string body = msg.body ?: "";
+
+        log:printInfo("Email received", sender = sender, subject = subject);
     }
 
     remote function onError(email:Error err) {
         // Handle polling errors
     }
 
-    remote function onClose() {
+    remote function onClose(email:Error? closeError) {
         // Handle listener shutdown
     }
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Creating an IMAP4 listener
 
-IMAP4 keeps messages on the server after retrieval and lets you specify which folder to monitor.
+IMAP4 keeps messages on the server after retrieval and supports multiple mailbox folders.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+:::note
+Creating an IMAP4 listener requires Ballerina code. Once the listener exists, it appears in the **Entry Points** sidebar and on the design canvas.
+:::
+
+<ThemedImage
+    alt="Design canvas showing the IMAP4 listener node connected to its service"
+    sources={{
+        light: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-canvas.png'),
+        dark: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-canvas.png'),
+    }}
+/>
+
+Click the service node (or the service name in the sidebar) to open the **Email Listener Designer**, which lists the event handlers.
+
+<ThemedImage
+    alt="Email Listener Designer showing onMessage, onError, and onClose handlers"
+    sources={{
+        light: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-service.png'),
+        dark: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-service.png'),
+    }}
+/>
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 import ballerina/email;
 
 configurable string host = "imap.example.com";
 configurable string username = "reader@example.com";
-configurable string password = ?;
+configurable string password = ?; // app password after enaling pop3/imap4 protocol for the email address
 
 listener email:ImapListener imapListener = check new ({
     host: host,
     username: username,
     password: password,
     pollingInterval: 60,
-    port: 993,
-    folder: "INBOX"
+    port: 993
 });
 
 service on imapListener {
 
     remote function onMessage(email:Message msg) returns error? {
-        // Process incoming email
+        string sender = msg.'from ?: "(unknown sender)";
+        string subject = msg.subject;
+        string body = msg.body ?: "";
+
+        log:printInfo("Email received", sender = sender, subject = subject);
     }
 
     remote function onError(email:Error err) {
         // Handle polling errors
     }
 
-    remote function onClose() {
+    remote function onClose(email:Error? closeError) {
         // Handle listener shutdown
     }
 }
 ```
 
+</TabItem>
+</Tabs>
+
 ## Listener configuration
 
-Both `email:PopListenerConfiguration` and `email:ImapListenerConfiguration` share the following fields. `ImapListenerConfiguration` additionally supports `folder`.
+Both `email:PopListenerConfiguration` and `email:ImapListenerConfiguration` share the following fields.
 
 | Field | Type | Description |
 |---|---|---|
 | `host` | `string` | Email server hostname |
 | `username` | `string` | Email account username |
 | `password` | `string` | Email account password or app-specific token |
-| `pollingInterval` | `decimal` | Seconds between polling cycles. Default: `60`. |
+| `pollingInterval` | `decimal` | Seconds between polling cycles. Default: `30`. |
 | `port` | `int` | Server port. Default: `995` for POP3, `993` for IMAP4. |
-| `folder` | `string` | *(IMAP4 only)* Mailbox folder to monitor. Default: `"INBOX"`. |
-| `secureSocket` | `email:SecureSocket?` | SSL/TLS configuration for the connection |
+| `security` | `email:Security` | Transport security mode. Default: `SSL`. Options: `SSL`, `START_TLS_AUTO`, `START_TLS_ALWAYS`, `START_TLS_NEVER`. |
+| `secureSocket` | `email:SecureSocket?` | SSL/TLS configuration for the connection. |
 
 ## Event handler configuration
 
@@ -109,11 +180,31 @@ Both `email:PopListenerConfiguration` and `email:ImapListenerConfiguration` shar
 
 ## Implementing email processing
 
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+Click the `onMessage` handler row to open its **flow designer view**, where you can define the integration logic visually.
+
+<ThemedImage
+    alt="Flow designer view for the onMessage handler"
+    sources={{
+        light: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-flow.png'),
+        dark: useBaseUrl('/img/develop/integration-artifacts/event/pop3-imap4/step-flow.png'),
+    }}
+/>
+
+:::note
+Not all listener configuration options are available through the visual designer. For full control — including SSL/TLS and polling interval settings — use Ballerina code directly.
+:::
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
 The `onMessage` handler receives an `email:Message` record containing the full message:
 
 ```ballerina
 remote function onMessage(email:Message msg) returns error? {
-    string sender = msg.'from;
+    string sender = msg.'from ?: "(unknown sender)";
     string subject = msg.subject ?: "(no subject)";
     string body = msg.body ?: "";
 
@@ -131,35 +222,24 @@ remote function onMessage(email:Message msg) returns error? {
 
 | Field | Type | Description |
 |---|---|---|
-| `'from` | `string` | Sender address |
-| `to` | `string\|string[]?` | Primary recipients |
-| `cc` | `string\|string[]?` | CC recipients |
-| `subject` | `string?` | Email subject line |
+| `to` | `string\|string[]` | Primary recipients (required) |
+| `subject` | `string` | Email subject line (required) |
+| `'from` | `string?` | Sender address |
 | `body` | `string?` | Plain text body |
 | `htmlBody` | `string?` | HTML body |
-| `attachments` | `email:Attachment\|email:Attachment[]?` | File attachments |
+| `cc` | `string\|string[]?` | CC recipients |
+| `bcc` | `string\|string[]?` | BCC recipients |
+| `replyTo` | `string\|string[]?` | Reply-To addresses |
+| `sender` | `string?` | Envelope sender (may differ from `'from`) |
+| `contentType` | `string?` | Content type of the body (e.g., `"text/plain"`) |
+| `attachments` | `mime:Entity\|email:Attachment\|(mime:Entity\|email:Attachment)[]?` | File attachments or MIME entities |
 | `headers` | `map<string>?` | Additional email headers |
-| `date` | `time:Civil?` | Message date and time |
 
-## Designing logic with the visual designer
+</TabItem>
+</Tabs>
 
-Although POP3/IMAP4 listener creation is not supported in the visual designer, you can use it to implement logic for event handlers defined in code. Once the listener exists in the project, it appears in the **Entry Points** sidebar and on the design canvas.
+## What's next
 
-<!-- TODO: screenshot — design canvas showing the POP3/IMAP4 listener node connected to its listener -->
-![Cavas](/img/develop/integration-artifacts/event/pop3-imap4/step-canvas.png)
-
-Click the service node (or the service name in the sidebar) to open the **Email Listener Designer**, which lists the event handlers.
-
-![Service Designer](/img/develop/integration-artifacts/event/pop3-imap4/step-service.png)
-
-Click the `onMessage` handler row to open its **flow designer view**, where you can define the integration logic visually.
-
-![Flow Designer View](/img/develop/integration-artifacts/event/pop3-imap4/step-flow.png)
-
-:::note
-Not all listener configuration options are available through the visual designer. For full control — including SSL/TLS and polling interval settings — use Ballerina code directly.
-:::
-
-## For more details
-
-See the [Ballerina email specification](https://ballerina.io/spec/email/#41-pop3-listener) for the complete language-level reference, including SSL/TLS configuration, folder selection, and attachment handling.
+- [Trigger Reference](../../../connectors/catalog/built-in/email/trigger-reference.md) — Full listener and callback reference
+- [Action Reference](../../../connectors/catalog/built-in/email/action-reference.md) — SMTP, IMAP, and POP3 client operations
+- [Ballerina email specification](https://ballerina.io/spec/email/#41-pop3-listener) — Complete language-level reference
