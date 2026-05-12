@@ -1,14 +1,14 @@
 ---
 sidebar_position: 2
 title: Logging & Structured Logs
-description: Configure logging, log levels, and log aggregation.
+description: Configure logging, log levels, and log aggregation for WSO2 Integrator.
 ---
 
 # Logging & Structured Logs
 
-Configure logging for your WSO2 Integrator services to capture operational data, debug issues, and feed log aggregation systems.
+Configure logging for your WSO2 Integrator services to capture operational data, debug issues, and feed log aggregation systems. Ballerina provides structured logging with full context propagation, making it easy to correlate logs with traces and metrics.
 
-## Default logging behavior
+## Default Logging Behavior
 
 Ballerina provides a built-in `ballerina/log` module that writes log messages to standard output (stdout). By default, the log level is set to `INFO`, and messages are emitted in a human-readable format.
 
@@ -31,7 +31,7 @@ Default output format:
 time=2025-03-15T10:30:00.000Z level=INFO module=myorg/order_service message="Order received" orderId="ORD-12345"
 ```
 
-## Log levels and configuration
+## Log Levels and Configuration
 
 Ballerina supports the following log levels, from most to least verbose:
 
@@ -42,7 +42,7 @@ Ballerina supports the following log levels, from most to least verbose:
 | `WARN` | Potentially harmful situations that deserve attention |
 | `ERROR` | Error events that may still allow the service to continue |
 
-### Setting the log level
+### Setting the Log Level
 
 Configure the log level in `Config.toml`:
 
@@ -58,7 +58,7 @@ Or set it via environment variable:
 export BAL_CONFIG_VAR_BALLERINA_LOG_LEVEL=DEBUG
 ```
 
-### Module-Specific log levels
+### Module-Specific Log Levels
 
 Control log verbosity per module to reduce noise in production:
 
@@ -76,7 +76,7 @@ name = "myorg/payment_client"
 level = "DEBUG"                         # Debug a specific module
 ```
 
-### Using log functions
+### Using Log Functions
 
 ```ballerina
 import ballerina/log;
@@ -94,7 +94,7 @@ public function processPayment(string orderId, decimal amount) returns error? {
 }
 ```
 
-## Structured logging format
+## Structured Logging Format
 
 Ballerina emits structured logs in key-value format by default, which is compatible with most log aggregation tools. Each log entry includes:
 
@@ -104,7 +104,7 @@ Ballerina emits structured logs in key-value format by default, which is compati
 - `message` -- Log message string
 - Custom key-value pairs passed as named arguments
 
-### Adding context to log entries
+### Adding Context to Log Entries
 
 Pass additional context as named arguments to log functions:
 
@@ -135,7 +135,7 @@ Output:
 time=2025-03-15T10:30:00.000Z level=INFO module=myorg/order_service message="Processing order" orderId="ORD-12345" customerId="CUST-789" total=149.99 itemCount=3
 ```
 
-### JSON log format
+### JSON Log Format
 
 For systems that require JSON-formatted logs, configure the log output format:
 
@@ -160,63 +160,10 @@ JSON output:
 }
 ```
 
-## Log aggregation
+## What's Next
 
-### ELK stack (Elasticsearch, Logstash, Kibana)
-
-Ship container logs to the ELK stack using Filebeat as a sidecar or DaemonSet:
-
-```yaml
-# k8s/filebeat-sidecar.yaml
-- name: filebeat
-  image: docker.elastic.co/beats/filebeat:8.11.0
-  volumeMounts:
-    - name: shared-logs
-      mountPath: /var/log/app
-  env:
-    - name: ELASTICSEARCH_HOST
-      value: "elasticsearch.logging:9200"
-```
-
-Alternatively, when running on Kubernetes, use the Elastic Agent DaemonSet to collect stdout logs from all pods automatically.
-
-### Loki (with Grafana)
-
-Loki collects logs from Kubernetes pods using Promtail. Install Promtail as a DaemonSet in your cluster:
-
-```yaml
-# promtail-config.yaml
-scrape_configs:
-  - job_name: kubernetes-pods
-    kubernetes_sd_configs:
-      - role: pod
-    relabel_configs:
-      - source_labels: [__meta_kubernetes_pod_label_app]
-        target_label: app
-      - source_labels: [__meta_kubernetes_namespace]
-        target_label: namespace
-```
-
-Query logs in Grafana using LogQL:
-
-```
-{app="wso2-integrator-app"} |= "ERROR"
-{app="wso2-integrator-app"} | json | level="ERROR" | orderId="ORD-12345"
-```
-
-### CloudWatch logs
-
-On AWS ECS or EKS, send logs directly to CloudWatch using the `awslogs` log driver (ECS) or the CloudWatch agent (EKS). The structured key-value format is automatically parsed by CloudWatch Logs Insights:
-
-```
-fields @timestamp, @message
-| filter @message like /ERROR/
-| sort @timestamp desc
-| limit 50
-```
-
-## What's next
-
-- [Metrics](metrics.md) -- Monitor service health with Prometheus and Grafana
-- [Distributed Tracing](tracing.md) -- Trace requests across services
-- [Integration Control Plane](icp.md) -- Centralized monitoring dashboard
+- **[Elastic Stack (ELK)](elastic-stack-elk.md)** – Complete log aggregation with Elasticsearch and Kibana
+- **[OpenSearch Integration](opensearch-integration.md)** – Open-source alternative to ELK
+- **[Metrics](metrics-overview.md)** – Monitor service health with Prometheus and Grafana
+- **[Distributed Tracing](jaeger-distributed-tracing.md)** – Trace requests across services
+- **[Integration Control Plane](integration-control-plane-icp.md)** – Centralized monitoring dashboard
