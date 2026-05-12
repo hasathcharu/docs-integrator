@@ -59,7 +59,7 @@ Once you have the generated library, parse an EDIFACT ORDERS message into typed 
 
 The following EDIFACT ORDERS message will be used as the input:
 
-```
+```bash
 UNB+UNOA:1+SENDER+RECEIVER+260511:1000+1'
 UNH+1+ORDERS:D:96A:UN'
 BGM+220+PO-001+9'
@@ -223,6 +223,9 @@ public function main() returns error? {
 To convert to XML instead, use the `ballerina/data.xmldata` module:
 
 ```ballerina
+import ballerina/data.xmldata;
+import ballerina/io;
+
 xml orderXml = check xmldata:toXml(document);
 check io:fileWriteString("order.xml", orderXml.toString());
 ```
