@@ -2245,7 +2245,6 @@ const sidebars: SidebarsConfig = {
             'reference/config/ballerinatoml-reference',
             'reference/config/configtoml-reference',
             'reference/config/cloudtoml-reference',
-            'reference/config/dependenciestoml-reference',
             'reference/config/environment-variables',
           ],
         },
