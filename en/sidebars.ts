@@ -307,10 +307,13 @@ const sidebars: SidebarsConfig = {
           items: [
             'develop/debugging/troubleshooting',
             'develop/debugging/errors-and-stack-traces',
+            'develop/debugging/library-troubleshooting',
+            'develop/debugging/deployment-troubleshooting',
             'develop/debugging/editor',
             'develop/debugging/remote',
             'develop/debugging/strand-dump-analysis',
             'develop/debugging/performance-profiling',
+            'develop/debugging/logging',
           ],
         },
         // 6.8 Tools
@@ -2246,7 +2249,6 @@ const sidebars: SidebarsConfig = {
             'reference/error-code',
             'reference/glossary',
             'reference/faq',
-            'reference/appendix/troubleshooting',
             'reference/release-notes',
           ],
         },

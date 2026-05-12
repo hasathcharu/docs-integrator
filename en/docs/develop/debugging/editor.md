@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 title: Editor Debugging
 description: Set breakpoints, watch variables, and step through Ballerina code in WSO2 Integrator.
 ---

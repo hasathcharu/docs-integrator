@@ -179,6 +179,39 @@ bal run -- -Cballerina.http.traceLogConsole=true
 ```
 :::
 
+### Diagnosing a type mismatch
+
+When the binding error isn't obvious, inspect the raw payload and compare it field-by-field against the target record.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. Open the data mapper to view the expected source type against the actual payload structure.
+2. Add a **Log** node before the transformation to print the raw payload.
+3. Compare the logged output with the expected record type to find mismatched fields.
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+Trap the binding error and log both the raw payload and the failure cause:
+
+```ballerina
+import ballerina/log;
+
+public function parsePayload(json raw) returns Order|error {
+    Order|error result = raw.fromJsonWithType();
+    if result is error {
+        log:printError("Payload does not match Order type",
+            payload = raw.toString(),
+            'error = result);
+    }
+    return result;
+}
+```
+
+</TabItem>
+</Tabs>
+
 ## Common compiler errors
 
 Compiler errors occur before the program starts. They are deterministic — the same code always produces the same error.
@@ -200,6 +233,8 @@ Multiple compiler errors often cascade from one root cause. **Fix the first erro
 | Error message pattern | Likely cause | Fix |
 |-----------------------|--------------|-----|
 | `incompatible types: expected 'X', found 'Y'` | Type mismatch in assignment or return | Check the variable declaration or function return type |
+| `expected 'T', found 'T?'` | Unhandled optional value | Use `check`, an `is` type guard, or the Elvis operator (`?:`) |
+| `expected 'T', found 'T\|error'` | Unhandled error return | Use `check`, or handle the `error` branch with `if result is error` |
 | `undefined symbol 'X'` | Missing import or typo in identifier | Add the import: `import ballerina/X;` or fix the typo |
 | `missing semicolon token` | Syntax error | Check the preceding lines for unclosed brackets or parentheses |
 | `invalid access of mutable storage in 'isolated' function` | Concurrency isolation violation | Wrap the access in a `lock` block or mark the variable as `isolated` |
