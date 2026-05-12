@@ -5,6 +5,9 @@ description: Troubleshooting guide for common build errors, runtime issues, diag
 keywords: [wso2 integrator, troubleshooting, errors, strand dump, profiler, debugging, diagnostics]
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Troubleshooting
 
 This guide covers common issues encountered when developing, building, and running WSO2 Integrator projects powered by Ballerina, along with diagnostic tools and resolution steps.
@@ -17,7 +20,13 @@ The Ballerina output panel shows the current Ballerina distribution and addition
 
 To open it: from the IDE menu, select **View** > **Output** (or press `Ctrl+Shift+U` on Windows/Linux, `Cmd+Shift+U` on macOS), then choose **Ballerina** from the output channel dropdown.
 
-![Open the Ballerina output panel from View > Output and select the Ballerina channel](/img/reference/appendix/troubleshooting/view-ide-output.gif)
+<ThemedImage
+    alt="Open the Ballerina output panel from View > Output and select the Ballerina channel"
+    sources={{
+        light: useBaseUrl('/img/reference/appendix/troubleshooting/view-ide-output-light.gif'),
+        dark: useBaseUrl('/img/reference/appendix/troubleshooting/view-ide-output-dark.gif'),
+    }}
+/>
 
 ### Set up a custom Ballerina path
 
@@ -26,13 +35,25 @@ To use a Ballerina distribution other than the one bundled with the IDE, for exa
 1. Download the Ballerina distribution and unpack it to a known location.
 2. Open the IDE settings: click the **Manage** (gear) icon at the bottom of the activity bar and select **Settings** (or press `Ctrl+,` on Windows/Linux, `Cmd+,` on macOS).
 
-   ![Open the IDE settings from the Manage menu](/img/reference/appendix/troubleshooting/open-settings.png)
+   <ThemedImage
+       alt="Open the IDE settings from the Manage menu"
+       sources={{
+           light: useBaseUrl('/img/reference/appendix/troubleshooting/open-settings-light.png'),
+           dark: useBaseUrl('/img/reference/appendix/troubleshooting/open-settings-dark.png'),
+       }}
+   />
 
 3. Search for `ballerina.home`.
 4. Enter the path to the downloaded distribution in the **Ballerina: Home** field.
 5. To activate the custom distribution, also enable **Ballerina: Plugin Dev Mode**.
 
-   ![Ballerina Home and Plugin Dev Mode settings](/img/reference/appendix/troubleshooting/custom-ballerina-path.png)
+   <ThemedImage
+       alt="Ballerina Home and Plugin Dev Mode settings"
+       sources={{
+           light: useBaseUrl('/img/reference/appendix/troubleshooting/custom-ballerina-path-light.png'),
+           dark: useBaseUrl('/img/reference/appendix/troubleshooting/custom-ballerina-path-dark.png'),
+       }}
+   />
 
 ### Enable IDE debug logs
 
@@ -44,7 +65,13 @@ When you need detailed diagnostic output from the IDE or the language server, op
 | `ballerina.traceLog` | Trace-level messages on the Ballerina output channel (more verbose than debug) |
 | `ballerina.enableLanguageServerDebug` | Language server debug mode |
 
-![Ballerina Debug Log setting in the IDE settings](/img/reference/appendix/troubleshooting/enable-debug-logs.png)
+<ThemedImage
+    alt="Ballerina Debug Log setting in the IDE settings"
+    sources={{
+        light: useBaseUrl('/img/reference/appendix/troubleshooting/enable-debug-logs-light.png'),
+        dark: useBaseUrl('/img/reference/appendix/troubleshooting/enable-debug-logs-dark.png'),
+    }}
+/>
 
 Output appears in the Ballerina output panel. See **View the IDE output** above.
 
