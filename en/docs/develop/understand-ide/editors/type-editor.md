@@ -124,7 +124,70 @@ The **Advanced Options** section at the bottom of the form exposes type-level to
 
 ## Import a type from JSON or XML
 
-<!-- TODO: Document the Import from JSON / XML flow — pasting a sample, naming the root type, reviewing the generated records, and saving them to the integration. -->
+When you already have a sample payload, you can let the Type editor generate the matching record types for you instead of defining each field by hand. The editor inspects the sample, infers a record for the top-level object, and adds nested records for any embedded objects or arrays. The generated records are added to the integration and appear on the [Type Diagram editor](type-diagram-editor.md) as soon as you save.
+
+In the new-type form, open the kind picker and select **Import from Json** or **Import from Xml**. You then provide the sample in one of two ways:
+
+- **Paste a sample.** Paste the JSON or XML into the editor and the form previews the inferred records as you type.
+- **Import from a file.** Select **Import from file** to pick a `.json` or `.xml` file from disk. The editor reads the file and fills the sample area for you.
+
+    ![Import from file picker for a JSON sample](/img/develop/understand-ide/editors/type-editor/import-form-json-file.png)
+
+Give the root record a name in the **Name** field. Nested objects are named automatically based on the parent field, and you can rename any of them before saving.
+
+### Import from JSON
+
+For a JSON sample such as:
+
+```json
+{
+  "books": [
+    {
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "year": 2008,
+      "isbn": "9780132350884"
+    },
+    {
+      "title": "The Pragmatic Programmer",
+      "author": "Andrew Hunt",
+      "year": 1999,
+      "isbn": "9780201616224"
+    }
+  ]
+}
+```
+
+The editor generates a root record with a `books` array field and a nested record for each book entry, with `title`, `author`, `year`, and `isbn` typed as `string` or `int` based on the sample values.
+
+![Import a type from a JSON sample](/img/develop/understand-ide/editors/type-editor/import-type-from-json.gif)
+
+### Import from XML
+
+For an XML sample such as:
+
+```xml
+<library>
+  <book>
+    <title>Clean Code</title>
+    <author>Robert C. Martin</author>
+    <year>2008</year>
+    <isbn>9780132350884</isbn>
+  </book>
+  <book>
+    <title>The Pragmatic Programmer</title>
+    <author>Andrew Hunt</author>
+    <year>1999</year>
+    <isbn>9780201616224</isbn>
+  </book>
+</library>
+```
+
+The editor generates a `Library` record with a `book` array field and a nested record for each book element, with one field per child element.
+
+![Import a type from an XML sample](/img/develop/understand-ide/editors/type-editor/import-type-from-xml.gif)
+
+Once the records look right, save the form. The new types are added to the integration and become available everywhere a custom type can be used, including service payloads, data mappers, and flow variables.
 
 ## What's next
 
