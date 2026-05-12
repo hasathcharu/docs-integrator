@@ -6,9 +6,79 @@ description: Generate Ballerina types and parsers from EDI schema definitions.
 
 # EDI tool
 
-The `bal edi` tool generates Ballerina code from EDI (Electronic Data Interchange) schema definitions, enabling B2B integration with trading partners using standards such as X12 and EDIFACT. The generated code includes record types for EDI segments and transaction sets, along with parser and serializer functions that convert between raw EDI text and type-safe Ballerina records.
+The `bal edi` tool generates Ballerina code from EDI (Electronic Data Interchange) schema definitions, enabling B2B integration with trading partners using standards such as **X12** and **EDIFACT**. The generated code includes record types for EDI segments and transaction sets, along with parser and serializer functions that convert between raw EDI text and type-safe Ballerina records.
 
-The EDI tool uses JSON schema files to describe EDI message structures — segments, fields, delimiters, and data types — and generates code from them.
+## Prerequisites
+
+Execute the command below to pull the EDI tool from [Ballerina Central](https://central.ballerina.io/).
+
+```bash
+bal tool pull edi
+```
+
+Verify the tool using the following command.
+
+```bash
+bal edi --help
+```
+
+## Generating types from an EDIFACT schema
+
+EDIFACT is the international EDI standard used globally, with message types such as `ORDERS`, `INVOIC`, and `DESADV`.
+
+### Step 1 — Convert the EDIFACT schema
+
+Convert an EDIFACT message type to the Ballerina EDI schema format by specifying the version and transaction type.
+
+```bash
+bal edi convertEdifactSchema -v <version> -t <transaction-type> -o path/to/output/
+```
+
+For example, to convert an `ORDERS` message in version `d96a`:
+
+```bash
+bal edi convertEdifactSchema -v d96a -t ORDERS -o path/to/output
+```
+
+### Step 2 — Generate Ballerina code
+
+Use `codegen` to generate typed Ballerina records and parser functions from the converted schema.
+
+```bash
+bal edi codegen -i path/to/output/schema.json -o modules/orders/main.bal
+```
+
+This generates the following functions in the output file along with the relevant record types.
+
+- `fromEdiString` — Convert an EDI string to a Ballerina record
+- `toEdiString` — Convert a Ballerina record to an EDI string
+- `getSchema` — Get the EDI schema as an `EdiSchema` object
+- `fromEdiStringWithSchema` — Convert an EDI string to a Ballerina record using a pre-loaded schema
+- `toEdiStringWithSchema` — Convert a Ballerina record to an EDI string using a pre-loaded schema
+
+## Generating types from an X12 schema
+
+X12 is a widely used EDI standard in North America, covering transaction sets for orders, invoices, shipping notices, and more.
+
+### Step 1 — Convert the X12 schema
+
+Convert an X12 schema to the Ballerina EDI schema format.
+
+```bash
+bal edi convertX12Schema -i path/to/x12-schema -o path/to/output
+```
+
+### Step 2 — Generate Ballerina code
+
+Use `codegen` to generate typed Ballerina records and parser functions from the converted schema.
+
+```bash
+bal edi codegen -i path/to/output/schema.json -o modules/orders/main.bal
+```
+
+## Generating types from a custom schema
+
+For EDI formats that are not X12 or EDIFACT, the tool accepts a JSON-based schema format that lets you describe segment structures, fields, delimiters, and data types directly.
 
 **Sample EDI schema:**
 
@@ -49,7 +119,7 @@ The EDI tool uses JSON schema files to describe EDI message structures — segme
 
 **Sample EDI:**
 
-```bash
+```edi
 HDR*HDR123*ACME_CORP*20240519~
 ITM*Pen*10~
 ITM*Notebook*5~
@@ -58,37 +128,13 @@ ITM*Ruler*7~
 ITM*Stapler*2~
 ```
 
-## Prerequisites
-
-Execute the command below to pull the EDI tool from [Ballerina Central](https://central.ballerina.io/).
-
-```bash
-bal tool pull edi
-```
-
-Verify the tool using the following command.
-
-```bash
-bal edi --help
-```
-
-## Generating code from an EDI schema
-
-Use `codegen` to generate typed Ballerina records and parser functions from a single EDI schema file.
+Run `codegen` directly on the custom schema file:
 
 ```bash
 bal edi codegen -i path/to/schema.json -o modules/orders/main.bal
 ```
 
-This generates the following functions in the output file:
-
-- `fromEdiString` — Convert an EDI string to a Ballerina record
-- `toEdiString` — Convert a Ballerina record to an EDI string
-- `getSchema` — Get the EDI schema as an `EdiSchema` object
-- `fromEdiStringWithSchema` — Convert an EDI string to a Ballerina record using a pre-loaded schema
-- `toEdiStringWithSchema` — Convert a Ballerina record to an EDI string using a pre-loaded schema
-
-It also generates the corresponding Ballerina record types:
+This generates the corresponding Ballerina record types along with edi functions:
 
 ```ballerina
 public type Header_Type record {|
@@ -120,50 +166,26 @@ bal edi libgen -p <org/package> -i path/to/schemas/ -o path/to/output/
 
 Generated packages can be published to Ballerina Central and reused across projects.
 
-## Converting EDI schemas
-
-The EDI tool can convert standard EDI schema formats into the Ballerina JSON schema format used by `codegen` and `libgen`.
-
-### X12 schema conversion
-
-```bash
-bal edi convertX12Schema -i path/to/x12-schema -o path/to/output/
-```
-
-### EDIFACT schema conversion
-
-```bash
-bal edi convertEdifactSchema -v <version> -t <transaction-type> -o path/to/output/
-```
-
-### ESL schema conversion
-
-```bash
-bal edi convertESL -b path/to/definitions -i path/to/esl-schema -o path/to/output/
-```
-
 ## Command reference
 
-### bal edi codegen
+| Command | Description |
+| --- | --- |
+| `bal edi codegen -i <schema> -o <output>` | Generate Ballerina records and functions from a schema file |
+| `bal edi libgen -p <org/package> -i <dir> -o <output>` | Generate a library package from a directory of schemas |
+| `bal edi convertEdifactSchema -v <version> -t <type> -o <output>` | Convert an EDIFACT spec to Ballerina EDI schema format |
+| `bal edi convertX12Schema -i <input> -o <output>` | Convert an X12 schema to Ballerina EDI schema format |
+| `bal edi convertESL -b <definitions> -i <input> -o <output>` | Convert an ESL schema to Ballerina EDI schema format |
 
-Generates Ballerina record types and utility functions from a single EDI schema definition file.
+### Flag reference
 
-```bash
-bal edi codegen -i <schema-path> -o <output-path>
-```
+#### bal edi codegen
 
 | Flag | Required | Description |
 | --- | --- | --- |
 | `-i`, `--input` | Yes | Path to the EDI schema file (JSON format) |
 | `-o`, `--output` | Yes | Output path for the generated Ballerina source file |
 
-### bal edi libgen
-
-Generates a complete Ballerina library package from a collection of EDI schemas.
-
-```bash
-bal edi libgen -p <org/package> -i <schema-directory> -o <output-path>
-```
+#### bal edi libgen
 
 | Flag | Required | Description |
 | --- | --- | --- |
@@ -171,13 +193,7 @@ bal edi libgen -p <org/package> -i <schema-directory> -o <output-path>
 | `-i`, `--input` | Yes | Path to the directory containing EDI schema files |
 | `-o`, `--output` | Yes | Output directory for the generated library package |
 
-### bal edi convertX12Schema
-
-Converts an X12 schema to the Ballerina EDI schema format.
-
-```bash
-bal edi convertX12Schema -i <input> -o <output> [options]
-```
+#### bal edi convertX12Schema
 
 | Flag | Required | Description |
 | --- | --- | --- |
@@ -187,13 +203,7 @@ bal edi convertX12Schema -i <input> -o <output> [options]
 | `-c`, `--collection` | No | Enable collection mode |
 | `-d`, `--segdet` | No | Path to the segment details file |
 
-### bal edi convertEdifactSchema
-
-Converts an EDIFACT schema to the Ballerina EDI schema format.
-
-```bash
-bal edi convertEdifactSchema -v <version> -t <type> -o <output>
-```
+#### bal edi convertEdifactSchema
 
 | Flag | Required | Description |
 | --- | --- | --- |
@@ -201,13 +211,7 @@ bal edi convertEdifactSchema -v <version> -t <type> -o <output>
 | `-t`, `--type` | Yes | Transaction type (e.g., `ORDERS`, `INVOIC`) |
 | `-o`, `--output` | Yes | Output directory for the converted schema |
 
-### bal edi convertESL
-
-Converts an ESL (EDI Schema Language) file to the Ballerina EDI schema format.
-
-```bash
-bal edi convertESL -b <definitions> -i <input> -o <output>
-```
+#### bal edi convertESL
 
 | Flag | Required | Description |
 | --- | --- | --- |

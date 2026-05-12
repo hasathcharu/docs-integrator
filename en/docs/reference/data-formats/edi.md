@@ -10,51 +10,34 @@ Electronic Data Interchange (EDI) is a set of standards that enables organizatio
 
 An EDI message is a sequence of **segments**. Each segment begins with a couple of character segment identifiers (e.g., `HDR`, `ITM`) followed by one or more **data elements** separated by a data element separator. A segment ends with a segment terminator. For example:
 
-```bash
+```edi
 HDR*ORDER_1201*ABC_Store*2008-01-01~
 ITM*A-250*12~
 ```
 
 In this example, `*` is the data element separator and `~` is the segment terminator. A **composite data element** contains multiple **component elements** separated by a component element separator (e.g., `:`). Data elements can also repeat within a segment using a repetition separator.
 
-The following JSON schema defines the structure of the above EDI message for use with the `ballerina/edi` module:
+## Getting started
 
-```json
-{
-  "name": "SimpleOrder",
-  "delimiters": {
-    "segment": "~",
-    "field": "*",
-    "component": ":",
-    "repetition": "^"
-  },
-  "segments": [
-    {
-      "code": "HDR",
-      "tag": "header",
-      "minOccurances": 1,
-      "fields": [
-        { "tag": "code" },
-        { "tag": "orderId" },
-        { "tag": "organization" },
-        { "tag": "date" }
-      ]
-    },
-    {
-      "code": "ITM",
-      "tag": "items",
-      "maxOccurances": -1,
-      "fields": [
-        { "tag": "code" },
-        { "tag": "item" },
-        { "tag": "quantity", "dataType": "int" }
-      ]
-    }
-  ]
+### Using prebuilt EDIFACT packages
+
+The fastest path for standard EDIFACT documents is to import a prebuilt package — no schema writing required. Prebuilt packages for common EDIFACT D03A message types are available under the `ballerinax` organization.
+
+```ballerina
+import ballerinax/edifact.d03a.finance.mINVOIC;
+
+public function main() returns error? {
+    string ediText = check io:fileReadString("resources/invoice.edi");
+    mINVOIC:EDI_INVOIC_Invoice invoiceMsg = check mINVOIC:fromEdiString(ediText);
+    // Process the typed invoice data
 }
 ```
 
-Each `segments` entry maps a segment code to a set of ordered field definitions. The `tag` value becomes the JSON property name in the parsed output, and `maxOccurances: -1` allows a segment to repeat any number of times.
+See [prebuilt EDIFACT packages](#prebuilt-edifact-packages) for the full list.
+
+### Generating types from a schema
+
+For EDIFACT or X12 documents not covered by prebuilt packages, use the [EDI Tool](../../develop/tools/integration-tools/edi-tool.md) to generate Ballerina types and parser functions from the standard spec. This gives you a typed API without writing a schema by hand.
 
 ## Module
 
@@ -78,7 +61,7 @@ public function main() returns error? {
 
 **Sample EDI input:**
 
-```bash
+```edi
 HDR*ORDER_1201*ABC_Store*2008-01-01~
 ITM*A-250*12~
 ITM*A-45*100~
@@ -130,7 +113,7 @@ public function main() returns error? {
 
 **Output:**
 
-```bash
+```edi
 HDR*ORDER_1201*ABC_Store*2008-01-01~
 ITM*A-250*12~
 ITM*B-250*10~
@@ -167,11 +150,52 @@ public function main() returns error? {
 | `toEdiString` | `toEdiString(json msg, EdiSchema schema) returns string\|Error` | Serialize JSON into EDI text using a schema. |
 | `getSchema` | `getSchema(string\|json schema) returns EdiSchema\|error` | Load and validate an EDI schema from a JSON string or object. |
 
-## Schema reference
+## Custom EDI schemas
+
+For EDI formats not covered by prebuilt packages — or when you need to tune a generated schema for partner-specific variations — define the structure as a JSON schema. The following JSON schema defines the structure of the simple order EDI format shown above.
+
+```json
+{
+  "name": "SimpleOrder",
+  "delimiters": {
+    "segment": "~",
+    "field": "*",
+    "component": ":",
+    "repetition": "^"
+  },
+  "segments": [
+    {
+      "code": "HDR",
+      "tag": "header",
+      "minOccurances": 1,
+      "fields": [
+        { "tag": "code" },
+        { "tag": "orderId" },
+        { "tag": "organization" },
+        { "tag": "date" }
+      ]
+    },
+    {
+      "code": "ITM",
+      "tag": "items",
+      "maxOccurances": -1,
+      "fields": [
+        { "tag": "code" },
+        { "tag": "item" },
+        { "tag": "quantity", "dataType": "int" }
+      ]
+    }
+  ]
+}
+```
+
+Each `segments` entry maps a segment code to a set of ordered field definitions. The `tag` value becomes the JSON property name in the parsed output, and `maxOccurances: -1` allows a segment to repeat any number of times.
+
+### Schema reference
 
 EDI schemas are JSON documents that define how to parse and serialize EDI data. A schema specifies delimiters, segment structures, field types, and occurrence constraints.
 
-### Schema structure
+#### Schema structure
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
@@ -184,7 +208,7 @@ EDI schemas are JSON documents that define how to parse and serialize EDI data. 
 | `segments` | `EdiUnitSchema[]` | `[]` | Array of segment and segment group definitions. |
 | `segmentDefinitions` | `map` | `{}` | Reusable segment definitions referenced by code. |
 
-### Delimiters
+#### Delimiters
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
@@ -195,7 +219,7 @@ EDI schemas are JSON documents that define how to parse and serialize EDI data. 
 | `repetition` | `string` | `"NOT_USED"` | Repetition separator for data elements that repeat within a segment (e.g., `^`). |
 | `decimalSeparator` | `string` | — | Custom decimal separator for numeric fields. |
 
-### Segment definition
+#### Segment definition
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
@@ -206,7 +230,7 @@ EDI schemas are JSON documents that define how to parse and serialize EDI data. 
 | `maxOccurances` | `int` | `1` | Maximum occurrences (`-1` for unlimited). |
 | `fields` | `EdiFieldSchema[]` | `[]` | Array of field definitions. |
 
-### Field definition
+#### Field definition
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
@@ -219,7 +243,7 @@ EDI schemas are JSON documents that define how to parse and serialize EDI data. 
 | `length` | `int\|Range` | `-1` | Length constraint (fixed integer or min/max range). |
 | `components` | `EdiComponentSchema[]` | `[]` | Sub-elements within this field (for composite types). |
 
-### Example schema
+#### Example schema
 
 ```json
 {
