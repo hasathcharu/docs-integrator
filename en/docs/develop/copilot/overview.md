@@ -11,7 +11,7 @@ WSO2 Integrator Copilot builds integrations from natural language prompts. It pr
 
 ## Planning
 
-**Edit Mode** (the default) applies changes directly to your flow for quick adjustments, bug fixes, or tweaks, while **Plan Mode** is for building new features or complex integrations from scratch. Switch between the two as needed using the toggle in the Copilot input bar.
+**Edit Mode** (the default) applies changes directly to your integration for quick adjustments, bug fixes, or tweaks, while **Plan Mode** is for building new features or complex integrations from scratch. Switch between the two as needed using the toggle in the Copilot input bar.
 
 In **Plan Mode**, Copilot does not generate code immediately. Instead, it analyzes your request and provides a structured, step-by-step breakdown of the execution tasks. This gives you the opportunity to review the logic, add missing steps, or iterate on the plan before any artifacts are created.
 
@@ -43,7 +43,7 @@ Once the generation process is complete, you can inspect exactly what was built 
 
 ## Configuring
 
-When you are ready to run or test the integration, Copilot identifies configurations required to execute the flow and prompts you to enter the necessary configurables.
+When you are ready to run or test the integration, Copilot identifies configurations required to execute the integration and prompts you to enter the necessary configurables.
 
 ![Configuration collection prompt showing required fields for the integration.](/img/develop/copilot/config-collection.png)
 
@@ -63,4 +63,4 @@ Once your integration is running, you can try out your services directly through
 
 Copilot can run your integrations and read the runtime logs to debug issues as they occur.
 
-![Copilot debugging an integration by reproducing the failing request, inspecting the HTTP response and service logs, and identifying a case-sensitivity bug in the team filter.](/img/develop/copilot/debuging-using-service-logs.png)
+![Copilot debugging an integration by reproducing the failing request, inspecting the HTTP response and service logs, and identifying a case-sensitivity bug in the team filter.](/img/develop/copilot/debugging-using-service-logs.png)
