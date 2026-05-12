@@ -2,13 +2,14 @@
 sidebar_position: 4
 title: Type editor
 description: Define and edit records, enums, unions, arrays, and service classes used across your integration.
+keywords: [wso2 integrator, type editor, record, enum, union, array, service class, import json, import xml]
 ---
 
 # Type editor
 
 The Type editor is the side panel you open whenever you create or change a custom type in WSO2 Integrator. It gives you one form to define records, enums, unions, arrays, and service classes, configure each member or field, and toggle advanced options such as additional fields and read-only types. Every change you save in the editor updates the type's Ballerina source and the type card on the [Type Diagram editor](type-diagram-editor.md).
 
-For a canvas-level view of how all the types in your integration relate to each other, see the [Type Diagram editor](type-diagram-editor.md).
+For an introduction to types and how an integration uses them, see [Key concepts](/docs/get-started/key-concepts). For a canvas-level view of how all the types in your integration relate to each other, see the [Type Diagram editor](type-diagram-editor.md).
 
 ## Open the editor
 
@@ -71,7 +72,7 @@ Select **+** under **Members** to add a member, and the **delete** icon on a row
 
 ### Union
 
-A union defines a value that can be one of several types. Use it when a field or variable can legitimately hold more than one shape, for example a response that is either a success record or an error.
+A union defines a value that can be one of several types. Use it when a field or variable can legitimately hold more than one shape, for example, a response that is either a success record or an error.
 
 ![Create a union type](/img/develop/understand-ide/editors/type-editor/create-union-type.png)
 
@@ -88,9 +89,9 @@ An array defines a list of values of the same type, with an optional fixed size.
 | **Type** | The type of each element in the array. Can be a primitive or a custom type defined in the integration. |
 | **Size** | Optional fixed size for the array. Leave empty for a dynamically sized array. |
 
-### Service Class
+### Service class
 
-A service class defines a class with one or more resource methods. Use it as the return type of a GraphQL resolver, or anywhere you need a typed object that exposes behavior alongside data.
+A service class defines a class with one or more resource methods. Use it as the return type of a [GraphQL service](/docs/develop/integration-artifacts/service/graphql) resolver, or anywhere you need a typed object that exposes behavior alongside data.
 
 ![Create a service class type](/img/develop/understand-ide/editors/type-editor/create-service-class.png)
 
@@ -118,7 +119,7 @@ The **Advanced Options** section at the bottom of the form exposes type-level to
 
 | Option | Applies to | Description |
 |---|---|---|
-| **Allow Additional Fields** | Records | Allows values of the record to carry fields that are not declared in the type. Use this for open schemas where the payload may include extra keys. |
+| **Allow Additional Fields** | Records | Generates an open record instead of a closed one. Open records accept extra fields at runtime; closed records reject them. Use this when the payload may carry keys you don't want to model explicitly. |
 | **Is Readonly Type** | All kinds | Marks the type as read-only. Values of a read-only type cannot be modified after construction. |
 | **Accessible by other integrations** | All kinds | Marks the type as public so other integrations and libraries can import and reuse it. The generated Ballerina source uses the `public` qualifier. |
 
@@ -187,7 +188,13 @@ The editor generates a `Library` record with a `book` array field and a nested r
 
 ![Import a type from an XML sample](/img/develop/understand-ide/editors/type-editor/import-type-from-xml.gif)
 
-Once the records look right, save the form. The new types are added to the integration and become available everywhere a custom type can be used, including service payloads, data mappers, and flow variables.
+Once the records look right, save the form. The new types are added to the integration and become available everywhere a custom type can be used.
+
+:::tip Common next steps after import
+- Use the generated record as a request or response payload in a [service](/docs/develop/integration-artifacts/service).
+- Map fields from the imported record onto another type in the [Data Mapper editor](datamapper-editor.md).
+- Expose the record from a [GraphQL service](/docs/develop/integration-artifacts/service/graphql) resolver.
+:::
 
 ## What's next
 

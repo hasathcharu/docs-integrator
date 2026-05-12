@@ -2,11 +2,12 @@
 sidebar_position: 5
 title: Type Diagram editor
 description: Visualize relationships between types in your integration on a single canvas.
+keywords: [wso2 integrator, type diagram, types, records, enums, service classes, data model]
 ---
 
 # Type Diagram editor
 
-The Type Diagram editor, also known as the **type diagram**, is the editor you open to see every type in your integration on one canvas. It renders each record and enum as its own card, with the fields and members of the type listed as rows, and draws lines between cards to show which types reference which. Use it to explore the data model of an integration, jump from a field to its referenced type, and edit, delete, or add types without leaving the canvas.
+The Type Diagram editor, also known as the **type diagram**, is the editor you open to see every type in your integration on one canvas. It renders each record, enum, and service class as its own card, with the fields, members, or resource methods of the type listed as rows, and draws lines between cards to show which types reference which. Use it to explore the data model of an integration, jump from a field to its referenced type, and edit, delete, or add types without leaving the canvas.
 
 For background on what types are and how to define them field by field, see the [Type editor](type-editor.md).
 
@@ -14,7 +15,7 @@ For background on what types are and how to define them field by field, see the 
 
 ## Open the editor
 
-The project explorer groups every record and enum in the current integration under **Types**, so the diagram is one click away from any type in the project.
+The project explorer groups every type in the current integration under **Types**, so the diagram is one click away from any type in the project.
 
 ![Types listed under the project explorer](/img/develop/understand-ide/editors/type-diagram-editor/types-panel.png)
 
@@ -43,14 +44,23 @@ Every type in the integration appears as its own card on the canvas. The card sh
 
 - **Records** show the record name in the header and each field as a row, with the field name on the left and its type on the right (for example, `timesheetId: string`, `totalHours: decimal`).
 - **Enums** show the enum name in the header and each member on its own row (for example, `DRAFT`, `SUBMITTED`, `APPROVED`, `REJECTED`).
+- **Service classes** show the class name in the header and each resource method as a row, with the method name on the left and its return type on the right. See [Service class](type-editor.md#service-class) for how to define one.
 
-When a field's type is another record or enum defined in the integration, the editor draws a line from that field to the referenced card. Hover a line to highlight the source field and the target type.
+When a field, member, or method type points to another type defined in the integration, the editor draws a line from that row to the referenced card. Hover a line to highlight the source field and the target type.
 
 Select a type card to open the side panel for that type. The panel lists every field with its name and type, and lets you rename the type, add or remove fields, change a field's type, and configure advanced options. Any change you save in the side panel updates the card on the canvas and the underlying Ballerina source.
 
 ![Edit type side panel for a record](/img/develop/understand-ide/editors/type-diagram-editor/edit-type.png)
 
-### Type node menu
+## Add a type
+
+Select **Add Type** at the top right of the editor to add a new type to the integration. The editor opens the new type form where you choose the kind of type (record, enum, union, and so on), give it a name, and define its fields or members. The new type appears as a card on the canvas as soon as you save it, ready to be referenced from other types.
+
+![Add Type button on the Type Diagram editor](/img/develop/understand-ide/editors/type-diagram-editor/add-type-button.png)
+
+To add a field that references an existing type, set the field type to the name of that type. The editor draws the connecting line for you when you save. For the full set of options (records, enums, unions, arrays, service classes, and JSON or XML import), see the [Type editor](type-editor.md).
+
+## Type node menu
 
 The three-dot menu (**⋮**) on a type card opens the actions for that type.
 
@@ -63,7 +73,7 @@ The three-dot menu (**⋮**) on a type card opens the actions for that type.
 
 ![Three-dot menu on a type card](/img/develop/understand-ide/editors/type-diagram-editor/type-context-menu.png)
 
-## Focused View
+## Focused view
 
 **Focused View** narrows the canvas to a single type and the types it references, so you can study one part of the data model without the rest of the diagram in the way. Open it from the three-dot menu on a type card, or select a type name in the project explorer.
 
@@ -79,18 +89,13 @@ For example, opening **Focused View** on `LeaveRequest` shows the `LeaveRequest`
 
 ## Delete a type
 
-Select **Delete** from the three-dot menu on a type card. The editor opens a confirmation prompt, for example `Are you sure you want to delete EmployeeTimeReport?`, with **Cancel** and **Delete** actions. Select **Delete** to remove the type from the integration and the diagram. Any reference to the deleted type from another type is left in the source, so review the affected types after deleting.
+Select **Delete** from the three-dot menu on a type card. The editor opens a confirmation prompt, for example `Are you sure you want to delete EmployeeTimeReport?`, with **Cancel** and **Delete** actions. Select **Delete** to remove the type from the integration and the diagram.
+
+:::warning References are not cleaned up
+Fields, parameters, and return types in other types or flows that pointed at the deleted type are left in the source and will produce compile errors. Review every type, data mapper, and service that referenced the deleted type, and update or remove those references before running the integration.
+:::
 
 ![Delete confirmation for a type](/img/develop/understand-ide/editors/type-diagram-editor/delete-confirmation.png)
-
-## Add a type
-
-Select **Add Type** at the top right of the editor to add a new type to the integration. The editor opens the new type form where you choose the kind of type (record, enum, union, and so on), give it a name, and define its fields or members. The new type appears as a card on the canvas as soon as you save it, ready to be referenced from other types.
-
-![Add type](/img/develop/understand-ide/editors/type-diagram-editor/add-type-button.png)
-
-
-To add a field that references an existing type, set the field type to the name of that type. The editor draws the connecting line for you when you save.
 
 ## Canvas controls
 
