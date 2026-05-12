@@ -61,8 +61,8 @@ Here we will use the following json as the edi schema
     {
       "code": "BEG",
       "tag": "BEG",
-      "minOccurances": 1,
-      "maxOccurances": 1,
+      "minOccurs": 1,
+      "maxOccurs": 1,
       "fields": [
         {"tag": "purposeCode"},
         {"tag": "typeCode"},
@@ -74,8 +74,8 @@ Here we will use the following json as the edi schema
     {
       "code": "SE",
       "tag": "SE",
-      "minOccurances": 1,
-      "maxOccurances": -1,
+      "minOccurs": 1,
+      "maxOccurs": -1,
       "fields": [
         {"tag": "code"},
         {"tag": "segmentCount"},
@@ -293,7 +293,7 @@ import ballerina/data.xmldata;
 import ballerina/io;
 import ballerina/log;
 
-import nuvindu/documents;
+import <add-org-name>/documents;
 
 public function main() returns error? {
     do {
