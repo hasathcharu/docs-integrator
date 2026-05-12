@@ -2095,6 +2095,7 @@ const sidebars: SidebarsConfig = {
               label: 'Billing',
               items: [
                 'manage/cloud/billing/pricing-and-plans',
+                'manage/cloud/billing/usage-dashboards',
               ],
             },
             {
