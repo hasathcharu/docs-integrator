@@ -1,6 +1,6 @@
 ---
 title: Configurations
-description: Externalize environment-specific settings with configurable variables, Config.toml, and environment variables.
+description: Step-by-step guide for declaring configurable variables and supplying values through the visual designer.
 ---
 
 import Tabs from '@theme/Tabs';
