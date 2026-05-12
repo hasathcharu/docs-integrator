@@ -2166,6 +2166,16 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/audit/compliance-data-residency',
               ],
             },
+            // Private data plane
+            {
+              type: 'category',
+              label: 'Private data plane',
+              link: { type: 'doc', id: 'manage/cloud/private-date-plane/overview' },
+              items: [
+                'manage/cloud/private-date-plane/management-models',
+                'manage/cloud/private-date-plane/security-levels',
+              ],
+            },
           ],
         },
         {
