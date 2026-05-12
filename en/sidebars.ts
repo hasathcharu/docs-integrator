@@ -2115,12 +2115,21 @@ const sidebars: SidebarsConfig = {
             'manage/icp/icp-console-overview',
             'manage/icp/connect-runtime',
             'manage/icp/observability-setup',
-            'manage/icp/access-control',
             'manage/icp/manage-projects',
             'manage/icp/manage-environments',
             'manage/icp/manage-integrations',
             'manage/icp/manage-runtimes',
-            'manage/icp/sso-configuration',
+            'manage/icp/access-control',
+            {
+              type: 'category',
+              label: 'User Stores',
+              link: { type: 'doc', id: 'manage/icp/user-stores/configure-user-stores' },
+              items: [
+                'manage/icp/user-stores/default-user-store',
+                'manage/icp/user-stores/ldap-user-store',
+                'manage/icp/user-stores/sso-configuration',
+              ],
+            },
             {
               type: 'category',
               label: 'MI Profile',
