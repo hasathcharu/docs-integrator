@@ -129,9 +129,9 @@ const sections: SectionCard[] = [
     iconColor: '#A855F7',
   },
   {
-    title: 'Tutorials',
-    description: 'End-to-end walkthroughs, integration patterns, and sample projects.',
-    link: '/docs/tutorials/overview',
+    title: 'Guides',
+    description: 'End-to-end tutorials and integration patterns.',
+    link: '/docs/guides/overview',
     icon: <IconTutorials />,
     iconBg: '#FFF8EB',
     iconBgDark: 'rgba(217, 119, 6, 0.15)',

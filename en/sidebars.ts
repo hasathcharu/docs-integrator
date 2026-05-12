@@ -1839,83 +1839,23 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Guides',
       collapsed: true,
-      link: { type: 'doc', id: 'tutorials/tutorials' },
+      link: { type: 'doc', id: 'guides/guides' },
       items: [
-        // Walkthroughs
-        {
-          type: 'category',
-          label: 'Walkthroughs',
-          items: [
-            'tutorials/salesforce-database-sync',
-            'tutorials/kafka-event-processing-pipeline',
-            'tutorials/rest-api-aggregation-service',
-            'tutorials/pdf-generation-service',
-            'tutorials/walkthroughs/route-messages-based-content',
-            'tutorials/walkthroughs/build-a-data-transformation-pipeline',
-            'tutorials/file-batch-etl-pipeline',
-            'tutorials/walkthroughs/build-email-notification-service',
-            'tutorials/walkthroughs/build-a-change-data-capture-service',
-            'tutorials/healthcare-hl7fhir-integration',
-            'tutorials/walkthroughs/process-edi-documents-from-ftp',
-            'tutorials/walkthroughs/process-csv-files-from-ftp-fail-safe-error-handling',
-            'tutorials/walkthroughs/process-ftp-order-batches-age-filter-and-file-dependency',
-            'tutorials/walkthroughs/watch-a-local-directory-csv-files',
-            'tutorials/walkthroughs/stream-large-csv-files-from-sftp',
-            'tutorials/multi-system-data-reconciliation',
-          ],
-        },
-        // Enterprise Integration Patterns (EIP)
         {
           type: 'category',
           label: 'Enterprise integration patterns',
           items: [
-            'tutorials/patterns/content-based-router',
-            'tutorials/patterns/message-filter',
-            'tutorials/patterns/scatter-gather',
-            'tutorials/patterns/recipient-list',
-            'tutorials/patterns/message-translator',
-            'tutorials/patterns/circuit-breaker-retry',
-            'tutorials/patterns/saga-compensation',
-            'tutorials/patterns/publish-subscribe',
-            'tutorials/patterns/guaranteed-delivery',
-            'tutorials/patterns/idempotent-receiver',
-            'tutorials/patterns/api-gateway-orchestration',
-            'tutorials/patterns/agent-tool-orchestration',
-            'tutorials/patterns/rag-pipeline',
-          ],
-        },
-        // Pre-Built Integration Samples
-        {
-          type: 'category',
-          label: 'Pre-built integration samples',
-          items: [
-            'tutorials/pre-built/integration-samples',
-            'tutorials/pre-built/google-sheets-salesforce-contacts',
-            'tutorials/pre-built/github-email-summary',
-            'tutorials/pre-built/google-drive-onedrive-sync',
-            'tutorials/pre-built/mysql-salesforce-products',
-            'tutorials/pre-built/gmail-salesforce-leads-openai',
-            'tutorials/pre-built/kafka-salesforce-price-book',
-            'tutorials/pre-built/salesforce-twilio-sms',
-            'tutorials/pre-built/hubspot-google-contacts',
-            'tutorials/pre-built/ftp-edi-salesforce-opportunity',
-            'tutorials/pre-built/shopify-outlook-welcome-email',
-          ],
-        },
-        // Sample Projects
-        {
-          type: 'category',
-          label: 'Sample projects',
-          items: [
-            'tutorials/samples/projects',
-            'tutorials/samples/hospital-service',
-            'tutorials/samples/e-commerce-order-service',
-            'tutorials/samples/event-driven-microservices-kafka',
-            'tutorials/samples/data-service-bal-persist',
-            'tutorials/samples/restful-api-visual-data-mapper',
-            'tutorials/samples/ai-personal-assistant',
+            'guides/patterns/message',
+            'guides/patterns/message-filter',
+            'guides/patterns/content-based-routing',
+            'guides/patterns/selective-consumer',
+            'guides/patterns/polling-consumer',
+            'guides/patterns/channel-adapter',
+            'guides/patterns/message-dispatcher',
+            'guides/patterns/service-activator',
+            'guides/patterns/message-mapper',
           ],
         },
         // Migration Guides
@@ -1923,15 +1863,12 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Migration guides',
           items: [
-            'tutorials/migration/coming-from-mi',
-            'tutorials/migration/coming-from-mulesoft',
-            'tutorials/migration/coming-from-tibco',
-            'tutorials/migration/coming-from-boomi',
+            'guides/migration/coming-from-mulesoft',
+            'guides/migration/coming-from-tibco',
           ],
         },
       ],
     },
-    // ─────────────────────────────────────────────
     // DEPLOY
     // "How do I ship, run, and secure this?"
     // ─────────────────────────────────────────────

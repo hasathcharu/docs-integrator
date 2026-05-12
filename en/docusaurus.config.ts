@@ -120,10 +120,10 @@ const config: Config = {
           activeBaseRegex: '/docs/genai(/|$)',
         },
         {
-          to: '/docs/tutorials/overview',
-          label: 'Tutorials',
+          to: '/docs/guides/overview',
+          label: 'Guides',
           position: 'left',
-          activeBaseRegex: '/docs/tutorials(/|$)',
+          activeBaseRegex: '/docs/guides(/|$)',
         },
         {
           to: '/docs/deploy-operate/overview',
