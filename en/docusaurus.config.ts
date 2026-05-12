@@ -77,6 +77,15 @@ const config: Config = {
       defaultMode: 'light',
       respectPrefersColorScheme: true,
     },
+    docs: {
+      sidebar: {
+        // Collapse sibling categories whenever a category expands. With
+        // `useAutoExpandActiveCategory`, this means navigating to a page
+        // collapses every other top-level category and only leaves the
+        // current path expanded.
+        autoCollapseCategories: true,
+      },
+    },
     navbar: {
       title: 'WSO2 Integrator',
       logo: {
@@ -111,10 +120,10 @@ const config: Config = {
           activeBaseRegex: '/docs/genai(/|$)',
         },
         {
-          to: '/docs/tutorials/overview',
-          label: 'Tutorials',
+          to: '/docs/guides/overview',
+          label: 'Guides',
           position: 'left',
-          activeBaseRegex: '/docs/tutorials(/|$)',
+          activeBaseRegex: '/docs/guides(/|$)',
         },
         {
           to: '/docs/deploy-operate/overview',

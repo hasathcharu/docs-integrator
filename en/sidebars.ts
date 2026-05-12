@@ -268,14 +268,6 @@ const sidebars: SidebarsConfig = {
         // 6.6 Try & Test
         {
           type: 'category',
-          label: 'WSO2 Integrator Copilot',
-          items: [
-            'develop/copilot/getting-started',
-            'develop/copilot/overview',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Test',
           link: { type: 'doc', id: 'develop/test/overview' },
           items: [
@@ -1760,7 +1752,7 @@ const sidebars: SidebarsConfig = {
           label: 'Getting started',
           items: [
             'genai/getting-started/build-a-sentiment-analyzer',
-            'genai/getting-started/build-a-sample-hotel-booking-agent',
+            'genai/getting-started/build-a-hotel-finder-agent',
           ],
         },
         // Develop AI Applications
@@ -1847,83 +1839,23 @@ const sidebars: SidebarsConfig = {
     // ─────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Guides',
       collapsed: true,
-      link: { type: 'doc', id: 'tutorials/tutorials' },
+      link: { type: 'doc', id: 'guides/guides' },
       items: [
-        // Walkthroughs
-        {
-          type: 'category',
-          label: 'Walkthroughs',
-          items: [
-            'tutorials/salesforce-database-sync',
-            'tutorials/kafka-event-processing-pipeline',
-            'tutorials/rest-api-aggregation-service',
-            'tutorials/pdf-generation-service',
-            'tutorials/walkthroughs/route-messages-based-content',
-            'tutorials/walkthroughs/build-a-data-transformation-pipeline',
-            'tutorials/file-batch-etl-pipeline',
-            'tutorials/walkthroughs/build-email-notification-service',
-            'tutorials/walkthroughs/build-a-change-data-capture-service',
-            'tutorials/healthcare-hl7fhir-integration',
-            'tutorials/walkthroughs/process-edi-documents-from-ftp',
-            'tutorials/walkthroughs/process-csv-files-from-ftp-fail-safe-error-handling',
-            'tutorials/walkthroughs/process-ftp-order-batches-age-filter-and-file-dependency',
-            'tutorials/walkthroughs/watch-a-local-directory-csv-files',
-            'tutorials/walkthroughs/stream-large-csv-files-from-sftp',
-            'tutorials/multi-system-data-reconciliation',
-          ],
-        },
-        // Enterprise Integration Patterns (EIP)
         {
           type: 'category',
           label: 'Enterprise integration patterns',
           items: [
-            'tutorials/patterns/content-based-router',
-            'tutorials/patterns/message-filter',
-            'tutorials/patterns/scatter-gather',
-            'tutorials/patterns/recipient-list',
-            'tutorials/patterns/message-translator',
-            'tutorials/patterns/circuit-breaker-retry',
-            'tutorials/patterns/saga-compensation',
-            'tutorials/patterns/publish-subscribe',
-            'tutorials/patterns/guaranteed-delivery',
-            'tutorials/patterns/idempotent-receiver',
-            'tutorials/patterns/api-gateway-orchestration',
-            'tutorials/patterns/agent-tool-orchestration',
-            'tutorials/patterns/rag-pipeline',
-          ],
-        },
-        // Pre-Built Integration Samples
-        {
-          type: 'category',
-          label: 'Pre-built integration samples',
-          items: [
-            'tutorials/pre-built/integration-samples',
-            'tutorials/pre-built/google-sheets-salesforce-contacts',
-            'tutorials/pre-built/github-email-summary',
-            'tutorials/pre-built/google-drive-onedrive-sync',
-            'tutorials/pre-built/mysql-salesforce-products',
-            'tutorials/pre-built/gmail-salesforce-leads-openai',
-            'tutorials/pre-built/kafka-salesforce-price-book',
-            'tutorials/pre-built/salesforce-twilio-sms',
-            'tutorials/pre-built/hubspot-google-contacts',
-            'tutorials/pre-built/ftp-edi-salesforce-opportunity',
-            'tutorials/pre-built/shopify-outlook-welcome-email',
-          ],
-        },
-        // Sample Projects
-        {
-          type: 'category',
-          label: 'Sample projects',
-          items: [
-            'tutorials/samples/projects',
-            'tutorials/samples/hospital-service',
-            'tutorials/samples/e-commerce-order-service',
-            'tutorials/samples/event-driven-microservices-kafka',
-            'tutorials/samples/data-service-bal-persist',
-            'tutorials/samples/restful-api-visual-data-mapper',
-            'tutorials/samples/ai-personal-assistant',
+            'guides/patterns/message',
+            'guides/patterns/message-filter',
+            'guides/patterns/content-based-routing',
+            'guides/patterns/selective-consumer',
+            'guides/patterns/polling-consumer',
+            'guides/patterns/channel-adapter',
+            'guides/patterns/message-dispatcher',
+            'guides/patterns/service-activator',
+            'guides/patterns/message-mapper',
           ],
         },
         // Migration Guides
@@ -1931,15 +1863,12 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Migration guides',
           items: [
-            'tutorials/migration/coming-from-mi',
-            'tutorials/migration/coming-from-mulesoft',
-            'tutorials/migration/coming-from-tibco',
-            'tutorials/migration/coming-from-boomi',
+            'guides/migration/coming-from-mulesoft',
+            'guides/migration/coming-from-tibco',
           ],
         },
       ],
     },
-    // ─────────────────────────────────────────────
     // DEPLOY
     // "How do I ship, run, and secure this?"
     // ─────────────────────────────────────────────
@@ -2060,6 +1989,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Manage',
       collapsed: true,
+      link: { type: 'doc', id: 'manage/overview' },
       items: [
         'manage/choosing-a-control-plane',
         // Cloud
@@ -2088,6 +2018,7 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/configurations/security-configurations',
                 'manage/cloud/configurations/build-configurations',
                 'manage/cloud/configurations/scaling-resource-limits',
+                'manage/cloud/configurations/custom-domain',
               ],
             },
             // Environments
@@ -2098,6 +2029,7 @@ const sidebars: SidebarsConfig = {
               items: [
                 'manage/cloud/environments/promotion',
                 'manage/cloud/environments/promotion-approval',
+                'manage/cloud/environments/create',
               ],
             },
             // Observability
@@ -2110,6 +2042,35 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/observability/metrics',
                 'manage/cloud/observability/anomaly-detection-alerts',
               ],
+            },
+            // CI/CD
+            {
+              type: 'category',
+              label: 'CI/CD',
+              link: { type: 'doc', id: 'manage/cloud/cicd/overview' },
+              items: [
+                'manage/cloud/cicd/connect-git-repository',
+                'manage/cloud/cicd/deployment-pipelines',
+              ],
+            },
+            // Users and Access
+            {
+              type: 'category',
+              label: 'Users and access',
+              link: { type: 'doc', id: 'manage/cloud/users-and-access/overview' },
+              items: [
+                    'manage/cloud/users-and-access/access-control',
+                    'manage/cloud/users-and-access/configure-enterprise-login',
+                    {
+                        type: 'category',
+                        label: 'Access APIs with an External IdP',
+                        link: { type: 'doc', id: 'manage/cloud/users-and-access/api-external-idp/overview' },
+                        items: [
+                            'manage/cloud/users-and-access/api-external-idp/asgardeo',
+                            'manage/cloud/users-and-access/api-external-idp/azure',
+                        ],
+                    },
+                ],
             },
             {
               type: 'category',
@@ -2132,6 +2093,16 @@ const sidebars: SidebarsConfig = {
               items: [
                 'manage/cloud/audit/audit-logs',
                 'manage/cloud/audit/compliance-data-residency',
+              ],
+            },
+            // Private data plane
+            {
+              type: 'category',
+              label: 'Private data plane',
+              link: { type: 'doc', id: 'manage/cloud/private-date-plane/overview' },
+              items: [
+                'manage/cloud/private-date-plane/management-models',
+                'manage/cloud/private-date-plane/security-levels',
               ],
             },
           ],
@@ -2202,7 +2173,6 @@ const sidebars: SidebarsConfig = {
             'reference/config/ballerinatoml-reference',
             'reference/config/configtoml-reference',
             'reference/config/cloudtoml-reference',
-            'reference/config/dependenciestoml-reference',
             'reference/config/environment-variables',
           ],
         },
@@ -2211,8 +2181,7 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'CLI',
           items: [
-            'reference/cli/bal-command-reference',
-            'reference/cli/bal-scan',
+            'reference/cli/bal-command-reference'
           ],
         },
         // ICP Configuration

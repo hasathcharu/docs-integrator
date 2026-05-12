@@ -28,7 +28,7 @@ This guide walks you through setting up a PostgreSQL server and configuring it f
     ```
 
 :::tip
-For production environments, follow the principle of least privilege — grant only the permissions your application requires.
+For production environments, follow the principle of least privilege: grant only the permissions your application requires.
 :::
 
 ## Step 2: Create tables and schema
@@ -68,7 +68,7 @@ If your PostgreSQL server requires encrypted connections:
 The SSL mode can be configured on the connector side. Available modes include `DISABLE`, `ALLOW`, `PREFER` (default), `REQUIRE`, `VERIFY_CA`, and `VERIFY_FULL`.
 :::
 
-## Step 4: Configure CDC / logical replication (optional — for triggers)
+## Step 4: Configure CDC / logical replication (optional: for triggers)
 
 If you plan to use the CDC listener for real-time change events:
 

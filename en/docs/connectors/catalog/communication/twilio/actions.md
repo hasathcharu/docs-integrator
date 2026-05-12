@@ -1,6 +1,6 @@
 ---
 title: Actions
-description: Full reference for all Twilio connector client operations — messaging, voice calls, phone numbers, recordings, conferences, and account management.
+description: "Full reference for all Twilio connector client operations: messaging, voice calls, phone numbers, recordings, conferences, and account management."
 keywords: [twilio, sms, voice call, api client, ballerina connector, actions, createMessage, createCall]
 connector: true
 connector_name: "twilio"
@@ -205,7 +205,7 @@ Parameters:
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `payload` | `CreateCallRequest` | Yes | Call details — see required and optional fields below. |
+| `payload` | `CreateCallRequest` | Yes | Call details: see required and optional fields below. |
 | `accountSid` | `string` | No | Account SID override. |
 
 `CreateCallRequest` required fields:
@@ -217,12 +217,12 @@ Parameters:
 
 :::note
 Provide exactly one of `Url`, `Twiml`, or `ApplicationSid` to specify the call instructions:
-- `Url` — URL of a TwiML document or Twilio Application to fetch call instructions from.
-- `Twiml` — Inline TwiML string for simple call flows that do not require a separate server.
-- `ApplicationSid` — SID of a Twilio Application with configured voice URLs.
+- `Url`: URL of a TwiML document or Twilio Application to fetch call instructions from.
+- `Twiml`: Inline TwiML string for simple call flows that do not require a separate server.
+- `ApplicationSid`: SID of a Twilio Application with configured voice URLs.
 :::
 
-Optional fields include `StatusCallback`, `StatusCallbackMethod`, `StatusCallbackEvent`, `Record`, `Timeout`, and others — see the [Twilio REST API reference](https://www.twilio.com/docs/voice/api/call-resource) for the full list.
+Optional fields include `StatusCallback`, `StatusCallbackMethod`, `StatusCallbackEvent`, `Record`, `Timeout`, and others: see the [Twilio REST API reference](https://www.twilio.com/docs/voice/api/call-resource) for the full list.
 
 Returns: `Call|error`
 
@@ -807,6 +807,6 @@ Sample response:
 
 ## What's next
 
-- [Trigger Reference](triggers.md) — Event-driven webhook integration using the Twilio listener.
-- [Example](example.md) — Complete example integrations for the Twilio connector and trigger.
-- [Setup Guide](setup-guide.md) — Create a Twilio account and obtain credentials.
+- [Trigger Reference](triggers.md): Event-driven webhook integration using the Twilio listener.
+- [Example](example.md): Complete example integrations for the Twilio connector and trigger.
+- [Setup Guide](setup-guide.md): Create a Twilio account and obtain credentials.

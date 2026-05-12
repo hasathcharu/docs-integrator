@@ -9,66 +9,6 @@
  */
 
 /* ================================================================
-   TWO-COLUMN PAGE LAYOUT (sidebar + content)
-   ================================================================ */
-.pageLayout {
-  display: flex;
-  align-items: flex-start;
-}
-
-.sidebarCol {
-  width: var(--doc-sidebar-width, 300px);
-  flex-shrink: 0;
-  position: sticky;
-  top: var(--ifm-navbar-height);
-  height: calc(100vh - var(--ifm-navbar-height));
-  background-color: var(--wso2-sidebar-bg);
-  border-right: 1px solid var(--wso2-surface-border);
-  z-index: 10;
-  overflow-y: auto;
-}
-
-/* Add a small top padding for a premium, balanced look */
-/* stylelint-disable selector-pseudo-class-no-unknown */
-.sidebarCol> :global(div) {
-  padding-top: 1rem !important;
-}
-/* stylelint-enable selector-pseudo-class-no-unknown */
-
-/* Remove redundant top padding from the internal menu component */
-/* stylelint-disable selector-pseudo-class-no-unknown */
-.sidebarCol :global(.menu) {
-  padding-top: 0;
-}
-/* stylelint-enable selector-pseudo-class-no-unknown */
-
-/* Reset list padding/margin */
-/* stylelint-disable selector-pseudo-class-no-unknown */
-.sidebarCol :global(.menu__list) {
-  padding-top: 0;
-  margin-top: 0;
-}
-/* stylelint-enable selector-pseudo-class-no-unknown */
-
-/* stylelint-disable selector-pseudo-class-no-unknown */
-.sidebarCol :global(.menu__list-item:first-child) {
-  margin-top: 0;
-}
-/* stylelint-enable selector-pseudo-class-no-unknown */
-
-.mainContent {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 996px) {
-  .sidebarCol {
-    display: none;
-  }
-}
-
-/* ================================================================
    HERO — Light blue in light theme, dark navy in dark theme
    ================================================================ */
 .heroBanner {
@@ -550,13 +490,18 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background: #E8590C;
+  /* WSO2 brand primary blue — keeps the badge on-brand alongside the
+     navy-to-sky-blue gradient in the brand guidelines and matches the
+     primary color used throughout the site. */
+  background: #0077B6;
   color: #FFFFFF;
   padding: 0.15rem 0.5rem;
   border-radius: 100px;
 }
 
 [data-theme='dark'] .whatsNewBadge {
-  background: #FB923C;
+  /* Brighter sky-blue in dark mode for legibility on the navy surface,
+     matching --ifm-color-primary used in dark theme. */
+  background: #38BDF8;
   color: #0B1120;
 }

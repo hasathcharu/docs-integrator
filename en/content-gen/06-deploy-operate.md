@@ -252,15 +252,6 @@
 - Configuring auth in Ballerina services
 - Complete examples for each auth method
 
-### Page: SSO Configuration
-
-**File:** `en/docs/deploy-operate/secure/sso-configuration.md`
-
-**What to cover:**
-- Single Sign-On using OpenID Connect (OIDC)
-- Configuring SSO for the Integration Control Plane
-- Identity provider setup
-
 ### Page: API Security & Rate Limiting
 
 **File:** `en/docs/deploy-operate/secure/api-security-rate-limiting.md`
