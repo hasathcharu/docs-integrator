@@ -188,13 +188,9 @@ bal scan --exclude-rules="ballerina:1, ballerina/io:2"
 ```
 
 
-## Publishing static code analysis reports to SonarQube
-
-To learn how to publish reports to SonarQube, refer to [Configuration for Platform Plugins](https://github.com/ballerina-platform/static-code-analysis-tool/blob/main/docs/static-code-analysis-tool/ScanFileConfigurations.md).
-
 ## Platform integration
 
-Report analysis results to platforms such as SonarQube using the `--platforms` option:
+The scan tool can publish analysis results directly to external code quality platforms such as SonarQube. Use the `--platforms` option to specify the target platform:
 
 ```bash
 bal scan --platforms="sonarqube"
@@ -205,6 +201,8 @@ Specify more than one platform as a comma-separated list:
 ```bash
 bal scan --platforms="sonarqube, semgrep, codeql"
 ```
+
+Each platform requires additional configuration, such as authentication credentials and the report destination. For the full configuration reference, see [Configuration for Platform Plugins](https://github.com/ballerina-platform/static-code-analysis-tool/blob/main/docs/static-code-analysis-tool/ScanFileConfigurations.md).
 
 ## Rule categories
 
