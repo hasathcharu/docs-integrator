@@ -56,7 +56,7 @@ Sign in with your WSO2 Cloud account to deploy to WSO2 Cloud, manage environment
 
    ![WSO2 Integrator Get Started page after sign-in showing the account avatar and a success notification](/img/get-started/setup/sign-in/signed-in.png)
 
-:::info Don't have a WSO2 account?
+:::info Don't have a WSO2 Cloud account?
 [Sign up for WSO2 Cloud](sign-up-sign-in.md) to create one before signing in.
 :::
 

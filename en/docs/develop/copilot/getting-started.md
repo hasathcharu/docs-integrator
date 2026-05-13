@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-description: Sign in to WSO2 Integrator Copilot using your WSO2 account, or bring your own Anthropic, AWS Bedrock, or Google Vertex AI credentials.
+description: Sign in to WSO2 Integrator Copilot using your WSO2 Cloud account, or bring your own Anthropic, AWS Bedrock, or Google Vertex AI credentials.
 keywords: [wso2 integrator, copilot, getting started, sign in]
 slug: /develop/wso2-integrator-copilot/getting-started
 ---
@@ -19,7 +19,7 @@ If you have already [signed in to WSO2 Integrator](../../get-started/setup/local
 
    ![WSO2 Integrator Copilot welcome screen](/img/develop/copilot/copilot-sign-in.png)
 
-   - **Login using WSO2 Integration Platform** (recommended): Sign in with your WSO2 account.
+   - **Login using WSO2 Integration Platform** (recommended): Sign in with your WSO2 Cloud account.
    - **Enter your [Anthropic API key](https://platform.claude.com/settings/keys)**: Use your own Anthropic key to power Copilot.
    - **Enter your [AWS Bedrock credentials](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html)**: Use your AWS Bedrock account.
    - **Enter your [Google Vertex AI credentials](https://docs.cloud.google.com/vertex-ai/docs/authentication)**: Use your Google Vertex AI account.
