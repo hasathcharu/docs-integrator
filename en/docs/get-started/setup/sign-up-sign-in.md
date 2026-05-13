@@ -30,7 +30,7 @@ The name must:
 
 Read and accept the [Privacy Policy](https://wso2.com/devant/privacy-policy/) and [Terms of Use](https://wso2.com/devant/terms-of-use/), then click **Create**.
 
-## Step 5: Select your persona
+## Step 4: Select your persona
 
 Choose the persona that matches your role, then click **Next**:
 
@@ -39,7 +39,7 @@ Choose the persona that matches your role, then click **Next**:
 
 Your selection personalizes the views and workflows shown in the platform.
 
-## Step 4: Select a region
+## Step 5: Select a region
 
 Select the cloud region where you want to deploy your integrations and click **Confirm**.
 
