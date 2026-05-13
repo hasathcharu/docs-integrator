@@ -206,18 +206,16 @@ For each resource method:
 
 #### Edit the service class
 
-The editing experience for a service class differs from other kinds. Click **Edit** on the type to open the **Service Class Designer** panel:
+The editing experience for a service class differs from other kinds. Click **Edit** on the type to open the **Service Class Designer** panel.
 
-Click on **Edit** to update the following.
+Click on **Edit** in the **Service Class Designer** panel to edit the name or the description of the class.
 
 | Control | Description |
 |---|---|
 | **Class Name** | Rename the service class. |
 | **Description** | Free-text documentation rendered as Ballerina documentation. |
 
-##### Service Class Designer
-
-**Class Variables**: click **+ Variable** to open the **Add Variable** panel.
+**Class Variables**: Click **+ Variable** to open the **Add Variable** panel.
 
 | Control | Description |
 |---|---|
@@ -225,16 +223,18 @@ Click on **Edit** to update the following.
 | **Variable Type** | The variable type. |
 | **Default Value** | The initial value assigned at construction. |
 
-**Methods**: click **+ Method** to open the **Add Method** panel. Choose the method kind from the dropdown (**resource**, **remote**, or **init**), then fill in:
+**Methods**: Click **+ Method** to open the **Add Method** panel. Choose the method kind from the dropdown (**resource** or **remote**), then fill in:
 
 | Control | Description |
 |---|---|
-| **Function Name** | The method name. Not shown for `init`. |
+| **Resource Path**/**Function Name** | The resource path (for resources) or method name (for remote methods). |
 | **Description** | Documentation for the method. |
 | **Parameters** | Use **+ Add Parameter** to add inputs (name, type, optional default value). |
-| **Return Type** | The method return type. Not shown for `init`. |
+| **Return Type** | The method return type. |
 
 Use the pencil and trash icons next to each existing method to edit or remove it.
+
+Click on **Constructor: init** to modify the initializer method.
 
 ![Service Class Designer showing Class Variables and Methods sections](/img/develop/integration-artifacts/supporting/types/service-class-designer.png)
 
@@ -386,6 +386,78 @@ public type LineItems string[];
 
 // Fixed-length array
 type Coordinates float[3];
+```
+
+</TabItem>
+</Tabs>
+
+## Generate type from JSON or XML
+
+Types can be generated from sample JSON or XML values instead of manually defining each field.
+
+<Tabs>
+<TabItem value="ui" label="Visual Designer" default>
+
+1. In the **New Type** creation view, switch to the **Import** tab.
+
+2. Specify the source data format and the name of the type to generate.
+
+   | Field | Description |
+   |---|---|
+   | **Format** | The source data format: **JSON** or **XML**. |
+   | **Name** | A unique name for the type (for example, `Employees`). |
+
+   ![New Type creation form showing type generation from JSON](/img/develop/integration-artifacts/supporting/types/type-from-json.png)
+
+3. Click **Save**. The types are added to your project and appear in the type diagram.
+
+</TabItem>
+<TabItem value="json_sample" label="Sample JSON">
+
+```json
+[
+  {
+    "id": "E001",
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "email": "alice.johnson@example.com",
+    "department": "Engineering",
+    "jobTitle": "Software Engineer",
+    "salary": 95000,
+    "hireDate": "2021-03-15",
+    "isActive": true
+  },
+  {
+    "id": "E002",
+    "firstName": "Bob",
+    "lastName": "Martinez",
+    "email": "bob.martinez@example.com",
+    "department": "Marketing",
+    "jobTitle": "Marketing Manager",
+    "salary": 85000,
+    "hireDate": "2019-07-01",
+    "isActive": true
+  }
+]
+```
+
+</TabItem>
+<TabItem value="code" label="Ballerina Code">
+
+```ballerina
+public type EmployeesItem record {|
+    string id;
+    string firstName;
+    string lastName;
+    string email;
+    string department;
+    string jobTitle;
+    int salary;
+    string hireDate;
+    boolean isActive;
+|};
+
+public type Employees EmployeesItem[];
 ```
 
 </TabItem>
