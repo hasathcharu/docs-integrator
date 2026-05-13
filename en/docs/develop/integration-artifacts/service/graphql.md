@@ -107,7 +107,7 @@ Service-level settings map to the `@graphql:ServiceConfig` annotation placed bef
 @graphql:ServiceConfig {
     maxQueryDepth: 7,
     graphiql: {
-        enable: true,
+        enabled: true,
         path: "graphiql"
     },
     cors: {
@@ -132,7 +132,7 @@ All `@graphql:ServiceConfig` fields:
 | `auth` | `ListenerAuthConfig[]` | — | Service-level authentication |
 | `cors` | `CorsConfig` | `{}` | CORS policy |
 | `contextInit` | `ContextInit` | — | Context initializer invoked per request |
-| `graphiql` | `Graphiql` | `{enable: false}` | Enable the built-in GraphiQL client and set its path |
+| `graphiql` | `Graphiql` | `{enabled: false}` | Enable the built-in GraphiQL client and set its path |
 | `interceptors` | `readonly & Interceptor[]` | `[]` | Field-level interceptor chain |
 | `introspection` | `boolean` | `true` | Allow schema introspection queries |
 | `validation` | `boolean` | `true` | Enable query and variable validation |
@@ -305,9 +305,9 @@ The available kinds depend on where the type is used:
 | Used as | Allowed kinds |
 |---|---|
 | **Argument type** | `Input Object`, `Enum` |
-| **Field (output) type** | `Output Object`, `Enum`, `Union` |
+| **Field (output) type** | `Object`, `Enum`, `Union` |
 
-**Advanced Options** for a new type include **Allow Additional Fields**, **Is Readonly Type**, and **Accessible by Other Integrations**.
+**Advanced Options** for a new **Argument type** include **Allow Additional Fields**, **Is Readonly Type**, and **Accessible by Other Integrations**.
 
 :::note ID type
 If the selected argument or field type can be marked as an ID, a checkbox appears in the type helper.
@@ -427,4 +427,4 @@ service /graphql on new graphql:Listener(9090) {
 - [GraphQL Tool](../../tools/integration-tools/graphql-tool.md) — generate services and clients from SDL schemas
 - [gRPC Service](grpc.md) — define services using Protocol Buffers
 - [Connections](../supporting/connections.md) — configure client connections to call external services
-- [Data Mapper](../supporting/data-mapper.md) — transform request and response payloads between formats
+- [Data Mapper](../supporting/data-mapper/data-mapper.md) — transform request and response payloads between formats
