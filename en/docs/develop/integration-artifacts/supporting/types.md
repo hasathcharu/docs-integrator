@@ -37,6 +37,8 @@ The visual designer exposes five type kinds: **Record**, **Enum**, **Service Cla
 
 4. Click **Save**. The type is added to your project and appears in the type diagram.
 
+
+Alternatively, click **+ Add Artifact** in the **Design** panel and click  **Type** under **Other Artifacts** or **Library Artifacts**.
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
