@@ -967,7 +967,7 @@ A union of the supported read-concern levels:
 
 ### `Update`
 
-A record where each field corresponds to a MongoDB update operator. The connector adds the leading `$` to each operator name automatically. Write `set`, the wire payload contains `$set`. All fields are optional. The record is open, so any additional MongoDB update operator can be passed and will likewise receive the `$` prefix.
+A record where each field corresponds to a MongoDB update operator. The connector adds the leading `$` to each operator name automatically: writing `set` produces `$set` on the wire. All fields are optional. The record is open, so any additional MongoDB update operator can be passed and will likewise receive the `$` prefix.
 
 | Field | MongoDB operator | Description |
 |-------|------------------|-------------|

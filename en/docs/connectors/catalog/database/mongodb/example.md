@@ -126,7 +126,7 @@ The automation flow canvas opens, showing a **Start** node and an **Error Handle
 
 Try this sample in WSO2 Integration Platform.
 
-[![Push to cloud](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/mongodb_connector_sample)
+[![Deploy to WSO2 Integration Platform](https://openindevant.choreoapps.dev/images/DeployDevant-White.svg)](https://console.devant.dev/new?gh=wso2/integration-samples/tree/main/integrator-default-profile/connectors/mongodb_connector_sample)
 
 [View source on GitHub](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/connectors/mongodb_connector_sample)
 
