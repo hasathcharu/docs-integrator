@@ -11,7 +11,7 @@ This guide walks you through setting up a Microsoft SQL Server instance and enab
 
 ## Prerequisites
 
-- A running Microsoft SQL Server instance (2016 or later). If you do not have one, you can [download SQL Server Developer Edition](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) for free, run it via Docker (`docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong!Passw0rd" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest`), or use a managed service such as Azure SQL Database or Amazon RDS for SQL Server.
+- A running Microsoft SQL Server instance (2016 or later). If you do not have one, you can [download SQL Server Developer Edition](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) for free, run it via Docker (`docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=YourStr0ngPassw0rd' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest`), or use a managed service such as Azure SQL Database or Amazon RDS for SQL Server.
 
 ## Create a database and user
 

@@ -49,7 +49,7 @@ The listener supports the following connection strategies:
 | `databaseInstance` | <code>string?</code> | `()` | Named SQL Server instance, if applicable. |
 | `includedSchemas` | <code>string&#124;string[]?</code> | `()` | Schema(s) to include in CDC capture (for example, `"dbo"`). Mutually exclusive with `excludedSchemas`. |
 | `excludedSchemas` | <code>string&#124;string[]?</code> | `()` | Schema(s) to exclude from CDC capture. Mutually exclusive with `includedSchemas`. |
-| `includedTables` | <code>string&#124;string[]?</code> | `()` | Fully-qualified table names or regex patterns to capture (for example, `"dbo.Employees"`). Mutually exclusive with `excludedTables`. |
+| `includedTables` | <code>string&#124;string[]?</code> | `()` | Table identifiers in `schema.table` format, or regex patterns to capture (for example, `"dbo.Employees"`). Mutually exclusive with `excludedTables`. |
 | `excludedTables` | <code>string&#124;string[]?</code> | `()` | Regex patterns of tables to exclude from capture. Mutually exclusive with `includedTables`. |
 | `includedColumns` | <code>string&#124;string[]?</code> | `()` | Regex patterns of columns to capture. Mutually exclusive with `excludedColumns`. |
 | `excludedColumns` | <code>string&#124;string[]?</code> | `()` | Regex patterns of columns to exclude from capture. Mutually exclusive with `includedColumns`. |
@@ -136,7 +136,7 @@ A `cdc:Service` is a Ballerina service attached to a `mssql:CdcListener`. It lis
 | `onDelete` | `remote function onDelete(record {} before) returns cdc:Error?` | Invoked when a record is deleted. Receives the record state before deletion. |
 | `onError` | `remote function onError(cdc:Error err) returns cdc:Error?` | Invoked when the listener encounters an error during change-event delivery. |
 
-Each row-level callback (`onRead`, `onCreate`, `onUpdate`, `onDelete`) accepts an optional trailing `string tableName` parameter to receive the fully-qualified table the event originated from. For example: `remote function onCreate(record {} after, string tableName) returns cdc:Error?`.
+Each row-level callback (`onRead`, `onCreate`, `onUpdate`, `onDelete`) accepts an optional trailing `string tableName` parameter to receive the qualified table identifier (`schema.table`) the event originated from. For example: `remote function onCreate(record {} after, string tableName) returns cdc:Error?`.
 
 :::note
 You do not need to implement all callbacks. Only implement the event types relevant to your use case.
