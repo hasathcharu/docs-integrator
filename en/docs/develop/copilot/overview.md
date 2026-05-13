@@ -78,7 +78,7 @@ Type `/` in the Copilot input bar to invoke a command for a specific task.
 | `/doc` | Generate documentation for your integration. |
 | `/openapi` | Import OpenAPI specifications. |
 | `/typecreator` | Create custom types. |
-| `/datamap` | Generate data mappings. |
+| `/datamap` | [Generate data mappings](../integration-artifacts/supporting/data-mapper/ai-data-mapper.md). |
 | `/natural-programming` | Experimental natural-language-to-code generation. |
 
 :::note
@@ -87,6 +87,7 @@ Type `/` in the Copilot input bar to invoke a command for a specific task.
 
 ## See also
 
-- [Getting Started](getting-started.md) — Sign in to WSO2 Integrator Copilot.
+- [Getting started](getting-started.md) — Sign in to WSO2 Integrator Copilot.
 - [Generate tests with AI](../test/ai-generated-cases.md) — Use Copilot to generate test cases.
+- [AI data mapper](../integration-artifacts/supporting/data-mapper/ai-data-mapper.md) — Generate data mappings using AI.
 - [Try-It tool](../test/built-in-try-it-tool.md) — Test services without leaving the IDE.
