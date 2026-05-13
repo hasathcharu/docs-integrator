@@ -26,11 +26,18 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Get started',
       collapsed: true,
-      link: { type: 'doc', id: 'get-started/overview-and-architecture' },
+      link: { type: 'doc', id: 'get-started/introduction' },
       items: [
-        'get-started/overview-and-architecture',
-        'get-started/why',
-        'get-started/key-concepts',
+        'get-started/introduction',
+        {
+          type: 'category',
+          label: 'Concepts',
+          link: { type: 'doc', id: 'get-started/concepts/concepts' },
+          items: [
+            'get-started/concepts/core-concepts',
+            'get-started/concepts/ipaas-concepts',
+          ],
+        },
         {
           type: 'category',
           label: 'Set up',

@@ -95,7 +95,7 @@ const sections: SectionCard[] = [
   {
     title: 'Get started',
     description: 'Install, set up, and build your first integration in under 10 minutes.',
-    link: '/docs/get-started/overview-and-architecture',
+    link: '/docs/get-started/introduction',
     icon: <IconGetStarted />,
     iconBg: '#ECFDF5',
     iconBgDark: 'rgba(5, 150, 105, 0.15)',
