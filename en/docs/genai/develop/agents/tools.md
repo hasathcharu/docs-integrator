@@ -149,7 +149,7 @@ The new tool appears in the agent’s right-side **Tools** panel and is included
 
 A **toolkit** is a class that bundles related tools. For example, a `TaskManagerToolkit` can expose `addTask` and `listTasks`. Toolkits are currently written in source view only (there is no dedicated UI yet). You create a single Ballerina class with tool methods and register the toolkit in the agent's tool list. The agent treats toolkit methods exactly like individual tools.
 
-Use toolkit when:
+Use a toolkit when:
 
 - A group of tools shares state, such as a connector, database client, or configuration value.
 - You want to enable or disable a set of related tools as a unit.
