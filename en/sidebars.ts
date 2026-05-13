@@ -2074,6 +2074,17 @@ const sidebars: SidebarsConfig = {
                 'manage/cloud/platform-services/managed-databases',
               ],
             },
+             {
+              type: 'category',
+              label: 'RAG (Retrieval-Augmented Generation)',
+              items: [
+                'manage/cloud/rag-ingestion/ingestion',
+                'manage/cloud/rag-ingestion/retrieval',
+                'manage/cloud/rag-ingestion/service',
+                'manage/cloud/rag-ingestion/vector-databases',
+                'manage/cloud/rag-ingestion/querying',
+              ],
+            },
             {
               type: 'category',
               label: 'Billing',
