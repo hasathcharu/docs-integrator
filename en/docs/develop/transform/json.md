@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: JSON processing
+title: JSON Processing
 description: Parse, construct, transform, and validate JSON data.
 ---
 
@@ -21,7 +21,7 @@ Construct JSON directly using Ballerina types. The `json` type accepts null, boo
 <TabItem value="ui" label="Visual Designer" default>
 
 
-1. **Add a Variable step**: In the flow designer, click **+** and select **Declare Variable**. Set the type to `json` and enter a JSON value as the expression.
+1. **Add a Variable**: In the flow designer, click **+** and select **Declare Variable**. Set the type to `json` and enter a JSON value as the expression.
 
 2. **Build nested structures**: Add additional **Declare Variable** steps for nested JSON objects and arrays. Each variable appears as a separate **Declare Variable** step in the flow.
 
@@ -123,7 +123,7 @@ public function main() returns error? {
 
 Parse JSON payloads received as strings into either an untyped `json` value or a typed Ballerina record.
 
-### Into a json value
+### Into a JSON value
 
 Use `fromJsonString()` when you need a quick untyped `json` value without defining a record type.
 
@@ -132,7 +132,7 @@ Use `fromJsonString()` when you need a quick untyped `json` value without defini
 
 1. **Add a Declare Variable step for the raw string**: In the flow designer, click **+** and select **Declare Variable**. Set the type to `string` and enter the JSON string as the expression. Name the variable `raw`.
 
-2. **Parse the string**: Click **+** and select **Call Function**. In the left-side panel, search for `fromJsonString` and select it. Pass `raw` as the argument and set the result type to `json`.
+2. **Parse the string**: Click **+** and select **Call Function**. In the right-side panel, search for `fromJsonString` and select it. Pass `raw` as the argument and set the result type to `json`.
 
 3. **Extract typed values**: Add a **Declare Variable** step with a concrete type (for example, `string`) and use a field access expression such as `check parsed.name` to extract values from the parsed JSON.
 
@@ -164,19 +164,19 @@ Use `jsondata:parseString()` when the JSON structure is known. Define a matching
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. **Define the target record type**: Navigate to **Types** in the sidebar and click **+** to add a new type. Define the `Product` record from scratch with the following fields: `name` (`string`), `price` (`decimal`), `inStock` (`boolean`), and `category` (`string?`). For details on creating types, see [Types](../integration-artifacts/supporting/types.md).
+1. **Define the target record type**: Navigate to **Types** in the sidebar and click **+** to add a new type. Define the `Product` record. For details on creating types, see [Types](../integration-artifacts/supporting/types.md).
 
    ![New Type panel showing the Product record fields defined from scratch](/img/develop/transform/json/json-types-panel.png)
 
 2. **Add a Declare Variable step for the JSON string**: In the flow designer, click **+** and select **Declare Variable**. Set the type to `string` and enter the JSON string as the expression. Name the variable `jsonStr`.
 
-3. **Parse into the record type**: Click **+** and select **Call Function**. In the left-side panel, search for `parseString` and select it from the `ballerina/data.jsondata` module.
+3. **Parse into the record type**: Click **+** and select **Call Function**. In the right-side panel, search for `parseString` and select it from the `data.jsondata` module.
 
-   ![Left-side panel showing parseString search results with the ballerina/data.jsondata module entry highlighted](/img/develop/transform/json/json-parsestring-search.png)
+   ![Right-side panel showing parseString search results with the data.jsondata module entry highlighted](/img/develop/transform/json/json-parsestring-search.png)
 
    Pass `jsonStr` as the argument. The module is automatically imported into your file.
 
-   ![Left-side panel showing the parseString function form with jsonStr as the argument and Product as the return type](/img/develop/transform/json/json-parsestring-form.png)
+   ![Right-side panel showing the parseString function form with jsonStr as the argument and Product as the return type](/img/develop/transform/json/json-parsestring-form.png)
 
    ![Flow designer showing the parseString function call step with Product as the result type](/img/develop/transform/json/json-typed-parse-flow.png)
 
@@ -221,13 +221,13 @@ Use `jsondata:parseAsType()` when you already have a `json` value and want to co
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. **Define the record type**: Navigate to **Types** in the sidebar and click **+** to add a new type. Define the record from scratch with the fields matching your JSON structure. For details on creating types, see [Types](../integration-artifacts/supporting/types.md).
+1. **Define the record type**: Navigate to **Types** in the sidebar and click **+** to add a new type. Define the record with the fields matching your JSON structure. For details on creating types, see [Types](../integration-artifacts/supporting/types.md).
 
 2. **Assign the json value**: In the flow designer, click **+** and select **Declare Variable**. Set the type to `json` and enter the JSON value as the expression. Name the variable `jsonInput`.
 
-3. **Convert to the record type**: Click **+** and select **Call Function**. In the left-side panel, search for `parseAsType` and select it from the `ballerina/data.jsondata` module. Pass `jsonInput` as the argument and set the result type to your defined record.
+3. **Convert to the record type**: Click **+** and select **Call Function**. In the right-side panel, search for `parseAsType` and select it from the `data.jsondata` module. Pass `jsonInput` as the argument and set the result type to your defined record.
 
-   ![Left-side panel showing parseAsType search results with the ballerina/data.jsondata module entry highlighted](/img/develop/transform/json/json-parseastype-search.png)
+   ![right-side panel showing parseAsType search results with the data.jsondata module entry highlighted](/img/develop/transform/json/json-parseastype-search.png)
 
    ![Flow designer showing the parseAsType function call step with jsonInput as the argument and Product as the result type](/img/develop/transform/json/json-parseastype-flow.png)
 
@@ -258,7 +258,7 @@ public function main() returns error? {
 
 ## Parse JSON arrays
 
-Use `jsondata:parseString()` to parse a JSON array string directly into a typed record array. If you already have a `json` value instead of a string, use `jsondata:parseAsType()` as described in [Convert a json value to a record](#convert-a-json-value-to-a-record).
+Use `jsondata:parseString()` to parse a JSON array string directly into a typed record array. If you already have a `json` value instead of a string, use `jsondata:parseAsType()` as described in [Convert a JSON value to a typed record](`#convert-a-json-value-to-a-typed-record`).
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
@@ -267,7 +267,7 @@ Use `jsondata:parseString()` to parse a JSON array string directly into a typed 
 
 2. **Add a Variable step for the JSON string**: In the flow designer, click **+** and select **Declare Variable**. Set the type to `string` and enter the JSON array string as the expression. Name the variable `itemsJson`.
 
-3. **Parse the array**": Click **+** and select **Call Function**. In the left-side panel, search for `parseString` and select it from the `ballerina/data.jsondata` module. Pass `itemsJson` as the argument and set the result type to `OrderItem[]`.
+3. **Parse the array**: Click **+** and select **Call Function**. In the right-side panel, search for `parseString` and select it from the `data.jsondata` module. Pass `itemsJson` as the argument and set the result type to `OrderItem[]`.
 
    ![Flow designer showing the jsondata parseString function call step for parsing a JSON array into typed records](/img/develop/transform/json/json-array-parse-flow.png)
 
@@ -309,7 +309,7 @@ Combine multiple JSON objects using the `mergeJson` function.
 
 1. **Add Variable steps**: In the flow designer, click **+** and select **Declare Variable**. Set the type to `json` and enter the JSON value as the expression. Add a second **Declare Variable** step for the merge.
 
-2. **Merge the objects**: Click **+** and select **Call Function**. In the left-side panel, search for `mergeJson` and select it from the `ballerina/lang.value` module. Pass two json as arguments.
+2. **Merge the objects**: Click **+** and select **Call Function**. In the right-side panel, search for `mergeJson` and select it from the `lang.value` module. Pass two `json` values as arguments.
 
    ![Flow designer showing two Declare Variable steps for order1 and order2 followed by a mergeJson function call step](/img/develop/transform/json/json-merging-flow.png)
 
@@ -323,7 +323,7 @@ import ballerina/io;
 
 public function main() returns error? {
     json order1 = {"sku": "A1", "quantity": "3"};
-    json order2 = {"address": "Sri Lnaka", "status": "pending"};
+    json order2 = {"address": "Sri Lanka", "status": "pending"};
     json orders = check value:mergeJson(order1, order2);
     io:println(orders);
 }
@@ -444,6 +444,6 @@ Create a `products.json` file in the project directory.
 
 ## What's next
 
-- [XML Processing](xml.md) -- Work with XML data
-- [Type System & Records](type-system.md) -- Type-safe data handling
+- [XML Processing](xml.md) - Work with XML data
+- [Type System & Records](type-system.md) - Type-safe data handling
 
