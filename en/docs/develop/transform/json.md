@@ -299,22 +299,6 @@ public function main() returns error? {
 </Tabs>
 
 
-## Remap field names
-
-Use the `@jsondata:Name` annotation to map JSON field names to Ballerina record fields when the JSON keys do not match Ballerina naming conventions or identifier rules. This is useful when working with external APIs that use naming styles such as snake_case or kebab-case. Add the annotation directly to the record type definition in `types.bal` after creating the record.
-
-
-```ballerina
-import ballerina/data.jsondata;
-
-type ApiResponse record {|
-    @jsondata:Name {value: "total_count"}
-    int totalCount;
-    @jsondata:Name {value: "next_page"}
-    string? nextPage;
-|};
-```
-
 
 ## Merging JSON objects
 
@@ -349,7 +333,24 @@ public function main() returns error? {
 </TabItem>
 </Tabs>
 
-## Edge cases
+
+## Additional scenarios
+
+### Remap field names
+
+Use the `@jsondata:Name` annotation to map JSON field names to Ballerina record fields when the JSON keys do not match Ballerina naming conventions or identifier rules. This is useful when working with external APIs that use naming styles such as snake_case or kebab-case. Add the annotation directly to the record type definition in `types.bal` after creating the record.
+
+
+```ballerina
+import ballerina/data.jsondata;
+
+type ApiResponse record {|
+    @jsondata:Name {value: "total_count"}
+    int totalCount;
+    @jsondata:Name {value: "next_page"}
+    string? nextPage;
+|};
+```
 
 ### Null handling
 
