@@ -243,7 +243,7 @@ To configure a tool, click **Edit** and configure the following fields.
 | **Return Description** | No | A description of the value returned by the tool. |
 | **Advanced Configuration** | No | Contains the agent authentication client configurations and additional security-related settings used to connect with external authorization servers. |
 
-### Advanced Configuration
+### Advanced configuration
 
 | Field | Required | Description |
 |---|---|---|
