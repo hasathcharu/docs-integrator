@@ -1,4 +1,6 @@
 ---
+connector: true
+connector_name: "mysql"
 title: "Example"
 description: "Build an automation that inserts a record into a MySQL database using the MySQL connector."
 keywords: [wso2 integrator, mysql, connector, example, database, insert]
