@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { ReactNode } from 'react';
 import { useLocation } from '@docusaurus/router';
-import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import DocSidebarDesktop from '@theme/DocSidebar/Desktop';
 import type { PropSidebarItem, PropSidebarItemCategory } from '@docusaurus/plugin-content-docs';
@@ -99,38 +98,6 @@ function NavDrawer({
             onCollapse={() => {}}
             isHidden={false}
           />
-        </div>
-        <div className={styles.drawerFooter}>
-          <Link
-            href="https://mi.docs.wso2.com"
-            className={styles.externalDocLink}
-            onClick={onClose}>
-            <span className={styles.miDocBadge}>MI</span>
-            <span className={styles.miDocText}>
-              <span className={styles.miDocTitle}>WSO2 MI Documentation</span>
-              <span className={styles.miDocSubtitle}>Micro Integrator docs</span>
-            </span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-          </Link>
-          <Link
-            href="https://si.docs.wso2.com/latest/"
-            className={styles.externalDocLink}
-            onClick={onClose}>
-            <span className={styles.siDocBadge}>SI</span>
-            <span className={styles.miDocText}>
-              <span className={styles.miDocTitle}>WSO2 SI Documentation</span>
-              <span className={styles.miDocSubtitle}>Streaming Integrator docs</span>
-            </span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-          </Link>
         </div>
       </aside>
     </>

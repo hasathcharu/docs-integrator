@@ -77,6 +77,15 @@ const config: Config = {
       defaultMode: 'light',
       respectPrefersColorScheme: true,
     },
+    docs: {
+      sidebar: {
+        // Collapse sibling categories whenever a category expands. With
+        // `useAutoExpandActiveCategory`, this means navigating to a page
+        // collapses every other top-level category and only leaves the
+        // current path expanded.
+        autoCollapseCategories: true,
+      },
+    },
     navbar: {
       title: 'WSO2 Integrator',
       logo: {
@@ -111,16 +120,20 @@ const config: Config = {
           activeBaseRegex: '/docs/genai(/|$)',
         },
         {
-          to: '/docs/tutorials/overview',
-          label: 'Tutorials',
+          to: '/docs/guides/overview',
+          label: 'Guides',
           position: 'left',
-          activeBaseRegex: '/docs/tutorials(/|$)',
+          activeBaseRegex: '/docs/guides(/|$)',
         },
         {
-          to: '/docs/deploy-operate/overview',
-          label: 'Deploy & Operate',
+          to: '/docs/deploy/overview',
+          label: 'Deploy',
           position: 'left',
-          activeBaseRegex: '/docs/deploy-operate(/|$)',
+          // Match both the new /docs/deploy/* tree and the legacy
+          // /docs/deploy-operate/* tree until the content migration is
+          // complete (those pages still live under deploy-operate/ in
+          // sidebars.ts).
+          activeBaseRegex: '/docs/(deploy|deploy-operate)(/|$)',
         },
         {
           to: '/docs/manage/icp/integration-control-plane',
@@ -163,19 +176,19 @@ const config: Config = {
           ],
         },
         {
-          title: 'Deploy and operate',
+          title: 'Deploy',
           items: [
             { label: 'Docker and Kubernetes', to: '/docs/deploy-operate/deploy/docker-kubernetes' },
             { label: 'CI/CD', to: '/docs/deploy-operate/cicd/github-actions' },
-            { label: 'Observe', to: '/docs/deploy-operate/observe/icp' },
+            { label: 'Observe', to: '/docs/deploy-operate/observe/observability-overview' },
             { label: 'Secure', to: '/docs/deploy-operate/secure/authentication' },
           ],
         },
         {
           title: 'Community',
           items: [
-            { label: 'WSO2 MI Documentation', href: 'https://mi.docs.wso2.com' },
-            { label: 'WSO2 SI Documentation', href: 'https://si.docs.wso2.com/latest/' },
+            { label: 'WSO2 Integrator: MI', href: 'https://mi.docs.wso2.com' },
+            { label: 'WSO2 Integrator: SI', href: 'https://si.docs.wso2.com/latest/' },
             { label: 'Ballerina Central', href: 'https://central.ballerina.io' },
             { label: 'Community Forums', href: 'https://discord.com/invite/wso2' },
             { label: 'Stack Overflow', href: 'https://stackoverflow.com/questions/tagged/wso2' },

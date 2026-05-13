@@ -1,6 +1,6 @@
 ---
 title: Triggers
-description: Reference for the Twilio webhook listener and service callbacks — configure SMS and call status event handlers in Ballerina integrations.
+description: "Reference for the Twilio webhook listener and service callbacks: configure SMS and call status event handlers in Ballerina integrations."
 keywords: [twilio, webhook listener, sms status, call status, event handler, ballerina]
 connector: true
 connector_name: "twilio"
@@ -9,7 +9,7 @@ connector_version: "5.0.x"
 # Triggers
 
 :::note
-Trigger functionality uses the **`ballerinax/trigger.twilio`** package — a separate package from the `ballerinax/twilio` REST API client. Use `import ballerinax/trigger.twilio;` for all listener, service, and event type references.
+Trigger functionality uses the **`ballerinax/trigger.twilio`** package: a separate package from the `ballerinax/twilio` REST API client. Use `import ballerinax/trigger.twilio;` for all listener, service, and event type references.
 :::
 
 The `ballerinax/trigger.twilio` package supports event-driven integration through Twilio webhooks. When SMS status changes or call status changes occur in Twilio, the listener receives the webhook request and dispatches it to the matching service callback automatically.
@@ -159,6 +159,6 @@ service twilio:SmsStatusService on twilioListener {
 
 ## What's next
 
-- [Action Reference](actions.md) — REST API client operations for sending messages and making calls.
-- [Example](example.md) — Complete example integrations for the Twilio connector and trigger.
-- [Setup Guide](setup-guide.md) — Create a Twilio account and obtain credentials.
+- [Action Reference](actions.md): REST API client operations for sending messages and making calls.
+- [Example](example.md): Complete example integrations for the Twilio connector and trigger.
+- [Setup Guide](setup-guide.md): Create a Twilio account and obtain credentials.
