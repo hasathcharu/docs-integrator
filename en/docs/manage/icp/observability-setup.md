@@ -26,7 +26,7 @@ For MI runtimes, see [MI observability setup](mi-profile/observability-setup-mi.
 ![ICP observability architecture showing the default profile runtime sending logs to Fluent Bit, which ships them to OpenSearch, while the runtime also sends heartbeats to the ICP server. The ICP server queries OpenSearch and serves the ICP console over GraphQL and REST.](/img/manage/icp/observability-architecture-light.png)
 
 1. The default profile runtime writes structured logs to two files (`app.log` and `metrics.log`) and sends periodic heartbeats to the ICP server.
-2. Fluent Bit tails both log files and ships them to separate OpenSearch indices over HTTP.
+2. Fluent Bit tails both log files and ships them to separate OpenSearch indices over HTTP(S).
 3. When a user opens the **Logs** or **Metrics** page, the ICP console sends a GraphQL or REST request to the ICP server, which queries OpenSearch and returns the results.
 
 ## 1. Deploy OpenSearch

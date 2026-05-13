@@ -50,7 +50,7 @@ This guide covers manual installation. For evaluation, run via WSO2 Integrator I
 
 3. The extracted directory has this layout:
 
-   ```
+   ```bash
    wso2-integration-control-plane-2.0.0/
      bin/
        icp.sh                  # startup script (Linux / macOS)
@@ -194,7 +194,7 @@ Full reference: [Database Configuration](../../reference/icp/database-configurat
 <TabItem value="windows" label="Windows">
 
 ```bat
-bat icp.bat
+.\bin\icp.bat
 ```
 
 </TabItem>
