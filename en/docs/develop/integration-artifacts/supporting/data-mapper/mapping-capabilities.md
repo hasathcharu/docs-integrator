@@ -45,7 +45,7 @@ When you need a focused, visual sub-mapping rather than a free-form function, us
 
 ## Map with AI
 
-Inside any data mapper view, select **Auto Map** in the top-right corner of the canvas to generate mappings automatically using the WSO2 Integrator Copilot.
+Inside any data mapper view, select **Auto Map** in the top-right corner of the canvas to generate mappings automatically using [WSO2 Integrator Copilot](../../../../copilot/overview.md).
 
 ![Data mapper toolbar with the Auto Map button in the top-right corner](/img/develop/integration-artifacts/supporting/data-mapper/ai-map-option.png)
 
