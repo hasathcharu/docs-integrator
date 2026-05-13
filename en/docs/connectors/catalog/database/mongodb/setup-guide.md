@@ -1,6 +1,10 @@
 ---
-title: Setup Guide
+connector: true
+connector_name: "mongodb"
+title: "Setup Guide"
+description: "How to set up and configure the ballerinax/mongodb connector."
 ---
+
 # Setup Guide
 
 This guide walks you through setting up a MongoDB instance and obtaining the connection string required to use the MongoDB connector.
@@ -66,3 +70,8 @@ mongodb://myUser:myPassword@localhost:27017/?authSource=admin
 :::tip
 Store the connection string securely. Use Ballerina's `configurable` feature and a `Config.toml` file to supply it at runtime.
 :::
+
+## Next steps
+
+- [Action reference](actions.md) — Operations, parameters, and sample code for every MongoDB client.
+- [Example](example.md) — Build an automation that connects to MongoDB and retrieves a database handle.
