@@ -26,11 +26,18 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Get started',
       collapsed: true,
-      link: { type: 'doc', id: 'get-started/overview-and-architecture' },
+      link: { type: 'doc', id: 'get-started/introduction' },
       items: [
-        'get-started/overview-and-architecture',
-        'get-started/why',
-        'get-started/key-concepts',
+        'get-started/introduction',
+        {
+          type: 'category',
+          label: 'Concepts',
+          link: { type: 'doc', id: 'get-started/concepts/overview' },
+          items: [
+            'get-started/concepts/core',
+            'get-started/concepts/integration-cloud-concepts',
+          ],
+        },
         {
           type: 'category',
           label: 'Set up',
@@ -222,24 +229,6 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-        // 6.4 Design Integration Logic
-        {
-          type: 'category',
-          label: 'Design integration logic',
-          items: [
-            'develop/design-logic/design-logic',
-            'develop/design-logic/visual-flow-designer',
-            'develop/design-logic/managing-connections',
-            'develop/design-logic/control-flow',
-            'develop/design-logic/error-handling',
-            'develop/design-logic/expressions',
-            'develop/design-logic/query-expressions',
-            'develop/design-logic/configuration-management',
-            'develop/design-logic/functions',
-            'develop/design-logic/ballerina-pro-code',
-            'develop/design-logic/java-interoperability',
-          ],
-        },
         // 6.5 Transform (per blueprint)
         {
           type: 'category',
@@ -250,10 +239,7 @@ const sidebars: SidebarsConfig = {
             'develop/transform/csv-flat-file',
             'develop/transform/edi',
             'develop/transform/pdf',
-            'develop/transform/yaml-toml',
-            'develop/transform/type-system',
-            'develop/transform/query-expressions',
-            'develop/transform/expressions-functions',
+            'develop/transform/yaml-toml'
           ],
         },
         // Develop with Copilot
