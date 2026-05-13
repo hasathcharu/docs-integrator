@@ -165,7 +165,7 @@ const sections: SectionCard[] = [
   {
     title: 'Manage',
     description: 'Centralized control and observability via the Integration Control Plane (ICP).',
-    link: '/docs/manage/icp/integration-control-plane',
+    link: '/docs/manage/overview',
     icon: <IconManage />,
     iconBg: '#EEF2FF',
     iconBgDark: 'rgba(79, 70, 229, 0.15)',

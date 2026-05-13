@@ -136,7 +136,7 @@ const config: Config = {
           activeBaseRegex: '/docs/(deploy|deploy-operate)(/|$)',
         },
         {
-          to: '/docs/manage/icp/integration-control-plane',
+          to: '/docs/manage/overview',
           label: 'Manage',
           position: 'left',
           activeBaseRegex: '/docs/manage(/|$)',
