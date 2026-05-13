@@ -68,6 +68,23 @@ Copilot can run your integrations and read the runtime logs to debug issues as t
 
 ![Copilot debugging an integration by reproducing the failing request, inspecting the HTTP response and service logs, and identifying a case-sensitivity bug in the team filter.](/img/develop/copilot/debugging-using-service-logs.png)
 
+## Slash commands
+
+Type `/` in the Copilot input bar to invoke a command for a specific task.
+
+| Command | Description |
+|---|---|
+| `/ask` | Ask questions about Ballerina from the documentation. |
+| `/doc` | Generate documentation for your integration. |
+| `/openapi` | Import OpenAPI specifications. |
+| `/typecreator` | Create custom types. |
+| `/datamap` | Generate data mappings. |
+| `/natural-programming` | Experimental natural-language-to-code generation. |
+
+:::note
+`/ask` answers only from the Ballerina documentation and does not use your codebase context. For questions about your code or any other topic, message Copilot directly without a command.
+:::
+
 ## See also
 
 - [Getting Started](getting-started.md) — Sign in to WSO2 Integrator Copilot.
