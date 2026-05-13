@@ -66,7 +66,7 @@ Sign in with your WSO2 Cloud account to deploy to WSO2 Cloud, manage environment
        }}
    />
 
-3. When the browser prompts you, click **Open WSO2 Integrator.app** to return to the IDE.
+3. When the browser prompts you, click **Open WSO2 Integrator** to return to the IDE.
 4. The IDE shows a **Successfully signed into WSO2 Integration Platform** notification, and your account avatar appears in the top-right corner.
 
    <ThemedImage
