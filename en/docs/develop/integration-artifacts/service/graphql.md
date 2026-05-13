@@ -257,14 +257,14 @@ Operations define the entry points to your GraphQL service. GraphQL has three ro
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-**Add an operation**
+### Add an operation
 
 1. On the **GraphQL diagram**, click **+ Create Operations** on the service card.
 2. Choose **Query**, **Mutation**, or **Subscription**.
 
    ![GraphQL operations panel](/img/develop/integration-artifacts/service/graphql-service/step-create-operations.png)
 
-**Add a field**
+### Add a field
 
 Click the **+** next to an operation type to open the **Add Field** panel.
 
@@ -277,7 +277,7 @@ Click the **+** next to an operation type to open the **Add Field** panel.
 
 ![Add Field panel](/img/develop/integration-artifacts/service/graphql-service/step-add-field.png)
 
-**Add an argument**
+### Add an argument
 
 Click **+ Add Argument** to open the **Argument** form.
 
@@ -290,7 +290,7 @@ Click **+ Add Argument** to open the **Argument** form.
 
 Click **Add** to save the argument.
 
-**Define types**
+### Define types
 
 A type is the fundamental unit of a GraphQL schema. Each field returns a value of a specific type, and each argument accepts a value of a specific type.
 
@@ -317,14 +317,14 @@ If the selected argument or field type can be marked as an ID, a checkbox appear
 Subscription field types must be wrapped with `stream` — for example, `stream<NewsUpdate, error?>`.
 :::
 
-**Implement resolver logic**
+### Implement resolver logic
 
-1. Click the pencil icon on a field row (for example, `product` or `createProduct`) to open the **flow designer**.
+1. Select a Field row (for example, `product` or `createProduct`) to open the **flow designer**.
 2. Click **+** below the start node to open the **Node palette**, where you can select any node, including connections and variables.
 
-**Field-level configuration**
+### Field-level configuration
 
-Open a field form and expand **Advanced Configurations** to access:
+Select the pencil icon on a Field row to return to the field edit form, and expand **Advanced Configurations** to access:
 
 | Field | Description |
 |---|---|
@@ -335,7 +335,7 @@ Open a field form and expand **Advanced Configurations** to access:
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
-**Resolver function signatures**
+### Resolver function signatures
 
 ```ballerina
 service /graphql on new graphql:Listener(9090) {
@@ -357,7 +357,7 @@ service /graphql on new graphql:Listener(9090) {
 }
 ```
 
-**Arguments**
+### Arguments
 
 ```ballerina
 // Scalar and optional arguments with defaults
@@ -371,7 +371,7 @@ remote function createOrder(OrderInput input) returns Order|error {
 }
 ```
 
-**Types**
+### Types
 
 ```ballerina
 type Product record {|
@@ -392,7 +392,9 @@ enum OrderStatus {
 }
 ```
 
-**Field-level configuration** — use `@graphql:ResourceConfig` and `@graphql:CacheConfig`:
+### Field-level configuration
+
+Use `@graphql:ResourceConfig` and `@graphql:CacheConfig`:
 
 ```ballerina
 service /graphql on new graphql:Listener(9090) {
@@ -409,7 +411,7 @@ service /graphql on new graphql:Listener(9090) {
 }
 ```
 
-**Common return-type patterns**
+### Common return-type patterns
 
 | Return type | Meaning |
 |---|---|
