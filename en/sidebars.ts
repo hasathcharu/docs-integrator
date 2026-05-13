@@ -2120,12 +2120,14 @@ const sidebars: SidebarsConfig = {
           items: [
             'manage/icp/install-icp',
             'manage/icp/icp-console-overview',
+            'manage/icp/quick-start',
             'manage/icp/connect-runtime',
             'manage/icp/observability-setup',
             'manage/icp/manage-projects',
             'manage/icp/manage-environments',
             'manage/icp/manage-integrations',
             'manage/icp/manage-runtimes',
+            'manage/icp/reverse-proxy',
             'manage/icp/access-control',
             {
               type: 'category',
