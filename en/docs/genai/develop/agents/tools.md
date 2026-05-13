@@ -236,7 +236,7 @@ To configure a tool, click **Edit** and configure the following fields.
 
 | Field | Required | Description |
 |---|---|---|
-| **Name** | Yes | A description of the agent tool. This helps AI agents understand when and how to use the tool. |
+| **Name** | Yes | The name or identifier of the agent tool. |
 | **Description** | No | A description of the agent tool. This helps AI agents understand when and how to use the tool. |
 | **Parameters** | No | Defines the input parameters used when invoking the tool. |
 | **Return Type** | Yes | Defines the type of value returned by the tool. |
