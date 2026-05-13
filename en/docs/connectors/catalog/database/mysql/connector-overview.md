@@ -22,18 +22,13 @@ MySQL is one of the world's most popular open-source relational database managem
 
 ## Actions
 
-Actions are operations you invoke on a MySQL database from your integration, such as executing SQL queries, inserting or updating records, running batch operations, and calling stored procedures. The MySQL connector exposes the following actions through a single `Client`:
+Actions are operations you invoke on a MySQL database from your integration, such as executing SQL queries, inserting or updating records, running batch operations, and calling stored procedures. The MySQL connector exposes actions through a single client:
 
-| Action | Description |
-|--------|-------------|
-| Query | Executes a SELECT statement and returns the result set as a stream of records. |
-| Query Row | Executes a SELECT statement and returns a single record. Useful for lookups, aggregations, and existence checks. |
-| Execute | Executes a DML (`INSERT`, `UPDATE`, `DELETE`) or DDL statement. Returns the affected row count and any auto-generated keys. |
-| Batch Execute | Executes a batch of parameterized statements in a single round trip. Efficient for inserting or modifying many rows. |
-| Call | Invokes a stored procedure with `IN`, `OUT`, and `INOUT` parameter support and multiple result sets. |
-| Close | Closes the client and releases the underlying connection pool. Call once when the client is no longer needed. |
+| Client | Actions |
+|--------|---------|
+| `Client` | SQL queries, single-row retrieval, DML/DDL execution, batch operations, stored procedure calls, connection management |
 
-See the **[Action Reference](actions.md)** for parameters, return types, and sample code for each action.
+See the **[Action Reference](actions.md)** for the full list of operations, parameters, and sample code for each client.
 
 ## Triggers
 
