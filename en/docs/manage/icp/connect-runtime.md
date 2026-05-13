@@ -115,7 +115,7 @@ Full heartbeat acknowledged by ICP server
 
 The runtime now appears under **Runtimes** in the ICP console with status **RUNNING**.
 
-## Multiple modes
+## Multiple runtime nodes
 
 Each node needs a unique `runtime` value but can share the same `project`,
 `integration`, `environment`, and `secret`. All nodes appear as separate runtimes
