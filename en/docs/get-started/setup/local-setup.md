@@ -4,9 +4,6 @@ description: Download and install WSO2 Integrator IDE on Windows, macOS, or Linu
 keywords: [wso2 integrator, local setup, install, ide, windows, macos, linux]
 ---
 
-import ThemedImage from '@theme/ThemedImage';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 # Install WSO2 Integrator
 
 Install WSO2 Integrator IDE on your machine to develop, test, and debug integrations locally. The IDE is available for Windows, macOS, and Linux.
@@ -48,34 +45,16 @@ Sign in with your WSO2 Cloud account to deploy to WSO2 Cloud, manage environment
 
 1. On the **Get Started** page, click **Sign In** in the top-right corner.
 
-   <ThemedImage
-       alt="WSO2 Integrator Get Started page with the Sign In button in the top-right corner"
-       sources={{
-           light: useBaseUrl('/img/get-started/setup/sign-in/integrator-get-started-light.png'),
-           dark: useBaseUrl('/img/get-started/setup/sign-in/integrator-get-started-dark.png'),
-       }}
-   />
+   ![WSO2 Integrator Get Started page with the Sign In button in the top-right corner](/img/get-started/setup/sign-in/integrator-get-started.png)
 
 2. Your default browser opens to the WSO2 Integration Platform sign-in page. Sign in using your preferred method.
 
-   <ThemedImage
-       alt="WSO2 Integration Platform sign-in page"
-       sources={{
-           light: useBaseUrl('/img/get-started/setup/sign-in/sign-in-providers-light.png'),
-           dark: useBaseUrl('/img/get-started/setup/sign-in/sign-in-providers-dark.png'),
-       }}
-   />
+   ![WSO2 Integration Platform sign-in page](/img/get-started/setup/sign-in/sign-in-providers.png)
 
 3. When the browser prompts you, click **Open WSO2 Integrator** to return to the IDE.
 4. The IDE shows a **Successfully signed into WSO2 Integration Platform** notification, and your account avatar appears in the top-right corner.
 
-   <ThemedImage
-       alt="WSO2 Integrator Get Started page after sign-in showing the account avatar and a success notification"
-       sources={{
-           light: useBaseUrl('/img/get-started/setup/sign-in/signed-in-light.png'),
-           dark: useBaseUrl('/img/get-started/setup/sign-in/signed-in-dark.png'),
-       }}
-   />
+   ![WSO2 Integrator Get Started page after sign-in showing the account avatar and a success notification](/img/get-started/setup/sign-in/signed-in.png)
 
 :::info Don't have a WSO2 account?
 [Sign up for WSO2 Cloud](sign-up-sign-in.md) to create one before signing in.
