@@ -316,65 +316,6 @@ type ApiResponse record {|
 ```
 
 
-## Common transformations
-
-Restructure JSON data by converting to records, transforming, and converting back.
-
-<Tabs>
-<TabItem value="ui" label="Visual Designer" default>
-
-1. **Define the record types and input**: Navigate to **Types** in the sidebar and click **+** to define the `SourceContact` and `TargetContact` record types from scratch. Then in the flow designer, add a **Declare Variable** step, set the type to `json`, and provide the input JSON as the expression. Name the variable `input`. For details on creating types, see [Types](../integration-artifacts/supporting/types.md).
-
-2. **Parse JSON to the source record type**: Click **+** and select **Call Function**. In the left-side panel, search for `parseAsType` and select it from the `ballerina/data.jsondata` module. Pass `input` as the argument and set the result type to `SourceContact`.
-
-3. **Map fields to the target type**: Click **+** and select **Data Mapper**. Set the input to the `SourceContact` result from the previous step and the output type to `TargetContact`. Map `first_name` and `last_name` to `fullName` (with concatenation) and `email_address` to `email`. For details, see [Visual Data Mapper](../integration-artifacts/supporting/data-mapper/data-mapper.md).
-
-   ![Flow designer showing the json variable, parseAsType function call, and data mapper steps](/img/develop/transform/json/json-transform-flow.png)
-
-
-</TabItem>
-<TabItem value="code" label="Ballerina Code">
-
-```ballerina
-//types.bal
-type SourceContact record {|
-    string first_name;
-    string last_name;
-    string email_address;
-|};
-
-type TargetContact record {|
-    string fullname;
-    string email;
-|};
-
-// main.bal
-iimport ballerina/data.jsondata;
-import ballerina/io;
-
-public function main() returns error? {
-    json jsonInput = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email_address": "john.doe@example.com"
-    };
-    SourceContact sourceContact = check jsondata:parseAsType(jsonInput);
-    TargetContact targetContact = transform(sourceContact);
-    io:println(targetContact);
-
-}
-
-//data_mappings.bal
-public function transform(SourceContact input) returns TargetContact => {
-    fullname: input.first_name,
-    email: input.email_address
-};
-
-```
-
-</TabItem>
-</Tabs>
-
 ## Merging JSON objects
 
 Combine multiple JSON objects using the `mergeJson` function.
