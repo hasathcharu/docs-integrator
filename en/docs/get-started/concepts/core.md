@@ -141,6 +141,6 @@ ICP runs on your machine and mirrors enough of the production runtime that an in
 
 ## What's next
 
-- [WSO2 Integration Cloud concepts](ipaas-concepts.md) — data planes, environments, and deployment tracks
+- [WSO2 Integration Cloud concepts](integration-cloud-concepts.md) — data planes, environments, and deployment tracks
 - [Integration artifacts](/docs/develop/integration-artifacts/integration-artifacts) — choose the right artifact for your use case
 - [Introduction](../introduction.md) — platform overview and architecture

@@ -233,7 +233,7 @@ In compliance with SemVer, changes that don't introduce breaking or additive mod
 
 Therefore, in the context of deployment tracks, API developers only need to specify the major and minor versions being delivered from a particular deployment track. This information is treated as the API version attribute of a deployment track. If the publisher requires versioning for internal tracking purposes, this can be accomplished in Git through the use of Git tags, GitHub with GitHub releases, and so forth.
 
-![Deployment tracks - API versioning](/img/get-started/concepts/ipaas-concepts/deployment-tracks-api-versioning.md.png)
+![Deployment tracks - API versioning](/img/get-started/concepts/ipaas-concepts/deployment-tracks-api-versioning.png)
 
 ## CI/CD
 
@@ -301,6 +301,6 @@ A new build undergoes a health check before switching traffic from the current b
 
 ## What's next
 
-- [Core concepts](core-concepts.md) — projects, integrations, services, connectors, and more
+- [Core concepts](core.md) — projects, integrations, services, connectors, and more
 - [Deploy and operate](/docs/deploy-operate/overview) — self-hosted deployment options
 - [Introduction](../introduction.md) — platform overview and architecture

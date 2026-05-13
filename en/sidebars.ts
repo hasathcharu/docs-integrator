@@ -32,10 +32,10 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'Concepts',
-          link: { type: 'doc', id: 'get-started/concepts/concepts' },
+          link: { type: 'doc', id: 'get-started/concepts/overview' },
           items: [
-            'get-started/concepts/core-concepts',
-            'get-started/concepts/ipaas-concepts',
+            'get-started/concepts/core',
+            'get-started/concepts/integration-cloud-concepts',
           ],
         },
         {
