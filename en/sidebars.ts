@@ -229,24 +229,6 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
-        // 6.4 Design Integration Logic
-        {
-          type: 'category',
-          label: 'Design integration logic',
-          items: [
-            'develop/design-logic/design-logic',
-            'develop/design-logic/visual-flow-designer',
-            'develop/design-logic/managing-connections',
-            'develop/design-logic/control-flow',
-            'develop/design-logic/error-handling',
-            'develop/design-logic/expressions',
-            'develop/design-logic/query-expressions',
-            'develop/design-logic/configuration-management',
-            'develop/design-logic/functions',
-            'develop/design-logic/ballerina-pro-code',
-            'develop/design-logic/java-interoperability',
-          ],
-        },
         // 6.5 Transform (per blueprint)
         {
           type: 'category',
@@ -257,10 +239,7 @@ const sidebars: SidebarsConfig = {
             'develop/transform/csv-flat-file',
             'develop/transform/edi',
             'develop/transform/pdf',
-            'develop/transform/yaml-toml',
-            'develop/transform/type-system',
-            'develop/transform/query-expressions',
-            'develop/transform/expressions-functions',
+            'develop/transform/yaml-toml'
           ],
         },
         // Develop with Copilot
