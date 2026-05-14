@@ -1,9 +1,9 @@
 ---
-title: bal Command Reference
+title: Bal Command Reference
 description: Complete reference for the bal CLI tool.
 ---
 
-# bal Command Reference
+# Bal Command Reference
 
 The `bal` command is the primary CLI tool for building, running, testing, and managing Ballerina projects in WSO2 Integrator.
 

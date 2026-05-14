@@ -1,11 +1,11 @@
 ---
 sidebar_position: 2
-title: Core concepts
+title: Core Concepts
 description: The vocabulary you need to design and build integrations in the WSO2 Integrator IDE.
 keywords: [wso2 integrator, core concepts, project, integration, service, listener, connector, data mapper]
 ---
 
-# Core concepts
+# Core Concepts
 
 This page introduces every major building block you work with when designing and building integrations in the WSO2 Integrator IDE. Use it as a vocabulary reference before diving into the [Develop](/docs/develop/integration-artifacts/integration-artifacts) section, where each concept is covered in full detail.
 
