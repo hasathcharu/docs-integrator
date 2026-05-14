@@ -1,10 +1,10 @@
 ---
-title: Ballerina.toml reference
+title: Ballerina.toml Reference
 description: Complete reference for all fields and sections in the Ballerina.toml project configuration file.
 keywords: [wso2 integrator, ballerina, ballerina.toml, configuration, build options, dependencies, reference]
 ---
 
-# Ballerina.toml reference
+# Ballerina.toml Reference
 
 The `Ballerina.toml` file is the project manifest for a Ballerina package. It defines package metadata, build options, dependencies, platform-specific libraries, and code generation tool configurations. This file must reside in the root directory of every Ballerina package.
 

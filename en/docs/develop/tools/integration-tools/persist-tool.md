@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Persist tool
+title: Persist Tool
 description: Generate type-safe data persistence clients for multiple data stores using bal persist.
 ---
 

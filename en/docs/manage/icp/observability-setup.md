@@ -1,5 +1,5 @@
 ---
-title: Observability setup
+title: Observability Setup
 description: Set up centralized logs and metrics monitoring for default profile runtimes using Fluent Bit and OpenSearch.
 keywords: [wso2 integrator, integration control plane, icp, observability, fluent bit, opensearch, logs, metrics]
 ---
@@ -7,7 +7,7 @@ keywords: [wso2 integrator, integration control plane, icp, observability, fluen
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Observability setup
+# Observability Setup
 
 ICP provides centralized observability for default profile runtimes. Logs and metrics are collected via Fluent Bit, stored in OpenSearch, and displayed in the ICP console. This page guides you through deploying OpenSearch, creating index templates, configuring the integration, and setting up Fluent Bit to complete the observability stack.
 
@@ -215,11 +215,15 @@ Without `observabilityIncluded = true`, the `ballerinax/metrics.logs` module can
 Add the metrics logger import alongside the existing bridge import:
 
 ```ballerina
-import wso2/icp.runtime.bridge as _;
 import ballerinax/metrics.logs as _;
+import wso2/icp.runtime.bridge as _;
 ```
 
 Both are blank imports (`as _`). They activate automatically at startup.
+
+:::info
+Ensure to keep the import order as shown.
+:::
 
 ### Config.toml
 
