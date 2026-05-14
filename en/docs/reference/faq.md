@@ -109,7 +109,7 @@ WSO2 Integrator supports multiple deployment targets:
 - **GraalVM native:** Build native executables with `bal build --graalvm` for fast startup
 - **Serverless:** Deploy to AWS Lambda or Azure Functions
 
-See [Deploy and Operate](/docs/deploy-operate/deploy/docker-kubernetes) for detailed deployment guides.
+See [Deploy and Operate](/docs/deploy/self-hosted/kubernetes) for detailed deployment guides.
 
 ### How do I configure my application for different environments?
 
@@ -125,7 +125,7 @@ This allows you to use the same built artifact across development, staging, and 
 
 ### How do I handle secrets and sensitive configuration?
 
-WSO2 Integrator uses `Config.toml` files for runtime configuration. For secrets, keep them in a separate `Config.toml` (or another file referenced via the `BAL_CONFIG_FILES` environment variable) that is not checked into version control. Never commit secret values to git, whether they sit in `Config.toml` or anywhere else. In Kubernetes, mount the secret file from a `Secret`, or inject individual values as environment variables using `BAL_CONFIG_VAR_*` prefixes. See the [Environment Variables](/docs/reference/config/environment-variables) reference for details.
+WSO2 Integrator uses `Config.toml` files for runtime configuration. For secrets, keep them in a separate `Config.toml` (or another file referenced via the `BAL_CONFIG_FILES` environment variable) that is not checked into version control. Never commit secret values to git, whether they sit in `Config.toml` or anywhere else. In Kubernetes, mount the secret file from a `Secret`, or inject individual values as environment variables using `BAL_CONFIG_VAR_*` prefixes. See [Secrets and encryption](/docs/deploy-operate/secure/secrets-encryption) for the full pattern and [Configuration management](/docs/reference/config/configuration-management) for the underlying environment-variable reference.
 
 ### Does WSO2 Integrator support horizontal scaling?
 
@@ -167,7 +167,7 @@ Yes. The two products use different runtimes and can coexist in the same environ
 
 ## See also
 
-- [Get Started](/docs/get-started/install) — Install and set up WSO2 Integrator
+- [Get Started](/docs/get-started/setup/local-setup) — Install and set up WSO2 Integrator
 - [Build an API Integration](/docs/get-started/build-api-integration) — Build your first integration
 - [Debugging & Troubleshooting](/docs/develop/debugging/troubleshooting) — Diagnose and fix common build, runtime, IDE, and deployment issues
 - [Glossary](/docs/reference/glossary) — Definitions of key terms

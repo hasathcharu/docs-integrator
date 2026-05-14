@@ -3,6 +3,7 @@ sidebar_position: 1
 title: Introduction
 description: WSO2 Integration Platform is a 100% open-source solution for connecting AI agents, APIs, data, and events across cloud, on-prem, and hybrid environments.
 keywords: [wso2 integrator, integration platform, architecture, low-code, pro-code, ballerina, ai integration]
+slug: /get-started/introduction
 ---
 
 # Introduction
@@ -77,5 +78,5 @@ The platform ships with **WSO2 Integrator Copilot** to assist during design and 
 ## What's next
 
 - [Concepts](concepts/overview.md) — learn the vocabulary used across the platform
-- [Install WSO2 Integrator](setup/install.md) — set up the IDE and create your first integration
+- [Set up WSO2 Integrator](setup/overview.md) — set up the IDE and create your first integration
 - [Integration artifacts](/docs/develop/integration-artifacts/integration-artifacts) — choose the right artifact for your use case

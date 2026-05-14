@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
-title: "Building an HR knowledge base with RAG"
+title: "Building an HR Knowledge Base with RAG"
 description: Step-by-step tutorial for building an HR knowledge base in WSO2 Integrator that ingests HR policy documents and answers employee questions over HTTP using retrieval-augmented generation.
 keywords: [wso2 integrator, genai, rag, hr knowledge base, vector store, tutorial]
 ---
 
-# Building an HR knowledge base with RAG
+# Building an HR Knowledge Base with RAG
 
 Build a complete HR retrieval-augmented generation pipeline in the WSO2 Integrator visual designer. You'll create two artifacts in one integration: an Automation that ingests HR policy documents into a vector knowledge base, and an HTTP Service that answers employee questions over HTTP, grounded in the ingested chunks.
 
@@ -425,7 +425,7 @@ Click **Save**. You are returned to the **Model Providers** panel with `aiWso2mo
 ![Model Providers panel with aiWso2modelprovider](/img/genai/tutorials/hr-knowledge-base-rag/24f-mode-provider-node.png)
 
 :::tip Sign in to use the default WSO2 model provider
-If you have not signed into WSO2 Integrator Copilot yet, a sign-in prompt appears at this point. Sign in so the Copilot can configure the default model provider.
+If you have not [signed into WSO2 Integrator Copilot](../../develop/copilot/getting-started.md) yet, a sign-in prompt appears at this point. Sign in so the Copilot can configure the default model provider.
 :::
 
 ### 3.6 Generate the answer

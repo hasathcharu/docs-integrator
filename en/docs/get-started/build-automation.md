@@ -18,17 +18,32 @@ An automation runs your integration logic without an external request, on demand
 
 :::info Prerequisites
 
-- [WSO2 Integrator installed](install.md)
-- A project to work in. If you do not have one, select **Create New Integration** when WSO2 Integrator opens.
+- [WSO2 Integrator installed](setup/local-setup.md)
 :::
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-## Step 1: Add an automation artifact
+## Step 1: Create the integration
 
-1. Select your integration from the project panel.
-2. In the design view, select **Add Artifact**.
+1. Open WSO2 Integrator.
+2. Select the **Create New Integration** card.
+3. Set **Integration Name** to `HelloWorldAutomation`.
+4. Set **Project Name** to `automation-quickstart`.
+5. Select **Create**.
+
+<ThemedImage
+    alt="Create new integration form with Integration Name set to HelloWorldAutomation and Project Name set to automation-quickstart"
+    sources={{
+        light: useBaseUrl('/img/get-started/build-automation/create-the-project.png'),
+        dark: useBaseUrl('/img/get-started/build-automation/create-the-project.png'),
+    }}
+/>
+
+## Step 2: Add an automation artifact
+
+1. Select your integration from the project overview canvas.
+2. Select **+ Add Artifact** in the design canvas.
 3. Select **Automation** under **Automation**.
 4. Select **Create**.
 
@@ -40,11 +55,11 @@ An automation runs your integration logic without an external request, on demand
     }}
 />
 
-## Step 2: Add logic
+## Step 3: Add logic
 
 1. Select **+** after the **Start** node to open the node panel.
 2. Select **Call Function**.
-3. Select **Print** from the function list.
+3. Select **Print** under **io** from the function list.
 4. Select **Initialize Array** for the **Values** parameter.
 5. Set **Values** to `"Hello World"` and select **Save**.
 
@@ -56,7 +71,7 @@ An automation runs your integration logic without an external request, on demand
     }}
 />
 
-## Step 3: Run and test
+## Step 4: Run and test
 
 1. Select **Run**.
 2. Confirm the terminal output contains `Hello World`.
@@ -108,4 +123,4 @@ Periodic invocation is configured in an external system once the automation is d
 - [Build an AI agent](build-ai-agent.md) — Build an intelligent agent
 - [Build an event-driven integration](build-event-driven-integration.md) — React to messages from brokers
 - [Build a file-driven integration](build-file-driven-integration.md) — Process files from FTP or local directories
-- [Automation](../develop/integration-artifacts/automation/automation.md) — Configure scheduling, manual execution, and integration logic
+- [Automation](../develop/integration-artifacts/automation.md) — Configure scheduling, manual execution, and integration logic
