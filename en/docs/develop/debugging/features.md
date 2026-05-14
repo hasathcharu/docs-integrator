@@ -78,7 +78,7 @@ Use the **Watch** panel to track specific expressions across breakpoints. Add an
 
 ![Watch panel evaluating expressions during a paused session](/img/develop/debugging/features/watch-panel.png)
 
-### Debug Console
+### Debug console
 
 The **Debug Console** evaluates any Ballerina expression in the current scope while the session is paused. Use it for one-off checks that do not warrant a watch expression. The console is also where program output and logpoint messages appear.
 

@@ -73,7 +73,7 @@ log:printInfo("Processing order",
 
 Output:
 
-```
+```bash
 time=2026-05-14T10:30:00.000Z level=INFO message="Processing order" orderId="ORD-12345" customerId="CUST-789" total=149.99
 ```
 

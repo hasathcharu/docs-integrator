@@ -22,7 +22,7 @@ Compile-time issues happen before the program starts. Fix them in order. The fir
 
 A compiler diagnostic uses the form:
 
-```
+```bash
 ERROR [<file>.bal:(<start_line>:<start_col>,<end_line>:<end_col>)] <message>
 ```
 
