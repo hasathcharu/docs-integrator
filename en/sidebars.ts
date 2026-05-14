@@ -2216,6 +2216,7 @@ const sidebars: SidebarsConfig = {
         },
         'reference/ballerina-by-example',
         'reference/ballerina-specifications',
+        'reference/ai-usage-and-data-handling-guidelines',
         // Miscellaneous
         {
           type: 'category',
