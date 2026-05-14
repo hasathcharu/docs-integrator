@@ -48,9 +48,8 @@ Developer test accounts are for development and testing only. Do not use them in
    ![Auth tab](/img/connectors/catalog/crm-sales/hubspot.crm.commerce.quotes/setup/authentication_1.png)
 
 2. Under **Scopes**, select **Add new scope** and add:
-   - `crm.lists.read`
-   - `crm.lists.write`
-   - `cms.membership.access_groups.write`
+   - `crm.objects.quotes.read`
+   - `crm.objects.quotes.write`
 
    ![Add scopes](/img/connectors/catalog/crm-sales/hubspot.crm.commerce.quotes/setup/authentication_2.png)
 

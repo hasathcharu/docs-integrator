@@ -39,7 +39,9 @@ Fine-grained tokens offer more granular permissions and are recommended for prod
 1. Select **Generate new token**.
 2. Provide a descriptive **Note** for the token (for example, `Ballerina GitHub Connector`).
 3. Set an **Expiration** period appropriate for your use case.
-4. Select the required **Scopes** based on the operations you intend to use:
+4. Select the required permissions based on the token type:
+
+   **Classic token scopes:**
    - **repo**: Full control of private repositories (required for most repository operations).
    - **read:org**: Read organization and team membership.
    - **read:user**: Read user profile data.
@@ -47,6 +49,8 @@ Fine-grained tokens offer more granular permissions and are recommended for prod
    - **delete_repo**: Delete repositories (if needed).
    - **gist**: Create and manage gists.
    - **notifications**: Access notifications.
+
+   **Fine-grained token permissions** (if you selected fine-grained tokens in the previous step): configure repository access and individual permissions (for example, **Contents**, **Issues**, **Pull requests**) instead of the scope names above.
 
    ![Configure and generate token](/img/connectors/catalog/developer-tools/github/setup/2-generate-token.png)
 

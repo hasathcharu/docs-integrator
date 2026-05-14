@@ -21,8 +21,8 @@ docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM1 \
 
 This starts a queue manager named `QM1` with the default developer configuration, which pre-creates a server connection channel (`DEV.APP.SVRCONN`), queues (`DEV.QUEUE.1`, `DEV.QUEUE.2`, `DEV.QUEUE.3`), and a topic (`DEV.BASE.TOPIC`).
 
-:::note
-The default developer configuration creates a user `app` with password `password` for application connections.
+:::warning
+The default developer configuration creates a user `app` with password `password` for application connections. These credentials are publicly known — rotate them before using this instance in any shared or non-local environment.
 :::
 
 ## Step 2: Create a queue

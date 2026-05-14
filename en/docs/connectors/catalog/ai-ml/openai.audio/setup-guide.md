@@ -8,6 +8,7 @@ This guide walks you through creating an OpenAI account and generating an API ke
 ## Prerequisites
 
 - An OpenAI account. If you do not have one, [sign up at platform.openai.com](https://platform.openai.com/signup).
+- Billing enabled on your OpenAI account with an active prepaid credit balance. Audio API calls fail with a 402 error without credits on file. Add a payment method and top up credits in the [Billing settings](https://platform.openai.com/account/billing).
 
 ## Step 1: Navigate to the API keys dashboard
 

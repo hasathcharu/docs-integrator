@@ -7,7 +7,11 @@ This guide walks you through creating an OpenAI account and generating an API ke
 
 ## Prerequisites
 
-- An OpenAI account. If you do not have one, [sign up at platform.openai.com](https://platform.openai.com/signup).
+- An OpenAI account on a **paid billing plan**. Fine-tuning endpoints are not available on free or Explore plans. Enable billing and add credits in the [Billing settings](https://platform.openai.com/account/billing).
+
+:::warning
+OpenAI is winding down the fine-tuning platform. It is no longer available to new users. Existing users can continue creating training jobs for the coming months, after which inference will continue until the underlying base models are deprecated.
+:::
 
 ## Step 1: Navigate to the API keys dashboard
 

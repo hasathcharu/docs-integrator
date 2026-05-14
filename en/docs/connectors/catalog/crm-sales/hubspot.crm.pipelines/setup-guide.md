@@ -48,8 +48,8 @@ Developer test accounts are for development and testing only. Do not use them in
    ![Auth tab](/img/connectors/catalog/crm-sales/hubspot.crm.pipelines/setup/create_app_2.png)
 
 2. Under **Scopes**, select **Add new scope** and add:
-   - `crm.objects.orders.read`
-   - `crm.schemas.orders.write`
+   - `crm.pipelines.orders.read`
+   - `crm.pipelines.orders.write`
 
    ![Set scope](/img/connectors/catalog/crm-sales/hubspot.crm.pipelines/setup/scope.png)
 

@@ -19,9 +19,11 @@ This guide walks you through setting up a Milvus instance and obtaining the conn
    bash standalone_embed.sh start
    ```
 
-   For detailed instructions, see the official Milvus documentation:
+   :::note
+   The script URL above points to the `master` branch. For a version-pinned installation command specific to your target release, refer to the official Milvus documentation:
    - **Linux/macOS**: [Run Milvus in Docker](https://milvus.io/docs/install_standalone-docker.md)
    - **Windows**: [Run Milvus in Docker on Windows](https://milvus.io/docs/install_standalone-windows.md)
+   :::
 
 3. The default connection endpoint is `http://localhost:19530`.
 

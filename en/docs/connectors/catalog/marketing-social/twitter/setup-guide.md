@@ -41,7 +41,7 @@ Twitter uses OAuth 2.0 with PKCE. You need a **code verifier** (a random string)
 1. Construct the authorization URL:
 
    ```
-   https://twitter.com/i/oauth2/authorize?response_type=code&client_id=<YOUR_CLIENT_ID>&redirect_uri=<YOUR_REDIRECT_URI>&scope=tweet.read%20tweet.write%20users.read%20follows.read&state=state&code_challenge=<YOUR_CODE_CHALLENGE>&code_challenge_method=plain
+   https://twitter.com/i/oauth2/authorize?response_type=code&client_id=<YOUR_CLIENT_ID>&redirect_uri=<YOUR_REDIRECT_URI>&scope=tweet.read%20tweet.write%20users.read%20follows.read&state=state&code_challenge=<YOUR_CODE_CHALLENGE>&code_challenge_method=S256
    ```
 
    Replace `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>`, and `<YOUR_CODE_CHALLENGE>` with your values. Adjust the `scope` parameter as needed.
