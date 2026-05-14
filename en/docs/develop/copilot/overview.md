@@ -79,7 +79,7 @@ Type `/` in the Copilot input bar to invoke a command for a specific task.
 | `/openapi` | Import OpenAPI specifications. |
 | `/typecreator` | Create custom types. |
 | `/datamap` | [Generate data mappings](../integration-artifacts/supporting/data-mapper/ai-data-mapper.md). |
-| `/natural-programming` | Experimental natural-language-to-code generation. |
+| `/natural-programming` | Experimental. Generate code from requirements and check for drift. |
 
 :::note
 `/ask` answers only from the Ballerina documentation and does not use your codebase context. For questions about your code or any other topic, message Copilot directly without a command.
