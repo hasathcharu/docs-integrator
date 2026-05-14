@@ -7,7 +7,7 @@ This guide walks you through creating a Twitter developer project and obtaining 
 
 ## Prerequisites
 
-- A Twitter developer account. If you do not have one, [apply for access](https://developer.twitter.com/en/apply-for-access).
+- A Twitter developer account. If you do not have one, [apply for access at the X Developer Portal](https://developer.x.com/).
 
 ## Step 1: Create a Twitter developer project
 
@@ -40,7 +40,7 @@ Twitter uses OAuth 2.0 with PKCE. You need a **code verifier** (a random string)
 
 1. Construct the authorization URL:
 
-   ```
+   ```text
    https://twitter.com/i/oauth2/authorize?response_type=code&client_id=<YOUR_CLIENT_ID>&redirect_uri=<YOUR_REDIRECT_URI>&scope=tweet.read%20tweet.write%20users.read%20follows.read&state=state&code_challenge=<YOUR_CODE_CHALLENGE>&code_challenge_method=S256
    ```
 

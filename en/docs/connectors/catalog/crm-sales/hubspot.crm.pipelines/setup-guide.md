@@ -67,7 +67,7 @@ In the **Auth** section, copy the **Client ID** and **Client Secret**.
 
 1. Construct the authorization URL:
 
-   ```
+   ```text
    https://app.hubspot.com/oauth/authorize?client_id=<YOUR_CLIENT_ID>&scope=<YOUR_SCOPES>&redirect_uri=<YOUR_REDIRECT_URI>
    ```
 
