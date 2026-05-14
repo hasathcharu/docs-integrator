@@ -1,12 +1,12 @@
 ---
-title: Configuration management
+title: Configuration Management
 description: "Reference for the Ballerina configuration model: types, value sources, precedence, and per-environment files."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Configuration management
+# Configuration Management
 
 Integration projects typically run across multiple environments — development, staging, and production — each with different endpoints, credentials, and feature flags. WSO2 Integrator uses Ballerina's built-in configuration system to keep these settings out of source code and supply them at runtime.
 
