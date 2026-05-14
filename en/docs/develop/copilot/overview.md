@@ -7,13 +7,13 @@ slug: /develop/wso2-integrator-copilot/copilot-capabilities
 
 # Copilot Capabilities
 
-WSO2 Integrator Copilot builds integrations from natural language prompts. It produces ready-to-use artifacts for your project. Iterate through follow-up prompts to refine logic, add features, or modify behavior.
+WSO2 Integrator Copilot builds integrations from natural language prompts. It produces ready-to-use artifacts in your project. Iterate through follow-up prompts to refine logic, add features, or modify behavior.
 
 ![WSO2 Integrator Copilot panel open alongside an integration project in the IDE.](/img/develop/copilot/copilot-overview.png)
 
 ## Modes
 
-Copilot has two modes. Switch between them with the toggle in the Copilot input bar.
+Copilot has two modes: plan and edit. Switch between them using the toggle in the Copilot input bar.
 
 - **Edit Mode**: Copilot starts generating immediately and applies the changes to your integration. Best for quick edits.
 - **Plan Mode**: Copilot first proposes a high-level plan with a step-by-step task breakdown. Review or revise the plan, then approve it to begin generation.
@@ -28,7 +28,7 @@ If you need to integrate with a service that does not have a pre-built connector
 
 ## Using web tools
 
-Copilot can use web tools to search the internet for external context or up-to-date documentation. It asks for permission before each search unless you enable the web tools toggle in the input bar.
+Copilot can search the internet for external context or up-to-date documentation. It asks for permission before each search unless you enable the web tools toggle in the input bar.
 
 ![Web tools permission prompt in the Copilot input bar.](/img/develop/copilot/web-tool.png)
 
@@ -40,7 +40,7 @@ During the planning or generation phase, Copilot may identify missing informatio
 
 ## Reviewing
 
-After generation completes, you can inspect exactly what was built before finalizing the changes. Review the generated artifacts as a diagram or as source code with a diff view.
+After generation completes, you can inspect exactly what was built or changed before finalizing the changes. Review the generated artifacts as the flow diagram or as source code with a diff view.
 
 ![Review mode showing the generated integration diagram.](/img/develop/copilot/review-mode.png)
 
@@ -52,13 +52,13 @@ When you run or test the integration, Copilot identifies the required configurab
 
 ## Testing
 
-Copilot generates tests for your integration and runs them with the built-in test runner, so you can verify the generated artifacts immediately.
+Copilot generates tests for your integration and runs them with the built-in test runner, allowing you to verify the generated artifacts immediately.
 
 ![Test runner showing generated tests and results.](/img/develop/copilot/running-tests.png)
 
 ## Trying your services
 
-After your integration is running, you can send test requests to your services from Copilot. Describe what you want to test in plain language, and Copilot runs the appropriate `curl` commands against your service and returns the results.
+Once your integration is running, you can send test requests to your services from Copilot. Describe what you want to test in plain language, and Copilot runs the appropriate `curl` commands against your service and returns the results.
 
 ![Copilot running curl commands against a running service.](/img/develop/copilot/try-it.png)
 
@@ -74,7 +74,7 @@ Type `/` in the Copilot input bar to invoke a command for a specific task.
 
 | Command | Description |
 |---|---|
-| `/ask` | Ask questions about Ballerina from the documentation. |
+| `/ask` | Ask questions about Ballerina to be answered based on the documentation. |
 | `/doc` | Generate documentation for your integration. |
 | `/openapi` | Import OpenAPI specifications. |
 | `/typecreator` | Create custom types. |

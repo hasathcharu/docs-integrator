@@ -47,7 +47,7 @@ Sign in with your WSO2 Cloud account to deploy to WSO2 Cloud, manage environment
 
    ![WSO2 Integrator Get Started page with the Sign In button in the top-right corner](/img/get-started/setup/sign-in/integrator-get-started.png)
 
-2. Your default browser opens to the WSO2 Integration Platform sign-in page. Sign in using your preferred method.
+2. The WSO2 Integration Platform sign-in page opens up in your default browser. Sign in using your preferred method.
 
    ![WSO2 Integration Platform sign-in page](/img/get-started/setup/sign-in/sign-in-providers.png)
 
