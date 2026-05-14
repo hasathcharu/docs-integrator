@@ -22,7 +22,7 @@ Copilot has two modes: plan and edit. Switch between them using the toggle in th
 
 ## Generating connectors
 
-If you need to integrate with a service that does not have a pre-built connector, provide an OpenAPI specification and Copilot generates the custom connector code for you.
+Copilot can generate a custom connector when a pre-built one is not available. During integration generation, if no pre-built connector exists, Copilot prompts the user for an OpenAPI specification. The user can also directly request to generate a custom connector. Once generated, the connector is available for Copilot to use in the flow.
 
 ![Copilot generating custom connector code from an OpenAPI specification.](/img/develop/copilot/connector-generator.png)
 
