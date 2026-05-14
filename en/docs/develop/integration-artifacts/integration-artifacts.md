@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
-title: Integration artifacts
+title: Integration Artifacts
 description: Choose the right artifact type to expose APIs, react to events, process files, run scheduled jobs, or power AI agents in WSO2 Integrator.
 keywords: [wso2 integrator, integration artifacts, http service, event handler, automation, file integration]
 ---
 
-# Integration artifacts
+# Integration Artifacts
 
 Integration artifacts are the building blocks of every integration. Each type is designed for a specific trigger and communication pattern: receiving HTTP requests, reacting to messages, processing files, running on a schedule, or serving AI agent tools. Choosing the right artifact for the job keeps your integration logic focused and your project easy to navigate.
 

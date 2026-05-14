@@ -1,11 +1,11 @@
 ---
 sidebar_position: 3
-title: WSO2 Integration Cloud concepts
+title: WSO2 Integration Cloud Concepts
 description: "The runtime concepts you need to deploy and manage integrations in WSO2 Integration Cloud: data planes, environments, deployment tracks, and CI/CD."
 keywords: [wso2 integration cloud, ipaas, data plane, environment, deployment track, ci/cd, organization]
 ---
 
-# WSO2 Integration Cloud concepts
+# WSO2 Integration Cloud Concepts
 
 WSO2 Integration Cloud is the managed runtime side of the platform. It handles everything that happens after your integration leaves the IDE: building, deploying, promoting, and observing integrations across environments. This page covers the key concepts you need to understand before deploying your first integration.
 
