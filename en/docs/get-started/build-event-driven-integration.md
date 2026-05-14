@@ -124,7 +124,6 @@ service "Orders" on rabbitmqListener {
             return error("unhandled error", err);
         }
     }
-
 }
 ```
 
