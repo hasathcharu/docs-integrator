@@ -222,7 +222,7 @@ import wso2/icp.runtime.bridge as _;
 Both are blank imports (`as _`). They activate automatically at startup.
 
 :::warning
-Ensure to keep the import orders as shown. The `ballerinax/metrics.logs` import must come before the `wso2/icp.runtime.bridge` import. This ensures that the metrics logger initializes before the ICP bridge, allowing the emitted metrics to be captured and sent to OpenSearch.
+Ensure to keep the import orders as shown.
 :::
 
 ### Config.toml
