@@ -79,7 +79,7 @@ Use scheduled broker polling when each automation run should pull at most one me
 <PatternImplementationTabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. Create a [scheduled automation](/docs/develop/integration-artifacts/automation/automation#creating-an-automation) for the polling interval.
+1. Create a [scheduled automation](/docs/develop/integration-artifacts/automation#creating-an-automation) for the polling interval.
 2. Add the `java.jms` **JMS MessageConsumer** connection and bind the broker settings to configurable variables. See the [JMS consumer example](/docs/connectors/catalog/messaging/java.jms/example#adding-the-javajms-connector).
 3. Add the **Receive** operation from the JMS consumer connection and set the timeout value for the polling window.
 4. Add an [If node](/docs/develop/design-logic/control-flow#ifelse-statements) that checks whether the received value is a message.
