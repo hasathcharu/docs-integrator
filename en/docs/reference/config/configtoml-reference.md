@@ -9,7 +9,7 @@ keywords: [wso2 integrator, ballerina, config.toml, configurable, runtime config
 `Config.toml` provides runtime values for `configurable` variables declared in Ballerina source code. Place this file in the working directory where you run `bal run`, or specify one or more config files via the `BAL_CONFIG_FILES` environment variable. Ballerina uses a TOML v0.4-compatible syntax with module-qualified keys to map configuration values to their corresponding `configurable` declarations.
 
 :::note
-This page is the TOML encoding reference for `Config.toml`. For declaring configurable variables, see [Configurations](../../develop/integration-artifacts/supporting/configurations.md). For value sources and resolution priority, see [Configuration management](configuration-management.md).
+This page is the TOML encoding reference for `Config.toml`. For the basics of using configurable variables, see [Configurations](../../develop/integration-artifacts/supporting/configurations.md). For the complete configuration reference, see [Configuration management](configuration-management.md).
 :::
 
 ## Module-qualified names
