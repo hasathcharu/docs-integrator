@@ -12,8 +12,8 @@ WSO2 Integrator lets you build AI-powered integrations, including direct LLM cal
 
 ## Getting started
 
-- **[Build a sentiment analyzer](getting-started/build-a-sentiment-analyzer.md):** Your first AI integration with a direct LLM call.
-- **[Build a hotel finder agent](getting-started/build-a-hotel-finder-agent.md):** An agent with two custom tools and session-scoped memory.
+- **[Build a Sentiment Analyzer](getting-started/build-a-sentiment-analyzer.md):** Your first AI integration with a direct LLM call.
+- **[Build a Hotel Finder Agent](getting-started/build-a-hotel-finder-agent.md):** An agent with two custom tools and session-scoped memory.
 
 ## Develop AI applications
 
