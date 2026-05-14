@@ -206,7 +206,7 @@ Generate a GraphQL SDL file from an existing Ballerina GraphQL service:
 | `-m, --mode`   | The `mode` parameter specifies the operation mode. It indicates the way to process the schema file. If the `mode` flag is not specified, the `graphql` tool will infer the mode from the `input` file extension. The mode should be `schema` for the schema generation.                                                                                                                                                                                                                | Optional           |
 | `-s, --service`   | The `service` command option specifies the base path of the Ballerina GraphQL service of which the schema needs to be generated. If this command option is not specified, schemas will be generated for each of the GraphQL services in the given file.                                                                                                                                                                                                                  | Optional           |
 
-## Generating a client from a GraphQL schema (Experimental)
+## Generating a client from a GraphQL schema (experimental)
 
 :::note
 Client generation from GraphQL schemas is currently supported only through the Ballerina CLI (pro-code). Visual Designer support for GraphQL client generation is not yet available.
