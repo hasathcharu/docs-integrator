@@ -87,9 +87,9 @@ const config: Config = {
       },
     },
     navbar: {
-      title: 'WSO2 Integrator',
+      title: 'WSO2 Integration Platform',
       logo: {
-        alt: 'WSO2 Integrator Logo',
+        alt: 'WSO2 Integration Platform Logo',
         src: 'img/logo.svg',
         srcDark: 'img/logo-dark.svg',
         href: '/',
