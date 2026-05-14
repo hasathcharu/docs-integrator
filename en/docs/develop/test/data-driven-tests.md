@@ -1,11 +1,11 @@
 ---
 sidebar_position: 5
-title: Data-driven tests
+title: Data-Driven Tests
 description: Run the same test function against multiple input sets using Ballerina data providers in WSO2 Integrator.
 keywords: [wso2 integrator, data-driven tests, data provider, parameterized tests, ballerina test]
 ---
 
-# Data-driven tests
+# Data-Driven Tests
 
 A data-driven test decouples the test logic from the test data. Instead of writing a separate test function for each input combination, you write one function and point it at a data provider — a function that returns a collection of input sets. The framework calls the test function once per set, passing each row as arguments.
 

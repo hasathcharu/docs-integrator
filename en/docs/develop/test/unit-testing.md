@@ -1,11 +1,11 @@
 ---
 sidebar_position: 2
-title: Write unit tests
+title: Write Unit Tests
 description: Structure the test directory, write test functions, use assertions, and configure test-only values in WSO2 Integrator.
 keywords: [wso2 integrator, unit testing, ballerina test, test:Config, assertions]
 ---
 
-# Write unit tests
+# Write Unit Tests
 
 WSO2 Integrator uses the Ballerina test framework for automated testing. Test functions are placed in a dedicated `tests/` folder inside your module and discovered automatically when you run `bal test`. This page covers how to structure the test directory, how to use assertions to verify behavior, and how to supply test-only configuration values.
 

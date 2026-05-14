@@ -1,11 +1,11 @@
 ---
 sidebar_position: 3
-title: Configure test lifecycle
+title: Configure Test Lifecycle
 description: Set up and tear down state at suite, group, and per-test levels, and control test execution order in WSO2 Integrator.
 keywords: [wso2 integrator, test lifecycle, BeforeSuite, AfterSuite, BeforeEach, AfterEach, test setup, teardown]
 ---
 
-# Configure test lifecycle
+# Configure Test Lifecycle
 
 Most tests need some state set up before they run and cleaned up after they finish. The Ballerina test framework provides a set of lifecycle annotations that let you attach setup and teardown logic at four distinct scopes: the whole suite, a named group, every test, and an individual test. Choosing the right scope avoids duplicating setup code and keeps tests independent of each other.
 

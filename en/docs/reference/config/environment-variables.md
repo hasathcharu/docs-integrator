@@ -1,5 +1,5 @@
 ---
-title: Environment variables
+title: Environment Variables
 description: Complete reference for environment variables that configure Ballerina runtime behavior, configurable values, and the build toolchain.
 keywords: [wso2 integrator, ballerina, environment variables, configurable, runtime configuration, reference]
 ---
@@ -7,7 +7,7 @@ keywords: [wso2 integrator, ballerina, environment variables, configurable, runt
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Environment variables
+# Environment Variables
 
 Ballerina supports configuring runtime behavior through environment variables. These include variables that supply values to `configurable` declarations, variables that point to configuration files, and system-level variables used by the Ballerina runtime and build toolchain.
 

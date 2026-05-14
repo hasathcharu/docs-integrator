@@ -1,10 +1,10 @@
 ---
-title: Manage integrations
+title: Manage Integrations
 description: Create and manage integrations in the ICP console to monitor logs, metrics, and runtime status.
 keywords: [wso2 integrator, integration control plane, icp, integrations, manage]
 ---
 
-# Manage integrations
+# Manage Integrations
 
 An integration in ICP represents a deployable Ballerina or MI application that runs in one or more environments. Each integration belongs to a project and is the primary unit for viewing logs, metrics, and runtime status in the ICP console. This page guides you through creating integrations and navigating the integration home.
 
