@@ -712,7 +712,7 @@ service on primaryListener, backupListener {
 </TabItem>
 </Tabs>
 
-For the general concept, see [Services and listeners](/docs/get-started/concepts/core#services-and-listeners). For the language-level details, see [Integration-specific features](../../../reference/language/integration-specific-features.md).
+For the general concept, see [Services and listeners](/docs/get-started/concepts/core#services-and-listeners).
 
 ## Attaching listeners to services
 
