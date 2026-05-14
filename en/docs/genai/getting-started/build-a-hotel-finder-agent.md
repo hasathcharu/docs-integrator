@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: "Build a hotel finder agent"
+title: "Build a Hotel Finder Agent"
 description: Build a conversational hotel finder agent with two custom tools and a chat endpoint in WSO2 Integrator.
 keywords: [wso2 integrator, ai agent, hotel finder, custom tools, llm, ballerina ai, genai]
 ---
@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Build a hotel finder agent
+# Build a Hotel Finder Agent
 
 **Time:** 10 minutes | **What you'll build:** A conversational agent that helps users find hotels in a specific city and check availability through natural conversation, with session-scoped memory so the user can refer back to earlier messages.
 
