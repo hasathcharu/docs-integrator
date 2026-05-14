@@ -15,8 +15,7 @@ Editor debugging lets you pause an integration mid-run and inspect the values fl
 
 - Open the integration project in WSO2 Integrator.
 - Confirm the integration has an executable entry point, such as a service or an automation.
-
-Open the **Problems** panel at the bottom of the editor and make sure the workspace is free of compile errors. Debugging a project that does not compile is not supported, so resolve anything listed here first. When the workspace is clean, the panel shows *No problems have been detected in the workspace*.
+- Open the **Problems** panel at the bottom of the editor and make sure the workspace is free of compile errors.
 
 ![Problems panel showing a clean workspace](/img/develop/debugging/editor-debugging/problems-panel.png)
 

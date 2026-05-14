@@ -22,7 +22,7 @@ A conditional breakpoint pauses only when a Ballerina expression evaluates to `t
 2. Select **Edit Breakpoint**.
 3. Enter a condition, for example `order.total > 1000` or `customer.tier == "premium"`.
 
-![Editing a breakpoint to add a hit condition](/img/develop/debugging/editor-debugging/condition.png)
+![Editing a breakpoint to add a hit condition](/img/develop/debugging/features/expression.png)
 
 ### Logpoints
 
@@ -32,13 +32,13 @@ A logpoint prints a message to the **Debug Console** without pausing execution. 
 2. Select **Add Logpoint**.
 3. Enter a message. Wrap expressions in braces, for example `Processing order {order.id} with {items.length()} items`.
 
-![Logpoint printing a templated message without pausing](/img/develop/debugging/editor-debugging/log-points.png)
+![Logpoint printing a templated message without pausing](/img/develop/debugging/features/log.png)
 
 ## Stepping through code
 
 Once execution is paused, the debug toolbar appears at the top of the editor. Use it to move through the integration one step at a time.
 
-![Debug toolbar with continue, pause, step over, step into, step out, restart, and stop controls](/img/develop/debugging/editor-debugging/debug-toolbar.png)
+![Debug toolbar with continue, pause, step over, step into, step out, restart, and stop controls](/img/develop/debugging/features/debug-toolbar.png)
 
 | Action | Shortcut | What it does |
 |--------|----------|--------------|
@@ -62,7 +62,7 @@ While paused, use the side panels and the debug console to see what data the int
 
 The **Variables** panel groups data into **Local** (current function scope) and **Global** (module-level) sections. Expand records, arrays, and maps to drill into nested fields.
 
-![Variables panel showing local and global scopes](/img/develop/debugging/editor-debugging/variable-section.png)
+![Variables panel showing local and global scopes](/img/develop/debugging/features/variable-section.png)
 
 ### Hover inspection
 
@@ -76,13 +76,13 @@ Use the **Watch** panel to track specific expressions across breakpoints. Add an
 - `order.items.length()`. Count items in the order.
 - `response.statusCode`. Check the current HTTP status.
 
-![Watch panel evaluating expressions during a paused session](/img/develop/debugging/editor-debugging/watch-panel.png)
+![Watch panel evaluating expressions during a paused session](/img/develop/debugging/features/watch-panel.png)
 
 ### Debug Console
 
 The **Debug Console** evaluates any Ballerina expression in the current scope while the session is paused. Use it for one-off checks that do not warrant a watch expression. The console is also where program output and logpoint messages appear.
 
-![Debug console evaluating a Ballerina expression](/img/develop/debugging/editor-debugging/debug-console.png)
+![Debug console evaluating a Ballerina expression](/img/develop/debugging/features/debug-console.png)
 
 ### Call stack and strands
 
@@ -90,7 +90,7 @@ The **Call Stack** panel shows the chain of function calls that led to the curre
 
 ## Related
 
-- [Editor Debugging](editor.md) — quick-start setup for a debug session.
-- [Errors and stack traces](/docs/develop/troubleshooting/errors-and-stack-traces) — read error messages and trace failures back to source.
-- [Logging](/docs/develop/troubleshooting/logging) — when adding logs is a better fit than a live debug session.
-- [Strand dump analysis](/docs/develop/troubleshooting/strand-dump-analysis) — diagnose stuck or hung integrations from a captured dump.
+- [Editor Debugging](editor.md) - quick-start setup for a debug session.
+- [Errors and stack traces](/docs/develop/troubleshooting/errors-and-stack-traces) - read error messages and trace failures back to source.
+- [Logging](/docs/develop/troubleshooting/logging) - when adding logs is a better fit than a live debug session.
+- [Strand dump analysis](/docs/develop/troubleshooting/strand-dump-analysis) - diagnose stuck or hung integrations from a captured dump.
