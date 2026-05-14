@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: RAG ingestion
+title: RAG Ingestion
 description: How to build a RAG ingestion integration in WSO2 Integrator — load documents, chunk them, generate embeddings, and store vectors in a knowledge base.
 keywords: [wso2 integrator, rag, rag ingestion, knowledge base, vector store, embedding provider]
 ---
@@ -13,7 +13,7 @@ This page covers building the ingestion integration in WSO2 Integrator: creating
 
 ---
 
-## What the rag ingestion integration does
+## What the RAG ingestion does
 
 ```mermaid
 flowchart LR
@@ -31,8 +31,6 @@ The `ingest` action on the Knowledge Base handles everything after document load
 
 :::info Prerequisites
 
-- [WSO2 Integrator installed](../../../get-started/install.md)
-- A project to work in. If you do not have one, select **Create New Integration** when WSO2 Integrator opens.
 - A document to ingest (Markdown, plain text, or other supported format).
 - A configured embedding provider. The default WSO2 provider works out of the box. Run the WSO2 Integrator command `Ballerina: Configure default WSO2 model provider` if you haven't already.
 

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: RAG query
+title: RAG Query
 description: How to build a RAG query integration in WSO2 Integrator — retrieve relevant chunks from a knowledge base, augment the user query, and generate a grounded response.
 keywords: [wso2 integrator, rag, rag query, knowledge base, retrieve, augment, generate]
 ---
@@ -17,7 +17,7 @@ Complete [RAG ingestion](rag-ingestion.md) before starting this page. The query 
 
 ---
 
-## What the rq query integration does
+## What the RAG query does
 
 ```mermaid
 flowchart LR
