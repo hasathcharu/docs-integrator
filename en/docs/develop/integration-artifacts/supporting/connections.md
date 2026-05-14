@@ -22,22 +22,9 @@ Connection artifacts centralize the configuration for external systems. Define c
 
    ![WSO2 Integrator Add connection via sidebar](/img/develop/integration-artifacts/supporting/connections/new-connection-sidebar.png)
 
-3. In the **Add Connection** panel, select how to create the connection:
+3. In the **Add Connection** panel, browse the available connectors. The panel groups them into **Create New Connector** and **Pre-built Connectors**. For details on each category and how to choose, see [Connection types](#connection-types).
 
    ![WSO2 Integrator Add Connection panel](/img/develop/integration-artifacts/supporting/connections/add-connection.png)
-
-   For a complete description of connection types, see [Connection types](#connection-types).
-
-   **Create New Connector**
-
-   | Option | Description |
-   |---|---|
-   | **Connect via API Specification** | Import an OpenAPI or WSDL file to generate a typed HTTP client connector. For more information, see the [OpenAPI tool](../../tools/integration-tools/openapi-tool.md) and the [WSDL tool](../../tools/integration-tools/wsdl-tool.md). |
-   | **Connect to a Database** | Enter database credentials to introspect schema and create a typed database connector. Supports MySQL, MS SQL, and PostgreSQL. |
-
-   **Pre-built Connectors**
-
-   Select from the pre-built connector library, filtering by the **All**, **Standard**, or **Organization** tabs. Available connectors include protocol connectors such as HTTP, GraphQL, WebSocket, TCP, UDP, and FTP, and application/vendor-specific connectors such as Gmail, Twilio, and GitHub. Use the search box to filter by name. For the full list, see the [Connector Catalog](../../../connectors/catalog/index.mdx).
 
 4. Select a connector. A configuration form appears with fields specific to that connector (for example, base URL and authentication for HTTP, host, port, and credentials for a database, or application/vendor-specific attributes).
 
@@ -96,6 +83,12 @@ final kafka:Producer kafkaProducer = check new (kafkaBrokers, {
 </TabItem>
 </Tabs>
 
+## Editing a connection
+
+To edit an existing connection, click its name in the sidebar under **Connections** to open its configuration form. Update the fields and click **Update Connection**.
+
+![WSO2 Integrator Connection edit form](/img/develop/integration-artifacts/supporting/connections/edit-connection.png)
+
 ## Connection types
 
 The **Add Connection** panel organizes connectors into two categories:
@@ -131,6 +124,7 @@ For the complete list of available connectors, see the [Connector Catalog](../..
 
 ## What's next
 
+- [Connections in the flow diagram editor](../../understand-ide/editors/flow-diagram-editor/connections.md) — Use connections to invoke actions inside a flow.
 - [Types](./types.md) — Define shared data structures used by your connections.
 - [Configurations](./configurations.md) — Externalize values such as endpoints and credentials.
 - [Functions](./functions.md) — Encapsulate reusable logic in Ballerina functions.
