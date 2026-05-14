@@ -1,4 +1,5 @@
 ---
+sidebar_position: 3
 title: Generate tests with AI
 description: Use WSO2 Integrator Copilot to generate, review, and improve test cases during development.
 keywords: [wso2 integrator, ai test generation, copilot, generate tests, ballerina test]

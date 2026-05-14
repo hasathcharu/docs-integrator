@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 8
 title: Code coverage and reports
 description: Generate test reports, measure code coverage, enforce coverage thresholds, and export JaCoCo XML in WSO2 Integrator.
 keywords: [wso2 integrator, code coverage, test report, jacoco, coverage threshold]
@@ -41,7 +41,7 @@ The extended report adds:
 - Module-level average coverage
 - Per-source-file line coverage with highlighted covered and uncovered lines
 
-Coverage measurement only includes Ballerina source files in the package — files inside the `tests/` directory are excluded because they are test infrastructure, not production code.
+Coverage measurement only includes Ballerina source files in the package. Files inside the `tests/` directory are excluded because they are test infrastructure, not production code.
 
 ## Enforce a minimum coverage threshold
 

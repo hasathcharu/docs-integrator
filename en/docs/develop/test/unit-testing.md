@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 title: Write unit tests
 description: Structure the test directory, write test functions, use assertions, and configure test-only values in WSO2 Integrator.
 keywords: [wso2 integrator, unit testing, ballerina test, test:Config, assertions]
@@ -30,7 +30,7 @@ Two scoping rules apply:
 
 ## Assertions
 
-Assertions compare what your code produced against what you expected. When they do not match, the test fails with a descriptive message pointing to the exact difference. The optional `message` parameter appears in the failure output — use it to explain the intent of the assertion so failures are easy to diagnose.
+Assertions compare what your code produced against what you expected. When they do not match, the test fails with a descriptive message pointing to the exact difference. The optional `message` parameter appears in the failure output. Use it to explain the intent of the assertion so failures are easy to diagnose.
 
 | Function | What it checks |
 |---|---|
