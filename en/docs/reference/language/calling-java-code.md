@@ -1,10 +1,10 @@
 ---
-title: Calling Java code
+title: Calling Java Code
 description: Learn how to call Java code from Ballerina using the Foreign Function Interface (FFI)
-sidebar_label: Calling Java code
+sidebar_label: Calling Java Code
 ---
 
-# Calling Java code
+# Calling Java Code
 
 Ballerina provides Foreign Function Interface (FFI) capabilities that enable developers to invoke external code from other programming languages. The jBallerina compiler supports Java interoperability, while nBallerina facilitates C integration.
 

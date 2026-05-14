@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: "Build a customer care agent with MCP"
+title: "Build a Customer Care Agent with MCP"
 description: Build an AI agent that connects to a live MCP server to answer product and order questions via natural language.
 keywords: [wso2 integrator, mcp, ai agent, mcp toolkit, customer care, tutorial]
 ---
@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Build a customer care agent with MCP
+# Build a Customer Care Agent with MCP
 
 ## What you'll build
 
