@@ -6,7 +6,7 @@ description: Create reusable library packages for sharing common logic across in
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Create a library
+# Create a Library
 
 A library is a reusable package of shared logic — utility functions, type definitions, data mappers, and connections — that you can use across multiple integrations. Instead of duplicating common code in each integration, create a library once and import it wherever needed.
 

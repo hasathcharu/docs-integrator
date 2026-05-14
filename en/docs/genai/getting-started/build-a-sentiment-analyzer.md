@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: "Build a sentiment analyzer"
+title: "Build a Sentiment Analyzer"
 description: Build your first AI integration. An HTTP service that uses a direct LLM call to classify customer reviews.
 keywords: [wso2 integrator, ai, llm, direct llm call, sentiment analysis, quick start, ballerina ai]
 ---
@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Build a sentiment analyzer
+# Build a Sentiment Analyzer
 
 **Time:** Under 10 minutes | **What you'll build:** An HTTP service that listens on `POST /analyze`, sends a customer review to an LLM, and returns the sentiment (`POSITIVE`, `NEGATIVE`, or `NEUTRAL`) along with a confidence score.
 

@@ -7,7 +7,7 @@ description: "Understand Ballerina error messages, read stack traces, and diagno
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Errors and stack traces
+# Errors and Stack Traces
 
 Learn how to read and interpret error messages in your integrations. This page covers the difference between errors and panics, how to read stack traces, and quick fixes for the most common errors you will encounter.
 

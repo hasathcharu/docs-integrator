@@ -1,5 +1,5 @@
 ---
-title: Local setup
+title: Local Setup
 description: Download and install WSO2 Integrator IDE on Windows, macOS, or Linux to build integrations on your machine.
 keywords: [wso2 integrator, local setup, install, ide, windows, macos, linux]
 ---

@@ -1,11 +1,11 @@
 ---
 sidebar_position: 2
-title: Integrator view
+title: Integrator View
 description: Work with the Integrator view to build and manage individual integrations.
 keywords: [wso2 integrator, ide, integrator view, design canvas, deployment]
 ---
 
-# Integrator view
+# Integrator View
 
 The Integrator view is the primary development interface in WSO2 Integrator. Use it to build, test, and deploy a single integration. It combines a project explorer, a visual design canvas, and deployment options in one unified workspace.
 

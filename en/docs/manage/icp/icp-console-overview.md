@@ -1,10 +1,10 @@
 ---
-title: ICP console overview
+title: ICP Console Overview
 description: Understand the ICP console layout, scope levels, and sidebar navigation.
 keywords: [wso2 integrator, integration control plane, icp, console, navigation]
 ---
 
-# ICP console overview
+# ICP Console Overview
 
 The ICP console is the web interface for monitoring and managing your integrations across environments. It organizes resources into three nested scope levels, each with its own sidebar and access-control scope. This page explains the console layout and navigation so you can get oriented quickly.
 
