@@ -96,7 +96,7 @@ const config: Config = {
       },
       items: [
         {
-          to: '/docs/get-started/overview-and-architecture',
+          to: '/docs/get-started/introduction',
           label: 'Get started',
           position: 'left',
           activeBaseRegex: '/docs/get-started(/|$)',
@@ -160,7 +160,7 @@ const config: Config = {
         {
           title: 'Get started',
           items: [
-            { label: 'Overview', to: '/docs/get-started/overview-and-architecture' },
+            { label: 'Overview', to: '/docs/get-started/introduction' },
             { label: 'Install', to: '/docs/get-started/install' },
             { label: 'Quick starts', to: '/docs/get-started/build-automation' },
           ],
