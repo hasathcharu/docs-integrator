@@ -1,6 +1,6 @@
 ---
 title: "Copilot Capabilities"
-description: "Use WSO2 Integrator Copilot to write, test, debug, and fix integrations, and generate connectors from natural language prompts and OpenAPI specifications."
+description: "Write, test, debug, and fix integrations with WSO2 Integrator Copilot."
 keywords: [wso2 integrator, copilot, ai, integration generation]
 slug: /develop/wso2-integrator-copilot/copilot-capabilities
 ---
@@ -58,9 +58,9 @@ Copilot generates tests for your integration and runs them with the built-in tes
 
 ## Trying your services
 
-Once your integration is running, you can send test requests to your services from Copilot. Describe what you want to test in plain language, and Copilot runs the appropriate `curl` commands against your service and returns the results.
+Once your integration is running, you can send test requests to your services from Copilot. Describe what you want to test in plain language, and Copilot calls your service and returns the response.
 
-![Copilot running curl commands against a running service.](/img/develop/copilot/try-it.png)
+![Copilot calling a running service and showing the response.](/img/develop/copilot/try-it.png)
 
 ## Debugging
 
