@@ -254,4 +254,4 @@ department = "Marketing"
 ## What's next
 
 - [Configuration management](configuration-management.md) — the broader runtime-config story: value sources, precedence, environment variables, and per-environment files.
-- [Cloud.toml reference](../project/cloudtoml-reference.md) — mount Config.toml into deployments via `[[cloud.config.files]]`.
+- [Cloud.toml reference](/docs/reference/project/cloudtoml-reference) — mount Config.toml into deployments via `[[cloud.config.files]]`.
