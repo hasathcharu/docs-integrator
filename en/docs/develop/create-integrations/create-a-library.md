@@ -44,7 +44,6 @@ WSO2 Integrator generates the library project and opens the [library view](../un
 
 ```
 project-name/
-├── .choreo/
 ├── .vscode/
 ├── library-name/
 │   ├── .vscode/
