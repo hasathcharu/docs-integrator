@@ -53,7 +53,7 @@ When a test belongs to one or more groups, it is nested under the group name rat
 WSO2 Integrator creates the test function in the `tests/` directory.
 
 </TabItem>
-<TabItem value="code" label="Ballerina code">
+<TabItem value="code" label="Ballerina Code">
 
 The form fields map directly to the `@test:Config` annotation. The following example shows a fully configured test case using all available fields.
 
