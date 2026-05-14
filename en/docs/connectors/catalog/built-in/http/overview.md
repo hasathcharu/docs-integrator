@@ -1,7 +1,7 @@
 ---
 connector: true
 connector_name: "http"
-title: "HTTP overview"
+title: "HTTP Overview"
 description: "Build outbound HTTP requests and inbound services with the ballerina/http module in WSO2 Integrator."
 keywords: [wso2 integrator, http, rest, client, listener, service]
 ---
