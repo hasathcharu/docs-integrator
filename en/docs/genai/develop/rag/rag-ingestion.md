@@ -39,19 +39,7 @@ The `ingest` action on the Knowledge Base handles everything after document load
 
 ---
 
-## Step 1: Create the integration
-
-1. Open WSO2 Integrator.
-2. Select **Create** in the **Create New Integration** card.
-3. Set **Integration Name** to `Rag Ingestion`.
-4. Set **Project Name** as `rag-pipeline`.
-5. Select **Create Integration**.
-
-    ![Create New Integration dialog with Integration Name and Project Name fields filled in.](/img/genai/develop/rag/00-rag-ingestion-artifacts.png)
-
----
-
-## Step 2: Create an automation artifact
+## Step 1: Create an automation artifact
 
 An **Automation** runs on integration startup. It is the right artifact type for a one-shot ingestion job.
 
@@ -62,7 +50,7 @@ An **Automation** runs on integration startup. It is the right artifact type for
 
 ---
 
-## Step 3: Add a text data loader
+## Step 2: Add a text data loader
 
 A **Text Data Loader** reads a file from disk and wraps its content as an `ai:Document`.
 
@@ -88,7 +76,7 @@ The node appears on the right panel. It does not load yet. You call its `load` f
 
 ---
 
-## Step 4: Load the documents
+## Step 3: Load the documents
 
 Call the loader's `load` function to execute the read and get back an `ai:Document[]`.
 
@@ -108,7 +96,7 @@ Call the loader's `load` function to execute the read and get back an `ai:Docume
 
 ---
 
-## Step 5: Create a vector knowledge base
+## Step 4: Create a vector knowledge base
 
 The **Vector Knowledge Base** owns the three pluggable parts of a RAG store: a vector store, an embedding provider, and a chunker.
 
@@ -143,7 +131,7 @@ See [Vector Stores](../components/vector-stores.md) and [Knowledge Bases](../com
 
 ---
 
-## Step 6: Ingest the documents
+## Step 5: Ingest the documents
 
 Call `ingest` on the knowledge base to chunk, embed, and persist the loaded documents.
 
@@ -152,7 +140,7 @@ Call `ingest` on the knowledge base to chunk, embed, and persist the loaded docu
 
     ![Knowledge Base node with Ingest action selected.](/img/genai/develop/rag/09-ingest-action.png)
 
-3. Set **Documents** to the `documents` variable from Step 4.
+3. Set **Documents** to the `documents` variable from Step 3.
 
     ![Ingest action form with the Documents field set to the documents variable.](/img/genai/develop/rag/10-ingest-doc-form.png)
 
@@ -168,7 +156,7 @@ The `ingest` action:
 
 ---
 
-## Step 7: Add a completion log
+## Step 6: Add a completion log
 
 Add a **Log Info** node after the ingest call to confirm the integration finished.
 

@@ -30,7 +30,7 @@ flowchart LR
     F --> G[Response]
 ```
 
-The four nodes — **Retrieve**, **Augment User Query**, **Generate**, and **Return** — map directly to Steps 3–7 below.
+The four nodes — **Retrieve**, **Augment User Query**, **Generate**, and **Return** — map directly to Steps 2–6 below.
 
 ---
 
@@ -46,19 +46,7 @@ The four nodes — **Retrieve**, **Augment User Query**, **Generate**, and **Ret
 
 ---
 
-## Step 1: Create the integration
-
-1. Open the `rag-pipeline` project in WSO2 Integrator and select **+ Add** in the **Integrations & Libraries** section.
-
-    ![rag-pipeline project view with Integrations & Libraries section and + Add button highlighted.](/img/genai/develop/rag/rag-query/00-rag-query-project.png)
-
-2. In the **Add New Integration** form, set **Integration Name** to `Rag query` and select **Add Integration**.
-
-    ![Add New Integration form with Integration Name set to Rag query.](/img/genai/develop/rag/rag-query/00b-add-new-integration-form.png)
-
----
-
-## Step 2: Create an HTTP service
+## Step 1: Create an HTTP service
 
 1. In the design view, select **+ Add Artifact**.
 
@@ -86,7 +74,7 @@ The four nodes — **Retrieve**, **Augment User Query**, **Generate**, and **Ret
 
 ---
 
-## Step 3: Retrieve from the knowledge base
+## Step 2: Retrieve from the knowledge base
 
 The **Retrieve** action queries the Knowledge Base for chunks most similar to the user's question.
 
@@ -123,7 +111,7 @@ Retrieve is the read-side counterpart to Ingest. It must point to the same Knowl
 
 ---
 
-## Step 4: Augment the user query
+## Step 3: Augment the user query
 
 The **Augment User Query** node combines the retrieved chunks with the original question into a single formatted `ai:ChatUserMessage` ready for the LLM.
 
@@ -147,7 +135,7 @@ This step handles prompt construction automatically. You do not need to manually
 
 ---
 
-## Step 5: Add a model provider
+## Step 4: Add a model provider
 
 1. Click **+** after the Augment node.
 2. Go to **AI > Model Provider**.
@@ -158,7 +146,7 @@ This step handles prompt construction automatically. You do not need to manually
 
 ---
 
-## Step 6: Generate the response
+## Step 5: Generate the response
 
 The **Generate** action calls the LLM with the augmented message and returns the model's answer.
 
@@ -183,7 +171,7 @@ The **Generate** action calls the LLM with the augmented message and returns the
 
 ---
 
-## Step 7: Return the response
+## Step 6: Return the response
 
 1. Click **+** after the Generate node.
 2. Select **Return**.
