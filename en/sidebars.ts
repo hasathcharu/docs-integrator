@@ -1923,7 +1923,7 @@ const sidebars: SidebarsConfig = {
             'deploy-operate/observe/logging-overview',
             {
               type: 'category',
-              label: 'Distributed tracing',
+              label: 'Distributed Tracing',
               items: [
                 'deploy-operate/observe/jaeger-distributed-tracing',
                 'deploy-operate/observe/zipkin-tracing',
@@ -1931,7 +1931,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: 'category',
-              label: 'Supported platforms',
+              label: 'Supported Platforms',
               items: [
                 'deploy-operate/observe/integration-control-plane-icp',
                 'deploy-operate/observe/recipe-datadog-setup',
