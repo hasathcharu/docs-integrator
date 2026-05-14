@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 The Integration Control Plane (ICP) is a self-hosted management server that connects to your WSO2 Integrator runtimes and provides centralized monitoring, lifecycle management, and access control. This page walks you through downloading, configuring, and starting ICP on your own infrastructure.
 
 :::tip
-This guide covers manual installation. For evaluation, run via WSO2 Integrator IDE [Integration Control Plane (ICP)](../../deploy-operate/observe/icp.md).
+This guide covers manual installation. For evaluation, run via WSO2 Integrator IDE [Integration Control Plane (ICP)](../../deploy-operate/observe/integration-control-plane-icp.md).
 :::
 
 :::info Prerequisites
