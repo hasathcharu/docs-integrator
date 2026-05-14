@@ -253,6 +253,5 @@ department = "Marketing"
 
 ## What's next
 
-- [Ballerina.toml reference](ballerinatoml-reference.md) — configure package metadata, build options, and dependencies
-- [Cloud.toml reference](cloudtoml-reference.md) — configure Kubernetes and Docker deployment descriptors
-- [Configuration management](configuration-management.md) — set configuration values, override Config.toml via environment variables, and target per-environment configuration
+- [Configuration management](configuration-management.md) — the broader runtime-config story: value sources, precedence, environment variables, and per-environment files.
+- [Cloud.toml reference](../project/cloudtoml-reference.md) — mount Config.toml into deployments via `[[cloud.config.files]]`.
