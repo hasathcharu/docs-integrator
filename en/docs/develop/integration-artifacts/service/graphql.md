@@ -1,6 +1,7 @@
 ---
 title: GraphQL Service
 description: Build flexible GraphQL APIs with queries, mutations, and subscriptions using the visual designer or Ballerina code.
+keywords: [wso2 integrator, graphql service, schema, resolver, query, mutation, subscription]
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,7 +20,7 @@ GraphQL service support is currently in beta.
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-1. Click the **+** **Add Artifacts** button in the canvas or click **+** next to **Entry Points** in the sidebar.
+1. Select the **+** **Add Artifacts** button in the canvas or select **+** next to **Entry Points** in the sidebar.
 2. In the **Artifacts** panel, select **GraphQL Service** under **Integration as API**.
 3. In the **Create GraphQL Service** form, fill in the following fields:
 
@@ -46,16 +47,16 @@ GraphQL service support is currently in beta.
 
    **Advanced Configurations**
 
-   Click **Expand** next to **Advanced Configurations** to set the **Listener Name** and other listener-level options.
+   Select **Expand** next to **Advanced Configurations** to set the **Listener Name** and other listener-level options.
 
-4. Click **Create**.
+4. Select **Create**.
 
 5. WSO2 Integrator opens the service in the **GraphQL diagram**, an interactive canvas where you define types, fields, and resolvers. The diagram shows the service card labeled with the base path (for example, `/graphql`) and a **+ Create Operations** button. Use the **Configure** button at the top right to edit service and listener settings, and the toolbar at the bottom left to zoom, fit, refresh, or export the diagram.
 
    ![GraphQL diagram canvas](/img/develop/integration-artifacts/service/graphql-service/step-graphql-diagram.png)
 
-6. Click **+ Create Operations** on the service card to add a **Query**, **Mutation**, or **Subscription** field.
-7. Click the field row to open the **flow designer** and define the resolver logic.
+6. Select **+ Create Operations** on the service card to add a **Query**, **Mutation**, or **Subscription** field.
+7. Select the field row to open the **flow designer** and define the resolver logic.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
@@ -91,7 +92,7 @@ Service configuration controls the base path and advanced service-level settings
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
-On the **GraphQL diagram**, click **Configure** in the service header to open the **GraphQL Service Configuration** panel.
+On the **GraphQL diagram**, select **Configure** in the service header to open the **GraphQL Service Configuration** panel.
 
 | Field | Description |
 |---|---|
@@ -139,7 +140,9 @@ All `@graphql:ServiceConfig` fields:
 | `schemaString` | `string` | `""` | Embedded SDL string (set automatically for generated services) |
 | `cacheConfig` | `ServerCacheConfig?` | `()` | Service-wide field cache configuration |
 
-**CORS configuration** (`CorsConfig`):
+### CORS configuration
+
+Fields of the `CorsConfig` record:
 
 | Field | Type | Default | Description |
 |---|---|---|---|
@@ -175,14 +178,18 @@ In the **GraphQL Service Configuration** panel, select the attached listener und
 | **Graceful Stop Timeout** | Grace period in seconds before the listener force-stops. | `0` |
 | **Socket Config** | Server socket settings (e.g., `soBackLog` queue length). | `{}` |
 
-Click **+ Attach Listener** at the bottom of the panel to attach an additional listener or to select an existing named listener.
+Select **+ Attach Listener** at the bottom of the panel to attach an additional listener or to select an existing named listener.
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">
 
-**Inline listener** (created together with the service):
+### Inline listener
+
+Created together with the service:
 
 ```ballerina
+import ballerina/graphql;
+
 configurable int port = 9090;
 
 service /graphql on new graphql:Listener(port) {
@@ -192,9 +199,14 @@ service /graphql on new graphql:Listener(port) {
 }
 ```
 
-**Named listener** — declare the listener at module level and attach multiple services to it. This corresponds to the "select existing listener" option in the creation form.
+### Named listener
+
+Declare the listener at module level and attach multiple services to it. This corresponds to the "select existing listener" option in the creation form.
 
 ```ballerina
+import ballerina/graphql;
+import ballerina/http;
+
 listener graphql:Listener graphqlListener = new (9090, {
     host: "0.0.0.0",
     httpVersion: http:HTTP_2_0,
@@ -214,9 +226,14 @@ service /graphql on graphqlListener {
 }
 ```
 
-**Sharing a port with an HTTP service** — attach the GraphQL listener to an existing `http:Listener`:
+### Sharing a port with an HTTP service
+
+Attach the GraphQL listener to an existing `http:Listener`.
 
 ```ballerina
+import ballerina/graphql;
+import ballerina/http;
+
 listener http:Listener httpListener = new (9090);
 listener graphql:Listener graphqlListener = new (httpListener);
 
@@ -252,51 +269,51 @@ All `graphql:ListenerConfiguration` fields (forwarded to the underlying `http:Li
 
 ## Operations and fields
 
-Operations define the entry points to your GraphQL service. GraphQL has three root operation types — **Query** (read data), **Mutation** (modify data), and **Subscription** (real-time updates). Each operation contains fields with a name, optional arguments, and a return type.
+Operations define the entry points to your GraphQL service. GraphQL has three root operation types: **Query** (read data), **Mutation** (modify data), and **Subscription** (real-time updates). Each operation contains fields with a name, optional arguments, and a return type.
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
 
 ### Add an operation
 
-1. On the **GraphQL diagram**, click **+ Create Operations** on the service card.
+1. On the **GraphQL diagram**, select **+ Create Operations** on the service card.
 2. Choose **Query**, **Mutation**, or **Subscription**.
 
    ![GraphQL operations panel](/img/develop/integration-artifacts/service/graphql-service/step-create-operations.png)
 
 ### Add a field
 
-Click the **+** next to an operation type to open the **Add Field** panel.
+Select the **+** next to an operation type to open the **Add Field** panel.
 
 | Field | Description |
 |---|---|
 | **Field Name** | Name of the field |
 | **Description** | Documentation of the field |
-| **Arguments** | Input arguments — click **+ Add Argument** to add an argument |
+| **Arguments** | Input arguments. Select **+ Add Argument** to add an argument. |
 | **Field Type** | Return type of the field |
 
 ![Add Field panel](/img/develop/integration-artifacts/service/graphql-service/step-add-field.png)
 
 ### Add an argument
 
-Click **+ Add Argument** to open the **Argument** form.
+Select **+ Add Argument** to open the **Argument** form.
 
 | Field | Description |
 |---|---|
-| **Argument Type** | Type of the argument. Click the text area to open the type helper. Input objects and enums can be added with **+ Create New Type**. |
+| **Argument Type** | Type of the argument. Select the text area to open the type helper. Input objects and enums can be added with **+ Create New Type**. |
 | **Argument Name** | Name of the argument |
 | **Description** | Documentation of the argument (optional) |
-| **Default Value** | Default value (optional) — expand **Advanced Configurations** to set one |
+| **Default Value** | Default value (optional). Expand **Advanced Configurations** to set one. |
 
-Click **Add** to save the argument.
+Select **Add** to save the argument.
 
 ### Define types
 
 A type is the fundamental unit of a GraphQL schema. Each field returns a value of a specific type, and each argument accepts a value of a specific type.
 
-1. Click the **Argument Type** or **Field Type** text area to open the type helper.
-2. Choose a pre-defined scalar, or click **Create New Type** to define a custom type.
-3. In the **Create New Type** dialog, choose **Create from scratch** to define the type inline, or **Import** to import it from an existing source. Select the **Kind**, give the type a **Name**, add its fields, and click **Save**.
+1. Select the **Argument Type** or **Field Type** text area to open the type helper.
+2. Choose a pre-defined scalar, or select **Create New Type** to define a custom type.
+3. In the **Create New Type** dialog, choose **Create from scratch** to define the type inline, or **Import** to import it from an existing source. Select the **Kind**, give the type a **Name**, add its fields, and select **Save**.
 
    ![Create new type dialog](/img/develop/integration-artifacts/service/graphql-service/step-create-new-type.png)
 
@@ -314,13 +331,13 @@ If the selected argument or field type can be marked as an ID, a checkbox appear
 :::
 
 :::note Subscription return types
-Subscription field types must be wrapped with `stream` — for example, `stream<NewsUpdate, error?>`.
+Subscription field types must be wrapped with `stream`. For example, `stream<NewsUpdate, error?>`.
 :::
 
 ### Implement resolver logic
 
 1. Select a Field row (for example, `product` or `createProduct`) to open the **flow designer**.
-2. Click **+** below the start node to open the **Node palette**, where you can select any node, including connections and variables.
+2. Select **+** below the start node to open the **Node palette**, where you can select any node, including connections and variables.
 
 ### Field-level configuration
 
@@ -340,17 +357,17 @@ Select the pencil icon on a Field row to return to the field edit form, and expa
 ```ballerina
 service /graphql on new graphql:Listener(9090) {
 
-    // Query  — resource function get <fieldName>(...)
+    // Query: resource function get <fieldName>(...)
     resource function get product(string id) returns Product|error {
         return getProduct(id);
     }
 
-    // Mutation — remote function <fieldName>(...)
+    // Mutation: remote function <fieldName>(...)
     remote function createProduct(ProductInput input) returns Product|error {
         return addProduct(input);
     }
 
-    // Subscription — resource function subscribe <fieldName>(...) returns stream<...>
+    // Subscription: resource function subscribe <fieldName>(...) returns stream<...>
     resource function subscribe onProductCreated() returns stream<Product, error?> {
         return getProductStream();
     }
