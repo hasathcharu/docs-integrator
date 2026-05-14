@@ -8,23 +8,9 @@ keywords: [wso2 integrator, ballerina, config.toml, configurable, runtime config
 
 `Config.toml` provides runtime values for `configurable` variables declared in Ballerina source code. Place this file in the working directory where you run `bal run`, or specify one or more config files via the `BAL_CONFIG_FILES` environment variable. Ballerina uses a TOML v0.4-compatible syntax with module-qualified keys to map configuration values to their corresponding `configurable` declarations.
 
-## How configurable variables work
-
-Declare a variable with the `configurable` keyword in Ballerina source code. Variables with a default value are optional; variables with `?` are required and the program will not start if no value is supplied.
-
-```ballerina
-configurable int port = 8080;        // optional — has a default
-configurable string hostname = "localhost";
-configurable string dbUrl = ?;       // required — must be set in Config.toml
-```
-
-Supply values in `Config.toml` using the same variable names:
-
-```toml
-port = 9090
-hostname = "api.example.com"
-dbUrl = "jdbc:mysql://db.example.com:3306/orders"
-```
+:::note
+This page is the TOML encoding reference for `Config.toml`. For declaring configurable variables, see [Configurations](../../develop/integration-artifacts/supporting/configurations.md). For value sources and resolution priority, see [Configuration management](configuration-management.md).
+:::
 
 ## Module-qualified names
 
@@ -265,19 +251,6 @@ name       = "Bob"
 department = "Marketing"
 ```
 
-## Precedence rules
-
-When the same configurable variable is set through multiple sources, the following order applies. Priority 1 wins over priority 6.
-
-| Priority | Source | Example |
-|----------|--------|---------|
-| 1 (highest) | `BAL_CONFIG_VAR_*` variables | `BAL_CONFIG_VAR_PORT=9090` |
-| 2 | Command-line arguments | `bal run -- -Cport=9090` |
-| 3 | `BAL_CONFIG_DATA` | `BAL_CONFIG_DATA='port=9090'` |
-| 4 | Config files via `BAL_CONFIG_FILES` | `/app/Config.toml` |
-| 5 | Default `Config.toml` in working directory | `./Config.toml` |
-| 6 (lowest) | Default values in source code | `configurable int port = 8080;` |
-
 ## Sensitive data
 
 Avoid placing secrets (passwords, API keys, tokens) in `Config.toml` files that are committed to version control. Instead, use a separate TOML file for secrets and prioritize it via `BAL_CONFIG_FILES`:
@@ -330,4 +303,4 @@ timeout = 60
 
 - [Ballerina.toml reference](ballerinatoml-reference.md) — configure package metadata, build options, and dependencies
 - [Cloud.toml reference](cloudtoml-reference.md) — configure Kubernetes and Docker deployment descriptors
-- [Environment variables](environment-variables.md) — set configuration values and override Config.toml at runtime
+- [Configuration management](configuration-management.md) — set configuration values, override Config.toml via environment variables, and target per-environment configuration
