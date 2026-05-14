@@ -258,7 +258,7 @@ public function main() returns error? {
 
 ## Parse JSON arrays
 
-Use `jsondata:parseString()` to parse a JSON array string directly into a typed record array. If you already have a `json` value instead of a string, use `jsondata:parseAsType()` as described in [Convert a JSON value to a typed record](`#convert-a-json-value-to-a-typed-record`).
+Use `jsondata:parseString()` to parse a JSON array string directly into a typed record array. If you already have a `json` value instead of a string, use `jsondata:parseAsType()` as described in [Convert a JSON value to a typed record](#convert-a-json-value-to-a-typed-record).
 
 <Tabs>
 <TabItem value="ui" label="Visual Designer" default>
@@ -445,5 +445,5 @@ Create a `products.json` file in the project directory.
 ## What's next
 
 - [XML Processing](xml.md) - Work with XML data
-- [Type System & Records](type-system.md) - Type-safe data handling
+- [Type System & Records](/docs/reference/language/type-system) - Type-safe data handling
 
