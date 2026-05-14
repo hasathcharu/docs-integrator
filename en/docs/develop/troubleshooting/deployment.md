@@ -6,7 +6,7 @@ description: Troubleshoot issues that appear when running integrations in deploy
 
 # Deployment
 
-This page covers issues that surface only after an integration leaves your machine — Docker containers, Kubernetes clusters, GraalVM native images, Choreo, and configuration injected at runtime.
+This page covers issues that surface only after an integration leaves your machine: Docker containers, Kubernetes clusters, GraalVM native images, Choreo, and configuration injected at runtime.
 
 Before you start digging into the deployment layer, confirm the integration runs locally with `bal build && bal run`. If it fails locally, fix the integration first using the other pages in this section. If it works locally but breaks once deployed, the issue is in the deployment environment, and the sections below help you isolate it.
 
@@ -153,8 +153,8 @@ If a native image fails at runtime, reproduce the issue with `bal run` (without 
 
 **Does `bal build && bal run` work locally?**
 
-- **Yes** — the code is correct, and the issue is in the Choreo build pipeline, configuration injection, or runtime environment. Raise it with the Choreo team.
-- **No** — fix the integration locally first using the other pages in this section, then redeploy.
+- **Yes.** The code is correct, and the issue is in the Choreo build pipeline, configuration injection, or runtime environment. Raise it with the Choreo team.
+- **No.** Fix the integration locally first using the other pages in this section, then redeploy.
 
 ### Common Choreo issues
 
@@ -163,7 +163,7 @@ If a native image fails at runtime, reproduce the issue with `bal run` (without 
 | Configurable values not loaded      | The service uses default values instead of the values set in Choreo | Verify the configurable keys match the `[org.package.module]` format in Choreo's configuration panel                                                                                                             |
 | Build fails in the Choreo pipeline  | Build succeeds locally but fails in Choreo                      | Check whether the Choreo build uses a different runtime version; verify all dependencies are available from Ballerina Central (no local-only dependencies)                                                           |
 | Service health check failing        | Pod restarts in Choreo                                          | Configure the health check endpoint in Choreo to match the service's actual health endpoint                                                                                                                          |
-| Cannot access logs                  | No visibility into runtime errors                               | Check Choreo's **Monitoring** and **Insights** sections. Log availability varies by Choreo plan and component type — consult the Choreo documentation or the Choreo team for current capabilities.                  |
+| Cannot access logs                  | No visibility into runtime errors                               | Check Choreo's **Monitoring** and **Insights** sections. Log availability varies by Choreo plan and component type. Consult the Choreo documentation or the Choreo team for current capabilities.                  |
 | Environment variables not available | `os:getEnv()` returns empty                                     | Configure environment variables in Choreo's component settings, not in source code                                                                                                                                   |
 
 ## Configuration in deployed environments

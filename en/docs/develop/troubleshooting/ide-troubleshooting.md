@@ -6,7 +6,7 @@ description: Fix common IDE and editor issues.
 
 # IDE Troubleshooting
 
-Use this page when something in the WSO2 Integrator editor isn't behaving the way you expect — a feature doesn't respond, a diagram doesn't load, or an action errors out. Before you file an issue, capture verbose editor output so the team can act on the report.
+Use this page when something in the WSO2 Integrator editor isn't behaving the way you expect: a feature doesn't respond, a diagram doesn't load, or an action errors out. Before you file an issue, capture verbose editor output so the team can act on the report.
 
 ## Capture verbose editor output
 
@@ -21,9 +21,9 @@ Use this page when something in the WSO2 Integrator editor isn't behaving the wa
     ![Settings page](/img/develop/troubleshooting/ide-troubleshooting/settings-page.png)
 
 3. Set each of the following to the value shown:
-    - `ballerina.traceLog` — enabled (`true`).
-    - `ballerina.debugLog` — enabled (`true`).
-    - `ballerina-vscode.trace.server` — `verbose`.
+    - `ballerina.traceLog`: enabled (`true`).
+    - `ballerina.debugLog`: enabled (`true`).
+    - `ballerina-vscode.trace.server`: `verbose`.
 
 ### 2. Open the output panel
 

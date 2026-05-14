@@ -9,7 +9,7 @@ description: Profile integrations to find performance bottlenecks using the Ball
 The Ballerina profiler samples your integration at runtime and produces an interactive flame graph that shows where execution time is spent. Use it when you have a slow integration and need to find the hot path before tuning anything.
 
 :::caution
-The profiler is experimental and adds significant overhead. Run it in development or a load-test environment — not in production.
+The profiler is experimental and adds significant overhead. Run it in development or a load-test environment, not in production.
 :::
 
 ## Run the profiler
@@ -46,7 +46,7 @@ Press `Ctrl+C` in the first terminal to stop the run. The profiler writes `targe
 Each bar in the graph represents a function call.
 
 - **Bar width** is proportional to time spent in that function.
-- **Vertical stacking** shows the call hierarchy — callers below, callees above.
+- **Vertical stacking** shows the call hierarchy. Callers are below, callees above.
 - **Wide bars at the bottom** consume the most total time, but the time may be spread across their children.
 - **Wide bars at the top** are the actual hotspots, since they have no further callees to pass the time to.
 
@@ -94,7 +94,7 @@ export BALLERINA_MAX_POOL_SIZE=16
 bal run .
 ```
 
-Raise the value when long-running blocking calls — legacy JDBC drivers, external Java libraries — are tying up scheduler workers and starving other strands.
+Raise the value when long-running blocking calls (legacy JDBC drivers, external Java libraries) are tying up scheduler workers and starving other strands.
 
 ### Diagnose thread starvation
 
@@ -124,7 +124,7 @@ bal run .
 
 The `isolated` keyword turns concurrency safety into a compile-time check. Mark a service or function `isolated` and the compiler flags any unsafe access to shared mutable state. This catches data races before they reach production.
 
-Note that even without `isolated`, the runtime may invoke a resource function concurrently — so absent isolation guarantees, you have to enforce safety yourself.
+Note that even without `isolated`, the runtime may invoke a resource function concurrently. Without isolation guarantees, you have to enforce safety yourself.
 
 ## Optimization checklist
 
@@ -139,7 +139,7 @@ Note that even without `isolated`, the runtime may invoke a resource function co
 
 ## Best practices
 
-- Measure before optimizing — profile first, then change one thing at a time.
+- Measure before optimizing. Profile first, then change one thing at a time.
 - Test under realistic load. Single-request profiling hides contention.
 - Focus on the critical path. Optimizations off the hot path rarely pay back.
 - Compare profiler output before and after each change.

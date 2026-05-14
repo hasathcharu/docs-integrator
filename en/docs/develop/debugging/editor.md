@@ -9,13 +9,16 @@ import TabItem from '@theme/TabItem';
 
 # Editor Debugging
 
-Editor debugging lets you pause an integration mid-run and inspect the values flowing through it. This page covers the everyday quick start: set a breakpoint and launch a debug session. For the full set of features available once the session is running — stepping, inspection panels, advanced breakpoints, and test or remote debugging — see [Features](features.md).
+Editor debugging lets you pause an integration mid-run and inspect the values flowing through it. This page covers the everyday quick start: set a breakpoint and launch a debug session. For the full set of features available once the session is running (stepping, inspection panels, advanced breakpoints, and test or remote debugging), see [Features](features.md).
 
 ## Before you start
 
 - Open the integration project in WSO2 Integrator.
-- Make sure the project builds successfully (`bal build`). Debugging a project that does not compile is not supported.
-- Confirm the integration has an executable entry point — a service, an automation, or a `main()` function.
+- Confirm the integration has an executable entry point, such as a service or an automation.
+
+Open the **Problems** panel at the bottom of the editor and make sure the workspace is free of compile errors. Debugging a project that does not compile is not supported, so resolve anything listed here first. When the workspace is clean, the panel shows *No problems have been detected in the workspace*.
+
+![Problems panel showing a clean workspace](/img/develop/debugging/editor-debugging/problems-panel.png)
 
 ## Set a breakpoint
 
@@ -49,10 +52,8 @@ A red dot appears next to the line.
 
 You can start a debug session two ways.
 
-- **Quick start** — Click the **Debug** CodeLens that appears above `main()`, a service, or any other entry point. This is the fastest path and works for most integrations.
-- **Custom configuration** — Create a `launch.json` file in the project, pick a configuration from the **Run and Debug** dropdown, and click **Start Debugging**. Use this when you need to pass arguments, environment variables, or non-default settings.
-
-When you launch a debug session from the editor, the working directory is the Ballerina package root.
+- **Quick start.** Click **Debug** on the [editor toolbar](/docs/develop/understand-ide/integrator-app#editor-toolbar), or open the **Run and Debug** view from the [activity bar](/docs/develop/understand-ide/integrator-app#activity-bar) and select **Ballerina Debug**. Either path works for most integrations.
+- **Custom configuration.** Create a `launch.json` file in the project, pick a configuration from the **Run and Debug** dropdown, and click **Start Debugging**. Use this when you need to pass arguments, environment variables, or non-default settings.
 
 ![Debug session paused at a breakpoint](/img/develop/debugging/editor-debugging/debug-session.png)
 
@@ -60,11 +61,16 @@ Execution pauses at the first breakpoint it hits. Output streams to the **Debug 
 
 ## Advanced debugging methods
 
-Most debugging happens against a program running locally from the editor. The next two methods cover the cases that do not fit that pattern — debugging an individual test, or attaching to an integration that is already running somewhere else.
+Most debugging happens against a program running locally from the editor. The next two methods cover the cases that do not fit that pattern: debugging tests, or attaching to an integration that is already running somewhere else.
 
 ### Test debugging
 
-Test debugging steps through a single test function the same way program debugging steps through `main()`. A **Debug** CodeLens appears above every test function. Click it to launch the debugger scoped to that test. Use this when a test fails and you want to inspect the inputs and intermediate values that produced the failure, rather than the full integration.
+Set breakpoints inside the test functions first, then launch the test session one of two ways:
+
+- Open the **Run and Debug** view from the [activity bar](/docs/develop/understand-ide/integrator-app#activity-bar), select **Ballerina Test** from the configuration dropdown, and click **Start Debugging**.
+- Click the **Debug** CodeLens that appears above each test function to launch the debugger scoped to that single test.
+
+Use test debugging when a test fails and you want to inspect the inputs and intermediate values that produced the failure, rather than the full integration.
 
 ### Remote debugging
 

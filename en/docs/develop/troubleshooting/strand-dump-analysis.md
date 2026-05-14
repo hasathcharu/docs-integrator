@@ -6,7 +6,7 @@ description: Capture and analyze Ballerina strand dumps to diagnose deadlocks, s
 
 # Strand Dump Analysis
 
-A strand dump is a point-in-time snapshot of every strand and strand group running in a Ballerina process. It tells you what each unit of execution is doing — running, waiting on a lock, blocked on an external call, queued on a worker channel — and where in the source code that work is happening. Use it to diagnose deadlocks, data races, livelocks, and integrations that have gone unresponsive.
+A strand dump is a point-in-time snapshot of every strand and strand group running in a Ballerina process. It tells you what each unit of execution is doing (running, waiting on a lock, blocked on an external call, queued on a worker channel) and where in the source code that work is happening. Use it to diagnose deadlocks, data races, livelocks, and integrations that have gone unresponsive.
 
 :::note
 Strand dumps use the SIGTRAP POSIX signal, so the feature is not available on Windows.
@@ -14,7 +14,7 @@ Strand dumps use the SIGTRAP POSIX signal, so the feature is not available on Wi
 
 ## Strands and strand groups
 
-A strand is Ballerina's lightweight unit of execution — similar to a green thread or coroutine — scheduled by the Ballerina runtime rather than the OS. Strands are multiplexed onto a smaller pool of OS threads and organized into strand groups for scheduling purposes. A single integration typically has many more strands than the host has CPU cores.
+A strand is Ballerina's lightweight unit of execution, similar to a green thread or coroutine. The Ballerina runtime schedules strands rather than the OS. Strands are multiplexed onto a smaller pool of OS threads and organized into strand groups for scheduling purposes. A single integration typically has many more strands than the host has CPU cores.
 
 ## Capture a strand dump
 
@@ -22,8 +22,8 @@ A strand is Ballerina's lightweight unit of execution — similar to a green thr
 
 Use `jps` to list running Java processes. Look for one of:
 
-- `$_init` — a running Ballerina service or program.
-- `BTestMain` — a `bal test` run.
+- `$_init`. A running Ballerina service or program.
+- `BTestMain`. A `bal test` run.
 
 ### Send SIGTRAP
 
@@ -87,7 +87,7 @@ The dump opens with a timestamp and totals: number of strand groups, active stra
 
 ### Entry fields
 
-Each strand entry shows a unique ID, an optional name, the current state, the originating module, the parent strand ID, the source location (file, line, function), and — when blocked — the blocking context.
+Each strand entry shows a unique ID, an optional name, the current state, the originating module, the parent strand ID, the source location (file, line, function), and, when blocked, the blocking context.
 
 ## Common patterns
 
@@ -97,7 +97,7 @@ Two or more strands sit in `WAITING FOR LOCK` and depend on locks the others are
 
 ### Worker channel deadlocks
 
-Worker sends (`->`) and receives (`<-`) are unbalanced — a worker sends with no matching receiver, or receives without a sender. Audit each channel so every send has a partnered receive on the other side.
+Worker sends (`->`) and receives (`<-`) are unbalanced. A worker sends with no matching receiver, or receives without a sender. Audit each channel so every send has a partnered receive on the other side.
 
 ### Connection pool exhaustion
 
@@ -109,7 +109,7 @@ Several strands are `BLOCKED` at the same external call site. The upstream is sl
 
 ### Hangs without a deadlock
 
-No lock cycles, but progress has stopped. Check the file and line on each `BLOCKED` strand — the same external call site usually appears in multiple entries, pointing at the slow upstream.
+No lock cycles, but progress has stopped. Check the file and line on each `BLOCKED` strand. The same external call site usually appears in multiple entries, pointing at the slow upstream.
 
 ## Best practices
 

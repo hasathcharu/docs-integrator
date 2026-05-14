@@ -2,17 +2,21 @@
 sidebar_position: 1
 title: Errors and Stack Traces
 description: Read and interpret Ballerina compiler diagnostics, runtime errors, and stack traces.
+keywords: [wso2 integrator, troubleshooting, errors, stack traces, ballerina, compiler errors, runtime errors, panics]
 ---
 
 # Errors and Stack Traces
 
-When an integration fails, the message and stack trace usually tell you exactly where to look. Ballerina distinguishes **errors** — handled values that flow through your code — from **panics** — unrecoverable failures that terminate the program. The shape of the message and the origin prefix point at the source library; the stack trace points at the line.
+Issues in a Ballerina integration fall into two categories:
 
-This page covers both compile-time diagnostics and the runtime errors and panics you see while a program is running. For hangs, deadlocks, or stuck strands, see [Strand dump analysis](strand-dump-analysis.md).
+- **Compile-time issues.** Caught by the compiler before the program runs. The same source always produces the same diagnostic, so these are deterministic and quick to reproduce.
+- **Runtime issues.** These surface only while the program is running. They appear as either an `error` value flowing through your code or a panic that unwinds the program.
 
-## Compile-time errors
+This page covers both categories. Start with the section that matches what you are seeing. If `bal build` fails, jump to [Compile-time issues](#compile-time-issues). If the program runs but fails or panics, jump to [Runtime issues](#runtime-issues). For hangs, deadlocks, or stuck strands, see [Strand dump analysis](strand-dump-analysis.md).
 
-Compile-time issues are deterministic — the same source always produces the same diagnostic. Fix them in order: the first error often produces the rest.
+## Compile-time issues
+
+Compile-time issues happen before the program starts. Fix them in order. The first error often produces the rest.
 
 ### Read a compiler diagnostic
 
@@ -33,7 +37,7 @@ ERROR [main.bal:(18:18,18:27)] incompatible types: expected 'int', found 'string
 error: compilation contains errors
 ```
 
-Read the message literally — Ballerina diagnostics are precise. The columns mark the exact token. When you see a batch of errors, fix the first one and recompile before tackling the rest; later errors are often cascades.
+Read the message literally. Ballerina diagnostics are precise. The columns mark the exact token. When you see a batch of errors, fix the first one and recompile before tackling the rest. Later errors are often cascades.
 
 :::tip
 Fix the first compiler error first, then recompile. Many later errors are knock-on effects that disappear once the root issue is resolved.
@@ -50,7 +54,9 @@ Fix the first compiler error first, then recompile. Many later errors are knock-
 | `variable 'X' is not initialized` | Used before assignment | Initialize the variable, or use a nullable type (`X?`). |
 | `cannot use type 'X' as a 'readonly'` | Assigning a mutable value where immutable is required | Use `.cloneReadOnly()` or change the type to `readonly`. |
 
-The `isolated` keyword enforces concurrency safety at compile time rather than runtime. A `lock { ... }` block gives exclusive access to shared mutable state — comparable to a `synchronized` block in Java.
+:::note
+The `isolated` keyword enforces concurrency safety at compile time rather than runtime. A `lock { ... }` block gives exclusive access to shared mutable state, comparable to a `synchronized` block in Java.
+:::
 
 ### Compiler crashes
 
@@ -87,7 +93,7 @@ Standard and extended libraries ship compiler plugins that run during compilatio
 ERROR [service.bal:(5:1,5:1)] remote methods are not allowed in HTTP service
 ```
 
-The wording usually gives away the source — phrases like "HTTP service cannot have...", "GraphQL service must have at least one resource function", or "SQL query must..." come from plugins, not the core compiler.
+The wording usually gives away the source. Phrases like "HTTP service cannot have...", "GraphQL service must have at least one resource function", or "SQL query must..." come from plugins, not the core compiler.
 
 | Library | Plugin validates |
 |---|---|
@@ -110,22 +116,22 @@ java.lang.ClassCastException: class org.wso2.ballerinalang.compiler.tree.BLangFu
 
 | Exception | Common cause |
 |---|---|
-| `ClassCastException` | Compiler or plugin bug — an AST node cast to the wrong type. |
-| `ClassNotFoundException` / `NoClassDefFoundError` | Dependency version mismatch — a class was renamed or removed in a newer or older library version still referenced by another package. |
-| `NoSuchMethodError` | Similar — a method signature changed between library versions. |
-| `NullPointerException` | Compiler or plugin bug — an AST node is unexpectedly `null`. |
-| `StackOverflowError` | Compiler bug — typically infinite recursion in type resolution. |
+| `ClassCastException` | Compiler or plugin bug. An AST node is cast to the wrong type. |
+| `ClassNotFoundException` / `NoClassDefFoundError` | Dependency version mismatch. A class was renamed or removed in a newer or older library version still referenced by another library. |
+| `NoSuchMethodError` | Similar. A method signature changed between library versions. |
+| `NullPointerException` | Compiler or plugin bug. An AST node is unexpectedly `null`. |
+| `StackOverflowError` | Compiler bug. Typically infinite recursion in type resolution. |
 
 To work through one of these:
 
-1. Check the stack trace origin. `io.ballerina.stdlib.*` or `io.ballerina.lib.*` is a plugin bug; `org.wso2.ballerinalang.*` or `io.ballerina.compiler.*` is a core compiler bug.
-2. Check for version conflicts. `ClassNotFoundException` and `NoClassDefFoundError` often mean two packages depend on incompatible library versions. Inspect `Dependencies.toml`, or delete it to force a fresh resolution.
-3. Check the release notes — the fix may already be in a newer Ballerina distribution or library version.
+1. Check the stack trace origin. `io.ballerina.stdlib.*` or `io.ballerina.lib.*` is a plugin bug. `org.wso2.ballerinalang.*` or `io.ballerina.compiler.*` is a core compiler bug.
+2. Check for version conflicts. `ClassNotFoundException` and `NoClassDefFoundError` often mean two libraries depend on incompatible versions. Inspect `Dependencies.toml`, or delete it to force a fresh resolution.
+3. Check the release notes. The fix may already be in a newer Ballerina distribution or library version.
 4. Try restructuring the offending code. Simplifying a service or splitting a complex expression often avoids the crashing path.
 
-## Runtime errors and panics
+## Runtime issues
 
-Once a program is running, failures arrive as one of two things: an `error` value returned from a function, or a panic that unwinds the program. The distinction shapes how you read the stack trace.
+Once compilation succeeds and the program is running, failures arrive as one of two things: an `error` value returned from a function, or a panic that unwinds the program. The distinction shapes how you read the stack trace.
 
 ### Errors vs panics
 
@@ -148,23 +154,19 @@ error: {ballerina/http}ClientRequestError Connection refused: localhost/127.0.0.
        └── origin ───┘└── error type ───┘ └────────── message ──────────────────────┘
 ```
 
-- **Origin** — the `{org/module}` prefix tells you which library emitted the error.
-- **Error type** — the named type (often a subtype of `error`).
-- **Message** — free-text detail.
+- **Origin.** The `{org/module}` prefix tells you which library emitted the error.
+- **Error type.** The named type (often a subtype of `error`).
+- **Message.** Free-text detail.
 
 ### Identify the source library
 
 | Prefix | Origin |
 |---|---|
 | `{ballerina}` | Ballerina core runtime. |
-| `{ballerina/http}` | `ballerina/http` standard library. |
-| `{ballerina/sql}` | `ballerina/sql` standard library. |
-| `{ballerina/graphql}` | `ballerina/graphql` standard library. |
-| `{ballerina/io}` | `ballerina/io` standard library. |
-| `{ballerinax/kafka}` | `ballerinax/kafka` extended library. |
-| `{myorg/mypackage}` | Your own package. |
+| `{ballerina/<module>}` | `ballerina/<module>` standard library. |
+| `{myorg/mypackage}` | Your own integration. |
 
-If the prefix matches your own package, the error was raised by your integration code. If it matches a library, start by checking the call site to that library.
+If the prefix matches your own integration, the error was raised by your own code. If it matches a library, start by checking the call site to that library.
 
 ### Read a stack trace
 
@@ -174,7 +176,7 @@ Stack frames use the form:
 at <org>/<package>:<version>:<function>(<file>.bal:<line>)
 ```
 
-Ballerina runtime stack traces can contain both Ballerina frames and Java frames from the underlying runtime. Focus on the Ballerina frames — they describe what your code was doing. The top frame is usually the failing line; the bottom is the entry point that started the call chain.
+Ballerina runtime stack traces can contain both Ballerina frames and Java frames from the underlying runtime. Focus on the Ballerina frames. They describe what your code was doing. The top frame is usually the failing line, and the bottom is the entry point that started the call chain.
 
 ### Core runtime errors
 
@@ -183,7 +185,7 @@ Errors with the `{ballerina}` prefix come from the core runtime.
 | Error type | What it means | Common cause |
 |---|---|---|
 | `{ballerina}TypeCastError` | Runtime type cast failed. | `<MyType>value` where `value` is not actually `MyType` at runtime. |
-| `{ballerina}NullReferenceException` | A nil (`()`) value was used where a non-nil value was expected. Ballerina's type system normally prevents this — the panic only fires when an unsafe cast bypasses the check (for example, `<string>nilValue`). | Dereferencing a `nil` value via an unsafe cast. |
+| `{ballerina}NullReferenceException` | A nil (`()`) value was used where a non-nil value was expected. Ballerina's type system normally prevents this. The panic only fires when an unsafe cast bypasses the check (for example, `<string>nilValue`). | Dereferencing a `nil` value via an unsafe cast. |
 | `{ballerina}NumberConversionError` | Number conversion failed. | `check int:fromString("abc")`. |
 | `{ballerina}StackOverflow` | Infinite recursion. | A recursive function without a proper base case. |
 | `{ballerina}IllegalStateException` | Operation on a closed or invalid resource. | Using a client or channel after `close()`. |
@@ -214,11 +216,11 @@ Line 42 of `utils.bal` has a cast `<int>someValue` where `someValue` was a `stri
 | `KeyNotFound` | Use `map.hasKey(key)` or optional access (`map[key]` returns `()` for missing keys on `map<T?>`). |
 | `JSONOperationError` | Check the structure before accessing nested keys; use optional access (`json?.key`). |
 
-If a panic's stack trace contains no frame from your integration code, the failure is in the runtime itself — file an issue with the reproducer and the full trace.
+If a panic's stack trace contains no frame from your own code, the failure is in the runtime itself. File an issue with the reproducer and the full trace.
 
-## Next steps
+## What's next
 
 - [Strand dump analysis](strand-dump-analysis.md) — for hangs, deadlocks, and concurrency diagnosis.
 - [Logging](logging.md) — when logs are the right tool for the job.
 - [Profiling](profiling.md) — for performance issues.
-- [Editor Debugging](/docs/develop/debugging/editor) — step through the code interactively.
+- [Editor Debugging](../debugging/editor.md) — step through the code interactively.

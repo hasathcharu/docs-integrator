@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 Logs are the everyday tool for tracing what an integration did and diagnosing what went wrong. Reach for them when you want a persistent record across runs, when the issue only reproduces in a long-running deployment, or when [editor debugging](../debugging/editor.md) is too heavyweight for the question you have.
 
-WSO2 Integrator exposes the four standard severities — **Info**, **Warn**, **Error**, and **Debug** — both as nodes in the visual designer and as `log:print*` functions in the Ballerina `log` library. This page covers both authoring paths. For the field-by-field reference of the Log nodes, see [Logging in the flow diagram editor](../understand-ide/editors/flow-diagram-editor/logging.md). For runtime configuration (log level, output format, file rotation, aggregation), see [Logging & structured logs](/docs/deploy-operate/observe/logging-overview).
+WSO2 Integrator exposes the four standard severities (**Info**, **Warn**, **Error**, and **Debug**) both as nodes in the visual designer and as `log:print*` functions in the Ballerina `log` library. This page covers both authoring paths. For the field-by-field reference of the Log nodes, see [Logging in the flow diagram editor](../understand-ide/editors/flow-diagram-editor/logging.md). For runtime configuration (log level, output format, file rotation, aggregation), see [Logging & structured logs](/docs/deploy-operate/observe/logging-overview).
 
 ## Add a log statement
 
@@ -47,7 +47,7 @@ public function processOrder(string orderId) {
 
 ## Add context with key-value pairs
 
-Attach structured fields to a log entry so downstream tooling can filter and correlate on them — for example, by `orderId` or `customerId`.
+Attach structured fields to a log entry so downstream tooling can filter and correlate on them. For example, by `orderId` or `customerId`.
 
 <Tabs>
 <TabItem value="visual" label="Visual Designer" default>
@@ -113,10 +113,10 @@ For help reading the resulting stack traces, see [Errors and stack traces](error
 
 Use the severity that matches the audience and noise budget for the message:
 
-- `DEBUG` — verbose detail you want while iterating; usually suppressed in production.
-- `INFO` — routine progress milestones, such as "request received" or "step completed".
-- `WARN` — unexpected but recoverable conditions, such as a retry or a fallback path.
-- `ERROR` — failures that the integration handled or escalated.
+- `DEBUG`. Verbose detail you want while iterating; usually suppressed in production.
+- `INFO`. Routine progress milestones, such as "request received" or "step completed".
+- `WARN`. Unexpected but recoverable conditions, such as a retry or a fallback path.
+- `ERROR`. Failures that the integration handled or escalated.
 
 To see `DEBUG` messages locally, set the level in `Config.toml` before running the integration:
 
@@ -139,7 +139,7 @@ requestLog.printInfo("Reserving inventory");
 requestLog.printInfo("Order accepted");
 ```
 
-Each entry includes `requestId` automatically. The visual designer reaches the same functions through the **Show more functions** entry on the node panel — see [Show more functions](../understand-ide/editors/flow-diagram-editor/show-more-functions.md).
+Each entry includes `requestId` automatically. The visual designer reaches the same functions through the **Show more functions** entry on the node panel. See [Show more functions](../understand-ide/editors/flow-diagram-editor/show-more-functions.md).
 
 ## Custom loggers
 
@@ -154,7 +154,7 @@ public function charge(string orderId, decimal amount) returns error? {
 }
 ```
 
-For variations — including loggers built from configuration — see the Ballerina by-example pages on [custom logger](https://ballerina.io/learn/by-example/custom-logger/) and [logger from configuration](https://ballerina.io/learn/by-example/logger-from-config/).
+For variations, including loggers built from configuration, see the Ballerina by-example pages on [custom logger](https://ballerina.io/learn/by-example/custom-logger/) and [logger from configuration](https://ballerina.io/learn/by-example/logger-from-config/).
 
 ## Avoid logging sensitive data
 
@@ -163,7 +163,7 @@ Logs are persisted, copied to aggregators, and read by people who didn't write t
 - Never log secrets, tokens, passwords, API keys, or full authorization headers.
 - Avoid logging full request or response payloads when they may contain personal data.
 - Prefer identifiers (`orderId`, `customerId`) over the underlying records.
-- Mask fields that must appear — for example, log only the last four digits of a card number.
+- Mask fields that must appear. For example, log only the last four digits of a card number.
 
 If a payload must be logged for diagnosis, gate it behind `DEBUG` so it stays out of production output.
 

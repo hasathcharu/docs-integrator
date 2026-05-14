@@ -6,7 +6,7 @@ description: Reference for the breakpoint, stepping, inspection, and session fea
 
 # Features
 
-This page catalogs the features available during a debug session — what each breakpoint type does, how to step through code, and how to inspect program state. For how to set up and launch a debug session (including test and remote debugging), see [Editor Debugging](editor.md).
+This page catalogs the features available during a debug session: what each breakpoint type does, how to step through code, and how to inspect program state. For how to set up and launch a debug session (including test and remote debugging), see [Editor Debugging](editor.md).
 
 ## Breakpoint types
 
@@ -72,9 +72,9 @@ Hover over any variable in the editor while paused. The current value appears in
 
 Use the **Watch** panel to track specific expressions across breakpoints. Add an expression once and it re-evaluates every time execution pauses. For example:
 
-- `payload.toString()` — view the full payload as a string.
-- `order.items.length()` — count items in the order.
-- `response.statusCode` — check the current HTTP status.
+- `payload.toString()`. View the full payload as a string.
+- `order.items.length()`. Count items in the order.
+- `response.statusCode`. Check the current HTTP status.
 
 ![Watch panel evaluating expressions during a paused session](/img/develop/debugging/editor-debugging/watch-panel.png)
 
@@ -86,7 +86,7 @@ The **Debug Console** evaluates any Ballerina expression in the current scope wh
 
 ### Call stack and strands
 
-The **Call Stack** panel shows the chain of function calls that led to the current pause point. Each frame is clickable — selecting a frame retargets the **Variables** and **Debug Console** to that frame's scope, so you can inspect state at any level of the call chain. For concurrent integrations, the panel also exposes the active strands, letting you switch between them while paused.
+The **Call Stack** panel shows the chain of function calls that led to the current pause point. Each frame is clickable. Selecting a frame retargets the **Variables** and **Debug Console** to that frame's scope, so you can inspect state at any level of the call chain. For concurrent integrations, the panel also exposes the active strands, letting you switch between them while paused.
 
 ## Related
 
