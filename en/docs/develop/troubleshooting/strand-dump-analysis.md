@@ -122,6 +122,6 @@ No lock cycles, but progress has stopped. Check the file and line on each `BLOCK
 
 ## Related
 
-- [Profiling](profiling.md) — identify the hot path before adjusting concurrency.
-- [Logging](logging.md) — capture context around the dump.
-- [Errors and stack traces](errors-and-stack-traces.md) — trace failures back to source.
+- [Profiling](profiling.md) - identify the hot path before adjusting concurrency.
+- [Logging](logging.md) - capture context around the dump.
+- [Errors and stack traces](errors-and-stack-traces.md) - trace failures back to source.

@@ -180,8 +180,7 @@ Other modules (such as `ballerina/sql` or `ballerina/grpc`) emit logs under thei
 
 ## What's next
 
-- [Logging in the flow diagram editor](../understand-ide/editors/flow-diagram-editor/logging.md) — full reference for the Log Info, Log Warn, Log Error, and Log Debug nodes.
-- [Show more functions](../understand-ide/editors/flow-diagram-editor/show-more-functions.md) — reach every `log:print*` variant from the visual designer.
-- [Errors and stack traces](errors-and-stack-traces.md) — read the error output that `log:printError` produces.
-- [Editor debugging](../debugging/editor.md) — pause and inspect state when a log line isn't enough.
-- [Logging & structured logs](/docs/deploy-operate/observe/logging-overview) — runtime configuration, JSON output, file rotation, and aggregation.
+- [Deployment](deployment.md) - diagnose issues that surface only after the integration ships.
+- [Profiling](profiling.md) - investigate slow paths once logs point at the area.
+- [Strand dump analysis](strand-dump-analysis.md) - inspect runtime strand state when an integration hangs.
+- [IDE troubleshooting](ide-troubleshooting.md) - resolve editor and tooling problems.

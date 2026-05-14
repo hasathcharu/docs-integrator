@@ -147,6 +147,6 @@ Note that even without `isolated`, the runtime may invoke a resource function co
 
 ## Related
 
-- [Strand dump analysis](strand-dump-analysis.md) — diagnose concurrency issues spotted while profiling.
-- [Logging](logging.md) — when logs are a better diagnostic than a live profile.
-- [Errors and stack traces](errors-and-stack-traces.md) — read failures back to source.
+- [Strand dump analysis](strand-dump-analysis.md) - diagnose concurrency issues spotted while profiling.
+- [Logging](logging.md) - when logs are a better diagnostic than a live profile.
+- [Errors and stack traces](errors-and-stack-traces.md) - read failures back to source.

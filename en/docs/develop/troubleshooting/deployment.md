@@ -222,3 +222,9 @@ kubectl exec -it <pod-name> -- cat /config/config.toml
 # Confirm the configurable values are actually read
 # Add a debug log in the service init that prints the resolved value
 ```
+
+## What's next
+
+- [Logging](logging.md) - add log statements to trace what the deployed integration is doing.
+- [Errors and stack traces](errors-and-stack-traces.md) - read the error output captured from a deployed pod or container.
+- [Profiling](profiling.md) - investigate performance issues that only appear under deployed load.

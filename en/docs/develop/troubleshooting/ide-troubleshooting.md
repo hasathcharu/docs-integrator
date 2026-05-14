@@ -41,7 +41,7 @@ Use this page when something in the WSO2 Integrator editor isn't behaving the wa
 
 ## Report the issue
 
-[Open a new issue in the `wso2/product-integrator` repository](https://github.com/wso2/product-integrator/issues) and include:
+Open a new issue in the [wso2/product-integrator](https://github.com/wso2/product-integrator/issues) repository and include:
 
 - A short title that describes the symptom.
 - The exact steps you followed to reproduce the issue.
@@ -49,3 +49,9 @@ Use this page when something in the WSO2 Integrator editor isn't behaving the wa
 - A screen recording of the reproduction, if you can capture one.
 
 If the Ballerina channel doesn't show any error, still file the issue. Include the reproduction steps and the screen recording so the team can dig deeper from there.
+
+## What's next
+
+- [Errors and stack traces](errors-and-stack-traces.md) - interpret the error text you captured from the Ballerina output channel.
+- [Logging](logging.md) - add log statements once the IDE is working again to trace what the integration does at runtime.
+- [Editor debugging](../debugging/editor.md) - set breakpoints and step through the integration after the IDE issue is resolved.
