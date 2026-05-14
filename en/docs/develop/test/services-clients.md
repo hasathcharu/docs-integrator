@@ -1,11 +1,11 @@
 ---
-sidebar_position: 3
-title: Test services and clients
+sidebar_position: 4
+title: Test Services and Clients
 description: Send requests to running HTTP services and mock external client dependencies in WSO2 Integrator.
 keywords: [wso2 integrator, test services, test http client, mock client, integration testing]
 ---
 
-# Test services and clients
+# Test Services and Clients
 
 Integration tests for services work differently from unit tests: instead of calling a function directly, you spin up the service and send real HTTP requests to it. The Ballerina test framework handles the service lifecycle for you. Services defined in a module start automatically when its tests run and stop when they finish. You focus on writing the requests and asserting the responses.
 

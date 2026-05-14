@@ -1,11 +1,11 @@
 ---
 sidebar_position: 12
-title: Observe metrics and tracing using New Relic
+title: Observe Metrics and Tracing Using New Relic
 description: See how Ballerina supports observability by exposing itself via metrics and tracing to New Relic.
 keywords: [ballerina, observability, metrics, tracing, new relic]
 ---
 
-# Observe metrics and tracing using New Relic
+# Observe Metrics and Tracing Using New Relic
 
 [New Relic](https://newrelic.com/) is an observability platform designed to help organizations monitor, analyze, and
 troubleshoot their applications, infrastructure, and digital experiences in real-time. Both metrics and tracing of an integration can

@@ -1,11 +1,11 @@
 ---
-sidebar_position: 5
-title: Test groups
+sidebar_position: 6
+title: Test Groups
 description: Assign tests to named groups and selectively run or exclude subsets without changing test code in WSO2 Integrator.
 keywords: [wso2 integrator, test groups, run groups, disable groups, ballerina test]
 ---
 
-# Test groups
+# Test Groups
 
 As an integration grows, so does its test suite. Running the entire suite on every change is wasteful when you only care about a specific area, for example, running payment tests after touching the billing module. Test groups let you tag tests with labels and control which labels run from the command line, without touching the test code itself.
 

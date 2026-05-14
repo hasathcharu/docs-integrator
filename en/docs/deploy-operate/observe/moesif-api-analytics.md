@@ -1,10 +1,10 @@
 ---
 sidebar_position: 15
-title: Observe metrics, traces and logs using Moesif
+title: Observe Metrics, Traces and Logs Using Moesif
 description: See how Ballerina supports observability by exposing itself via metrics, traces and logs to Moesif.
 ---
 
-# Observe metrics, traces and logs using Moesif
+# Observe Metrics, Traces and Logs Using Moesif
 
 Users can observe service integrations with [Moesif](https://www.moesif.com/), which is a powerful API analytics and monetization platform that helps businesses understand, debug, and monetize their API usage. It provides comprehensive API observability with real-time monitoring, behavioral analytics, and AI-powered insights to track customer API adoption and usage patterns.
 

@@ -1,9 +1,9 @@
 ---
-title: "Connectors overview"
+title: "Connectors Overview"
 description: "Understand what connectors, connections, actions, and triggers are before building your first integration."
 ---
 
-# Connectors overview
+# Connectors Overview
 
 Send a Slack notification when an order ships. Read customer records from Salesforce. Write results to a Google Sheet. Query a database and return the data in an API response.
 
