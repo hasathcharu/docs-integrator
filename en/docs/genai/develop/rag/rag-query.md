@@ -5,7 +5,7 @@ description: How to build a RAG query integration in WSO2 Integrator — retriev
 keywords: [wso2 integrator, rag, rag query, knowledge base, retrieve, augment, generate]
 ---
 
-# RAG query
+# RAG Query
 
 The query integration runs on every user request. It retrieves relevant chunks from the vector knowledge base populated during ingestion, combines them with the user's question, and calls the LLM to produce a grounded response.
 
@@ -17,7 +17,7 @@ Complete [RAG ingestion](rag-ingestion.md) before starting this page. The query 
 
 ---
 
-## What the integration does
+## What the rq query integration does
 
 ```mermaid
 flowchart LR
@@ -36,7 +36,6 @@ The four nodes — **Retrieve**, **Augment User Query**, **Generate**, and **Ret
 
 :::info Prerequisites
 
-- [WSO2 Integrator installed](../../get-started/install.md)
 - The ingestion integration from [RAG ingestion](rag-ingestion.md) has been run at least once so the Knowledge Base contains vectors.
 - The same Knowledge Base and Embedding Provider used during ingestion are available in this project.
 - A configured model provider. The default WSO2 provider works out of the box. Run `Ballerina: Configure default WSO2 model provider` if you haven't already.
