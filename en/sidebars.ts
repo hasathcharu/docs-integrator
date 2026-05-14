@@ -2168,10 +2168,10 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Configuration',
           items: [
+            'reference/config/configuration-management',
             'reference/config/ballerinatoml-reference',
             'reference/config/configtoml-reference',
             'reference/config/cloudtoml-reference',
-            'reference/config/environment-variables',
           ],
         },
         // ICP Configuration

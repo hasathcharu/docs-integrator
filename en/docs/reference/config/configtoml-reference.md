@@ -6,7 +6,7 @@ keywords: [wso2 integrator, ballerina, config.toml, configurable, runtime config
 
 # Config.toml Reference
 
-`Config.toml` provides runtime values for `configurable` variables declared in Ballerina source code. Place this file in the working directory where you run `bal run`, or specify one or more config files via the `BAL_CONFIG_FILES` environment variable. Ballerina uses a TOML v0.4-compatible syntax with module-qualified keys to map configuration values to their corresponding `configurable` declarations.
+`Config.toml` provides runtime values for `configurable` variables declared in Ballerina source code. Place it in the project root (alongside `Ballerina.toml`), or specify one or more config files via the `BAL_CONFIG_FILES` environment variable. Ballerina uses TOML syntax with module-qualified keys to map configuration values to their corresponding `configurable` declarations.
 
 :::note
 This page is the TOML encoding reference for `Config.toml`. For the basics of using configurable variables, see [Configurations](../../develop/integration-artifacts/supporting/configurations.md). For the complete configuration reference, see [Configuration management](configuration-management.md).
@@ -101,7 +101,7 @@ template   = "<greeting>Hello</greeting>"
 
 ### Enum types
 
-Define the enum as a union of string literals in Ballerina. The TOML value must exactly match one of the members.
+Constrain a string-typed configurable to a fixed set of values using a union of string literals. The TOML value must exactly match one of the members.
 
 ```ballerina
 type LogLevel "DEBUG"|"INFO"|"WARN"|"ERROR";
@@ -249,54 +249,6 @@ department = "Engineering"
 id         = 2
 name       = "Bob"
 department = "Marketing"
-```
-
-## Sensitive data
-
-Avoid placing secrets (passwords, API keys, tokens) in `Config.toml` files that are committed to version control. Instead, use a separate TOML file for secrets and prioritize it via `BAL_CONFIG_FILES`:
-
-```bash
-export BAL_CONFIG_FILES="/run/secrets/secret-config.toml:/app/Config.toml"
-```
-
-In Kubernetes, mount secrets as files and reference them through the `BAL_CONFIG_FILES` variable or `Cloud.toml`'s `[[cloud.config.secrets]]` section.
-
-## Complete example
-
-```toml
-# Root module variables
-port      = 9090
-hostname  = "api.example.com"
-enableSSL = true
-
-# Sub-module configuration
-[myapp.db]
-host     = "db.example.com"
-port     = 5432
-user     = "app_user"
-password = "secure_password"
-database = "orders_db"
-
-# External package configuration
-[ballerinax.mysql]
-host = "db.example.com"
-port = 3306
-
-# Array of endpoint records
-[[endpoints]]
-name    = "orders"
-url     = "https://orders.example.com"
-timeout = 30
-
-[[endpoints]]
-name    = "payments"
-url     = "https://payments.example.com"
-timeout = 60
-
-# Custom headers map
-[headers]
-"Content-Type" = "application/json"
-"X-Request-ID" = "auto"
 ```
 
 ## What's next

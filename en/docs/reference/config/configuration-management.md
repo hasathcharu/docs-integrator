@@ -42,17 +42,34 @@ configurable boolean enableCaching = true;
 ```
 
 </TabItem>
+<TabItem value="toml" label="Config.toml File">
+
+Supply values in `Config.toml` at the project root. Required variables must be set; optional variables may be omitted to use their declared defaults.
+
+```toml
+# Required
+dbHost = "db.example.com"
+dbPassword = "secret"
+
+# Optional — override the declared defaults if needed
+dbPort = 5432
+requestTimeoutSeconds = 60.0
+enableCaching = false
+```
+
+</TabItem>
 </Tabs>
 
 ### Supported types
 
 A configurable variable's type must describe plain-data values that the runtime can parse from a configuration source and hold safely for the lifetime of the program.
 
-This covers Ballerina's basic types (nil, boolean, int, float, decimal, string, xml) and structured types built from them (arrays, maps, records, tables). Common examples are shown below.
+This covers Ballerina's basic types (nil, boolean, int, byte, float, decimal, string, xml) and structured types built from them (arrays, maps, records, tables). Common examples are shown below.
 
 | Type | Example |
 |---|---|
 | `int` | `configurable int port = 8080;` |
+| `byte` | `configurable byte maxRetries = 3;` |
 | `float` | `configurable float threshold = 0.75;` |
 | `decimal` | `configurable decimal taxRate = 0.08d;` |
 | `string` | `configurable string apiKey = ?;` |
@@ -100,6 +117,23 @@ configurable ApiConfig crmApi = ?;
 ```
 
 </TabItem>
+<TabItem value="toml" label="Config.toml File">
+
+Supply values for each record-typed configurable as a TOML table. Fields with declared defaults may be omitted.
+
+```toml
+[orderDb]
+host = "db.example.com"
+username = "app_user"
+password = "secure_password"
+database = "orders"
+
+[crmApi]
+baseUrl = "https://api.crm.example.com"
+apiKey = "secret_api_key"
+```
+
+</TabItem>
 </Tabs>
 
 ## Configuration value sources
@@ -113,6 +147,10 @@ Configurable values can be supplied from several sources. When the same variable
 | Inline TOML (`BAL_CONFIG_DATA`) | `BAL_CONFIG_DATA='dbHost="localhost"'` | Containerized runs without a config file |
 | TOML files (`Config.toml` / `BAL_CONFIG_FILES`) | `dbHost = "localhost"` | Per-environment configuration |
 | Code defaults | `configurable string dbHost = "localhost";` | Development fallback |
+
+:::note
+Command-line arguments support only basic primitive types (`boolean`, `int`, `float`, `decimal`, `string`, `xml`). For arrays, maps, records, and tables, supply values via TOML files or `BAL_CONFIG_VAR_*` instead.
+:::
 
 ### Config.toml
 
