@@ -1,11 +1,11 @@
 ---
-title: "Getting started"
+title: "Getting Started"
 description: Sign in to WSO2 Integrator Copilot using your WSO2 Cloud account, or bring your own Anthropic, AWS Bedrock, or Google Vertex AI credentials.
 keywords: [wso2 integrator, copilot, getting started, sign in]
 slug: /develop/wso2-integrator-copilot/getting-started
 ---
 
-# Getting started
+# Getting Started
 
 If you have already [signed in to WSO2 Integrator](../../get-started/setup/local-setup.md#step-4-sign-in-to-wso2-integrator) with your WSO2 Cloud account, Copilot uses the same authentication and is ready to use. Otherwise, sign in from the Copilot welcome screen.
 
