@@ -2169,9 +2169,16 @@ const sidebars: SidebarsConfig = {
           label: 'Configuration',
           items: [
             'reference/config/configuration-management',
-            'reference/config/ballerinatoml-reference',
             'reference/config/configtoml-reference',
-            'reference/config/cloudtoml-reference',
+          ],
+        },
+        // Project
+        {
+          type: 'category',
+          label: 'Project',
+          items: [
+            'reference/project/ballerinatoml-reference',
+            'reference/project/cloudtoml-reference',
           ],
         },
         // ICP Configuration
