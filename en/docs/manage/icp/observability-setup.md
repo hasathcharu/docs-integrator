@@ -222,7 +222,7 @@ import wso2/icp.runtime.bridge as _;
 Both are blank imports (`as _`). They activate automatically at startup.
 
 :::warning
-Ensure to keep the import orders as shown.
+Ensure to keep the import order as shown.
 :::
 
 ### Config.toml
