@@ -4,7 +4,7 @@ title: gRPC Tool
 description: Generate Ballerina service stubs and client connectors from Protocol Buffer definitions.
 ---
 
-# gRPC tool
+# gRPC Tool
 
 The `bal grpc` tool generates Ballerina code from Protocol Buffer (`.proto`) files. It creates service stubs with RPC method signatures, client connectors for calling gRPC services, and Ballerina record types that correspond to protobuf message definitions. This lets you integrate with gRPC-based microservices using idiomatic Ballerina code.
 

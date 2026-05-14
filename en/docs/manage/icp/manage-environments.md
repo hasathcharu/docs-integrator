@@ -1,10 +1,10 @@
 ---
-title: Manage environments
+title: Manage Environments
 description: Create, edit, and delete environments in the ICP console to control where integrations are deployed and monitored.
 keywords: [wso2 integrator, integration control plane, icp, environments, manage]
 ---
 
-# Manage environments
+# Manage Environments
 
 Environments represent the deployment targets where integration runtimes run, such as development and production. They are managed at the organization level and apply globally, meaning every environment appears as a card on every integration across all projects. This page guides you through creating, editing, and deleting environments in the ICP console.
 
