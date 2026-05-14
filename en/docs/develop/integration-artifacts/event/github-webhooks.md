@@ -236,8 +236,8 @@ When a GitHub Events service is created, WSO2 Integrator adds all handlers for t
 | Handler | Triggered when | Payload type |
 |---|---|---|
 | `onCreated` | A comment is added to a pull request diff | `github:PullRequestReviewCommentEvent` |
-| `onEdited` | A comment on a pull request diff was edited | `github:PullRequestReviewCommentEvent` |
-| `onDeleted` | A comment on a pull request diff was deleted | `github:PullRequestReviewCommentEvent` |
+| `onEdited` | A comment on a pull request diff is edited | `github:PullRequestReviewCommentEvent` |
+| `onDeleted` | A comment on a pull request diff is deleted | `github:PullRequestReviewCommentEvent` |
 
 ### ReleaseService handlers
 
