@@ -286,23 +286,29 @@ const sidebars: SidebarsConfig = {
             'develop/test/ai-generated-cases',
           ],
         },
-        // 6.7 Debugging & Troubleshooting
+        // 6.7 Debug
         {
           type: 'category',
-          label: 'Debugging & Troubleshooting',
+          label: 'Debug',
           items: [
-            'develop/debugging/troubleshooting',
-            'develop/debugging/errors-and-stack-traces',
-            'develop/debugging/library-troubleshooting',
-            'develop/debugging/deployment-troubleshooting',
             'develop/debugging/editor',
-            'develop/debugging/remote',
-            'develop/debugging/strand-dump-analysis',
-            'develop/debugging/performance-profiling',
-            'develop/debugging/logging',
+            'develop/debugging/features',
           ],
         },
-        // 6.8 Tools
+        // 6.8 Troubleshooting
+        {
+          type: 'category',
+          label: 'Troubleshooting',
+          items: [
+            'develop/troubleshooting/errors-and-stack-traces',
+            'develop/troubleshooting/logging',
+            'develop/troubleshooting/deployment',
+            'develop/troubleshooting/strand-dump-analysis',
+            'develop/troubleshooting/profiling',
+            'develop/troubleshooting/ide-troubleshooting',
+          ],
+        },
+        // 6.9 Tools
         {
           type: 'category',
           label: 'Tools',
