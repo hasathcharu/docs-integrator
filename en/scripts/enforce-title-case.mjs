@@ -199,5 +199,14 @@ for (const file of files) {
   processMarkdownFile(file);
 }
 
-const action = DRY_RUN ? 'Would update' : 'Updated';
-console.log(`\n${action} ${totalChanges} value(s) across ${files.length} files and sidebars.ts.`);
+if (DRY_RUN) {
+  if (totalChanges > 0) {
+    console.log(`\nFound ${totalChanges} title-case violation(s) across ${files.length} files and sidebars.ts.`);
+    console.log('Fix by running: node scripts/enforce-title-case.mjs');
+    process.exit(1);
+  } else {
+    console.log(`\nAll title-case checks passed (${files.length} files + sidebars.ts).`);
+  }
+} else {
+  console.log(`\nUpdated ${totalChanges} value(s) across ${files.length} files and sidebars.ts.`);
+}
