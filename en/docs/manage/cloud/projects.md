@@ -20,7 +20,7 @@ Click **Organization** in the top navigation to open the organization overview. 
    To import an existing project from a Git repository instead, click **Import**. See [Import a project](../../deploy/cloud/import-project.md) for instructions.
    :::
 
-3. Fill in the project details:
+2. Fill in the project details:
 
    | Field | Description |
    |---|---|
@@ -28,11 +28,11 @@ Click **Organization** in the top navigation to open the organization overview. 
    | **Name** | A unique identifier for the project. Must be unique within the organization. |
    | **Description** | An optional summary of the project's purpose. |
 
-4. Optionally, connect a Git repository to embed repository metadata with the project. To import integrations from a repository rather than just linking metadata, use the [Import a project](../../deploy/cloud/import-project.md) flow instead.
+3. Optionally, connect a Git repository to embed repository metadata with the project. To import integrations from a repository rather than just linking metadata, use the [Import a project](../../deploy/cloud/import-project.md) flow instead.
 
     ![Create Project](/img/manage/cloud/projects/create-project.png)
 
-5. Click **Create**.
+4. Click **Create**.
 
 WSO2 Cloud creates the project and navigates you to the project home.
 
@@ -52,7 +52,7 @@ A project cannot be deleted without deleting all its integrations first.
 :::
 
 :::danger
-Removing a project is permanent. All history within the project are deleted and cannot be recovered.
+Removing a project is permanent. All history within the project is deleted and cannot be recovered.
 :::
 
 1. From the project home, go to **Admin** > **Settings**.
