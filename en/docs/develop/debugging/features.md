@@ -43,11 +43,11 @@ Once execution is paused, the debug toolbar appears at the top of the editor. Us
 | Action | Shortcut | What it does |
 |--------|----------|--------------|
 | Continue | F5 | Resume execution until the next breakpoint. |
-| Pause | F6 | Suspend a running program at its current line. |
+| Pause | Shift+F5 | Suspend a running program at its current line. |
 | Step Over | F10 | Run the current line and pause on the next one, without entering function calls. |
 | Step Into | F11 | Enter the function called on the current line. |
 | Step Out | Shift+F11 | Run the rest of the current function and pause when it returns. |
-| Restart | Ctrl+Shift+F5 | Stop the current session and start a new one. |
+| Restart | Cmd+Shift+F5 or Ctrl+Shift+F5 | Stop the current session and start a new one. |
 | Stop | Shift+F5 | End the debug session. |
 
 ## Pause and continue

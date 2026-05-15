@@ -64,7 +64,7 @@ Most debugging happens against a program running locally from the editor. The ne
 
 ### Test debugging
 
-Set breakpoints inside the test functions first, then launch the test session one of two ways:
+Set breakpoints inside the test functions first, then launch the test session in one of two ways:
 
 - Open the **Run and Debug** view from the [activity bar](/docs/develop/understand-ide/integrator-app#activity-bar), select **Ballerina Test** from the configuration dropdown, and click **Start Debugging**.
 - Click the **Debug** CodeLens that appears above each test function to launch the debugger scoped to that single test.
@@ -85,6 +85,6 @@ Then add a **Ballerina Remote** configuration to `launch.json` with the `debugge
 
 ## Next steps
 
-- [Features](features.md) — stepping, variable inspection, advanced breakpoints, and test or remote debugging.
-- [Errors and stack traces](/docs/develop/troubleshooting/errors-and-stack-traces) — read error messages and trace failures back to source.
-- [Logging](/docs/develop/troubleshooting/logging) — when adding logs is a better fit than a live debug session.
+- [Features](features.md) - stepping, variable inspection, advanced breakpoints, and test or remote debugging.
+- [Errors and stack traces](/docs/develop/troubleshooting/errors-and-stack-traces) - read error messages and trace failures back to source.
+- [Logging](/docs/develop/troubleshooting/logging) - when adding logs is a better fit than a live debug session.
