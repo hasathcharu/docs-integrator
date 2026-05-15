@@ -49,12 +49,9 @@ A red dot appears next to the line.
 
 ## Start a debug session
 
-You can start a debug session two ways.
+Click **Debug** on the [editor toolbar](/docs/develop/understand-ide/integrator-app#editor-toolbar), or open the **Run and Debug** view from the [activity bar](/docs/develop/understand-ide/integrator-app#activity-bar) and select **Ballerina Debug**. Either path works for most integrations.
 
-- **Quick start.** Click **Debug** on the [editor toolbar](/docs/develop/understand-ide/integrator-app#editor-toolbar), or open the **Run and Debug** view from the [activity bar](/docs/develop/understand-ide/integrator-app#activity-bar) and select **Ballerina Debug**. Either path works for most integrations.
-- **Custom configuration.** Create a `launch.json` file in the project, pick a configuration from the **Run and Debug** dropdown, and click **Start Debugging**. Use this when you need to pass arguments, environment variables, or non-default settings.
-
-![Debug session paused at a breakpoint](/img/develop/debugging/editor-debugging/debug-session.png)
+![Debug session paused at a breakpoint](/img/develop/debugging/editor-debugging/debug-session.gif)
 
 Execution pauses at the first breakpoint it hits. Output streams to the **Debug Console**.
 
