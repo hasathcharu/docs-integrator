@@ -305,7 +305,7 @@ function HomepageHeader(): ReactNode {
 
         <Heading as="h1">WSO2 Integration Platform</Heading>
         <p className={styles.heroSubtitle}>
-          Build integrations with low-code simplicity and pro-code power.
+          Build and deploy integrations with low-code simplicity and pro-code power.
         </p>
         <SearchBar />
         <div className={styles.buttons}>
