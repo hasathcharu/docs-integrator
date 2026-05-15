@@ -303,7 +303,7 @@ function HomepageHeader(): ReactNode {
     <header className={styles.heroBanner}>
       <div className="container">
 
-        <Heading as="h1">WSO2 Integrator</Heading>
+        <Heading as="h1">WSO2 Integration Platform</Heading>
         <p className={styles.heroSubtitle}>
           Build integrations with low-code simplicity and pro-code power.
         </p>
