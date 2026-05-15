@@ -187,6 +187,7 @@ const sidebars: SidebarsConfig = {
                 'develop/integration-artifacts/supporting/connections',
                 'develop/integration-artifacts/supporting/configurations',
                 'develop/integration-artifacts/supporting/functions',
+                'develop/integration-artifacts/supporting/data-persistence',
                 {
                   type: 'category',
                   label: 'Data mapper',
