@@ -2168,10 +2168,17 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Configuration',
           items: [
-            'reference/config/ballerinatoml-reference',
+            'reference/config/configuration-management',
             'reference/config/configtoml-reference',
-            'reference/config/cloudtoml-reference',
-            'reference/config/environment-variables',
+          ],
+        },
+        // Project
+        {
+          type: 'category',
+          label: 'Project',
+          items: [
+            'reference/project/ballerinatoml-reference',
+            'reference/project/cloudtoml-reference',
           ],
         },
         // ICP Configuration
@@ -2216,6 +2223,7 @@ const sidebars: SidebarsConfig = {
         },
         'reference/ballerina-by-example',
         'reference/ballerina-specifications',
+        'reference/ai-usage-and-data-handling-guidelines',
         // Miscellaneous
         {
           type: 'category',

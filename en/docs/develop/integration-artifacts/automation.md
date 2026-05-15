@@ -104,3 +104,4 @@ public function main(string param1 = "", int param2 = 0) returns error? {
 - [HTTP service](service/http.md) — expose your integration as a REST API
 - [Error handling](../design-logic/error-handling.md) — handle automation failures
 - [Connections](supporting/connections.md) — call external services from your automation
+- [Error handling](../understand-ide/editors/flow-diagram-editor/error-handling.md) — handle automation failures

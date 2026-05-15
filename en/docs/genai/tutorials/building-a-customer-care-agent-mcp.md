@@ -31,7 +31,7 @@ The agent receives customer messages over HTTP, reasons about which tool to call
 
 
 :::info Prerequisites
-- [WSO2 Integrator set up for AI](../getting-started/setting-up-ai.md)
+- [Model Providers for LLMs](../develop/components/model-providers.md)
 - The **ShopEasy MCP server** running locally. Clone the repo and follow its README to start it: [github.com/wso2/integration-samples](https://github.com/wso2/integration-samples/tree/main/integrator-default-profile/samples/customer-care-agent/mcp).
 :::
 
@@ -166,7 +166,7 @@ Try the following messages to exercise all three tools:
     }}
 />
 
-For more detail on using the chat panel, see [Testing chat agents](../../develop/test/built-in-try-it-tool#testing-chat-agents).
+For more detail on using the chat panel, see [Try-It experiences](../../develop/test/built-in-try-it-tool#try-it-experiences).
 
 </TabItem>
 <TabItem value="code" label="Ballerina Code">

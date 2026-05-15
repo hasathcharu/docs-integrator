@@ -87,72 +87,20 @@ const config: Config = {
       },
     },
     navbar: {
-      title: 'WSO2 Integrator',
+      title: 'WSO2 Integration Platform',
       logo: {
-        alt: 'WSO2 Integrator Logo',
+        alt: 'WSO2 Integration Platform Logo',
         src: 'img/logo.svg',
         srcDark: 'img/logo-dark.svg',
         href: '/',
       },
       items: [
         {
-          to: '/docs/get-started/introduction',
-          label: 'Get started',
-          position: 'left',
-          activeBaseRegex: '/docs/get-started(/|$)',
-        },
-        {
-          to: '/docs/develop/overview',
-          label: 'Develop',
-          position: 'left',
-          activeBaseRegex: '/docs/develop(/|$)',
-        },
-        {
-          to: '/docs/connectors/overview',
-          label: 'Connectors',
-          position: 'left',
-          activeBaseRegex: '/docs/connectors(/|$)',
-        },
-        {
-          to: '/docs/genai/overview',
-          label: 'AI Integrations',
-          position: 'left',
-          activeBaseRegex: '/docs/genai(/|$)',
-        },
-        {
-          to: '/docs/guides/overview',
-          label: 'Guides',
-          position: 'left',
-          activeBaseRegex: '/docs/guides(/|$)',
-        },
-        {
-          to: '/docs/deploy/overview',
-          label: 'Deploy',
-          position: 'left',
-          // Match both the new /docs/deploy/* tree and the legacy
-          // /docs/deploy-operate/* tree until the content migration is
-          // complete (those pages still live under deploy-operate/ in
-          // sidebars.ts).
-          activeBaseRegex: '/docs/(deploy|deploy-operate)(/|$)',
-        },
-        {
-          to: '/docs/manage/overview',
-          label: 'Manage',
-          position: 'left',
-          activeBaseRegex: '/docs/manage(/|$)',
-        },
-        {
-          to: '/docs/reference/overview',
-          label: 'Reference',
-          position: 'left',
-          activeBaseRegex: '/docs/reference(/|$)',
-        },
-        {
           href: 'https://github.com/wso2/docs-integrator',
           label: 'GitHub',
           position: 'right',
-        },
-      ],
+        }
+      ]
     },
     footer: {
       style: 'dark',
