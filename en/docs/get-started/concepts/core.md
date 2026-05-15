@@ -111,7 +111,7 @@ A File Integration is triggered when files appear, change, or are removed in a w
 
 ## Data mapper
 
-A Data Mapper defines a transformation between two data shapes. You declare input and output types, then specify how fields map and what transformations apply. Mappings can be authored visually in the IDE, connecting fields and configuring transformations through the mapping editor, or written directly in code. The IDE generates the underlying mapping code as part of your integration. Use Data Mappers wherever you need to translate data: mapping a request to a response, a source system's schema to a target system's, or an external schema to an internal model.
+A Data mapper defines a transformation between two data shapes. You declare input and output types, then specify how fields map and what transformations apply. Mappings can be authored visually in the IDE, connecting fields and configuring transformations through the mapping editor, or written directly in code. The IDE generates the underlying mapping code as part of your integration. Use Data Mappers wherever you need to translate data: mapping a request to a response, a source system's schema to a target system's, or an external schema to an internal model.
 
 ## Function
 
