@@ -35,7 +35,7 @@ A red dot appears on the node to confirm the breakpoint is active.
 ![Breakpoint set on a node in the visual designer](/img/develop/debugging/editor-debugging/flow-diagram.png)
 
 </TabItem>
-<TabItem value="code" label="Code editor">
+<TabItem value="code" label="Ballerina Code">
 
 1. Open the `.bal` file.
 2. Click in the gutter to the left of the line number where you want to pause.

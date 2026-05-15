@@ -27,7 +27,7 @@ WSO2 Integrator exposes the four standard severities (**Info**, **Warn**, **Erro
 See [Logging in the flow diagram editor](../understand-ide/editors/flow-diagram-editor/logging.md) for the full node and form reference.
 
 </TabItem>
-<TabItem value="code" label="Code">
+<TabItem value="code" label="Ballerina Code">
 
 Import the `log` library and call the function that matches the severity you need.
 
@@ -59,7 +59,7 @@ Attach structured fields to a log entry so downstream tooling can filter and cor
 The fields appear alongside the message in the log output.
 
 </TabItem>
-<TabItem value="code" label="Code">
+<TabItem value="code" label="Ballerina Code">
 
 Pass context as named arguments to the `log:print*` function.
 
@@ -91,7 +91,7 @@ When you catch an error, log it with the error value attached so the stack trace
 2. In **Advanced Configurations**, attach the caught error to the log entry and enable the stack trace option.
 
 </TabItem>
-<TabItem value="code" label="Code">
+<TabItem value="code" label="Ballerina Code">
 
 ```ballerina
 do {
