@@ -234,7 +234,7 @@ Select the **Run** button. WSO2 Integrator prompts you to create the necessary c
 
 On first run (with `ORD-001` and `ORD-002` in `PLACED` status) you should see:
 
-```text
+```bash
 msg="Order advanced to PROCESSING" orderId="ORD-001"
 msg="Order advanced to PROCESSING" orderId="ORD-002"
 msg="Done — processed orders" count=2
@@ -249,7 +249,7 @@ SELECT order_id, status FROM orders;
 
 Run the automation again — all orders are already `PROCESSING`, so the early-exit path fires:
 
-```text
+```bash
 No new orders to process.
 ```
 
