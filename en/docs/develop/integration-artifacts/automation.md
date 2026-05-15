@@ -26,7 +26,7 @@ Only one automation can be configured per integration.
 
    ![Artifacts panel showing the Automation option](/img/develop/integration-artifacts/automation/add-artifact.png)
 
-3. In the creation form, configure the following fields and select **Create**.
+3. In the creation form, configure the following fields.
 
    ![Create New Automation form](/img/develop/integration-artifacts/automation/create-form.png)
 
