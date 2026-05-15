@@ -295,20 +295,7 @@ const sidebars: SidebarsConfig = {
             'develop/debugging/features',
           ],
         },
-        // 6.8 Troubleshooting
-        {
-          type: 'category',
-          label: 'Troubleshooting',
-          items: [
-            'develop/troubleshooting/errors-and-stack-traces',
-            'develop/troubleshooting/logging',
-            'develop/troubleshooting/deployment',
-            'develop/troubleshooting/strand-dump-analysis',
-            'develop/troubleshooting/profiling',
-            'develop/troubleshooting/ide-troubleshooting',
-          ],
-        },
-        // 6.9 Tools
+        // 6.8 Tools
         {
           type: 'category',
           label: 'Tools',
