@@ -88,6 +88,20 @@ The **Debug Console** evaluates any Ballerina expression in the current scope wh
 
 The **Call Stack** panel shows the chain of function calls that led to the current pause point. Each frame is clickable. Selecting a frame retargets the **Variables** and **Debug Console** to that frame's scope, so you can inspect state at any level of the call chain. For concurrent integrations, the panel also exposes the active strands, letting you switch between them while paused.
 
+## Expression evaluation
+
+Expression evaluation lets you run any Ballerina expression against the current paused state. Use it to verify a fix idea, transform a value, or call a function without editing source and restarting the session.
+
+You can evaluate expressions in three places:
+
+- **Debug Console.** Type an expression at the prompt and press **Enter**. The result prints inline.
+- **Watch panel.** Add an expression once and it re-evaluates on every pause.
+- **Hover.** Select an expression in the editor and hover to see its value in a tooltip.
+
+Expressions run in the scope of the selected stack frame, so switching frames in the **Call Stack** panel changes what is in scope.
+
+![Evaluating a Ballerina expression in the Debug Console](/img/develop/debugging/features/expression-evaluation.png)
+
 ## Related
 
 - [Editor Debugging](editor.md) - quick-start setup for a debug session.
